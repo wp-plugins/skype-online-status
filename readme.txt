@@ -26,7 +26,16 @@ Steps:
 
 1. Download archive and unpack.
 
-2. Upload and save (or overwrite) files and folders to /plugins/ directory.
+2. Upload and save (or overwrite) files and folders to /plugins/ directory. You should have the following file structure under /plugins/:
+     buttonsnap.php (* only for WP version 1.5 and 2.0)
+     skype-status/templates/*.html
+     skype-status/tinymce/langs/*.js
+     skype-status/tinymce/editor_plugin.js
+     skype-status/skype_button.gif
+     skype-status/skypemarker.gif
+     skype-status/skype-status.php
+     skype-status/spacer.gif
+     
 
 3. Activate plugin on the Plug-ins page
 
