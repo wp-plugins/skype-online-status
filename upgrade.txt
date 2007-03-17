@@ -1,0 +1,5 @@
+IMPORTANT
+
+When updating from version 1.7 or previous: please deactivate plugin and remove the old directories and files before uploading!
+
+Read more in readme.txt
