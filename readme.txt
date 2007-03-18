@@ -26,7 +26,8 @@ Steps:
 
 1. Download archive and unpack.
 
-2. Upload and save (or overwrite) files and folders to /plugins/ directory. You should have the following file structure under /plugins/:
+2. Upload and save (or overwrite) files and folders to the plugins folder directory. You should have the following file structure under /wp-content/plugins/
+
      buttonsnap.php (* only for WP version 1.5 and 2.0)
      skype-status/templates/*.html
      skype-status/tinymce/langs/*.js
@@ -63,8 +64,8 @@ When reporting bugs, please describe as carefully as possible and provide inform
 
 This readme comes packed with version 2.5 of the 'Skype Online Status' plugin for WordPress 2+.
 
-    Version: 2.6
-    Status: Beta (use at your own risk, please report bugs to skype-status_at_4visions_dot_nl)
+    Version: 2.6dev
+    Status: Beta 
     Latest stable: 2.5
     Licence: GNU General Public License
 
@@ -73,9 +74,12 @@ This readme comes packed with version 2.5 of the 'Skype Online Status' plugin fo
 Since version 1.1 there have been some major changes to the layout of the 'Options > Skype Status' page. Documentation has been extended. 
 
 And some new features:
+
      - some new tags for the template files,
-     - a 'Reset options' button to revert to original settings,
-     - the <!--skype status--> tag to display a Skype Status button in posts and page content!
+     - a 'Reset options' button to revert 
+to original settings,
+     - the <!--skype status--> tag to display 
+a Skype Status button in posts and page content!
      - editable template
      - language switch for Skype default status texts
      - lots more templates
@@ -85,6 +89,7 @@ And some new features:
 == Notes ==		
 
 Wish List version 3 and beyond :)
+
      - Skype-like wizard...
      - Dynamic sidebar Widget
      - Add Skypecasts widget
