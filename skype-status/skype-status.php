@@ -44,7 +44,9 @@ Author URI: http://4visions.nl/
 	
 	Revision History
 		[2007-  -  ] version 2.6: 
-			- improved reg_exp for quicktag replacement (defeating wpautop's wrapping p)
+			- improved reg_exp for quicktag replacement (defeating wpautop's wrapping p 
+			- minor changes in available settings (newline for download link optional)
+			- fixed &-sign in fields causing failed w3c validation
 			- TODO: add placeholder image for quicktag
 			- TODO: look into widgetizing!
 			- TODO: look into skypecasts and skype public chats
@@ -127,6 +129,7 @@ function skype_default_values() {
 		"status_6_text" => "Invisible", 		// Text to replace {status} in template files when status is invisible (6)
 		"status_7_text" => "Skype me!", 		// Text to replace {status} in template files when status is skype me! (7)
 		"use_getskype" => "on", 				// Wether to show the Donwload Skype now! link
+		"getskype_newline" => "",			// Put the Download Skype now! link on a new line ("on") or not ("")
 		"getskype_text" => "&raquo; Download Skype now!", 	// Text to use for the Donwload Skype now! link
 		"getskype_pid" => SKYPEPID,
 		"skype_status_version" => SOSVERSION,
@@ -138,7 +141,7 @@ function skype_default_values() {
 // --- advanced settings ---
 
 // Print all Skype settings from the database at the bottom of the settings page for debugging (normally, leave to FALSE)
-define('DATADUMP', FALSE);
+define('DATADUMP', TRUE);
 
 // Checks wether fopen_wrappers are enabled on your server so the remote Skype status file can be read
 // Comment-out (with //) the if..else statements if you want to force this setting in spite of server settings
@@ -328,6 +331,11 @@ function skype_parse_theme($config) {
 	$theme_output = str_replace("{sep1}",$config['seperator1_text'],$theme_output);	
 	$theme_output = str_replace("{sep2}",$config['seperator2_text'],$theme_output);	
 
+	if ($config['use_getskype'] == "on") { 
+		if ($config['getskype_newline'] == "on") $theme_output .= "<br />";
+		$theme_output .= " <a href=\"http://share.skype.com/in/102/".SKYPEPID."\" title=\"".$config['getskype_text']."\">".$config['getskype_text']."</a>";
+		}
+
 	return str_replace(array("\r\n", "\n\r", "\n", "\r", "%0D%0A", "%0A%0D", "%0D", "%0A"), "", $theme_output);
 }
 
@@ -393,6 +401,7 @@ function skype_status_options() {
 				"status_6_text" => $_POST['status_6_text'],
 				"status_7_text" => $_POST['status_7_text'],
 				"use_getskype" => $_POST['use_getskype'],
+				"getskype_newline" => $_POST['getskype_newline'],
 				"getskype_text" => $_POST['getskype_text'],
 			);
 			$option = array_merge ($skype_status_config, $option);
@@ -449,14 +458,14 @@ function skype_status_options() {
 		<h2>Skype Online Status Settings</h2>
 		
 		<p align="right"><a href="#wphead">back to top</a></p>
-		<form method="post" action="#">
+		<form enctype="multipart/form-data" method="post" action="#">
 
 		<fieldset class="options"><legend>Skype ID</legend>
 			<p><label for="skype_id">Your Skype ID*:</label> <input type="text" name="skype_id" id="skype_id" value="<?php echo $option['skype_id']; ?>" /><br />
 			* <em>leave blank to <strong>disable all instances</strong> of the Skype online status button on your weblog</em></p>
 		</fieldset>
 		<fieldset class="options"><legend>User name</legend>
-			<p><label for="user_name">Your Skype name:</label> <input type="text" style="width: 250px;" name="user_name" id="user_name" value="<?php echo $option['user_name']; ?>" /></p>
+			<p><label for="user_name">Your Skype name:</label> <input type="text" style="width: 250px;" name="user_name" id="user_name" value="<?php echo stripslashes(htmlspecialchars($option['user_name'])); ?>" /></p>
 		</fieldset>
 		<fieldset class="options"><legend>Display options</legend>
 			<p>These settings define which options should be used to replace their respective tag (if present) in the selected template file. If unchecked, the tags will be blanked out.</p> 
@@ -464,7 +473,10 @@ function skype_status_options() {
 				<li><input type="checkbox" name="use_voicemail" id="use_voicemail"<?php if ( $option['use_voicemail'] == "on" ) { print " checked=\"checked\""; } ?> /> <label for="use_voicemail">Use <strong>Leave a voicemail</strong> in dropdown button. Leave unchecked if you do not have a SkypeIn account or SkypeVoicemail.</label></li>
 				<li><input type="checkbox" name="use_function" id="use_function"<?php if ( $option['use_function'] == "on" ) { print " checked=\"checked\""; } ?> /> <label for="use_function">Use <strong>Action text</strong> (as defined below) for {add/call/chat/userinfo/voicemail/sendfile} tags.</label></li>
 				<li><input type="checkbox" name="use_buttonsnap" id="use_buttonsnap"<?php if ( $option['use_buttonsnap'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_buttonsnap">Use <strong>Skype Status quicktag button</strong> in the RTE for posts.</label></li>
-				<li><input type="checkbox" name="use_getskype" id="use_getskype"<?php if ( $option['use_getskype'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_getskype">Use <strong>Download Skype now!</strong> link below your Skype Online Status button</label> <label for="getskype_text">with text: </label><input name="getskype_text" id="getskype_text" value="<?php echo $option['getskype_text'] ?>" /></li>
+				<li><input type="checkbox" name="use_getskype" id="use_getskype"<?php if ( $option['use_getskype'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_getskype">Use <strong>Download Skype now!</strong> link. </label><br /><label for="getskype_newline">Place link <select name="getskype_newline" id="getskype_newline">
+					<option value=""<?php if ( $option['getskype_newline'] == "" ) print " selected=\"selected\""; ?>>after</option>
+					<option value="on"<?php if ( $option['getskype_newline'] == "on" ) print " selected=\"selected\""; ?>>below</option>
+					</select> your Skype Online Status button</label> and <label for="getskype_text">use link text </label><input name="getskype_text" style="width: 250px;" id="getskype_text" value="<?php echo stripslashes(htmlspecialchars($option['getskype_text'])); ?>" /></li>
 				<li><label for="use_status">Use <strong>Status text</strong> for the {status} tag?*</label> <select name="use_status" id="use_status">
 						<option value=""<?php if ( $option['use_status'] == "" ) print " selected=\"selected\""; ?>>No</option>
 						<option value="custom"<?php if ( $option['use_status'] == "custom" ) print " selected=\"selected\""; ?>>Custom (as defined below)</option>
@@ -514,7 +526,7 @@ function skype_status_options() {
 						$radio .= "\n<li><input type=\"radio\" name=\"button_theme\" id=\"radio_$theme_name\" value=\"$theme_name\"$selected onchange=\"ChangeStyle(this);\" onmouseover=\"PreviewStyle(this);\" onmouseout=\"UnPreviewStyle(this);\" /> <label for=\"radio_$theme_name\">$matches[1]</label></li>";
 						
 						// and collect their previews
-						$previews .= "\n<div id=\"$theme_name\" style=\"display:$display;\">".skype_parse_theme($option_preview).get_skype_link($option_preview)."</div>";
+						$previews .= "\n<div id=\"$theme_name\" style=\"display:$display;\">".skype_parse_theme($option_preview)."</div>";
 					}
 				}
 				closedir($dh);
@@ -531,7 +543,7 @@ function skype_status_options() {
 		// add custom option and preview
 		$radio .= "\n<li><input type=\"radio\" name=\"button_theme\" id=\"radio_custom_edit\" value=\"custom_edit\"$selected onchange=\"ChangeStyle(this);\" onmouseover=\"PreviewStyle(this);\" onmouseout=\"UnPreviewStyle(this);\" /> <label for=\"radio_custom_edit\">Customize current view in the textarea below...</label></li>
 		</ul>"; 
-		$previews .= "\n<div id=\"custom_edit\" style=\"display:$display;\">".skype_parse_theme($option).get_skype_link($option)."</div>";
+		$previews .= "\n<div id=\"custom_edit\" style=\"display:$display;\">".skype_parse_theme($option)."</div>";
 		?>
 
 		<script type="text/javascript">
@@ -555,14 +567,15 @@ function skype_status_options() {
 		</script>
 		<fieldset class="options"><legend>Theme</legend>
 			<p><strong>Select a theme</strong> template to load into the database or or select <strong>Customize current view...</strong> to edit the template online.<br />Hover over the radio buttons to see a preview. If you cannot find a suitable theme, check out <a href="http://www.skype.com/share/buttons/wizard.html" target="_blank">http://www.skype.com/share/buttons/wizard.html</a>. Select your options there and copy/paste the output into the textarea below.</p>
-			<div class="alternate" style="float: right; height: 210px; width: 210px; border: 1px solid #CCCCCC; padding: 5px 5px 0 5px; margin: 5px 5px 0 0; text-decoration:none">
+			<div class="alternate" style="float: right; height: 210px; width: 210px; border: 1px solid #CCCCCC; padding: 5px 5px 0 5px; margin: 5px 5px 0 0;">
 				<strong>Preview theme template</strong>
-				<?php echo $previews; ?>
+				<style type="text/css"><!-- .no_underline a { border-bottom:none } --></style>
+				<div class="no_underline"><?php echo $previews; ?></div>
 			</div>
 
 			<p><?php echo $radio; ?></p>
 			<p><label for="button_template">Customize currently loaded template*:</label><br />
-			<textarea name="button_template" id="button_template" style="width: 100%; height: 240px;" onkeydown="javascript:document.getElementById('radio_custom_edit').checked=true;document.getElementById(visible_preview).style.display='none';document.getElementById('custom_edit').style.display='block';visible_preview='custom_edit';"><?php echo $option['button_template']; ?></textarea><br />
+			<textarea name="button_template" id="button_template" style="width: 100%; height: 240px;" onkeydown="javascript:document.getElementById('radio_custom_edit').checked=true;document.getElementById(visible_preview).style.display='none';document.getElementById('custom_edit').style.display='block';visible_preview='custom_edit';"><?php echo stripslashes(htmlspecialchars($option['button_template'])); ?></textarea><br />
 				* <em>Changes to the template will only be loaded when the option <strong>Custom view</strong> under <strong>Theme</strong> is selected.<br />Available tags: {skypeid}, {action}, {add}, {call}, {chat}, {userinfo}, {voicemail}, {sendfile}, {status}, {statustxt}, {tag1} and {tag2}.<br />Available markers: &lt;!-- voicemail_start --&gt; and &lt;!-- voicemail_end --&gt;. See Quick Guide for more instructions.</em></p>
 		</fieldset>
 
@@ -578,27 +591,27 @@ function skype_status_options() {
 					</tr>
 					<tr>
 						<td><label for="add_text">Add me to Skype - {add}: </label></td>
-						<td><input type="text" name="add_text" id="add_text" value="<?php echo $option['add_text']; ?>" /></td>
+						<td><input type="text" name="add_text" id="add_text" value="<?php echo stripslashes(htmlspecialchars($option['add_text'])); ?>" /></td>
 					</tr>
 					<tr>
 						<td><label for="call_text">Call me! - {call}: </label></td>
-						<td><input type="text" name="call_text" id="call_text" value="<?php echo $option['call_text']; ?>" /></td>
+						<td><input type="text" name="call_text" id="call_text" value="<?php echo stripslashes(htmlspecialchars($option['call_text'])); ?>" /></td>
 					</tr>
 					<tr>
 						<td><label for="chat_text">Chat with me - {chat}: </label></td>
-						<td><input type="text" name="chat_text" id="chat_text" value="<?php echo $option['chat_text']; ?>" /></td>
+						<td><input type="text" name="chat_text" id="chat_text" value="<?php echo stripslashes(htmlspecialchars($option['chat_text'])); ?>" /></td>
 					</tr>
 					<tr>
 						<td><label for="sendfile_text">Send me a file - {sendfile}: </label></td>
-						<td><input type="text" name="sendfile_text" id="sendfile_text" value="<?php echo $option['sendfile_text']; ?>" /></td>
+						<td><input type="text" name="sendfile_text" id="sendfile_text" value="<?php echo stripslashes(htmlspecialchars($option['sendfile_text'])); ?>" /></td>
 					</tr>
 					<tr>
 						<td><label for="userinfo_text">View my profile - {userinfo}: </label></td>
-						<td><input type="text" name="userinfo_text" id="userinfo_text" value="<?php echo $option['userinfo_text']; ?>" /></td>
+						<td><input type="text" name="userinfo_text" id="userinfo_text" value="<?php echo stripslashes(htmlspecialchars($option['userinfo_text'])); ?>" /></td>
 					</tr>
 					<tr>
 						<td><label for="voicemail_text">Leave me voicemail - {voicemail}: </label></td>
-						<td><input type="text" name="voicemail_text" id="voicemail_text" value="<?php echo $option['voicemail_text']; ?>" /></td>
+						<td><input type="text" name="voicemail_text" id="voicemail_text" value="<?php echo stripslashes(htmlspecialchars($option['voicemail_text'])); ?>" /></td>
 					</tr>
 				</table>
 				<br />
@@ -609,15 +622,15 @@ function skype_status_options() {
 					</tr>
 					<tr>
 						<td><label for="my_status_text">My status - {statustxt}: </label></td>
-						<td><input type="text" name="my_status_text" id="my_status_text" value="<?php echo $option['my_status_text']; ?>" /></td>
+						<td><input type="text" name="my_status_text" id="my_status_text" value="<?php echo stripslashes(htmlspecialchars($option['my_status_text'])); ?>" /></td>
 					</tr>
 					<tr>
 						<td><label for="seperator1_text">First seperator - {sep1}: </label></td>
-						<td><input name="seperator1_text" id="seperator1_text" value="<?php echo $option['seperator1_text'] ?>" /></td>
+						<td><input name="seperator1_text" id="seperator1_text" value="<?php echo stripslashes(htmlspecialchars($option['seperator1_text'])); ?>" /></td>
 					</tr>
 					<tr>
 						<td><label for="seperator2_text">Second seperator - {sep2}: </label></td>
-						<td><input name="seperator2_text" id="seperator2_text" value="<?php echo $option['seperator2_text'] ?>" /></td>
+						<td><input name="seperator2_text" id="seperator2_text" value="<?php echo stripslashes(htmlspecialchars($option['seperator2_text'])); ?>" /></td>
 					</tr>
 				</table>
 			</fieldset>
@@ -632,39 +645,39 @@ function skype_status_options() {
 					</tr>
 					<tr>
 						<td><label for="status_error_text">Error (none): </label></td>
-						<td><input type="text" name="status_error_text" id="status_error_text" value="<?php echo $option['status_error_text']; ?>" /></td>
+						<td><input type="text" name="status_error_text" id="status_error_text" value="<?php echo stripslashes(htmlspecialchars($option['status_error_text'])); ?>" /></td>
 					</tr>
 					<tr>
 						<td><label for="status_0_text">Unknown (0): </label></td>
-						<td><input type="text" name="status_0_text" id="status_0_text" value="<?php echo $option['status_0_text']; ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
+						<td><input type="text" name="status_0_text" id="status_0_text" value="<?php echo stripslashes(htmlspecialchars($option['status_0_text'])); ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
 					</tr>
 					<tr>
 						<td><label for="status_1_text">Offline (1): </label></td>
-						<td><input type="text" name="status_1_text" id="status_1_text" value="<?php echo $option['status_1_text']; ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
+						<td><input type="text" name="status_1_text" id="status_1_text" value="<?php echo stripslashes(htmlspecialchars($option['status_1_text'])); ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
 					</tr>
 					<tr>
 						<td><label for="status_2_text">Online (2): </label></td>
-						<td><input type="text" name="status_2_text" id="status_2_text" value="<?php echo $option['status_2_text']; ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
+						<td><input type="text" name="status_2_text" id="status_2_text" value="<?php echo stripslashes(htmlspecialchars($option['status_2_text'])); ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
 					</tr>
 					<tr>
 						<td><label for="status_3_text">Away (3): </label></td>
-						<td><input type="text" name="status_3_text" id="status_3_text" value="<?php echo $option['status_3_text']; ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
+						<td><input type="text" name="status_3_text" id="status_3_text" value="<?php echo stripslashes(htmlspecialchars($option['status_3_text'])); ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
 					</tr>
 					<tr>
 						<td><label for="status_4_text">Not available (4): </label></td>
-						<td><input type="text" name="status_4_text" id="status_4_text" value="<?php echo $option['status_4_text']; ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
+						<td><input type="text" name="status_4_text" id="status_4_text" value="<?php echo stripslashes(htmlspecialchars($option['status_4_text'])); ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
 					</tr>
 					<tr>
 						<td><label for="status_5_text">Do not disturb (5): </label></td>
-						<td><input type="text" name="status_5_text" id="status_5_text" value="<?php echo $option['status_5_text']; ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
+						<td><input type="text" name="status_5_text" id="status_5_text" value="<?php echo stripslashes(htmlspecialchars($option['status_5_text'])); ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
 					</tr>
 					<tr>
 						<td><label for="status_6_text">Invisible (6): </label></td>
-						<td><input type="text" name="status_6_text" id="status_6_text" value="<?php echo $option['status_6_text']; ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
+						<td><input type="text" name="status_6_text" id="status_6_text" value="<?php echo stripslashes(htmlspecialchars($option['status_6_text'])); ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
 					</tr>
 					<tr>
 						<td><label for="status_7_text">Skype me (7): </label></td>
-						<td><input type="text" name="status_7_text" id="status_7_text" value="<?php echo $option['status_7_text']; ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
+						<td><input type="text" name="status_7_text" id="status_7_text" value="<?php echo stripslashes(htmlspecialchars($option['status_7_text'])); ?>" <?php if (!ALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?>/></td>
 					</tr>
 				</table>
 			</fieldset>
@@ -674,7 +687,7 @@ function skype_status_options() {
 
 		<p class="submit">
 			<input type="submit" name="skype_status_update" value="<?php _e('Update Options'); ?> &raquo;" />
-			<input type="submit" id="deletepost" onclick='return confirm("All your personal settings will be overwritten, including Skype ID, User name and Theme. Do you really want to reset your configuration?");' name="skype_status_reset" value="<?php _e('Reset'); ?> &raquo;" /><br />&nbsp;</p>
+			<input type="submit" class="delete" id="deletepost" onclick='return confirm("All your personal settings will be overwritten with the plugin default settings, including Skype ID, User name and Theme. \r\n \r\nDo you really want to reset your configuration?");' name="skype_status_reset" value="<?php _e('Reset'); ?> &raquo;" /><br />&nbsp;</p>
 		</form>
 
 	</div>
@@ -868,16 +881,25 @@ function skype_status_options() {
 	
 	<?php
 	if (DATADUMP) { 
-		echo "<div id=\"dump\" class=\"wrap\"><h3>All Skype Online Status settings in the database</h3><p>";
+		echo "<div id=\"dump\" class=\"wrap\"><h3>All Skype Online Status settings</h3>
+		<div style=\"width:32%;float:left\"><h4>Old database values</h4><textarea style=\"width:100%;height:600px\">";
 		foreach ($skype_status_config as $key => $value) {
-			echo $key . " => " . $value . "<br />";
+			echo $key . " => " . stripslashes(htmlspecialchars($value)) . "\r\n";
 		}
-		echo "</p><h3>Skype Online Status default options</h3><p>";
+		echo "</textarea></div>
+		<div style=\"width:32%;margin:0 2%;float:left\"><h4>Updated to</h4><textarea style=\"width:100%;height:600px\">";
+		if (!empty($_POST['skype_status_update']) || !empty($_POST['skype_status_reset'])) { 
+			foreach ($option as $key => $value) {
+				echo $key . " => " . stripslashes(htmlspecialchars($value)) . "\r\n";
+			}
+		}
+		echo "</textarea></div>
+		<div style=\"width:32%;float:left\"><h4>Default values</h4><textarea style=\"width:100%;height:600px\">";
 		$skype_default_values = skype_default_values();
 		foreach ($skype_default_values as $key => $value) {
-			echo $key . " => " . $value . "<br />";
+			echo $key . " => " . stripslashes(htmlspecialchars($value)) . "\r\n";
 		}		
-		echo "</p></div>";	
+		echo "</textarea></div><div style=\"clear:both\"></div></div>";	
 	}
 	?>
 
@@ -938,13 +960,13 @@ function skype_status($skype_id="", $user_name="", $button_theme="", $use_voicem
 	if ($r['button_template'] == "") 
 		$r['button_template'] = '<a href="skype:{skypeid}?call" onclick="return skypeCheck();" title="{call}{sep1}{username}{sep2}{status}">{username}{sep2}{status}</a>';		
 	
-	return skype_parse_theme($r) . get_skype_link($r);
+	return skype_parse_theme($r); //. get_skype_link($r)
 
 }
 
 function get_skype_link($r) {
 	if ($r['use_getskype'] == "on")
-		return "<br /><a href=\"http://share.skype.com/in/102/".SKYPEPID."\" title=\"".$r['getskype_text']."\">".$r['getskype_text']."</a>";
+		return " <a href=\"http://share.skype.com/in/102/".SKYPEPID."\" title=\"".$r['getskype_text']."\">".$r['getskype_text']."</a>";
 }
 
 
@@ -954,9 +976,9 @@ function skype_status_script() {
 		return "";
 	};
 	print '
-	<!-- Skype Online Status plugin by Ravan - http://4visions.nl/ -->
+	<!-- Skype script for: Online Status plugin by Ravan - http://4visions.nl/ -->
 	<script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
-	<!-- end Skype Online Status plugin -->
+	<!-- end Skype script -->
 	';
 }
 
