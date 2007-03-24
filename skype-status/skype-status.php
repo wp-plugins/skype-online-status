@@ -141,7 +141,7 @@ function skype_default_values() {
 // --- advanced settings ---
 
 // Print all Skype settings from the database at the bottom of the settings page for debugging (normally, leave to FALSE)
-define('DATADUMP', TRUE);
+define('DATADUMP', FALSE);
 
 // Checks wether fopen_wrappers are enabled on your server so the remote Skype status file can be read
 // Comment-out (with //) the if..else statements if you want to force this setting in spite of server settings
