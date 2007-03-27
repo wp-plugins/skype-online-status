@@ -77,9 +77,9 @@ And some new features:
 
      - some new tags for the template files,
      - a 'Reset options' button to revert 
-to original settings,
+       to original settings,
      - the <!--skype status--> tag to display 
-a Skype Status button in posts and page content!
+       a Skype Status button in posts and page content!
      - editable template
      - language switch for Skype default status texts
      - lots more templates
