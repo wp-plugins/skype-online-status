@@ -1,7 +1,7 @@
 === Skype Online Status ===
 Contributors: RavanH
 Donate link: http://www.4visions.nl/en/index.php?section=55
-Tags: skype, skype button, online, status, online status
+Tags: skype, skype button, online, status, online status, post
 Requires at least: 1.5
 Tested up to: 2.1.2
 Stable tag: 2.5
@@ -101,7 +101,7 @@ Wish List version 3 and beyond :)
 
 == Revision History ==
 
-[2006-02-18] version 2.5: made quicktag work for 2.1+ new TinyMCE button plugin routine
+[2007-02-18] version 2.5: made quicktag work for 2.1+ new TinyMCE button plugin routine
 
 [2006-11-21] version 2.4.1: added onkeydown action on admin textarea
 
