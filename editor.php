@@ -1,7 +1,7 @@
 <?php
 // Add button for WordPress 2.5+ using built in hooks, thanks to Subscribe2
 function sos_mce3_plugin($arr) {
-	$path = get_option('siteurl') . '/wp-content/plugins/skype-status/tinymce/mce3_editor_plugin.js';
+	$path = get_option('siteurl') . '/wp-content/plugins/skype-online-status/tinymce/mce3_editor_plugin.js';
 	$arr['sosquicktag'] = $path;
 	return $arr;
 }
@@ -20,7 +20,7 @@ function sos_mce_button($button) {
 	return $button;
 }
 function sos_tinymce_before_init() {
-	echo "tinyMCE.loadPlugin('sosquicktag', '" . get_option('siteurl') . "/wp-content/plugins/skype-status/tinymce/');\n"; 
+	echo "tinyMCE.loadPlugin('sosquicktag', '" . get_option('siteurl') . "/wp-content/plugins/skype-online-status/tinymce/');\n"; 
 }
 
 // Hide buttons the user doesn't want to see in WP v2.1+
@@ -53,12 +53,12 @@ function skype_button_init() {
 		Based on Buttonsnap Template http://redalt.com/downloads
 		*/
 		// use Owen's excellent ButtonSnap library
-		if(file_exists(ABSPATH . 'wp-content/plugins/buttonsnap.php')) {
-			require_once(ABSPATH . 'wp-content/plugins/buttonsnap.php');
+		if(file_exists(ABSPATH . 'wp-content/plugins/skype-online-status/buttonsnap.php')) {
+			require_once(ABSPATH . 'wp-content/plugins/skype-online-status/buttonsnap.php');
 			define('SOSBUTTONSNAP', TRUE);
 			// -- ButtonSnap configuration -- 
 			// Register our button in the QuickTags bar
-			$url = get_option('siteurl') . '/wp-content/plugins/skype-status/skype_button.gif';
+			$url = get_option('siteurl') . '/wp-content/plugins/skype-online-status/skype_button.gif';
 			buttonsnap_textbutton($url, 'Skype Online Status', '<!--skype status-->');
 			buttonsnap_register_marker('skypeonlinestatus', 'skype_marker');
 		} else {
@@ -69,7 +69,7 @@ function skype_button_init() {
 
 // Style a marker in the Rich Text Editor for the quicktag
 function skype_button_css() {
-	$skype_marker_url = get_option('siteurl') . '/wp-content/plugins/skype-status/skype_marker.gif';
+	$skype_marker_url = get_option('siteurl') . '/wp-content/plugins/skype-online-status/skype_marker.gif';
 	echo "
 		.skype_marker {
 			display: block;
