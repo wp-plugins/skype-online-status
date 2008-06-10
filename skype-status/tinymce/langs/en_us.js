@@ -1,5 +1,5 @@
 // US lang variables
 
 tinyMCE.addToLang('sosquicktag',{
-skypeonlinestatus : 'Add a Skype Online Status quicktag',
+title : 'Add a Skype Online Status quicktag',
 });
