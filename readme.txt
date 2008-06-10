@@ -28,21 +28,21 @@ Steps:
 
 1. Download archive and unpack.
 
-2. Upload and save (or overwrite) files and folders to the plugins folder directory. You should have the following file structure under /wp-content/plugins/
+2. Upload and save (or overwrite) files and folders to the plugins folder directory. You should have the following file structure below /wp-content/plugins/
 
-     buttonsnap.php (only needed for WP version 1.5 and 2.0)
-     skype-status/templates/*.html
-     skype-status/tinymce/langs/*.js
-     skype-status/tinymce/editor_plugin.js
-     skype-status/tinymce3/langs/*.js
-     skype-status/tinymce3/editor_plugin.js
-     skype-status/tinymce3/sosquicktag.css
-     skype-status/editor.php
-     skype-status/skype-options.php
-     skype-status/skype-status.php
-     skype-status/skype_button.gif
-     skype-status/skypemarker.gif
-     skype-status/spacer.gif
+     skype-online-status/templates/*.html
+     skype-online-status/tinymce/langs/*.js
+     skype-online-status/tinymce/editor_plugin.js
+     skype-online-status/tinymce3/langs/*.js
+     skype-online-status/tinymce3/editor_plugin.js
+     skype-online-status/tinymce3/sosquicktag.css
+     skype-online-status/buttonsnap.php (only needed for WP version 1.5 and 2.0)
+     skype-online-status/editor.php
+     skype-online-status/skype-options.php
+     skype-online-status/skype-status.php
+     skype-online-status/skype_button.gif
+     skype-online-status/skype_marker.gif
+     skype-online-status/spacer.gif
      
 
 3. Activate plugin on the Plug-ins page
@@ -72,8 +72,8 @@ When reporting bugs, please describe as carefully as possible and provide inform
 This readme comes packed with version 2.6.1.0 of the 'Skype Online Status' plugin for WordPress 2+.
 
     Version: 2.6.1.0
-    Status: Beta 
-    Latest stable: 2.6
+    Status: Stable 
+    Latest stable: 2.6.1.0
     Licence: GNU General Public License
 
 == What's New ==
@@ -111,7 +111,7 @@ Know bugs:
      - (Since 2.6.1.0 no known bugs yet, please report anything you find on [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") )
 
 Know issues:
-     - The javascript provided by Skype that detects if Skype is installed, does not work properly on Linux. It defaults to displaying a download popup even if Skype is installed on the visitors computer when a Skype button is clicked. Hopefully, Skype will fix this some day :(
+     - The javascript provided by Skype that detects whether Skype is (client side) installed, does not work properly on Linux. It defaults to displaying a download popup even if Skype is installed on the visitors computer after the Skype button is clicked. Hopefully, Skype will fix this some day :/
 
 == Revision History ==
 
