@@ -408,7 +408,7 @@ function skype_status_options() {
 		<p>Put <strong>&lt;?php if (function_exists(get_skype_status)) { get_skype_status(''); } else { echo "Skype button disabled"; } ?&gt;</strong> in your sidebar.php or other WordPress template files to display a Skype Button with Online Status information on your blog pages. Your predefined default settings (above) will be used.</p><p>The 'function_exists'-check is there to prevent an error when the plugin is disabled. In this case the echo text is displayed. You can define another alternative action or remove 'else { ... }' to display nothing at all.</p>
 		<h5>In posts and page content</h5>
 		<p>It is also possible to trigger a Skype Status button (as predefined on the Skype Online Status Settings page) within posts or page content. Use the quicktag <strong>&lt;!--skype status--&gt;</strong> ( or <strong>[-skype status-]</strong> ) in the HTML code of your post or page content to display a Skype Online Status button in your post. </p>
-		<p>Note: the setting 'Use Skype Status quicktag button' can be checked. In WordPress's Rich Text Editor (TinyMCE) the button <img src="<?php echo get_settings('siteurl') . '/wp-content/plugins/skype-status/skype_button.gif'; ?>" alt="Skype Online Status" style="vertical-align:text-bottom;" /> will be displayed so you can easily drop the quicktag into the source code.</p>
+		<p>Note: the setting 'Use Skype Status quicktag button' can be checked. In WordPress's Rich Text Editor (TinyMCE) the button <img src="<?php echo get_settings('siteurl') . '/wp-content/plugins/skype-online-status/skype_button.gif'; ?>" alt="Skype Online Status" style="vertical-align:text-bottom;" /> will be displayed so you can easily drop the quicktag into the source code.</p>
 
 		<p id="adv" align="right"><a href="#wphead">back to top</a></p>
 		<h3>Advanced</h3>
@@ -418,7 +418,7 @@ function skype_status_options() {
 		<h4>Parameters</h4>
 			<dl><dt>skype_id</dt><dd>Alternative Skype ID</dd>
 				<dt>user_name</dt><dd>Define the Skype user or screen name.</dd>
-				<dt>button_theme</dt><dd>Define the theme template file to use for the button. Value must match a filename (without extention) from the /plugins/skype_status/templates/ directory or the predefined theme template will be used.</dd>
+				<dt>button_theme</dt><dd>Define the theme template file to use for the button. Value must match a filename (without extention) from the /plugins/skype-online-status/templates/ directory or the predefined theme template will be used.</dd>
 				<dt>use_voicemail</dt><dd>Set to 'on' if you want to display the 'Leave a voicemail' link in the Dropdown themes. Use this only if you have a SkypeIn account or SkypeVoicemail. Set of 'off' if you have a predefined setting 'on' and you want to override it.</dd>
 			</dl>
 		<h4>Example</h4>
@@ -428,7 +428,7 @@ function skype_status_options() {
 		<p id="templ" align="right"><a href="#wphead">back to top</a></p>
 		<h3>Templates</h3>
 		<p>Whenever the options on the Skype Status Options page are saved, the template is read either from the selected template file or the editable textarea (customizable view) and loaded into the database. To change the Skype Online Status button view to your liking you can choose to edit an existing template file, create a new one or edit the preloaded template in the editable textarea on the 'Skype Online Status Settings' page. Remember that after editing a template file, the new content must be reloaded into the database before changes apply.</p>
-		<p>All template files can be found in the /plugins/skype_status/templates/ directory. You add new or edit existing ones with any simple text editor (like Notepad) or even a WYSIWYG editor (like Dreamweaver) as long as you follow some rules.</p>
+		<p>All template files can be found in the /plugins/skype-online-status/templates/ directory. You add new or edit existing ones with any simple text editor (like Notepad) or even a WYSIWYG editor (like Dreamweaver) as long as you follow some rules.</p>
 		<h4>Template file rules</h4>
 		<ol>
 			<li>All template files must have a name consisting of only <strong>lowercase letters</strong>, <strong>numbers</strong> and/or <strong>underscores (_)</strong> or <strong>dashes (-)</strong>. Please avoid any other signs, dots or whitespaces. Do not use the name <strong>custom_edit</strong> as is reserved for the customizable view.</li>

@@ -84,8 +84,8 @@ Author URI: http://4visions.nl/
 */
 
 // load other plugin files
-require_once(ABSPATH . 'wp-content/plugins/skype-status/skype-admin.php');
-require_once(ABSPATH . 'wp-content/plugins/skype-status/skype-widget.php');
+require_once(ABSPATH . 'wp-content/plugins/skype-online-status/skype-admin.php');
+require_once(ABSPATH . 'wp-content/plugins/skype-online-status/skype-widget.php');
 
 // --- settings ---
 
@@ -99,7 +99,7 @@ function skype_default_values() {
 	$value = array(
 		"skype_id" => "echo123", 			// Skype ID to replace {skypeid} in template files
 		"user_name" => "Skype Test Call", 		// User name to replace {username} in template files
-		"button_theme" => "transparent_dropdown", 	// Theme to be used, value must match a filename (without extention) from the /plugins/skype_status/templates/ directory or leave blank
+		"button_theme" => "transparent_dropdown", 	// Theme to be used, value must match a filename (without extention) from the /plugins/skype-online-status/templates/ directory or leave blank
 		"button_template" => "", 			// Will hold template loaded from user-selected template file
 		"add_text" => "Add me to Skype", 		// Text to replace {add} in template files
 		"call_text" => "Call me", 			// Text to replace {call} in template files
@@ -155,7 +155,7 @@ $skype_status_config = get_option('skype_status');
 
 // activate wisywig button
 if ($skype_status_config['use_buttonsnap']=="on") {
-	require_once(ABSPATH . 'wp-content/plugins/skype-status/editor.php');
+	require_once(ABSPATH . 'wp-content/plugins/skype-online-status/editor.php');
 	add_action('init', 'skype_button_init');
 	if ( $wp_db_version < 6846 ) // next action only when before wp2.5
 		add_action('marker_css', 'skype_button_css');
