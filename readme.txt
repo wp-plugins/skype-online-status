@@ -16,7 +16,7 @@ This plugin has grown a lot since the start but it should be mentioned that it w
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
-Older versions have been developed for WordPress 2.0+ and 2.1+ but from version 2.5 upward, also for the WordPress 2.5+.
+Older versions have been developed for WordPress 2.0+ and 2.1+ but from version 2.6.1.0 upward, also for WordPress 2.5+.
 
 Read more on usage in the Quick Guide section of the Options > Skype Status page, available after installation.
 
