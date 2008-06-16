@@ -22,7 +22,7 @@ Read more on usage in the Quick Guide section of the Options > Skype Status page
 
 == Installation ==
 
-Note: When updating from version 1.7 or previous: please deactivate plugin and remove the old directories and files before uploading! 
+Note: When updating from version 2.5 or previous: please deactivate plugin and remove the old directories and files before uploading! 
 
 Steps:
 

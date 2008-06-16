@@ -27,7 +27,7 @@ Author URI: http://4visions.nl/
 
 /*
 	Installation
-		- When updating from version 1.7 or previous: please deactivate plugin and remove the old directories and files before uploading! 
+		- When updating from version 2.5 or previous: please deactivate plugin and remove the old directories and files before uploading! 
 		- Upload files and folders to /plugins/ directory.
 		- Activate plugin on the Plug-ins page
 		- Configure or update your SkypeID and settings on the Options > Skype Status page
