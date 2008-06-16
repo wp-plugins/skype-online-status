@@ -109,11 +109,11 @@ function skype_widget_options () {
 <?php 
 }
 
-
 function skype_add_widget () {
 	if (function_exists ('register_sidebar_widget')) {
 		register_sidebar_widget ('Skype Status','skype_status_widget');
 		register_widget_control ('Skype Status','skype_widget_options');
 	}
 }
+
 ?>

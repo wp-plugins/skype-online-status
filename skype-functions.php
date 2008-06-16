@@ -190,4 +190,5 @@ function skype_status_callback($content) {
 	}
 	return $content;
 }
+
 ?>
