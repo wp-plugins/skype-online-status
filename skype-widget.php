@@ -1,5 +1,5 @@
 <?php
-function skype_sidebar_widget ($args) {
+function skype_status_widget ($args) {
 	$opt = get_option('skype_widget_options');
 	extract($args);
 	extract($opt);
@@ -65,7 +65,7 @@ function skype_widget_options () {
 	if ($_POST['skype_widget_submit']) {
 		if ($_POST['skype_widget_button_theme']!="") { // get template file content to load into db
 			$opt['button_template'] = stripslashes( skype_get_template_file($_POST['skype_widget_button_theme']) );
-		}
+		} else { $opt['button_template'] = ""; }
 
 		$opt['title'] = $_POST['skype_widget_title'];
 		$opt['skype_id'] = $_POST['skype_widget_skype_id'];
@@ -118,7 +118,7 @@ function skype_widget_options () {
 
 function skype_add_widget () {
 	if (function_exists ('register_sidebar_widget')) {
-		register_sidebar_widget ('Skype Status','skype_sidebar_widget');
+		register_sidebar_widget ('Skype Status','skype_status_widget');
 		register_widget_control ('Skype Status','skype_widget_options');
 	}
 }
