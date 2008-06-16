@@ -132,7 +132,7 @@ function skype_status_options() {
 
 	<div id="settings" class="wrap" style="min-height: 800px;">
 		<h2>Skype Online Status Settings</h2>
-		<p>Define all your <em>default</em> Skype Status settings here. Start simply by setting the basics like <strong>Skype ID</strong>, <strong>Full Name</strong> and the button <strong>Theme</strong> you want to show on your blog. Then activate the Skype Status Widget on your <a href="widgets.php">Widgets</a> page. Later on, you can fine-tune everything until it fits just perfectly on you pages. Please note: Some basic settings may be overridden by Widget settings or when calling the Skype button with a template function.</p>
+		<p>Define all your <em>default</em> Skype Status settings here. Start simply by setting the basics like <strong>Skype ID</strong>, <strong>Full Name</strong> and the button <strong>Theme</strong> you want to show on your blog. Then activate the Skype Status Widget on your <a href="widgets.php">Widgets</a> page or use the Skype Status quicktag button <img src="<?php echo get_settings('siteurl') . '/wp-content/plugins/skype-online-status/skype_button.gif'; ?>" alt="Skype Online Status" style="vertical-align:text-bottom;" /> in the WYSIWYG editor (TinyMCE) to place the Skype Online Status button in any post or page. Later on, you can fine-tune everything until it fits just perfectly on you pages. Please note: Some basic settings may be overridden by Widget settings or when calling the Skype button with a template function.</p>
 		<p>Read more about configuring this plugin and more ways to trigger Skype Online Status buttons on your blog in the <strong>Quick Guide</strong> section. If you have any remaining questions, see the <strong>Notes &amp; Live Support</strong> page to get help.</p>
 		
 		<p align="right"><a href="#wphead">back to top</a></p>
@@ -406,14 +406,13 @@ function skype_status_options() {
 		<p>Define all Skype settings such as Skype ID (more then one possible, seperate with a semi-colon <strong>;</strong>), User name and preferred Theme on the Skype Online Status Settings page as default for each Skype Online Status Button on your blog. And use the methodes described below to trigger the default Skype Status button on your blog pages. Under 'Advanced' you can read about ways to override your default settings and create multiple and different Skype buttons across your blog.</p>
 		<p>If you want to use templates that display your online status, be sure to enable online status in your Skype settings: open your Skype client, Go to Tools > Options > Privacy, Tick the 'Allow my status to be shown on the web' (or similar in your language) checkbox and 'Save'.</p>
 		<p>For conference calls put multiple Skype ID's seperated with a semi-colon (;) in the Skype ID box.</p>
-		<h4>Widget</h4>
+		<h4>Widgets</h4>
 		<p>Since version 2.6.1.0 there is a Skype Status Sidebar Widget available. Go to your Design > Widgets page and activate the Skype Status widget. When activated, it defaults to your settings on the Skype Status Options page but you can customize it if you like.</p>
-		<h4>Syntax</h4>
-		<h5>In theme files (like sidebar.php)</h5>
+		<h4>In posts and page content</h4>
+		<p>It is also possible to trigger a Skype Status button (as predefined on the Skype Online Status Settings page) within posts or page content. Use the quicktag button <img src="<?php echo get_settings('siteurl') . '/wp-content/plugins/skype-online-status/skype_button.gif'; ?>" alt="Skype Online Status" style="vertical-align:text-bottom;" /> or insert manually <strong>&lt;!--skype status--&gt;</strong> ( or <strong>[-skype status-]</strong> ) in the HTML code of your post or page content to display a Skype Online Status button in your post. </p>
+		<p>Note: the setting 'Use Skype Status quicktag button' should be checked for the quicktag button <img src="<?php echo get_settings('siteurl') . '/wp-content/plugins/skype-online-status/skype_button.gif'; ?>" alt="Skype Online Status" style="vertical-align:text-bottom;" /> to appear in WordPress's Rich Text Editor (TinyMCE) so you can easily drop the quicktag into the source code.</p>
+		<h4>In theme files</h4>
 		<p>Put <strong>&lt;?php if (function_exists(get_skype_status)) { get_skype_status(''); } else { echo "Skype button disabled"; } ?&gt;</strong> in your sidebar.php or other WordPress template files to display a Skype Button with Online Status information on your blog pages. Your predefined default settings (above) will be used.</p><p>The 'function_exists'-check is there to prevent an error when the plugin is disabled. In this case the echo text is displayed. You can define another alternative action or remove 'else { ... }' to display nothing at all.</p>
-		<h5>In posts and page content</h5>
-		<p>It is also possible to trigger a Skype Status button (as predefined on the Skype Online Status Settings page) within posts or page content. Use the quicktag <strong>&lt;!--skype status--&gt;</strong> ( or <strong>[-skype status-]</strong> ) in the HTML code of your post or page content to display a Skype Online Status button in your post. </p>
-		<p>Note: the setting 'Use Skype Status quicktag button' can be checked. In WordPress's Rich Text Editor (TinyMCE) the button <img src="<?php echo get_settings('siteurl') . '/wp-content/plugins/skype-online-status/skype_button.gif'; ?>" alt="Skype Online Status" style="vertical-align:text-bottom;" /> will be displayed so you can easily drop the quicktag into the source code.</p>
 
 		<p id="adv" align="right"><a href="#wphead">back to top</a></p>
 		<h3>Advanced</h3>

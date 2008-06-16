@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce
 Requires at least: 2.0
 Tested up to: 2.5.1
-Stable tag: 2.6.1.1
+Stable tag: 2.6.1.2
 
 Checks your Skype Online Status and allows you to add multiple, highly customizable and accessible Skype buttons to your blog through widget, post quicktag and/or template tag.
 
@@ -71,9 +71,9 @@ When reporting bugs, please describe as carefully as possible and provide inform
 
 This readme comes packed with version 2.6.1.1 of the 'Skype Online Status' plugin for WordPress 2+.
 
-    Version: 2.6.1.1
+    Version: 2.6.1.2
     Status: Stable 
-    Latest stable: 2.6.1.1
+    Latest stable: 2.6.1.2
     Licence: GNU General Public License
 
 == What's New ==
@@ -115,7 +115,7 @@ Know issues:
 
 == Revision History ==
 
-[2008-06-16] version 2.6.1.1: automatic blog language detection for status text, some small bugfixes + complete removal button
+[2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
 
 [2008-06-04] version 2.6.1.0: added simple widget, removed built-in update checker (redundant since WP2.5 auto-update), some bugfixes and code improvements, add your own download link
 

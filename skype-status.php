@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
 Description: Checks your Skype Online Status and allows you to add multiple, highly customizable and accessible Skype buttons to your blog. Based on the plugin Skype Button 2.01 by Anti Veeranna. Documentation and configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page.  
-Version: 2.6.1.1
+Version: 2.6.1.2
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -42,7 +42,7 @@ Author URI: http://4visions.nl/
 		- Get XML online status (and local time?)
 	
 	Revision History
-		[2008-06-16] version 2.6.1.1: automatic blog language detection for status text, some small bugfixes + complete removal button
+		[2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
 		[2008-06-04] version 2.6.1.0: 
 			- added simple widget
 			- removed built-in update checker (redundant since WP2.5 auto-update) 

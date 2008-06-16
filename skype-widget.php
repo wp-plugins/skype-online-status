@@ -65,7 +65,7 @@ function skype_widget_options () {
 	if ($_POST['skype_widget_submit']) {
 		if ($_POST['skype_widget_button_theme']!="") { // get template file content to load into db
 			$opt['button_template'] = stripslashes( skype_get_template_file($_POST['skype_widget_button_theme']) );
-		}
+		} else { $opt['button_template'] = ""; }
 
 		$opt['title'] = $_POST['skype_widget_title'];
 		$opt['skype_id'] = $_POST['skype_widget_skype_id'];
