@@ -2,9 +2,9 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e6%2e1%2e0&no_shipping=0&no_note=1&tax=0&currency_code=EUR&lc=NL&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce
-Requires at least: 1.5
+Requires at least: 2.0
 Tested up to: 2.5.1
-Stable tag: 2.6.1.0
+Stable tag: 2.6.1.1
 
 Checks your Skype Online Status and allows you to add multiple, highly customizable and accessible Skype buttons to your blog through widget, post quicktag and/or template tag.
 
@@ -69,11 +69,11 @@ Post your questions, bugs and feature requests on [Skype Online Status Google Gr
 
 When reporting bugs, please describe as carefully as possible and provide information like the version number of the plugin, WordPress and - if relevant - server security settings, PHP and MySQL version.
 
-This readme comes packed with version 2.6.1.0 of the 'Skype Online Status' plugin for WordPress 2+.
+This readme comes packed with version 2.6.1.1 of the 'Skype Online Status' plugin for WordPress 2+.
 
-    Version: 2.6.1.0
+    Version: 2.6.1.1
     Status: Stable 
-    Latest stable: 2.6.1.0
+    Latest stable: 2.6.1.1
     Licence: GNU General Public License
 
 == What's New ==
@@ -108,12 +108,14 @@ Wish List version 3 and beyond :)
      - Get XML online status (and local time?)
 
 Know bugs:
-     - (Since 2.6.1.0 no known bugs yet, please report anything you find on [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") )
+     - (Since 2.6.1.1 no known bugs yet, please report anything you find on [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") )
 
 Know issues:
      - The javascript provided by Skype that detects whether Skype is (client side) installed, does not work properly on Linux. It defaults to displaying a download popup even if Skype is installed on the visitors computer after the Skype button is clicked. Hopefully, Skype will fix this some day :/
 
 == Revision History ==
+
+[2008-06-16] version 2.6.1.1: automatic blog language detection for status text, some small bugfixes + complete removal button
 
 [2008-06-04] version 2.6.1.0: added simple widget, removed built-in update checker (redundant since WP2.5 auto-update), some bugfixes and code improvements, add your own download link
 
