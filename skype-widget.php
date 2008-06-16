@@ -1,6 +1,8 @@
 <?php
 function skype_status_widget ($args) {
 	$opt = get_option('skype_widget_options');
+	if (!is_array($opt))
+		return;
 	extract($args);
 	extract($opt);
 
@@ -18,18 +20,10 @@ function skype_status_widget ($args) {
 }
 
 function skype_widget_options () {
+	global $skype_widget_default;
 	$opt = get_option ('skype_widget_options');
-	if (!is_array ($opt)) {
-		$opt = array (
-			"skype_id" => "",		// Skype ID to replace {skypeid} in template files
-			"user_name" => "",		// User name to replace {username} in template files
-			"button_theme" => "",		// Theme to be used, value must match a filename (without extention) from the /plugins/skype_status/templates/ directory or leave blank
-			"button_template" => "",	// Template of the theme loaded
-			"use_voicemail" => "",		// Wether to use the voicemail invitation ("on") or not (""), set to "on" if you have a SkypeIn account
-			"before" => "",			// text that should go before the button
-			"after" => "",			// text that should go after the button
-		);
-	}
+	if (!is_array ($opt)) 
+		$opt = $skype_widget_default_values;
 
 	// get list of templates
 	$buttondir = dirname(__FILE__)."/templates/";

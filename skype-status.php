@@ -85,7 +85,7 @@ Author URI: http://4visions.nl/
 */
 
 // Plugin version number and date
-define('SOSVERSION', '2.6.1.1');
+define('SOSVERSION', '2.6.1.2');
 define('SOSVERSION_DATE', '2008-06-16');
 
 // The values below are the default settings
@@ -146,6 +146,16 @@ $skype_avail_languages = array (
 	"Swedish" => "se",
 );
 
+$skype_widget_default_values = array (
+	"skype_id" => "",		// Skype ID to replace {skypeid} in template files
+	"user_name" => "",		// User name to replace {username} in template files
+	"button_theme" => "",		// Theme to be used, value must match a filename (without extention) from the /plugins/skype_status/templates/ directory or leave blank
+	"button_template" => "",	// Template of the theme loaded
+	"use_voicemail" => "",		// Wether to use the voicemail invitation ("on") or not (""), set to "on" if you have a SkypeIn account
+	"before" => "",			// text that should go before the button
+	"after" => "",			// text that should go after the button
+);
+
 // Print all Skype settings from the database at the bottom of the settings page for debugging (normally, leave to FALSE)
 define('SOSDATADUMP', FALSE);
 
@@ -155,6 +165,9 @@ if (ini_get('allow_url_fopen'))
 	define('SOSALLOWURLFOPEN', TRUE);
 else
 	define('SOSALLOWURLFOPEN', FALSE);
+
+// load database options
+$skype_status_config = get_option('skype_status');
 
 //todo: internationalization
 //load_plugin_textdomain('skype_status'); // NLS
@@ -172,17 +185,12 @@ if ($skype_status_config['use_buttonsnap']=="on") {
 		add_action('marker_css', 'skype_button_css');
 }
 
-// load database options
-$skype_status_config = get_option('skype_status');
-
-// check options or revert to default
-if (!is_array($skype_status_config)) {
+// check options or revert to default when activated
+if (!is_array($skype_status_config) && isset($_GET['activate']) && $_GET['activate'] == 'true') {
 	$skype_status_config = skype_default_values();
-	// if activated for the first time create new db entry
-	if (isset($_GET['activate']) && $_GET['activate'] == 'true') {
-		$skype_status_config['installed'] = TRUE;
-		add_option('skype_status',$skype_status_config);
-	}
+	$skype_status_config['installed'] = TRUE;
+	add_option('skype_status',$skype_status_config);
+	add_option('skype_widget_options',$skype_widget_default_values);
 }
 
 // create WP hooks
@@ -193,7 +201,7 @@ add_filter('the_content', 'skype_status_callback', 10);
 add_action('init', 'skype_add_widget');
 
 // check if database update after plugin version upgrade is needed
-if ($skype_status_config['skype_status_version'] !== SOSVERSION) {
+if ($skype_status_config['skype_status_version'] != "" && $skype_status_config['skype_status_version'] !== SOSVERSION) {
 	// merge new default into old settings
 	$skype_status_config = array_merge (skype_default_values(), $skype_status_config);
 	// update: populate db with missing values and set upgraded flag to true
