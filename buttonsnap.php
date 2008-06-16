@@ -438,7 +438,7 @@ if (!defined('ABSPATH')) {
   require_once($buttonsnap->include_up('wp-config.php'));
   $buttonsnap->go_solo();
 }
-else {
+elseif (function_exists('sink_hooks')) {
 	$buttonsnap->sink_hooks();
 }
 

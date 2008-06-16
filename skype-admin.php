@@ -1,13 +1,21 @@
 <?php
 function skype_status_options() {
-	global $skype_status_config;
+	global $skype_status_config, $skype_avail_languages;
 	$option = $skype_status_config;
 
-	// check if database has been updated after plugin upgrade
-	if ($skype_status_config['upgraded'] == TRUE) {
+	// check if database has been cleared for removal or else updated after plugin upgrade 
+	if (!empty($_POST['skype_status_remove'])) { // hit remove button
+		delete_option('skype_status');
+		delete_option('skype_widget_options');
+		echo "<div class=\"updated fade\"><p><strong>Your Skype Online Status database settings have been cleared from the database for removal of this plugin!</strong><br />You can still resave the old settings shown below to (partly) undo this action but custom widget settings are lost.<br /><br />If you are sure, you can now <a href=\"plugins.php\">disable this plugin</a>. Please keep in mind that any template file changes you have made, can not be undone through this process. Also, any post quicktags that have been inserted in posts will (harmlessly) remain there. If you change your mind about removing this plugin, just resave the settings NOW (or all your settings will be lost) or revert to default settings at the bottom of this page.</p></div>";
+	} elseif ($skype_status_config['upgraded'] == TRUE) {
 		$skype_status_config['upgraded'] = FALSE;
-		update_option("skype_status",$skype_status_config);
-		echo "<div class=\"updated fade\"><p><strong>Plugin has been upgraded to version ".SOSVERSION."! Please check your settings.</strong></p></div>";
+		update_option('skype_status',$skype_status_config);
+		echo "<div class=\"updated fade\"><p><strong>Skype Online Status plugin has been upgraded to version ".SOSVERSION."!</strong> Please verify your settings now.</p></div>";
+	} elseif ($skype_status_config['installed'] == TRUE) {
+		$skype_status_config['installed'] = FALSE;
+		update_option('skype_status',$skype_status_config);
+		echo "<div class=\"updated fade\"><p><strong>Skype Online Status plugin version ".SOSVERSION." has been installed!</strong> Please adapt the default settings to your personal preference so you can start using Skype buttons anywhere on your site. Read the <strong>Quick Guide</strong> section for more instructions.</p></div>";
 	}
 
 	// check for new version
@@ -247,20 +255,15 @@ function skype_status_options() {
 					</select><br />
 					* <em>Leave to Default if you are generous and think downloads should create some small possible revenue for the developer of this plugin -- that's me, thanks! :) -- but if you think open source developers are greedy bastards and should go away -- just kidding, feel free... really! you can always donate on the Notes & Live Support section ;) --, select one of the other options. If you want to create your own link (say you have a Commission Junction, TradeDoubler or ValueCommerce account, read more on http://www.skype.com/partners/affiliate/) to get possible revenue from downloads yourself, select Custom and paste the link code in the textarea under Custom Download Link Code below.</em></li>
 				<li><label for="use_status">Use <strong>Status text</strong> for the {status} tag?*</label> <select name="use_status" id="use_status">
-						<option value=""<?php if ( $option['use_status'] == "" ) print " selected=\"selected\""; ?>>No</option>
 						<option value="custom"<?php if ( $option['use_status'] == "custom" ) print " selected=\"selected\""; ?>>Custom (as defined below)</option>
-						<option value="en"<?php if (!SOSALLOWURLFOPEN) echo " disabled=\"disabled\""; elseif ( $option['use_status'] == "en" ) print " selected=\"selected\""; ?>>Skype default in English</option>
-						<option value="fr"<?php if (!SOSALLOWURLFOPEN) echo " disabled=\"disabled\""; elseif ( $option['use_status'] == "fr" ) print " selected=\"selected\""; ?>>Skype default in French</option>
-						<option value="de"<?php if (!SOSALLOWURLFOPEN) echo " disabled=\"disabled\""; elseif ( $option['use_status'] == "de" ) print " selected=\"selected\""; ?>>Skype default in German</option>
-						<option value="ja"<?php if (!SOSALLOWURLFOPEN) echo " disabled=\"disabled\""; elseif ( $option['use_status'] == "ja" ) print " selected=\"selected\""; ?>>Skype default in Japanese</option>
-						<option value="zh-cn"<?php if (!SOSALLOWURLFOPEN) echo " disabled=\"disabled\""; elseif ( $option['use_status'] == "zh-cn" ) print " selected=\"selected\""; ?>>Skype default in Chinese</option>
-						<option value="zh-tw"<?php if (!SOSALLOWURLFOPEN) echo " disabled=\"disabled\""; elseif ( $option['use_status'] == "zh-tw" ) print " selected=\"selected\""; ?>>Skype default in Taiwanese</option>
-						<option value="pt"<?php if (!SOSALLOWURLFOPEN) echo " disabled=\"disabled\""; elseif ( $option['use_status'] == "pt" ) print " selected=\"selected\""; ?>>Skype default in Portuguese</option>
-						<option value="pt-br"<?php if (!SOSALLOWURLFOPEN) echo " disabled=\"disabled\""; elseif ( $option['use_status'] == "pt-br" ) print " selected=\"selected\""; ?>>Skype default in Brazilian</option>
-						<option value="it"<?php if (!SOSALLOWURLFOPEN) echo " disabled=\"disabled\""; elseif ( $option['use_status'] == "it" ) print " selected=\"selected\""; ?>>Skype default in Italian</option>
-						<option value="es"<?php if (!SOSALLOWURLFOPEN) echo " disabled=\"disabled\""; elseif ( $option['use_status'] == "es" ) print " selected=\"selected\""; ?>>Skype default in Spanish</option>
-						<option value="pl"<?php if (!SOSALLOWURLFOPEN) echo " disabled=\"disabled\""; elseif ( $option['use_status'] == "pl" ) print " selected=\"selected\""; ?>>Skype default in Polish</option>
-						<option value="se"<?php if (!SOSALLOWURLFOPEN) echo " disabled=\"disabled\""; elseif ( $option['use_status'] == "se" ) print " selected=\"selected\""; ?>>Skype default in Swedish</option>
+						<?php foreach ($skype_avail_languages as $key => $value) {
+						echo '<option value="'.$value.'"';
+						if (!SOSALLOWURLFOPEN) echo ' disabled="disabled"'; 
+						elseif ( $option['use_status'] == $value ) echo ' selected="selected"';
+						echo '>Skype default in '.$key.'</option>
+						'; } 
+						unset($value); ?> 
+						<option value=""<?php if ( $option['use_status'] == "" ) print " selected=\"selected\""; ?>>No</option>
 					</select><br />
 					* <em>If you select 'No', the tags {status}, {statustxt} and {sep2} will be disabled.<br />When security settings on your server are too tight (<strong>safe_mode</strong> enabled, <strong>open_basedir</strong> resticted or <strong>allow_url_fopen</strong> disabled) and you encounter an error like 'Warning: file_get_contents() [function.file-get-contents]: URL file-access is disabled in the server configuration...', use either 'Custom' or 'No' here.</em></li>
 			</ul>
@@ -384,7 +387,9 @@ function skype_status_options() {
 
 		<p class="submit">
 			<input type="submit" name="skype_status_update" value="<?php _e('Update Options'); ?> &raquo;" />
-			<input type="submit" class="delete" id="deletepost" onclick='return confirm("All your personal settings will be overwritten with the plugin default settings, including Skype ID, User name and Theme. \r\n \r\nDo you really want to reset your configuration?");' name="skype_status_reset" value="<?php _e('Reset'); ?> &raquo;" /><br />&nbsp;</p>
+			<input type="submit" class="delete" id="deletepost" onclick='return confirm("All your personal settings will be overwritten with the plugin default settings, including Skype ID, User name and Theme. \r\n \r\nDo you really want to reset your configuration?");' name="skype_status_reset" value="<?php _e('Reset'); ?> &raquo;" /> 
+			<input type="submit" class="delete" id="deletepost" onclick='return confirm("All your Skype Online Status and widget settings will be cleared from the database so the plugin can be COMPLETELY removed. \r\n \r\nDo you really want to CLEAR your configuration?");' name="skype_status_remove" value="<?php _e('Remove'); ?> &raquo;" />
+		<br />&nbsp;</p>
 		</form>
 
 	</div>
@@ -534,6 +539,7 @@ function skype_status_options() {
 		<p id="revhist" align="right"><a href="#wphead">back to top</a></p>
 		<h3>Revision History</h3>
 		<ul>
+			<li>[2008-06-16] version 2.6.1.1: automatic blog language detection for status text, some small bugfixes + complete removal button</li>
 			<li>[2008-06-04] version 2.6.1.0: added simple widget and adapted update checker to fit WP2.5 auto-update, some small bugfixes and code improvements, plus 'add your own download link' feature</li>
 			<li>[2007-04-09] version 2.6.0.9: improved reg_exp for quicktag replacement, minor changes in available settings (newline for download link optional) and fixed &-sign in fields causing failed w3c validation</li>
 			<li>[2007-02-18] version 2.5: made quicktag work for 2.1+ new TinyMCE button plugin routine</li>
@@ -587,22 +593,25 @@ function skype_status_options() {
 		foreach ($skype_status_config as $key => $value) {
 			echo $key . " => " . stripslashes(htmlspecialchars($value)) . "\r\n";
 		}
+		unset($value);
 		echo "</textarea></div>
 		<div style=\"width:32%;margin:0 2%;float:left\"><h4>Updated to</h4><textarea readonly=\"readonly\" style=\"width:100%;height:600px\">";
 		if (!empty($_POST['skype_status_update']) || !empty($_POST['skype_status_reset'])) { 
 			foreach ($option as $key => $value) {
 				echo $key . " => " . stripslashes(htmlspecialchars($value)) . "\r\n";
 			}
+			unset($value);
 		}
 		echo "</textarea></div>
 		<div style=\"width:32%;float:left\"><h4>Default values</h4><textarea readonly=\"readonly\" style=\"width:100%;height:600px\">";
 		$skype_default_values = skype_default_values();
 		foreach ($skype_default_values as $key => $value) {
 			echo $key . " => " . stripslashes(htmlspecialchars($value)) . "\r\n";
-		}		
+		}
+		unset($value);
 		echo "</textarea></div><div style=\"clear:both\"></div>
 		<div><h4>Pluging global values</h4> 
-		<p>SOSDATADUMP=".SOSDATADUMP." (obviously ;-) )<br />SOSBUTTONSNAP=".SOSBUTTONSNAP."<br />SOSVERSION=".SOSVERSION."<br />SOSVERSION_DATE=".SOSVERSION_DATE."<br />SOSALLOWURLFOPEN=".SOSALLOWURLFOPEN."
+		<p>SOSDATADUMP=".SOSDATADUMP." (obviously ;-) )<br />SOSBUTTONSNAP=".SOSBUTTONSNAP."<br />SOSVERSION=".SOSVERSION."<br />SOSVERSION_DATE=".SOSVERSION_DATE."<br />SOSALLOWURLFOPEN=".SOSALLOWURLFOPEN."<br />SOSREMOVEFLAG=".SOSREMOVEFLAG."</p>
 		</div></div>";	
 	}
 	?>

@@ -2,9 +2,9 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e6%2e1%2e0&no_shipping=0&no_note=1&tax=0&currency_code=EUR&lc=NL&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce
-Requires at least: 1.5
+Requires at least: 2.0
 Tested up to: 2.5.1
-Stable tag: 2.6.1.0
+Stable tag: 2.6.1.1
 
 Checks your Skype Online Status and allows you to add multiple, highly customizable and accessible Skype buttons to your blog through widget, post quicktag and/or template tag.
 
@@ -16,7 +16,7 @@ This plugin has grown a lot since the start but it should be mentioned that it w
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
-Older versions have been developed for WordPress 2.0+ and 2.1+ but from version 2.5 upward, also for the WordPress 2.5+.
+Older versions have been developed for WordPress 2.0+ and 2.1+ but from version 2.6.1.0 upward, also for WordPress 2.5+.
 
 Read more on usage in the Quick Guide section of the Options > Skype Status page, available after installation.
 
@@ -28,21 +28,21 @@ Steps:
 
 1. Download archive and unpack.
 
-2. Upload and save (or overwrite) files and folders to the plugins folder directory. You should have the following file structure under /wp-content/plugins/
+2. Upload and save (or overwrite) files and folders to the plugins folder directory. You should have the following file structure below /wp-content/plugins/
 
-     buttonsnap.php (only needed for WP version 1.5 and 2.0)
-     skype-status/templates/*.html
-     skype-status/tinymce/langs/*.js
-     skype-status/tinymce/editor_plugin.js
-     skype-status/tinymce3/langs/*.js
-     skype-status/tinymce3/editor_plugin.js
-     skype-status/tinymce3/sosquicktag.css
-     skype-status/editor.php
-     skype-status/skype-options.php
-     skype-status/skype-status.php
-     skype-status/skype_button.gif
-     skype-status/skypemarker.gif
-     skype-status/spacer.gif
+     skype-online-status/templates/*.html
+     skype-online-status/tinymce/langs/*.js
+     skype-online-status/tinymce/editor_plugin.js
+     skype-online-status/tinymce3/langs/*.js
+     skype-online-status/tinymce3/editor_plugin.js
+     skype-online-status/tinymce3/sosquicktag.css
+     skype-online-status/buttonsnap.php (only needed for WP version 1.5 and 2.0)
+     skype-online-status/editor.php
+     skype-online-status/skype-options.php
+     skype-online-status/skype-status.php
+     skype-online-status/skype_button.gif
+     skype-online-status/skype_marker.gif
+     skype-online-status/spacer.gif
      
 
 3. Activate plugin on the Plug-ins page
@@ -69,11 +69,11 @@ Post your questions, bugs and feature requests on [Skype Online Status Google Gr
 
 When reporting bugs, please describe as carefully as possible and provide information like the version number of the plugin, WordPress and - if relevant - server security settings, PHP and MySQL version.
 
-This readme comes packed with version 2.6.1.0 of the 'Skype Online Status' plugin for WordPress 2+.
+This readme comes packed with version 2.6.1.1 of the 'Skype Online Status' plugin for WordPress 2+.
 
-    Version: 2.6.1.0
-    Status: Beta 
-    Latest stable: 2.6
+    Version: 2.6.1.1
+    Status: Stable 
+    Latest stable: 2.6.1.1
     Licence: GNU General Public License
 
 == What's New ==
@@ -108,12 +108,14 @@ Wish List version 3 and beyond :)
      - Get XML online status (and local time?)
 
 Know bugs:
-     - (Since 2.6.1.0 no known bugs yet, please report anything you find on [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") )
+     - (Since 2.6.1.1 no known bugs yet, please report anything you find on [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") )
 
 Know issues:
-     - The javascript provided by Skype that detects if Skype is installed, does not work properly on Linux. It defaults to displaying a download popup even if Skype is installed on the visitors computer when a Skype button is clicked. Hopefully, Skype will fix this some day :(
+     - The javascript provided by Skype that detects whether Skype is (client side) installed, does not work properly on Linux. It defaults to displaying a download popup even if Skype is installed on the visitors computer after the Skype button is clicked. Hopefully, Skype will fix this some day :/
 
 == Revision History ==
+
+[2008-06-16] version 2.6.1.1: automatic blog language detection for status text, some small bugfixes + complete removal button
 
 [2008-06-04] version 2.6.1.0: added simple widget, removed built-in update checker (redundant since WP2.5 auto-update), some bugfixes and code improvements, add your own download link
 
