@@ -95,7 +95,7 @@ And some new features:
 
 Since version 2.6.1.0 there is a customizable Skype Status Widget available :)
 
-== Notes ==		
+== Notes ==
 
 Wish List version 3 and beyond :)
 
@@ -109,7 +109,7 @@ Wish List version 3 and beyond :)
 
 Know bugs:
      - (Since 2.6.1.1 no known bugs yet, please report anything you find on [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") )
- 
+
 Know issues:
      - The javascript provided by Skype that detects whether Skype is (client side) installed, does not work properly on Linux. It defaults to displaying a download popup even if Skype is installed on the visitors computer after the Skype button is clicked. Hopefully, Skype will fix this some day :/
 
