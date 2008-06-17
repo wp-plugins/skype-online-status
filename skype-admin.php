@@ -623,4 +623,5 @@ function skype_status_options() {
 	</script>
 	<?php
 }
+
 ?>

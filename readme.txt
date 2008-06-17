@@ -95,7 +95,7 @@ And some new features:
 
 Since version 2.6.1.0 there is a customizable Skype Status Widget available :)
 
-== Notes ==		
+== Notes ==
 
 Wish List version 3 and beyond :)
 

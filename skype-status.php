@@ -222,4 +222,5 @@ function skype_status_install() {
 	global $skype_status_config;
 	add_option('skype_status', $skype_status_config);
 }
+
 ?>
