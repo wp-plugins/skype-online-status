@@ -27,34 +27,18 @@ function skype_widget_options () {
 
 	// get list of templates
 	$buttondir = dirname(__FILE__)."/templates/";
-	$select = "<option value=\"\"";
-	if ($opt['button_theme'] == "") 
+	$select = "<option value=\"default\"";
+	if ($opt['button_theme'] == "") {
+		$display = " block";
 		$select .= " selected=\"selected\"";
+	} else { $display = " none"; }
 	$select .= ">Default</option>";
-	if (is_dir($buttondir)) {
-		if ($dh = opendir($buttondir)) {
-			while (($file = readdir($dh)) !== false) {
-				$fname = $buttondir . $file;
-				if (is_file($fname) && ".html" == substr($fname,-5)) {
 
-					$theme_name = substr(basename($fname),0,-5);
+	$previews = "<div id=\"default\" style=\"display:$display;\">".skype_parse_theme($opt)."</div>";
 
-					$selected = ""; // radio button not selected unless...
-					if ($theme_name == $opt['button_theme'])
-						$selected = " selected=\"selected\"";
-
-					// attempt to get the human readable name from the first line of the file
-					preg_match("|<!-- (.*) - http://www.skype.com/go/skypebuttons|ms",file_get_contents($fname),$matches);
-					if (!$matches[1] || $matches[1]=="")
-						$matches[1] = $theme_name;
-
-					// collect the options
-					$select .= "\n<option value=\"$theme_name\"$selected>$matches[1]</option>";						
-				}
-			}
-			closedir($dh);
-		}
-	}
+	$walk = skype_walk_templates(dirname(__FILE__)."/templates/", $opt, $select, $previews);
+	$select = $walk['select'];
+	$previews = $walk['previews'];
 
 	if ($_POST['skype_widget_submit']) {
 		if ($_POST['skype_widget_button_theme']!="") { // get template file content to load into db
@@ -72,6 +56,26 @@ function skype_widget_options () {
 		update_option('skype_widget_options', $opt);
 	} ?>
 
+<script type="text/javascript">
+var visible_preview = "<?php echo $option['button_theme']; ?>";
+
+function ChangeStyle(el) {
+	eval("document.getElementById('" + visible_preview + "').style.display='none'");
+	eval("document.getElementById('" + el.value + "').style.display='block'");
+	visible_preview = el.value;
+}
+
+function PreviewStyle(elmnt) {
+	eval("document.getElementById('" + visible_preview + "').style.display='none'");
+	eval("document.getElementById('" + elmnt.value + "').style.display='block'");
+}
+
+function UnPreviewStyle(elmnt) {
+	eval("document.getElementById('" + elmnt.value + "').style.display='none'");
+	eval("document.getElementById('" + visible_preview + "').style.display='block'");
+}
+</script>
+
 <p style="text-align:left">
 <label for="skype_widget_title">Widget Title:</label><br />
 <input style="width:100%" type="text" id="skype_widget_title" name="skype_widget_title" value="<?php echo stripslashes(htmlspecialchars($opt['title'])); ?>" />
@@ -88,8 +92,10 @@ function skype_widget_options () {
 <label for="skype_widget_before">Text before (use &lt;br /&gt; for new line):</label><br />
 <input style="width:100%" type="text" id="skype_widget_before" name="skype_widget_before" value="<?php echo stripslashes(htmlspecialchars($opt['before'])); ?>" />
 </p>
+<style type="text/css"><!-- .no_underline a { border-bottom:none;width:auto;height:100px;overflow:hidden } --></style>	
+<div class="no_underline"><?php echo $previews; ?></div>
 <p style="text-align:left">
-<label for="skype_widget_button_theme">Theme:</label> <select name="skype_widget_button_theme" id="skype_widget_button_theme" style="width:100%"><?php echo $select; ?></select>
+<label for="skype_widget_button_theme">Theme:</label> <select name="skype_widget_button_theme" id="skype_widget_button_theme" style="width:100%" onchange="ChangeStyle(this);" onfocus="PreviewStyle(this);"><?php echo $select; ?></select>
 </p>
 <p style="text-align:left">
 <label for="skype_widget_use_voicemail">Use Voicemail**:</label> <select name="skype_widget_use_voicemail" id="skype_widget_use_voicemail">

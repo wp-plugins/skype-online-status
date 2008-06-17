@@ -1,4 +1,39 @@
 <?php
+function skype_walk_templates($buttondir,$option_preview,$select,$previews) {
+	if (is_dir($buttondir)) {
+		if ($dh = opendir($buttondir)) {
+			while (($file = readdir($dh)) !== false) {
+				$fname = $buttondir . $file;
+				if (is_file($fname) && ".html" == substr($fname,-5)) {
+
+					$theme_name = substr(basename($fname),0,-5);
+
+					$selected = ""; // radio button not selected unless...
+					$display = " none"; // hide preview layers unless...
+					if ($theme_name == $option_preview['button_theme']) {
+						$selected = " selected=\"selected\"";
+						$display = " block";
+					}
+
+					// attempt to get the human readable name from the first line of the file
+					$option_preview['button_template'] = file_get_contents($fname);
+					preg_match("|<!-- (.*) - http://www.skype.com/go/skypebuttons|ms",$option_preview['button_template'],$matches);
+					if (!$matches[1] || $matches[1]=="")
+						$matches[1] = $theme_name;
+
+					// collect the options
+					$select .= "\n<option value=\"$theme_name\"$selected onmouseover=\"PreviewStyle(this);\" onmouseout=\"UnPreviewStyle(this);\">$matches[1]</option>";
+					
+					// and collect their previews
+					$previews .= "\n<div id=\"$theme_name\" style=\"display:$display;\">".skype_parse_theme($option_preview)."</div>";
+				}
+			}
+			closedir($dh);
+		}
+	}
+	return array ( "select" => $select , "previews" => $previews );
+}
+
 function skype_default_values() { 
 	global $skype_default_values, $skype_avail_languages;
 	// set language to blogs WPLANG (or leave unchanged)
@@ -58,46 +93,51 @@ function skype_parse_theme($config) {
 		$status = skype_status_check($config['skype_id'], ".txt.".$config['use_status']);
 	}
 
+	//define value to replace {functiontxt} based on {function}
+	$functiontxt = $config[$config['button_function'].'_text'];
+
 	// build arrays with tags and replacement values
 	$tags = array(
-			"{skypeid}",
-			"{status}",
-			"{statustxt}",
-			"{username}",
-			"{sep1}",
-			"{sep2}",
-			"{add}",
-			"{call}",
-			"{chat}",
-			"{sendfile}",
-			"{userinfo}",
-			"{voicemail}"
+		"{skypeid}",
+		"{function}",
+		"{functiontxt}",
+		"{status}",
+		"{statustxt}",
+		"{username}",
+		"{sep1}",
+		"{sep2}",
+		"{add}",
+		"{call}",
+		"{chat}",
+		"{sendfile}",
+		"{userinfo}",
+		"{voicemail}",
 		);
-	if ($config['use_function']=="on") {
-		$values = array(
-			$config['skype_id'],
-			$status,
-			$config['my_status_text'],
-			$config['user_name'],
-			$config['seperator1_text'],
-			$config['seperator2_text'],
-			$config['add_text'],
-			$config['call_text'],
-			$config['chat_text'],
-			$config['sendfile_text'],
-			$config['userinfo_text'],
-			$config['voicemail_text']
-			);
-	} else {
-		$values = array(
-			$config['skype_id'],
-			$status,
-			$config['my_status_text'],
-			$config['user_name'],
-			$config['seperator1_text'],
-			$config['seperator2_text'],
-			"","","","","","");
+	if ($config['use_function']!="on") {
+		$config['add_text'] = "";
+		$config['call_text'] = "";
+		$config['chat_text'] = "";
+		$config['sendfile_text'] = "";
+		$config['userinfo_text'] = "";
+		$config['voicemail_text'] = "";
 	}
+	$values = array(
+		$config['skype_id'],
+		$config['button_function'],
+		$functiontxt,
+		$status,
+		$config['my_status_text'],
+		$config['user_name'],
+		$config['seperator1_text'],
+		$config['seperator2_text'],
+		$config['add_text'],
+		$config['call_text'],
+		$config['chat_text'],
+		$config['sendfile_text'],
+		$config['userinfo_text'],
+		$config['voicemail_text']
+		);
+
 
 	// delete voicemail lines if not needed else append arrays with tags and replacement values
 	if ($config['use_voicemail']!="on") {
@@ -157,6 +197,7 @@ function skype_status($skype_id = FALSE, $user_name = FALSE, $button_theme = FAL
 	if ($skype_id) $r['skype_id'] = $skype_id;
 	if ($user_name) $r['user_name'] = $user_name;
 	if ($use_voicemail) $r['use_voicemail'] = $use_voicemail;
+	if ($button_theme == "default") $button_theme = FALSE;
 	if ($button_template) $r['button_template'] = $button_template;
 
 	// if alternate theme is set, get it from template file and override
@@ -176,11 +217,21 @@ function skype_status($skype_id = FALSE, $user_name = FALSE, $button_theme = FAL
 
 // script in header
 function skype_status_script() {
-	print '
+	global $skype_status_config;
+	echo '
 	<!-- Skype script used for Skype Online Status plugin version '.SOSVERSION.' by RavanH - http://4visions.nl/ -->
-	<script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
-	<!-- end Skype script -->
 	';
+
+	if ($skype_status_config['getskype_link'] == "skype_mainpage" || $skype_status_config['getskype_link'] == "skype_downloadpage")
+		echo '<script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>';
+	//elseif ($config['getskype_link'] == "custom_link" && $config['getskype_custom_link'] != "" )
+	//	echo '<script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>'; // unfinnished: code to custom download link here
+	else
+		echo '<script type="text/javascript" src="'.get_option('siteurl').'/wp-content/plugins/skype-online-status/js/skypeCheck.js.php"></script>';
+
+	echo '
+	<!-- end Skype script -->
+';
 }
 
 // wrapper function which calls the Skype Status button

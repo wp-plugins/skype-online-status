@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
 Description: Checks your Skype Online Status and allows you to add multiple, highly customizable and accessible Skype buttons to your blog. Based on the plugin Skype Button 2.01 by Anti Veeranna. Documentation and configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page.  
-Version: 2.6.1.2
+Version: 2.6.1.0
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -42,7 +42,8 @@ Author URI: http://4visions.nl/
 		- Get XML online status (and local time?)
 	
 	Revision History
-		[2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
+		[2008-06-18] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates
+ 		[2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
 		[2008-06-04] version 2.6.1.0: 
 			- added simple widget
 			- removed built-in update checker (redundant since WP2.5 auto-update) 
@@ -85,8 +86,8 @@ Author URI: http://4visions.nl/
 */
 
 // Plugin version number and date
-define('SOSVERSION', '2.6.1.2');
-define('SOSVERSION_DATE', '2008-06-16');
+define('SOSVERSION', '2.6.1.0');
+define('SOSVERSION_DATE', '2008-06-18');
 
 // The values below are the default settings
 // Edit these if you like but they can all be customized on the Options > Skype Status page :)
@@ -96,6 +97,7 @@ $skype_default_values = array(
 	"user_name" => "Skype Test Call", 		// User name to replace {username} in template files
 	"button_theme" => "transparent_dropdown", 	// Theme to be used, value must match a filename (without extention) from the /plugins/skype-online-status/templates/ directory or leave blank
 	"button_template" => "", 			// Will hold template loaded from user-selected template file
+	"button_function" => "call",			// Function to replace {function} in template files
 	"add_text" => "Add me to Skype", 		// Text to replace {add} in template files
 	"call_text" => "Call me", 			// Text to replace {call} in template files
 	"chat_text" => "Chat with me", 			// Text to replace {chat} in template files
@@ -144,6 +146,15 @@ $skype_avail_languages = array (
 	"Spanish" => "es",
 	"Polish" => "pl",
 	"Swedish" => "se",
+);
+
+$skype_avail_functions = array (
+	"Call me!" => "call",
+	"Add me to Skype" => "add",
+	"Chat with me" => "chat",
+	"View my profile" => "userinfo",
+	"Leave me voicemail" => "voicemail",
+	"Send me a file" => "sendfile",
 );
 
 $skype_widget_default_values = array (
