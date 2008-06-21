@@ -484,7 +484,7 @@ function skype_status_options() {
 		<p id="revhist" align="right"><a href="#wphead">back to top</a></p>
 		<h3>Revision History</h3>
 		<ul>
-			<li>[2008-06-19] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview
+			<li>[2008-06-21] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview
 </li>
 			<li>[2008-06-16] version 2.6.1.1: automatic blog language detection for status text, some small bugfixes + complete removal button</li>
 			<li>[2008-06-04] version 2.6.1.0: added simple widget and adapted update checker to fit WP2.5 auto-update, some small bugfixes and code improvements, plus 'add your own download link' feature</li>

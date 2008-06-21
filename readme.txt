@@ -159,7 +159,7 @@ Know issues
 
 == Revision History ==
 
-[2008-06-18] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview
+[2008-06-21] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview
 [2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
 
 [2008-06-04] version 2.6.1.0: added simple widget, removed built-in update checker (redundant since WP2.5 auto-update), some bugfixes and code improvements, add your own download link

@@ -42,7 +42,7 @@ Author URI: http://4visions.nl/
 		- Get XML online status (and local time?)
 	
 	Revision History
-		[2008-06-19] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview
+		[2008-06-21] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview
  		[2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
 		[2008-06-04] version 2.6.1.0: 
 			- added simple widget
@@ -87,7 +87,7 @@ Author URI: http://4visions.nl/
 
 // Plugin version number and date
 define('SOSVERSION', '2.6.2.0');
-define('SOSVERSION_DATE', '2008-06-19');
+define('SOSVERSION_DATE', '2008-06-21');
 
 ////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
 // The values below are the default settings
