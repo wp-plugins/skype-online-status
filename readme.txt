@@ -4,25 +4,21 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce
 Requires at least: 2.0
 Tested up to: 2.5.1
-Stable tag: 2.6.1.2
+Stable tag: 2.6.2.0
 
 Checks your Skype Online Status and allows you to add multiple, highly customizable and accessible Skype buttons to your blog through widget, post quicktag and/or template tag.
 
 == Description ==
 
-The plugin Skype Online Status allows you to add one or multiple, highly customizable and accessible (!) Skype buttons to your blog. You can pick any of the available Skype button themes that will show your online status and place them in your pages/posts content, in your sidebar via a widget or anywhere in your theme template files. The themes are mostly based on the themes you can find on http://www.skype.com/share/buttons/wizard.html but much more feature rich, like showing your online status in the alt text of the image and much more customizable, like setting your own texts in your own language for each available status. Even using a button to invoke normal phone calls or multichats or conference calls is possible!
+The plugin Skype Online Status allows you to add one or multiple, highly customizable and accessible (!) Skype buttons to your blog. You can pick any of the available Skype button themes that will show your online status and place them in your pages/posts content (with a neat little Skype quicktag button in the WYSIWYG editor), in your sidebar via a widget or anywhere in your theme template files.
 
-This plugin has grown a lot since the start but it should be mentioned that it was built upon the neat little plugin Skype Button v2.01 by Anti Veeranna. Many thanks!
+Button themes are mostly based on the themes you can find on (Skype's button wizard page](http://www.skype.com/share/buttons/wizard.html "Skype buttons") but much more feature rich, like showing your online status in the alt text of the image, more accessible (!) and much more customizable, like setting your own Status texts in your blogs language. Even a button to invoke normal phone calls or multichats or conference calls is possible!
 
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
-
-Older versions have been developed for WordPress 2.0+ and 2.1+ but from version 2.6.1.0 upward, also for WordPress 2.5+.
-
-Read more on usage in the Quick Guide section of the Options > Skype Status page, available after installation.
+Older versions have been developed for WordPress 2.0+, 2.1+ and 2.3+ but from version 2.6.1.0 upward, the main development focus is on WordPress 2.5+.
 
 == Installation ==
 
-Note: When updating from version 2.5 or previous: please deactivate plugin and remove the old directories and files before uploading! 
+Note: When grading from version 2.5 or previous: please deactivate plugin and remove the old directories and files before uploading! Or just use the auto-update feature on your Pugins page ;)
 
 Steps:
 
@@ -30,16 +26,20 @@ Steps:
 
 2. Upload and save (or overwrite) files and folders to the plugins folder directory. You should have the following file structure below /wp-content/plugins/
 
+     skype-online-status/js/langs/*.js
+     skype-online-status/js/editor_plugin.js
+     skype-online-status/js/mce3_editor_plugin.js
+     skype-online-status/js/sosquicktag.css
+     skype-online-status/js/skypeCheck.js.php
+     skype-online-status/oops/*.html
+     skype-online-status/oops/*.css
      skype-online-status/templates/*.html
-     skype-online-status/tinymce/langs/*.js
-     skype-online-status/tinymce/editor_plugin.js
-     skype-online-status/tinymce3/langs/*.js
-     skype-online-status/tinymce3/editor_plugin.js
-     skype-online-status/tinymce3/sosquicktag.css
-     skype-online-status/buttonsnap.php (only needed for WP version 1.5 and 2.0)
+     skype-online-status/buttonsnap.php (only needed for WP 2.0 and previous)
      skype-online-status/editor.php
-     skype-online-status/skype-options.php
+     skype-online-status/skype-admin.php
+     skype-online-status/skype-functions.php
      skype-online-status/skype-status.php
+     skype-online-status/skype-widget.php
      skype-online-status/skype_button.gif
      skype-online-status/skype_marker.gif
      skype-online-status/spacer.gif
@@ -55,13 +55,43 @@ Read more on usage in the Quick Guide section of the Options > Skype Status page
 
 == Frequently Asked Questions ==
 
-For all your questions, bugs and feature requests go to [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group")
+*Q:* Why is my Skype button showing Offline even when I am online?
+
+*A:* First, you have to change an option in your Skype client settings to make your online status publicly visible:
+
+1. Open your Skype client and go to 'Options > Privacy' or 'Advanced' (depending on your client version).
+
+2. Find the option 'Allow my status to be shown on the web' and place a checkmark beside it.
+
+3. Close the Options window and change your Skype status to Offline and back Online again to update the Skype server.
+
+If your online status is still incorrect, type in your webbrowser http://mystatus.skype.com/_yourskypename_ and check what is shown there. The plugin takes your status directly from the Skype server and should correspond with your status shown on the above URL (using your skype name obviously). If your status is not correct on that URL, it basically is out of your hands. You can wait for the Skype server to get 'up to date' or browse the Skype forums for fixes suggested by others...
+
+*Q:* I have found a bug. Where do I report it?
+
+*A:* For bug reports, go to [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") and describe what is happening there. Please provide as much related info as you can but at least give me your plugin and Wordpress version number.
+
+*Q:* I have a feature request. Where do I ask?
+
+*A:* For all 'normal' feature requests go to [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") but if you want custom development, please contact me directly. I will gladly consider any proposal. You can find my Skype ID on the *Notes & Live Support* section of your WordPress Options > Skype Status page, available after installation. Or browse to my website [4Visions](http://4visions.nl/ "4Visions").
+
+*Q:* I have trouble setting up a Skype button on my blog. Where do I get help?
+
+*A:* Have you read the *Quick Guide* section of your WordPress Options > Skype Status page, available after installation already? For all remaining questions, go to [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") and post them there. I will be happy to respond in due time :)
+
+*Q:* I would like to contribute. Is that possible?
+
+*A:* Ofcource! What did you have in mind? Monetary funding is always appreciated but if you can help me out in development, that's cool too :) 
+
+Any small donation via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e6%2e1%2e0&no_shipping=0&no_note=1&tax=0&currency_code=EUR&lc=NL&bn=PP%2dDonationsBF&charset=UTF%2d8 "PayPal Donate") to keep me developing is _VERY_ welcome. Thanks!
+
+Read more on usage in the *Quick Guide* section of your WordPress Options > Skype Status page, available after installation.
 
 == Screenshots ==
 
 Sorry, no screenshots. 
 
-But you can go to the [Skype Online Status plugin page](http://4visions.nl/en/index.php?section=55 "Skype Online Status plugin - 4Visions") to see it in action (right side) or go and test a button on [Skype's button page](http://www.skype.com/share/buttons/ "Skype buttons"). The button templates used there are also available in this plugin.
+But you can go to the [Skype Online Status plugin page](http://4visions.nl/en/index.php?section=55 "Skype Online Status plugin - 4Visions") to see a Skype button in action (right side) or go and test a button on [Skype's button page](http://www.skype.com/share/buttons/ "Skype buttons"). The button templates used there are also available in this plugin.
 
 == Support ==
 
@@ -69,33 +99,40 @@ Post your questions, bugs and feature requests on [Skype Online Status Google Gr
 
 When reporting bugs, please describe as carefully as possible and provide information like the version number of the plugin, WordPress and - if relevant - server security settings, PHP and MySQL version.
 
-This readme comes packed with version 2.6.1.1 of the 'Skype Online Status' plugin for WordPress 2+.
+This readme comes packed with version 2.6.2.0 of the 'Skype Online Status' plugin for WordPress 2+.
 
-    Version: 2.6.1.2
+    Version: 2.6.2.0
     Status: Stable 
-    Latest stable: 2.6.1.2
+    Latest stable: 2.6.2.0
     Licence: GNU General Public License
 
 == What's New ==
 
-Since version 1.1 there have been some major changes to the layout of the 'Options > Skype Status' page. Documentation has been extended. 
+Since version 1.1 there have been some major changes to the layout of the 'Options > Skype Status' page. Documentation has been much extended. 
 
 And some new features:
 
+     - widgetized!
+     - lots of new templates
      - some new tags for the template files,
-     - a 'Reset options' button to revert 
-       to original settings,
-     - the <!--skype status--> tag to display 
-       a Skype Status button in posts and page content!
+     - a 'Reset options' button to revert to original 
+       settings and a 'Remove' button to completely 
+       clear the plugin settings from your database
+     - a quicktag to display a Skype Status button
+       in posts and page content!
      - editable template
      - language switch for Skype default status texts
-     - lots more templates
-     - download skype now link
+     - download skype now link (replaceable with your own referral
+       link since version 2.6)
      - automatic plugin upgrade check showing on the options page!
 
 Since version 2.6.1.0 there is a customizable Skype Status Widget available :)
 
 == Notes ==
+
+This plugin has grown a lot since the start but it should be mentioned that it was built upon the neat little plugin Skype Button v2.01 by Anti Veeranna. Many thanks!
+
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
 Wish List version 3 and beyond :)
 
@@ -103,18 +140,26 @@ Wish List version 3 and beyond :)
      - Skype-like wizard...
      - Add Skypecasts widget
      - Upload your own button
-     - integration with WP user level system
+     - integration with WP user system
      - Internationalization
      - Get XML online status (and local time?)
 
-Know bugs:
-     - (Since 2.6.1.1 no known bugs yet, please report anything you find on [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") )
+Know bugs
 
-Know issues:
-     - The javascript provided by Skype that detects whether Skype is (client side) installed, does not work properly on Linux. It defaults to displaying a download popup even if Skype is installed on the visitors computer after the Skype button is clicked. Hopefully, Skype will fix this some day :/
+     - Since 2.6.1.2 no known bugs yet, please report anything you
+       find on [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") )
+
+Know issues
+
+     - The javascript provided by Skype that detects whether Skype
+       is installed (client side), does not work properly on Linux.
+       It defaults to displaying a download popup even if Skype is
+       installed on the visitors computer after the Skype button is
+       clicked. Hopefully, Skype will fix this some day :/
 
 == Revision History ==
 
+[2008-06-18] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview
 [2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
 
 [2008-06-04] version 2.6.1.0: added simple widget, removed built-in update checker (redundant since WP2.5 auto-update), some bugfixes and code improvements, add your own download link

@@ -1,7 +1,7 @@
 <?php
 // Add button for WordPress 2.5+ using built in hooks, thanks to Subscribe2
 function sos_mce3_plugin($arr) {
-	$path = get_option('siteurl') . '/wp-content/plugins/skype-online-status/tinymce/mce3_editor_plugin.js';
+	$path = get_option('siteurl') . '/wp-content/plugins/skype-online-status/js/mce3_editor_plugin.js';
 	$arr['sosquicktag'] = $path;
 	return $arr;
 }
@@ -20,7 +20,7 @@ function sos_mce_button($button) {
 	return $button;
 }
 function sos_tinymce_before_init() {
-	echo "tinyMCE.loadPlugin('sosquicktag', '" . get_option('siteurl') . "/wp-content/plugins/skype-online-status/tinymce/');\n"; 
+	echo "tinyMCE.loadPlugin('sosquicktag', '" . get_option('siteurl') . "/wp-content/plugins/skype-online-status/js/');\n"; 
 }
 
 // Hide buttons the user doesn't want to see in WP v2.1+
