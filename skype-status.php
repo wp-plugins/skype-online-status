@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
 Description: Checks your Skype Online Status and allows you to add multiple, highly customizable and accessible Skype buttons to your blog. Based on the plugin Skype Button 2.01 by Anti Veeranna. Documentation and configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page.  
-Version: 2.6.1.0
+Version: 2.6.2.0
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -42,7 +42,7 @@ Author URI: http://4visions.nl/
 		- Get XML online status (and local time?)
 	
 	Revision History
-		[2008-06-18] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates
+		[2008-06-19] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview
  		[2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
 		[2008-06-04] version 2.6.1.0: 
 			- added simple widget
@@ -86,9 +86,10 @@ Author URI: http://4visions.nl/
 */
 
 // Plugin version number and date
-define('SOSVERSION', '2.6.1.0');
-define('SOSVERSION_DATE', '2008-06-18');
+define('SOSVERSION', '2.6.2.0');
+define('SOSVERSION_DATE', '2008-06-19');
 
+////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
 // The values below are the default settings
 // Edit these if you like but they can all be customized on the Options > Skype Status page :)
 
@@ -119,19 +120,19 @@ $skype_default_values = array(
 	"status_3_text" => "Away", 			// Text to replace {status} in template files when status is away (3)
 	"status_4_text" => "Not available", 		// Text to replace {status} in template files when status is not available (4)
 	"status_5_text" => "Do not disturb",		// Text to replace {status} in template files when status is do not disturb (5)
-	"status_6_text" => "Invisible", 		// Text to replace {status} in template files when status is invisible (6)
+	"status_6_text" => "Offline", 		// Text to replace {status} in template files when status is invisible (6)
 	"status_7_text" => "Skype me!", 		// Text to replace {status} in template files when status is skype me! (7)
 	"use_getskype" => "on", 			// Wether to show the Download Skype now! link
-	"getskype_newline" => "",			// Put the Download Skype now! link on a new line ("on") or not ("")
+	"getskype_newline" => "on",			// Put the Download Skype now! link on a new line ("on") or not ("")
 	"getskype_text" => "&raquo; Get Skype now!", 	// Text to use for the Download Skype now! link
-	"getskype_link" => "",				// What link to use for download: the default will generate some revenue for me (thanks! :-) ), "skype_mainpage" for skype main page, "skype_downloadpage" for skype download page
+	"getskype_link" => "",				// What link to use for download: the default ("") will generate some revenue for me (thanks! :-) ), "skype_mainpage" for skype main page, "skype_downloadpage" for skype download page
 	"getskype_custom_link" => "",			// put your own customized link here
 	"skype_status_version" => SOSVERSION,
 	"upgraded" => FALSE,
 	"installed" => FALSE,
 );
 
-// Available status message languages as provided by Skype, e.g. http://mystatus.skype.com/yourusername.txt.pt-br will show your online status message in Brazilian.
+// Available status message languages as provided by Skype, e.g. http://mystatus.skype.com/yourusername.txt.pt-br will show your online status message in Brazilian portuguese.
 // If there are new languages available, they can be added to this array to make them optional on the Skype Settings page.
 $skype_avail_languages = array ( 
 	"English" => "en",
@@ -158,13 +159,14 @@ $skype_avail_functions = array (
 );
 
 $skype_widget_default_values = array (
-	"skype_id" => "",		// Skype ID to replace {skypeid} in template files
-	"user_name" => "",		// User name to replace {username} in template files
-	"button_theme" => "",		// Theme to be used, value must match a filename (without extention) from the /plugins/skype_status/templates/ directory or leave blank
-	"button_template" => "",	// Template of the theme loaded
-	"use_voicemail" => "",		// Wether to use the voicemail invitation ("on") or not (""), set to "on" if you have a SkypeIn account
-	"before" => "",			// text that should go before the button
-	"after" => "",			// text that should go after the button
+	"title" => "Skype Online Status",	// Widget title
+	"skype_id" => "",			// Skype ID to replace {skypeid} in template files
+	"user_name" => "",			// User name to replace {username} in template files
+	"button_theme" => "",			// Theme to be used, value must match a filename (without extention) from the /plugins/skype_status/templates/ directory or leave blank
+	"button_template" => "",		// Template of the theme loaded
+	"use_voicemail" => "",			// Wether to use the voicemail invitation ("on") or not (""), set to "on" if you have a SkypeIn account
+	"before" => "",				// text that should go before the button
+	"after" => "",				// text that should go after the button
 );
 
 // Print all Skype settings from the database at the bottom of the settings page for debugging (normally, leave to FALSE)
@@ -177,8 +179,12 @@ if (ini_get('allow_url_fopen'))
 else
 	define('SOSALLOWURLFOPEN', FALSE);
 
+////////-----------------------------------------.oO//\\Oo.-----------------------------------------\\\\\\\\
+// Stop editing here!
+
 // load database options
 $skype_status_config = get_option('skype_status');
+$skype_widget_config = get_option('skype_widget_options');
 
 //todo: internationalization
 //load_plugin_textdomain('skype_status'); // NLS

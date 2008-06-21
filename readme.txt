@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce
 Requires at least: 2.0
 Tested up to: 2.5.1
-Stable tag: 2.6.1.2
+Stable tag: 2.6.2.0
 
 Checks your Skype Online Status and allows you to add multiple, highly customizable and accessible Skype buttons to your blog through widget, post quicktag and/or template tag.
 
@@ -118,8 +118,8 @@ And some new features:
      - a 'Reset options' button to revert to original 
        settings and a 'Remove' button to completely 
        clear the plugin settings from your database
-     - the <!--skype status--> tag to display 
-       a Skype Status button in posts and page content!
+     - a quicktag to display a Skype Status button
+       in posts and page content!
      - editable template
      - language switch for Skype default status texts
      - download skype now link (replaceable with your own referral
@@ -140,14 +140,14 @@ Wish List version 3 and beyond :)
      - Skype-like wizard...
      - Add Skypecasts widget
      - Upload your own button
-     - integration with WP user level system
+     - integration with WP user system
      - Internationalization
      - Get XML online status (and local time?)
 
 Know bugs
 
-     - Since 2.6.1.2 no known bugs yet, please report anything
-       you find on [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") )
+     - Since 2.6.1.2 no known bugs yet, please report anything you
+       find on [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") )
 
 Know issues
 
@@ -159,8 +159,7 @@ Know issues
 
 == Revision History ==
 
-[2008-06-18] version 2.6.2.0: 
-
+[2008-06-18] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview
 [2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
 
 [2008-06-04] version 2.6.1.0: added simple widget, removed built-in update checker (redundant since WP2.5 auto-update), some bugfixes and code improvements, add your own download link

@@ -1,5 +1,5 @@
 <?php
-function skype_walk_templates($buttondir,$option_preview,$select,$previews) {
+function skype_walk_templates($buttondir,$option_preview,$select,$previews,$use_js = TRUE) {
 	if (is_dir($buttondir)) {
 		if ($dh = opendir($buttondir)) {
 			while (($file = readdir($dh)) !== false) {
@@ -8,30 +8,27 @@ function skype_walk_templates($buttondir,$option_preview,$select,$previews) {
 
 					$theme_name = substr(basename($fname),0,-5);
 
-					$selected = ""; // radio button not selected unless...
-					$display = " none"; // hide preview layers unless...
-					if ($theme_name == $option_preview['button_theme']) {
-						$selected = " selected=\"selected\"";
-						$display = " block";
-					}
-
 					// attempt to get the human readable name from the first line of the file
 					$option_preview['button_template'] = file_get_contents($fname);
-					preg_match("|<!-- (.*) - http://www.skype.com/go/skypebuttons|ms",$option_preview['button_template'],$matches);
+					preg_match("|<!-- (.*) - |ms",$option_preview['button_template'],$matches);
 					if (!$matches[1] || $matches[1]=="")
 						$matches[1] = $theme_name;
 
 					// collect the options
-					$select .= "\n<option value=\"$theme_name\"$selected onmouseover=\"PreviewStyle(this);\" onmouseout=\"UnPreviewStyle(this);\">$matches[1]</option>";
+					$select[$matches[1]] = $theme_name;
 					
-					// and collect their previews
-					$previews .= "\n<div id=\"$theme_name\" style=\"display:$display;\">".skype_parse_theme($option_preview)."</div>";
+					// and collect their previews 
+					$previews[$matches[1]] = array( $theme_name , skype_status($option_preview['skype_id'],$option_preview['user_name'],"",$option_preview['use_voicemail'],$option_preview['button_template'],$use_js) ) ;
+						//skype_parse_theme($option_preview,$use_js) ) ;
 				}
 			}
 			closedir($dh);
 		}
 	}
-	return array ( "select" => $select , "previews" => $previews );
+	if ( ksort($select) && ksort($previews))
+		return array ( "select" => $select , "previews" => $previews );
+	else
+		return FALSE;
 }
 
 function skype_default_values() { 
@@ -80,7 +77,7 @@ function skype_status_valid_theme($theme) {
 	return !preg_match("/\W/",$theme);
 }
 
-function skype_parse_theme($config) {
+function skype_parse_theme($config,$use_js = TRUE) {
 	// get online status to replace {status} tag
 	if ($config['use_status']=="custom") {
 		$num = skype_status_check($config['skype_id'], ".num");
@@ -93,26 +90,7 @@ function skype_parse_theme($config) {
 		$status = skype_status_check($config['skype_id'], ".txt.".$config['use_status']);
 	}
 
-	//define value to replace {functiontxt} based on {function}
-	$functiontxt = $config[$config['button_function'].'_text'];
-
-	// build arrays with tags and replacement values
-	$tags = array(
-		"{skypeid}",
-		"{function}",
-		"{functiontxt}",
-		"{status}",
-		"{statustxt}",
-		"{username}",
-		"{sep1}",
-		"{sep2}",
-		"{add}",
-		"{call}",
-		"{chat}",
-		"{sendfile}",
-		"{userinfo}",
-		"{voicemail}",
-		);
+	// disable function texts if set to off
 	if ($config['use_function']!="on") {
 		$config['add_text'] = "";
 		$config['call_text'] = "";
@@ -121,39 +99,47 @@ function skype_parse_theme($config) {
 		$config['userinfo_text'] = "";
 		$config['voicemail_text'] = "";
 	}
-	$values = array(
-		$config['skype_id'],
-		$config['button_function'],
-		$functiontxt,
-		$status,
-		$config['my_status_text'],
-		$config['user_name'],
-		$config['seperator1_text'],
-		$config['seperator2_text'],
-		$config['add_text'],
-		$config['call_text'],
-		$config['chat_text'],
-		$config['sendfile_text'],
-		$config['userinfo_text'],
-		$config['voicemail_text']
+
+	//define value to replace {functiontxt} based on {function}
+	$functiontxt = $config[$config['button_function'].'_text'];
+
+	// build array with tags and replacement values
+	$tags_replace = array(
+		"{skypeid}" => $config['skype_id'],
+		"{function}" => $config['button_function'],
+		"{functiontxt}" => $functiontxt,
+		"{status}" => $status,
+		"{statustxt}" => $config['my_status_text'],
+		"{username}" => $config['user_name'],
+		"{sep1}" => $config['seperator1_text'],
+		"{sep2}" => $config['seperator2_text'],
+		"{add}" => $config['add_text'],
+		"{call}" => $config['call_text'],
+		"{chat}" => $config['chat_text'],
+		"{sendfile}" => $config['sendfile_text'],
+		"{userinfo}" => $config['userinfo_text'],
+		"{voicemail}" => $config['voicemail_text']
 		);
 
+
+	// delete javascript from template if disabled
+	if ($use_js == FALSE) {
+		$config['button_template'] = preg_replace("|<script type=\"text\/javascript\" (.*)script>|","",$config['button_template']);
+	}
 
 	// delete voicemail lines if not needed else append arrays with tags and replacement values
 	if ($config['use_voicemail']!="on") {
 		$config['button_template'] = preg_replace("|<!-- voicemail_start (.*) voicemail_end -->|","",$config['button_template']);
 	} else {
-		$tags[] = "<!-- voicemail_start -->";
-		$tags[] = "<!-- voicemail_end -->";
-		$values[] = "";
-		$values[] = "";
+		$tags_replace["<!-- voicemail_start -->"] = "";
+		$tags_replace["<!-- voicemail_end -->"] = "";
 	}
 
 	// after that, delete from first line <!-- (.*) -->
 	$theme_output = preg_replace("|<!-- (.*) - http://www.skype.com/go/skypebuttons -->|","",$config['button_template']);
 
 	// replace all tags with values
-	$theme_output = str_replace($tags,$values,$theme_output);
+	$theme_output = str_replace(array_keys($tags_replace),array_values($tags_replace),$theme_output);
 
 	if ($config['use_getskype'] == "on") { 
 		if ($config['getskype_newline'] == "on") 
@@ -183,11 +169,11 @@ function skype_get_template_file($filename) { // check template file existence a
 // template tag hook
 function get_skype_status($args = '') {
 	parse_str($args, $r);
-	echo skype_status($r['skype_id'], $r['user_name'], $r['button_theme'], $r['use_voicemail']);
+	echo skype_status($r['skype_id'], $r['user_name'], $r['button_theme'], $r['use_voicemail'], $r['$use_js']);
 }
 
 // main function
-function skype_status($skype_id = FALSE, $user_name = FALSE, $button_theme = FALSE, $use_voicemail = FALSE, $button_template = FALSE) {
+function skype_status($skype_id = FALSE, $user_name = FALSE, $button_theme = FALSE, $use_voicemail = FALSE, $button_template = FALSE, $use_js = TRUE) {
 	global $skype_status_config;
 	$r = $skype_status_config;
 	if (!is_array($r))
@@ -197,11 +183,10 @@ function skype_status($skype_id = FALSE, $user_name = FALSE, $button_theme = FAL
 	if ($skype_id) $r['skype_id'] = $skype_id;
 	if ($user_name) $r['user_name'] = $user_name;
 	if ($use_voicemail) $r['use_voicemail'] = $use_voicemail;
-	if ($button_theme == "default") $button_theme = FALSE;
 	if ($button_template) $r['button_template'] = $button_template;
 
 	// if alternate theme is set, get it from template file and override
-	if ($button_theme) 
+	if ($button_theme && $button_theme != "default") 
 		$r['button_template'] = skype_get_template_file($button_theme);
 	elseif ($r['button_template'] == "")
 		$r['button_template'] = skype_get_template_file($r['button_theme']);
@@ -211,7 +196,7 @@ function skype_status($skype_id = FALSE, $user_name = FALSE, $button_theme = FAL
 		$r['button_template'] = '<a href="skype:{skypeid}?call" onclick="return skypeCheck();" title="{call}{sep1}{username}{sep2}{status}">{username}{sep2}{status}</a>';		
 
 	return '<!-- Skype button generated by Skype Online Status plugin version '.SOSVERSION.' ( RavanH - http://4visions.nl/ ) -->
-' . skype_parse_theme($r) . '
+' . skype_parse_theme( $r , $use_js ) . '
 <!-- end Skype button -->'; 
 }
 
