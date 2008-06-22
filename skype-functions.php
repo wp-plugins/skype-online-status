@@ -186,7 +186,7 @@ function skype_status($skype_id = FALSE, $user_name = FALSE, $button_theme = FAL
 	if ($button_template) $r['button_template'] = $button_template;
 
 	// if alternate theme is set, get it from template file and override
-	if ($button_theme && $button_theme != "default") 
+	if ($button_theme) 
 		$r['button_template'] = skype_get_template_file($button_theme);
 	elseif ($r['button_template'] == "")
 		$r['button_template'] = skype_get_template_file($r['button_theme']);
@@ -212,7 +212,7 @@ function skype_status_script() {
 	//elseif ($config['getskype_link'] == "custom_link" && $config['getskype_custom_link'] != "" )
 	//	echo '<script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>'; // unfinnished: code to custom download link here
 	else
-		echo '<script type="text/javascript" src="'.get_option('siteurl').'/wp-content/plugins/skype-online-status/js/skypeCheck.js.php"></script>';
+		echo '<script type="text/javascript" src="'.SOSPLUGINURL.'js/skypeCheck.js.php"></script>';
 
 	echo '
 	<!-- end Skype script -->

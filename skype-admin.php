@@ -47,9 +47,9 @@ function skype_status_options() {
 	// update the options if form is saved
 	if (!empty($_POST['skype_status_update'])) { // pressed udate button
 		if (skype_status_valid_id($_POST['skype_id']) && skype_status_valid_theme($_POST['button_theme'])) {
-			if ($_POST['button_theme']!="custom_edit") { // get template file content to load into db
-				$_POST['button_template'] = stripslashes(skype_get_template_file($_POST['button_theme']));
-			}
+			if ($_POST['button_theme']!="custom_edit") // get template file content to load into db
+				$_POST['button_template'] = skype_get_template_file($_POST['button_theme']);
+			$_POST['button_template'] = stripslashes($_POST['button_template']);
 			$option = array_merge ($skype_status_config, $_POST);
 			update_option("skype_status",$option);
 			echo "<div id=\"message\" class=\"updated fade\"><p><strong>Options updated!</strong></p></div>";
@@ -102,7 +102,7 @@ function skype_status_options() {
 
 	<div id="settings" class="wrap" style="min-height: 800px;">
 		<h2>Skype Online Status Settings</h2>
-		<p>Define all your <em>default</em> Skype Status settings here. Start simply by setting the basics like <strong>Skype ID</strong>, <strong>Full Name</strong> and the button <strong>Theme</strong> you want to show on your blog. Then activate the Skype Status Widget on your <a href="widgets.php">Widgets</a> page or use the Skype Status quicktag button <img src="<?php echo get_settings('siteurl') . '/wp-content/plugins/skype-online-status/skype_button.gif'; ?>" alt="Skype Online Status" style="vertical-align:text-bottom;" /> in the WYSIWYG editor (TinyMCE) to place the Skype Online Status button in any post or page. Later on, you can fine-tune everything until it fits just perfectly on you pages. Please note: Some basic settings may be overridden by Widget settings or when calling the Skype button with a template function.</p>
+		<p>Define all your <em>default</em> Skype Status settings here. Start simply by setting the basics like <strong>Skype ID</strong>, <strong>Full Name</strong> and the button <strong>Theme</strong> you want to show on your blog. Then activate the Skype Status Widget on your <a href="widgets.php">Widgets</a> page or use the Skype Status quicktag button <img src="<?php echo SOSPLUGINURL; ?>skype_button.gif" alt="Skype Online Status" style="vertical-align:text-bottom;" /> in the WYSIWYG editor (TinyMCE) to place the Skype Online Status button in any post or page. Later on, you can fine-tune everything until it fits just perfectly on you pages. Please note: Some basic settings may be overridden by Widget settings or when calling the Skype button with a template function.</p>
 		<p>Read more about configuring this plugin and more ways to trigger Skype Online Status buttons on your blog in the <strong>Quick Guide</strong> section. If you have any remaining questions, see the <strong>Notes &amp; Live Support</strong> page to get help.</p>
 		
 		<p align="right"><a href="#wphead">back to top</a></p>
@@ -134,7 +134,7 @@ function skype_status_options() {
 
 		// add custom option and preview
 		$walk['select']['Custom...'] = "custom_edit"; 
-		$walk['previews']['Custom...'] = array("custom_edit",skype_parse_theme($option));
+		$walk['previews']['Custom...'] = array("custom_edit",skype_status($option['skype_id'],$option['user_name'],"",$option['use_voicemail'],$option['button_template'],FALSE));
 		?>
 
 		<script type="text/javascript">
@@ -319,7 +319,7 @@ function skype_status_options() {
 		</div>
 
 		<fieldset class="options" style="clear: both;"><legend>Post content</legend>
-			<p>When writing posts you can insert a Skype button with a simple quicktag <strong>&lt;!--skype status--&gt;</strong> ( or <strong>[-skype status-]</strong> ) but to make life even easier, a small button on the WYSIWYG editor can do it for you. Check this option to show <img src="<?php echo get_settings('siteurl') . '/wp-content/plugins/skype-online-status/skype_button.gif'; ?>" alt="Skype Online Status" style="vertical-align:text-bottom;" /> or uncheck to hide it. You may still insert the quicktag  in the HTML code of your post or page content manually.<br /><br />
+			<p>When writing posts you can insert a Skype button with a simple quicktag <strong>&lt;!--skype status--&gt;</strong> ( or <strong>[-skype status-]</strong> ) but to make life even easier, a small button on the WYSIWYG editor can do it for you. Check this option to show <img src="<?php echo SOSPLUGINURL; ?>skype_button.gif" alt="Skype Online Status" style="vertical-align:text-bottom;" /> or uncheck to hide it. You may still insert the quicktag  in the HTML code of your post or page content manually.<br /><br />
 			<input type="checkbox" name="use_buttonsnap" id="use_buttonsnap"<?php if ( $option['use_buttonsnap'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_buttonsnap">Use <strong>Skype Status quicktag button</strong> in the RTE for posts.</label></p>
 		</fieldset>
 
@@ -353,8 +353,8 @@ function skype_status_options() {
 		<h4>Widgets</h4>
 		<p>Since version 2.6.1.0 there is a Skype Status Sidebar Widget available. Go to your Design > Widgets page and activate the Skype Status widget. When activated, it defaults to your settings on the Skype Status Options page but you can customize it if you like.</p>
 		<h4>In posts and page content</h4>
-		<p>It is also possible to trigger a Skype Status button (as predefined on the Skype Online Status Settings page) within posts or page content. Use the quicktag button <img src="<?php echo get_settings('siteurl') . '/wp-content/plugins/skype-online-status/skype_button.gif'; ?>" alt="Skype Online Status" style="vertical-align:text-bottom;" /> or insert manually <strong>&lt;!--skype status--&gt;</strong> ( or <strong>[-skype status-]</strong> ) in the HTML code of your post or page content to display a Skype Online Status button in your post. </p>
-		<p>Note: the setting 'Use Skype Status quicktag button' should be checked for the quicktag button <img src="<?php echo get_settings('siteurl') . '/wp-content/plugins/skype-online-status/skype_button.gif'; ?>" alt="Skype Online Status" style="vertical-align:text-bottom;" /> to appear in WordPress's Rich Text Editor (TinyMCE) so you can easily drop the quicktag into the source code.</p>
+		<p>It is also possible to trigger a Skype Status button (as predefined on the Skype Online Status Settings page) within posts or page content. Use the quicktag button <img src="<?php echo SOSPLUGINURL; ?>skype_button.gif" alt="Skype Online Status" style="vertical-align:text-bottom;" /> or insert manually <strong>&lt;!--skype status--&gt;</strong> ( or <strong>[-skype status-]</strong> ) in the HTML code of your post or page content to display a Skype Online Status button in your post. </p>
+		<p>Note: the setting 'Use Skype Status quicktag button' should be checked for the quicktag button <img src="<?php echo SOSPLUGINURL; ?>skype_button.gif" alt="Skype Online Status" style="vertical-align:text-bottom;" /> to appear in WordPress's Rich Text Editor (TinyMCE) so you can easily drop the quicktag into the source code.</p>
 		<h4>In theme files</h4>
 		<p>Put <strong>&lt;?php if (function_exists(get_skype_status)) { get_skype_status(''); } else { echo "Skype button disabled"; } ?&gt;</strong> in your sidebar.php or other WordPress template files to display a Skype Button with Online Status information on your blog pages. Your predefined default settings (above) will be used.</p><p>The 'function_exists'-check is there to prevent an error when the plugin is disabled. In this case the echo text is displayed. You can define another alternative action or remove 'else { ... }' to display nothing at all.</p>
 
@@ -430,8 +430,7 @@ function skype_status_options() {
 			<li><a href="#prl">Version, Support, Pricing and Licensing</a></li>
 			<li><a href="#live">Live support</a></li>
 			<li><a href="#credits">Credits</a></li>
-			<li><a href="#revhist">Revision History</a></li>
-			<li><a href="#todo">Todo</a></li>
+			<li><a href="#revhist">Revision History, Todo and other notes</a></li>
 		</ul>
 
 		<p id="prl" align="right"><a href="#wphead">back to top</a></p>
@@ -466,7 +465,7 @@ function skype_status_options() {
 		</form>
 		<p>I appreciate every contribution, no matter if it&#8217;s two or twenty euro/dollar or any other amount.</p>
 		<p>Thanks,<br />
-			<em>Ravan</em></p>
+			<em>RavanH</em></p>
 	
 		<p id="live" align="right"><a href="#wphead">back to top</a></p>
 
@@ -474,61 +473,16 @@ function skype_status_options() {
 		<p>To get live support on this plugin with Skype, simply use the link below. It will state wether I'm online and available for chat with Skype.</p>
 		<p>
 			Status <?php get_skype_status('skype_id=ravanhagen&user_name=Live Support&button_theme=status_plaintext'); ?><br /><br />
-			To Skype-chat with Ravan: <a href="skype:ravanhagen?chat" onclick="return skypeCheck();" title="Live chat">Live chat</a></p>
+			To Skype-chat with RavanH: <a href="skype:ravanhagen?chat" onclick="return skypeCheck();" title="Live chat">Live chat</a></p>
 
 		<p id="credits" align="right"><a href="#wphead">back to top</a></p>
 		
 		<h3>Credits</h3>
-		<p>This plugin was built by <em>Ravan</em>. It is based upon the neat little plugin <a href="http://anti.masendav.com/skype-button-for-wordpress/">Skype Button v2.01</a> by <em>Anti Veeranna</em>. The plugin makes use of Owen's excellent <a href="http://redalt.com/wiki/ButtonSnap">ButtonSnap library</a>. Many thanks!</p>
+		<p>This plugin was built by <em>RavanH</em>. It is based upon the neat little plugin <a href="http://anti.masendav.com/skype-button-for-wordpress/">Skype Button v2.01</a> by <em>Anti Veeranna</em>. The plugin makes use of Owen's excellent <a href="http://redalt.com/wiki/ButtonSnap">ButtonSnap library</a>. Many thanks!</p>
 
 		<p id="revhist" align="right"><a href="#wphead">back to top</a></p>
-		<h3>Revision History</h3>
-		<ul>
-			<li>[2008-06-21] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview
-</li>
-			<li>[2008-06-16] version 2.6.1.1: automatic blog language detection for status text, some small bugfixes + complete removal button</li>
-			<li>[2008-06-04] version 2.6.1.0: added simple widget and adapted update checker to fit WP2.5 auto-update, some small bugfixes and code improvements, plus 'add your own download link' feature</li>
-			<li>[2007-04-09] version 2.6.0.9: improved reg_exp for quicktag replacement, minor changes in available settings (newline for download link optional) and fixed &-sign in fields causing failed w3c validation</li>
-			<li>[2007-02-18] version 2.5: made quicktag work for 2.1+ new TinyMCE button plugin routine</li>
-			<li>[2006-11-21] version 2.4.1: added onkeydown action on admin textarea</li>
-			<li>[2006-11-03] version 2.4: added backwards compatibility with PHP versions previous to 4.3 ( fallback to file() instead of file_get_contents() ) and a check for allow_url_fopen before remote file reading (used in status check and upgrade check) with dynamic options change</li>
-			<li>[2006-09-25] version 2.3: added Download Skype now! link (with option to change text or disable) and local upgrade check</li>
-			<li>[2006-09-20] version 2.2.2: moved buttonsnap.php, changes to Quick Guide and Live Support</li>
-			<li>[2006-09-04] version 2.2.1: minor changes to admin page</li>
-			<li>[2006-07-28] version 2.2.0: make use of global string improving speed</li>
-			<li>[2006-07-05] version 2.1.0: added Skype default status texts in different languages</li>
-			<li>[2006-07-04] version 2.0.1: minor bugfix (altered defaulting to fallback template procedure)</li>
-			<li>[2006-06-30] version 2.0: added editable template and live support link</li>
-			<li>[2006-06-29] version 1.9: added RTE button for &lt;!--skype status--&gt; hook</li>
-			<li>[2006-06-27] version 1.8: improved performance by loading template in database</li>
-			<li>[2006-06-23] version 1.7: added post hook &lt;!--skype status--&gt; and appended instructions to quickguide</li>
-			<li>[2006-06-23] version 1.6: wrote templating guide and redesigned Options > Skype Status page</li>
-			<li>[2006-06-22] version 1.5: added a plain text fallback template to the code</li>
-			<li>[2006-06-22] version 1.4: added reset button and default settings</li>
-			<li>[2006-06-21] version 1.3: added new template tags {username} {sep1} {sep2}</li>
-			<li>[2006-06-20] version 1.2: minor bugfixes
-				<ol><li>inconsistent options page form-labels </li>
-					<li>status text not defaulting to the error value when mystatus.skype.com is off-line </li></ol></li>
-			<li>[2006-05-02] version 1.1: added new text template file</li>
-			<li>[2006-04-26] version 1.0: wrote instructions (quick guide)</li>
-			<li>[2006-04-20] version 0.9: added skype user name</li>
-			<li>[2006-04-12] version 0.8: added customizability for get_skype_status('options')</li>
-			<li>[2006-04-10] version 0.7: redesign admin interface</li>
-			<li>[2006-03-05] version 0.3 - 0.6: added lot's of new settings and template tags</li>
-			<li>[2006-03-03] version 0.2: added function skype_parse_theme() and skype_status_check()</li>
-			<li>[2006-03-03] version 0.1: function and syntax conversion from plugin Skype Button (Anti Veeranna)</li>
-		</ul>
-
-		<p id="todo" align="right"><a href="#wphead">back to top</a></p>
-
-		<h3>Todo</h3>
-		<ul>
-			<li>Make multiple Skype ID's (within the Skype Status Settings) possible</li>
-			<li>Internationalization...</li>
-			<li>Skype-like wizard...</li>
-			<li>Add Skypecasts widget</li>
-			<li>Upload your own button</li>
-		</ul>
+		<h3>Revision History, Todo and other info</h3>
+		<p>See the included <a href="<?php echo SOSPLUGINURL; ?>readme.txt">README</a> file.
 		<p align="right"><a href="#wphead">back to top</a></p>
 	</div>
 	
@@ -557,7 +511,7 @@ function skype_status_options() {
 		unset($value);
 		echo "</textarea></div><div style=\"clear:both\"></div>
 		<div><h4>Pluging global values</h4> 
-		<p>SOSDATADUMP=".SOSDATADUMP." (obviously ;-) )<br />SOSBUTTONSNAP=".SOSBUTTONSNAP."<br />SOSVERSION=".SOSVERSION."<br />SOSVERSION_DATE=".SOSVERSION_DATE."<br />SOSALLOWURLFOPEN=".SOSALLOWURLFOPEN."<br />SOSREMOVEFLAG=".SOSREMOVEFLAG."</p>
+		<p>SOSDATADUMP=".SOSDATADUMP." (obviously ;-) )<br />SOSPLUGINURL=".SOSPLUGINURL."<br />SOSBUTTONSNAP=".SOSBUTTONSNAP."<br />SOSVERSION=".SOSVERSION."<br />SOSVERSION_DATE=".SOSVERSION_DATE."<br />SOSALLOWURLFOPEN=".SOSALLOWURLFOPEN."<br />SOSREMOVEFLAG=".SOSREMOVEFLAG."</p>
 		</div></div>";	
 	}
 	?>
