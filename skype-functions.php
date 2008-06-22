@@ -136,7 +136,7 @@ function skype_parse_theme($config,$use_js = TRUE) {
 	}
 
 	// after that, delete from first line <!-- (.*) -->
-	$theme_output = preg_replace("|<!-- (.*) - http://www.skype.com/go/skypebuttons -->|","",$config['button_template']);
+	$theme_output = preg_replace("|<!-- (.*) http://www.skype.com/go/skypebuttons -->|","",$config['button_template']);
 
 	// replace all tags with values
 	$theme_output = str_replace(array_keys($tags_replace),array_values($tags_replace),$theme_output);
@@ -186,7 +186,7 @@ function skype_status($skype_id = FALSE, $user_name = FALSE, $button_theme = FAL
 	if ($button_template) $r['button_template'] = $button_template;
 
 	// if alternate theme is set, get it from template file and override
-	if ($button_theme) 
+	if ($button_theme && $button_theme != "default") 
 		$r['button_template'] = skype_get_template_file($button_theme);
 	elseif ($r['button_template'] == "")
 		$r['button_template'] = skype_get_template_file($r['button_theme']);

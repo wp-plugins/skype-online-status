@@ -134,7 +134,7 @@ function skype_status_options() {
 
 		// add custom option and preview
 		$walk['select']['Custom...'] = "custom_edit"; 
-		$walk['previews']['Custom...'] = array("custom_edit",skype_status($option['skype_id'],$option['user_name'],"",$option['use_voicemail'],$option['button_template'],FALSE));
+		$walk['previews']['Custom...'] = array("custom_edit",skype_status($option['skype_id'],$option['user_name'],"",$option['use_voicemail'],$option['button_template']));
 		?>
 
 		<script type="text/javascript">
