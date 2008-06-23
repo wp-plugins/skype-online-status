@@ -136,7 +136,7 @@ function skype_parse_theme($config,$use_js = TRUE) {
 	}
 
 	// after that, delete from first line <!-- (.*) -->
-	$theme_output = preg_replace("|<!-- (.*) - http://www.skype.com/go/skypebuttons -->|","",$config['button_template']);
+	$theme_output = preg_replace("|<!-- (.*) http://www.skype.com/go/skypebuttons -->|","",$config['button_template']);
 
 	// replace all tags with values
 	$theme_output = str_replace(array_keys($tags_replace),array_values($tags_replace),$theme_output);
@@ -212,7 +212,7 @@ function skype_status_script() {
 	//elseif ($config['getskype_link'] == "custom_link" && $config['getskype_custom_link'] != "" )
 	//	echo '<script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>'; // unfinnished: code to custom download link here
 	else
-		echo '<script type="text/javascript" src="'.get_option('siteurl').'/wp-content/plugins/skype-online-status/js/skypeCheck.js.php"></script>';
+		echo '<script type="text/javascript" src="'.SOSPLUGINURL.'js/skypeCheck.js.php"></script>';
 
 	echo '
 	<!-- end Skype script -->

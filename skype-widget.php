@@ -103,7 +103,7 @@ function UnPreviewStyle(elmnt) {
 <div class="no_underline" style="margin-bottom:10px;"><div id="default" style="display:<?php if ($opt['button_theme'] == '') echo 'block'; else echo 'none' ?>"><div style="height:32px">Default</div><?php echo skype_parse_theme($skype_status_config,FALSE); ?></div>
 <?php foreach ($walk['previews'] as $key => $value) { echo "<div id=\"$value[0]\" style=\"display:"; if ($value[0] == $opt['button_theme']) echo "block"; else echo "none"; echo "\"><div style=\"height:38px;border-bottom:1px dotted grey;margin:0 0 5px 0\">$key</div>$value[1]</div>
 "; } unset($value); ?></div>
-<p style="font-size:78%;font-weight:lighter;">* Leave blank to use default options as defined on the Skype Status Options page.<br />
+<p style="font-size:78%;font-weight:lighter;">* Leave blank to use default options as defined on the <a href="options-general.php?page=skype-status.php">Skype Online Status Settings</a> page.<br />
 ** Leave to <em>Always off</em> if you do not have a SkypeIn account or SkypeVoicemail.</p>
 
 <input type="hidden" id="skype_widget_submit" name="skype_widget_submit" value="1" />
