@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
 Description: Checks your Skype Online Status and allows you to add multiple, highly customizable and accessible Skype buttons to your blog. Based on the plugin Skype Button 2.01 by Anti Veeranna. Documentation and configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page.  
-Version: 2.6.2.1
+Version: 2.6.2.9
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -30,7 +30,7 @@ Author URI: http://4visions.nl/
 */
 
 // Plugin version number and date
-define('SOSVERSION', '2.6.2.1');
+define('SOSVERSION', '2.6.2.9');
 define('SOSVERSION_DATE', '2008-06-23');
 define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/skype-online-status/');
 
@@ -55,7 +55,6 @@ $skype_default_values = array(
 	"use_function" => "on", 			// Wether to replace the tags {add/call/chat/userinfo/voicemail/sendfile} ("on") or not ("")
 	"use_status" => "custom",			// Wether to replace the tag {status} with your custom texts ("custom") or Skype default according to language (e.g. "en" for english) or nothing ("", use this when allow_url_fopen is not enabled on your server!)
 	"use_buttonsnap" => "on", 			// Wether to display a Skype Status quicktag button in RTE for posts ("on") or not ("")
-	"function" => "call", 				// The function for your Skype button (i.e. what happens when clicking the button) > call, chat, add, userinfo, voicemail or sendfile
 	"seperator1_text" => " - ", 			// Text to replace {sep1} in template files
 	"seperator2_text" => ": ", 			// Text to replace {sep2} in template files
 	"status_error_text" => "Unknown", 		// Text to replace {status} in template files when status could not be checked
@@ -65,7 +64,7 @@ $skype_default_values = array(
 	"status_3_text" => "Away", 			// Text to replace {status} in template files when status is away (3)
 	"status_4_text" => "Not available", 		// Text to replace {status} in template files when status is not available (4)
 	"status_5_text" => "Do not disturb",		// Text to replace {status} in template files when status is do not disturb (5)
-	"status_6_text" => "Offline", 		// Text to replace {status} in template files when status is invisible (6)
+	"status_6_text" => "Offline", 			// Text to replace {status} in template files when status is invisible (6)
 	"status_7_text" => "Skype me!", 		// Text to replace {status} in template files when status is skype me! (7)
 	"use_getskype" => "on", 			// Wether to show the Download Skype now! link
 	"getskype_newline" => "on",			// Put the Download Skype now! link on a new line ("on") or not ("")
