@@ -1,6 +1,6 @@
 <?php
 function skype_status_options() {
-	global $skype_status_config, $skype_avail_languages, $skype_avail_functions;
+	global $skype_status_config, $skype_avail_languages, $skype_avail_functions, $wp_db_version;
 	$option = $skype_status_config;
 	$plugin_file = "skype-online-status/skype-status.php";
 
@@ -123,49 +123,65 @@ function skype_status_options() {
 
 <div id="poststuff">
 
-	<div id="submitpost" class="submitbox">
-		<div id="previewview"><p><strong>Sections</strong> <br /> <br />
-			<a id="settingslink" href="#settings" onclick="javascript:document.getElementById('notes').style.display='none'; 
+	<div <?php if ( $wp_db_version >= 6846 ) echo "id=\"submitpost\"  class=\"submitbox\""; else echo "id=\"moremeta\" class=\"dbx-group\""; ?>>
+		<?php if ( $wp_db_version >= 6846 ) echo "<div id=\"previewview\"><p><strong>Sections</strong> <br /> <br />"; else echo "<fieldset class=\"dbx-box\"> <h3 class=\"dbx-handle\">Sections</h3><div class=\"dbx-content\">"; ?>
+			<a style="color:#d54e21" id="settingslink" href="#settings" onclick="javascript:
+				document.getElementById('notes').style.display='none'; 
 				document.getElementById('guide').style.display='none'; 
 				document.getElementById('settings').style.display='block'; 
-				document.getElementById('settingslink').style.color='#FFFFFF'; 
-				document.getElementById('noteslink').style.color='#006699'; 
-				document.getElementById('guidelink').style.color='#006699';">Options</a> <br /> <br />
-			<a id="guidelink" href="#guide" onclick="javascript:document.getElementById('notes').style.display='none'; 
+				document.getElementById('settingslink').style.color='#d54e21'; 
+				document.getElementById('noteslink').style.color='#264761'; 
+				document.getElementById('guidelink').style.color='#264761';"><?php _e('Options'); ?></a> <br /> <br />
+			<a id="guidelink" href="#guide" onclick="javascript:
+				document.getElementById('notes').style.display='none'; 
 				document.getElementById('guide').style.display='block'; 
 				document.getElementById('settings').style.display='none';  
-				document.getElementById('settingslink').style.color='#006699'; 
-				document.getElementById('noteslink').style.color='#006699'; 
-				document.getElementById('guidelink').style.color='#FFFFFF';">Quick Guide</a> <br /> <br />
-			<a id="noteslink" href="#notes" onclick="javascript:document.getElementById('notes').style.display='block'; 
+				document.getElementById('settingslink').style.color='#264761'; 
+				document.getElementById('noteslink').style.color='#264761'; 
+				document.getElementById('guidelink').style.color='#d54e21';">Quick Guide</a> <br /> <br />
+			<a id="noteslink" href="#notes" onclick="javascript:
+				document.getElementById('notes').style.display='block'; 
 				document.getElementById('guide').style.display='none'; 
 				document.getElementById('settings').style.display='none'; 
-				document.getElementById('settingslink').style.color='#006699'; 
-				document.getElementById('noteslink').style.color='#FFFFFF'; 
-				document.getElementById('guidelink').style.color='#006699';">Notes &amp; Live Support</a></p>
-		</div>
+				document.getElementById('settingslink').style.color='#264761'; 
+				document.getElementById('noteslink').style.color='#d54e21'; 
+				document.getElementById('guidelink').style.color='#264761';">Notes &amp; Live Support</a></p>
+		<?php if ( $wp_db_version >= 6846 ) echo "</div>
 
-		<div id="resources" class="side-info"><h5>Resources</h5>
-			<ul>
+		<div id=\"resources\" class=\"side-info\"><h5>Resources</h5>"; else echo "</div></fieldset>
+
+		<fieldset class=\"dbx-box\"><h3 class=\"dbx-handle\">Resources</h3><div class=\"dbx-content\">"; ?>
+			<ul style="padding-left:12px">
 			<li><a href="http://www.skype.com/go/skypebuttons">Skype Buttons</a></li>
 			<li><a href="http://www.skype.com/share/buttons/wizard.html" target="_blank">Skype buttons wizard</a></li>
 			<li><a href="http://mystatus.skype.com/<?php echo $option['skype_id']; ?>">Your status <?php echo $option['skype_id']; ?></a></li>
 			<li><a href="http://www.skype.com/share/buttons/status.html">Edit Privacy Options in your Skype client</a></li>
 			<li><a href="http://www.skype.com/partners/affiliate/">Skype Affiliate Program</a></li>
 			</ul>
-		</div>
-		<div id="thanks" class="side-info"><h5>Donations</h5>
-			<iframe border="0" frameborder="0" scrolling="auto" allowtransparency="yes" style="width:100%; height:80px;" src="http://4visions.nl/skype-online-status/donors.htm">Donorlist</iframe>
-		<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=<?php echo SOSVERSION; ?>&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none; vertical-align:text-bottom;" alt="Donate with PayPal - it's fast, free and secure!"/></a>
-		</div>
+		<?php if ( $wp_db_version >= 6846 ) echo "</div>
 
-		<div id="tabs" class="inside"><p><strong>Current theme:</strong><br /><?php echo $current_theme_fullname ?></p><?php echo skype_parse_theme($option); ?></div>
+		<div id=\"thanks\" class=\"side-info\"><h5>Donations</h5>"; else echo "</div></fieldset>
+
+		<fieldset class=\"dbx-box\"><h3 class=\"dbx-handle\">Donations</h3><div class=\"dbx-content\">"; ?>
+			<p>All donations are much appreciated and (without objection) will be mentioned here as a way of expressing my gratitude.</p>
+			<iframe border="0" frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%" src="http://4visions.nl/skype-online-status/donors.htm">Donorlist</iframe>
+			<p>Thanks!</p>
+			<p>Do you want your name and/or link up there too?<br />
+			<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=<?php echo SOSVERSION; ?>&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8" title="Donate with PayPal - it's fast, free and secure!"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none; vertical-align:text-bottom;" alt="Donate with PayPal - it's fast, free and secure!"/></a></p>
+		<?php if ( $wp_db_version >= 6846 ) { ?></div>
+
+		<div id="tabs" class="inside"><p><strong>Current theme</strong><br /><br />
+			<?php echo $current_theme_fullname ?></p>
+
+			<?php echo skype_parse_theme($option); ?>
+		</div><?php } else { echo "</div></fieldset>"; } ?>
+
 		<p class="submit">
 			<input type="submit" name="skype_status_update" value="<?php _e('Save Changes'); ?> &raquo;" /> <br />
 			<input type="submit" class="submitdelete delete" onclick='return confirm("WARNING ! \r\n \r\nAll your personal settings will be overwritten with the plugin default settings, including Skype ID, User name and Theme. \r\n \r\nDo you really want to reset your configuration?");' name="skype_status_reset" value="<?php _e('Reset'); ?> &raquo;" /> <br />
 			<input type="submit" class="submitdelete delete" onclick='return confirm("WARNING !  \r\n \r\nAll your Skype Online Status AND widget settings will be cleared from the database so the plugin can be COMPLETELY removed. \r\n \r\nDo you really want to REMOVE your configuration settings and instantly deactivate all Skype buttons on your blog?");' name="skype_status_remove" value="<?php _e('Remove'); ?> &raquo;" />
 
-		</p>
+		</p> 
 
 	</div>
 
@@ -179,7 +195,7 @@ function skype_status_options() {
 		<h3>Basic Options</h3>
 
 		<fieldset class="options"><legend>Skype</legend>
-			<p><label for="skype_id">Your Skype ID:</label> <input type="text" name="skype_id" id="skype_id" value="<?php echo $option['skype_id']; ?>" /><br />Simply enter your own Skype ID but... more then one Skype ID (seperated with a semi-colon <strong>;</strong>) <em>is</em> possible if you want the button to invoke a Skype multichat or conference call <em>and</em> you may also enter phone numbers (a regular phone number or even a SkypeOut number, starting with a <strong>+</strong> followed by country code; note that callers need to have SkypeOut to call) all depending on what you want to achieve!</p>
+			<p><label for="skype_id">Your Skype ID:</label> <input type="text" name="skype_id" id="skype_id" value="<?php echo $option['skype_id']; ?>" /><br />Simply enter your own Skype ID. Or... more then one Skype ID seperated with a semi-colon (<strong>;</strong>) <em>is</em> possible if you want the button to invoke a Skype multichat or conference call <em>and</em> you may also enter phone numbers (a regular phone number or even a SkypeOut number, starting with a <strong>+</strong> followed by country code; note that callers need to have SkypeOut to call) all depending on what you want to achieve!</p>
 			<p><label for="user_name">Your Skype name:</label> <input type="text" style="width: 250px;" name="user_name" id="user_name" value="<?php echo stripslashes(htmlspecialchars($option['user_name'])); ?>" /><br />Your full name as you want it to appear in Skype links, link-titles and image alt-texts on your blog.</p>
 		</fieldset>
 
@@ -221,7 +237,7 @@ function skype_status_options() {
 			<div style="float:right;width:250px;border:1px solid #CCCCCC;padding:5px;margin:0 0 0 5px;">
 <style type="text/css"><!-- .no_underline a { border-bottom:none } --></style>
 				<strong>Preview theme template:</strong>
-				<div class="alternate no_underline" style="height:200px;margin:5px 0 0 0">
+				<div class="alternate no_underline" style="height:200px;margin:5px 0 0 0;padding:5px">
 					<?php echo $previews; ?>
 				</div>
 			</div>
@@ -276,13 +292,13 @@ function skype_status_options() {
 			</ul>
 		</fieldset>
 
-		<div style="float:left;width:58%;">
+		<div style="float:left;width:54%;">
 			<fieldset class="options"><legend>Tags</legend>
 				<p>Define texts to replace their respective template tags relating to the Skype button action.</p> 
 				<table style="width:97%">
 					<tr>
-						<th style="width:50%">Action text - {tag}</th>
-						<th style="width:50%">Text</th>
+						<th style="width:60%">Action text {tag}</th>
+						<th style="width:40%">Text</th>
 					</tr>
 
 
@@ -290,7 +306,7 @@ function skype_status_options() {
 				echo '
 					<tr>
 						<td><label for="'.$value.'_text">';
-				echo $key.' - {'.$value.'}: </label></td>
+				echo $key.' {'.$value.'}: </label></td>
 						<td><input type="text" name="'.$value.'_text" id="'.$value.'_text" value="';
 				echo stripslashes(htmlspecialchars($option[$value.'_text']));
 				echo '" style="width:97%" /></td>
@@ -301,19 +317,19 @@ function skype_status_options() {
 				<br />
 				<table style="width:97%">
 					<tr>
-						<th style="width:50%">Other - {tag}</th>
-						<th style="width:50%">Text</th>
+						<th style="width:55%">Other {tag}</th>
+						<th style="width:45%">Text</th>
 					</tr>
 					<tr>
-						<td><label for="my_status_text">My status - {statustxt}: </label></td>
+						<td><label for="my_status_text">My status {statustxt}: </label></td>
 						<td><input type="text" name="my_status_text" id="my_status_text" value="<?php echo stripslashes(htmlspecialchars($option['my_status_text'])); ?>" style="width:97%" /></td>
 					</tr>
 					<tr>
-						<td><label for="seperator1_text">First seperator - {sep1}: </label></td>
+						<td><label for="seperator1_text">First seperator {sep1}: </label></td>
 						<td><input name="seperator1_text" id="seperator1_text" value="<?php echo stripslashes(htmlspecialchars($option['seperator1_text'])); ?>" style="width:97%" /></td>
 					</tr>
 					<tr>
-						<td><label for="seperator2_text">Second seperator - {sep2}: </label></td>
+						<td><label for="seperator2_text">Second seperator {sep2}: </label></td>
 						<td><input name="seperator2_text" id="seperator2_text" value="<?php echo stripslashes(htmlspecialchars($option['seperator2_text'])); ?>" style="width:97%" /></td>
 					</tr>
 				</table>
@@ -322,13 +338,13 @@ function skype_status_options() {
 				<p>If you are a <a href="http://www.skype.com/partners/affiliate/">Skype Affiliate</a> select 'Custom link' at Advanced Options > Display (above) and paste your link/banner code (HTML/Javascript) here.<br /><br /><label for="getskype_custom_link"><strong>Link/Banner Code</strong></label><br /><textarea name="getskype_custom_link" id="getskype_custom_link" style="width:97%;height:100px;"><?php echo stripslashes(htmlspecialchars($option['getskype_custom_link'])); ?></textarea></p>
 			</fieldset>
 		</div>
-		<div style="float: right; width: 39%;">
+		<div style="float: right; width: 44%;">
 			<fieldset class="options"><legend>Custom Status texts</legend>
 				<p>Text that will replace the {status} template tag depending on actual online status when you select 'Use <strong>Status text</strong>' to 'Custom'. Note: If the security settings on your server are too tight, the status cannot be read from the Skype server and only the Error value will be used.</p>
 				<table style="width:97%">
 					<tr>
-						<th style="width:40%">Status (value)</th>
-						<th style="width:60%">Text</th>
+						<th style="width:45%">Status (value)</th>
+						<th style="width:55%">Text</th>
 					</tr>
 					<tr>
 						<td><label for="status_0_text">Unknown (0): </label></td>
@@ -383,7 +399,7 @@ function skype_status_options() {
 		</p>
 
 	</div>
-	<div id="guide" class="wrap" style="min-height: 800px;">
+	<div id="guide" style="min-height: 800px;">
 		<h3>Quick guide</h3>
 		<ul>
 			<li><a href="#basic">Basic Use</a></li>
@@ -469,7 +485,7 @@ function skype_status_options() {
 		<p align="right"><a href="#wphead">back to top</a></p>
 
 	</div>
-	<div id="notes" class="wrap" style="min-height: 800px;">
+	<div id="notes" style="min-height: 800px;">
 
 		<h3>Notes &amp; Live Support</h3>
 		<ul>
