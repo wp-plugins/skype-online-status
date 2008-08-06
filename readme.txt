@@ -2,9 +2,9 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e6%2e2%2e9&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce
-Requires at least: 2.0
-Tested up to: 2.5.1
-Stable tag: 2.6.2.9
+Requires at least: 1.5
+Tested up to: 2.6
+Stable tag: 2.6.3.0
 
 Add a single or multiple, highly customizable and accessible Skype buttons to your blog through widget, post quicktag and/or template tag.
 
@@ -99,11 +99,11 @@ Post your questions, bugs and feature requests on [Skype Online Status Google Gr
 
 When reporting bugs, please describe as carefully as possible and provide information like the version number of the plugin, WordPress and - if relevant - server security settings, PHP and MySQL version.
 
-This readme comes packed with version 2.6.2.9 of the 'Skype Online Status' plugin for WordPress 2+.
+This readme comes packed with version 2.6.3.0 of the 'Skype Online Status' plugin for WordPress 2+.
 
-    Version: 2.6.2.9
+    Version: 2.6.3.0
     Status: Stable 
-    Latest stable: 2.6.2.9
+    Latest stable: 2.6.3.0
     Licence: GNU General Public License
 
 == What's New ==
@@ -122,7 +122,7 @@ And some new features:
 - download skype now link (replaceable with your own referral link since version 2.6)
 - automatic plugin upgrade check showing on the options page!
 
-Since version 2.6.1.0 there is a customizable Skype Status Widget available :)
+Since version 2.6.3.0 there are unlimited customizable Skype Status Widgets available :)
 
 == Notes ==
 
@@ -134,7 +134,6 @@ This program is free software; you can redistribute it and/or modify it under th
 
 For version 3 and beyond :)
 
-- Multiple widgets
 - Skype-like wizard...
 - Add Skypecasts widget
 - Upload your own button
@@ -152,7 +151,7 @@ For version 3 and beyond :)
 
 == Revision History ==
 
-- [2008-xx-xx] version 2.6.3.0: Multiple widgets!! + Thanks-box for donators at backend- [2008-06-23] version 2.6.2.1: bugfix in Custom template save to db (stripslashes)- [2008-06-21] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview- [2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
+- [2008-08-06] version 2.6.3.0: Multiple widgets!! + Thanks-box for donators at backend- [2008-06-23] version 2.6.2.1: bugfix in Custom template save to db (stripslashes)- [2008-06-21] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview- [2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
 - [2008-06-04] version 2.6.1.0: added simple widget, removed built-in update checker (redundant since WP2.5 auto-update), some bugfixes and code improvements, add your own download link
 - [2007-04-09] version 2.6.0.9: improved reg_exp for quicktag replacement (defeating wpautop's wrapping p), minor changes in available settings (newline for download link optional), fixed &-sign in fields causing failed w3c validation
 - [2007-02-18] version 2.5: made quicktag work for 2.1+ new TinyMCE button plugin routine

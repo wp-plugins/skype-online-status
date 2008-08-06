@@ -31,7 +31,7 @@ Author URI: http://4visions.nl/
 
 // Plugin version number and date
 define('SOSVERSION', '2.6.3.0');
-define('SOSVERSION_DATE', '2008-07-01');
+define('SOSVERSION_DATE', '2008-08-06');
 define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/skype-online-status/');
 
 ////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
@@ -129,7 +129,7 @@ $soswhatsnew_this = "
 $soswhatsnew_recent = "
 	- Major admin page layout changes<br />
 	- Automatic language detection (English, French, German, Japanese, Chinese, Taiwanese, Portuguese, Brazilian, Italian, Spanish, Polish, Swedish) for online status messages<br />
-	- Widget";
+	- Widgetized";
 
 
 ////////-----------------------------------------.oO//\\Oo.-----------------------------------------\\\\\\\\
