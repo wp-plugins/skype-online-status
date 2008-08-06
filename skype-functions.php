@@ -19,7 +19,6 @@ function skype_walk_templates($buttondir,$option_preview,$select,$previews,$use_
 					
 					// and collect their previews 
 					$previews[$matches[1]] = array( $theme_name , skype_status($option_preview['skype_id'],$option_preview['user_name'],"",$option_preview['use_voicemail'],$option_preview['button_template'],$use_js) ) ;
-						//skype_parse_theme($option_preview,$use_js) ) ;
 				}
 			}
 			closedir($dh);
@@ -52,6 +51,8 @@ function skype_default_values() {
 	}
 	if ($skype_default_values['button_theme']!="custom_edit") // get template file content to load into db
 		$skype_default_values['button_template'] = skype_get_template_file($skype_default_values['button_theme']);
+	if (!SOSALLOWURLFOPEN)
+		$skype_default_values['use_status'] = "";
 	return $skype_default_values;
 }
 
@@ -136,7 +137,7 @@ function skype_parse_theme($config,$use_js = TRUE) {
 	}
 
 	// after that, delete from first line <!-- (.*) -->
-	$theme_output = preg_replace("|<!-- (.*) - http://www.skype.com/go/skypebuttons -->|","",$config['button_template']);
+	$theme_output = preg_replace("|<!-- (.*) http://www.skype.com/go/skypebuttons -->|","",$config['button_template']);
 
 	// replace all tags with values
 	$theme_output = str_replace(array_keys($tags_replace),array_values($tags_replace),$theme_output);
@@ -169,7 +170,9 @@ function skype_get_template_file($filename) { // check template file existence a
 // template tag hook
 function get_skype_status($args = '') {
 	parse_str($args, $r);
-	echo skype_status($r['skype_id'], $r['user_name'], $r['button_theme'], $r['use_voicemail'], $r['$use_js']);
+	if ($r['use_js'] == "0" || $r['use_js'] == "no" )
+		$r['use_js'] = FALSE;
+	echo skype_status($r['skype_id'], $r['user_name'], $r['button_theme'], $r['use_voicemail'], "", $r['use_js']);
 }
 
 // main function
@@ -212,7 +215,7 @@ function skype_status_script() {
 	//elseif ($config['getskype_link'] == "custom_link" && $config['getskype_custom_link'] != "" )
 	//	echo '<script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>'; // unfinnished: code to custom download link here
 	else
-		echo '<script type="text/javascript" src="'.get_option('siteurl').'/wp-content/plugins/skype-online-status/js/skypeCheck.js.php"></script>';
+		echo '<script type="text/javascript" src="'.SOSPLUGINURL.'js/skypeCheck.js.php"></script>';
 
 	echo '
 	<!-- end Skype script -->
