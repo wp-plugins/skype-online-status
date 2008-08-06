@@ -2,8 +2,8 @@
 /*
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
-Description: Checks your Skype Online Status and allows you to add multiple, highly customizable and accessible Skype buttons to your blog. Based on the plugin Skype Button 2.01 by Anti Veeranna. Documentation and configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page.  
-Version: 2.6.2.9
+Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
+Version: 2.6.3.0
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -30,8 +30,8 @@ Author URI: http://4visions.nl/
 */
 
 // Plugin version number and date
-define('SOSVERSION', '2.6.2.9');
-define('SOSVERSION_DATE', '2008-06-23');
+define('SOSVERSION', '2.6.3.0');
+define('SOSVERSION_DATE', '2008-07-01');
 define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/skype-online-status/');
 
 ////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
@@ -68,7 +68,7 @@ $skype_default_values = array(
 	"status_7_text" => "Skype me!", 		// Text to replace {status} in template files when status is skype me! (7)
 	"use_getskype" => "on", 			// Wether to show the Download Skype now! link
 	"getskype_newline" => "on",			// Put the Download Skype now! link on a new line ("on") or not ("")
-	"getskype_text" => "&raquo; Get Skype now!", 	// Text to use for the Download Skype now! link
+	"getskype_text" => "&raquo; Get Skype, call free!", 	// Text to use for the Download Skype now! link
 	"getskype_link" => "",				// What link to use for download: the default ("") will generate some revenue for me (thanks! :-) ), "skype_mainpage" for skype main page, "skype_downloadpage" for skype download page
 	"getskype_custom_link" => "",			// put your own customized link here
 	"skype_status_version" => SOSVERSION,
@@ -102,13 +102,13 @@ $skype_avail_functions = array (
 	"Send me a file" => "sendfile",
 );
 
-$skype_widget_default_values = array (
+$skype_widget_default_values = array ( 
 	"title" => "Skype Online Status",	// Widget title
 	"skype_id" => "",			// Skype ID to replace {skypeid} in template files
 	"user_name" => "",			// User name to replace {username} in template files
 	"button_theme" => "",			// Theme to be used, value must match a filename (without extention) from the /plugins/skype_status/templates/ directory or leave blank
 	"button_template" => "",		// Template of the theme loaded
-	"use_voicemail" => "",			// Wether to use the voicemail invitation ("on") or not (""), set to "on" if you have a SkypeIn account
+	"use_voicemail" => "",			// Wether to use the voicemail invitation ("on") or not ("off") or leave to default ("")
 	"before" => "",				// text that should go before the button
 	"after" => "",				// text that should go after the button
 );
@@ -117,11 +117,20 @@ $skype_widget_default_values = array (
 define('SOSDATADUMP', FALSE);
 
 // Checks wether fopen_wrappers are enabled on your server so the remote Skype status file can be read
-// Comment-out (with //) the if..else statements if you want to force this setting in spite of server settings
+// Comment-out (with //) the if..else statements and one unwanted define-value line if you want to force this setting in spite of server settings
 if (ini_get('allow_url_fopen'))
 	define('SOSALLOWURLFOPEN', TRUE);
 else
 	define('SOSALLOWURLFOPEN', FALSE);
+
+$soswhatsnew_this = "
+	- Major upgrade: Multiple Widgets! <strong>Please, VERIFY YOUR <a href=\"widgets.php\">WIDGET SETTINGS</a>!!</strong><br />
+	- Small admin page improvements";
+$soswhatsnew_recent = "
+	- Major admin page layout changes<br />
+	- Automatic language detection (English, French, German, Japanese, Chinese, Taiwanese, Portuguese, Brazilian, Italian, Spanish, Polish, Swedish) for online status messages<br />
+	- Widget";
+
 
 ////////-----------------------------------------.oO//\\Oo.-----------------------------------------\\\\\\\\
 // Stop editing here!
@@ -147,21 +156,20 @@ if ($skype_status_config['use_buttonsnap']=="on") {
 }
 
 // check options or revert to default when activated
-if (!is_array($skype_status_config) && isset($_GET['activate']) && $_GET['activate'] == 'true') {
-	$skype_status_config = skype_default_values();
-	$skype_status_config['installed'] = TRUE;
-	add_option('skype_status',$skype_status_config);
-	add_option('skype_widget_options',$skype_widget_default_values);
+if (isset($_GET['activate']) && $_GET['activate'] == 'true') {
+	skype_status_install();
 }
 
 // create WP hooks
-//add_action('init', 'skype_status_install');
 add_action('wp_head', 'skype_status_script');
 add_action('admin_menu', 'skype_status_add_option');
 add_filter('the_content', 'skype_status_callback', 10);
-add_action('init', 'skype_add_widget');
+if ( $wp_db_version < 6846 ) // next action only when before wp2.5
+	add_action('init', 'skype_widget_register');
+else
+	add_action('widgets_init', 'skype_widget_register');
 
-// check if database update after plugin version upgrade is needed
+// check for plugin upgrade
 if ($skype_status_config['skype_status_version'] != "" && $skype_status_config['skype_status_version'] !== SOSVERSION) {
 	// merge new default into old settings
 	$skype_status_config = array_merge (skype_default_values(), $skype_status_config);
@@ -180,8 +188,14 @@ function skype_status_add_option() {
 
 // initialization
 function skype_status_install() {
-	global $skype_status_config;
-	add_option('skype_status', $skype_status_config);
+	global $skype_status_config,$skype_widget_config,$skype_widget_default_values;
+	if (!is_array($skype_status_config)) {
+		$skype_status_config = skype_default_values();
+		$skype_status_config['installed'] = TRUE;
+		add_option('skype_status',$skype_status_config);
+	}
+	//if (!is_array($skype_widget_config))
+	//	add_option('skype_widget_options',array(-1 => $skype_widget_default_values));
 }
 
 ?>

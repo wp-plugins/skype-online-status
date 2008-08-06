@@ -1,6 +1,6 @@
 <?php
 function skype_status_options() {
-	global $skype_status_config, $skype_avail_languages, $skype_avail_functions, $wp_db_version;
+	global $skype_status_config, $skype_avail_languages, $skype_avail_functions, $wp_db_version, $soswhatsnew_this, $soswhatsnew_recent;
 	$option = $skype_status_config;
 	$plugin_file = "skype-online-status/skype-status.php";
 
@@ -17,7 +17,7 @@ function skype_status_options() {
 	} elseif ($skype_status_config['upgraded'] == TRUE) {
 		$skype_status_config['upgraded'] = FALSE;
 		update_option('skype_status',$skype_status_config);
-		echo "<div class=\"updated fade\"><p><strong>Skype Online Status plugin has been upgraded to version ".SOSVERSION."!</strong> Please verify your settings now.</p></div>";
+		echo "<div class=\"updated fade\"><p><strong>Skype Online Status plugin has been upgraded to version ".SOSVERSION."!</strong><br />Please verify your settings now.</p><p><strong>What's new?</strong><p><em>Latest:</em><br />".$soswhatsnew_this."</p><p><em>Recent:</em><br />".$soswhatsnew_recent."</p></div>";
 	} elseif ($skype_status_config['installed'] == TRUE) {
 		$skype_status_config['installed'] = FALSE;
 		update_option('skype_status',$skype_status_config);
@@ -98,8 +98,8 @@ function skype_status_options() {
 	$walk = skype_walk_templates(dirname(__FILE__)."/templates/", $option, "", "");
 
 	// add custom option and preview
-	$walk['select']['Custom...'] = "custom_edit"; 
-	$walk['previews']['Custom...'] = array("custom_edit",skype_status($option['skype_id'],$option['user_name'],"",$option['use_voicemail'],$option['button_template']));
+	//$walk['select']['Custom...'] = "custom_edit"; 
+	//$walk['previews']['Custom...'] = array("custom_edit",skype_status($option['skype_id'],$option['user_name'],"",$option['use_voicemail'],$option['button_template']));
 	// build output
 	$previews = "";
 	foreach ($walk['previews'] as $key => $value) { 
@@ -165,15 +165,15 @@ function skype_status_options() {
 		<fieldset class=\"dbx-box\"><h3 class=\"dbx-handle\">Donations</h3><div class=\"dbx-content\">"; ?>
 			<p>All donations are much appreciated and (without objection) will be mentioned here as a way of expressing my gratitude.</p>
 			<iframe border="0" frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%" src="http://4visions.nl/skype-online-status/donors.htm">Donorlist</iframe>
-			<p>Thanks!</p>
-			<p>Do you want your name and/or link up there too?<br />
+			<p>Do you want your name and/or link up there too? Or just appreciate my work? <br />
 			<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=<?php echo SOSVERSION; ?>&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8" title="Donate with PayPal - it's fast, free and secure!"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none; vertical-align:text-bottom;" alt="Donate with PayPal - it's fast, free and secure!"/></a></p>
+			<p>Thanks!</p>
 		<?php if ( $wp_db_version >= 6846 ) { ?></div>
 
 		<div id="tabs" class="inside"><p><strong>Current theme</strong><br /><br />
-			<?php echo $current_theme_fullname ?></p>
+			<?php if ($current_theme_fullname) echo $current_theme_fullname; else echo "Custom..."; ?></p>
 
-			<?php echo skype_parse_theme($option); ?>
+			<?php echo skype_parse_theme($option);  ?>
 		</div><?php } else { echo "</div></fieldset>"; } ?>
 
 		<p class="submit">
@@ -194,12 +194,12 @@ function skype_status_options() {
 
 		<h3>Basic Options</h3>
 
-		<fieldset class="options"><legend>Skype</legend>
+		<fieldset class="options"><<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>Skype</<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>
 			<p><label for="skype_id">Your Skype ID:</label> <input type="text" name="skype_id" id="skype_id" value="<?php echo $option['skype_id']; ?>" /><br />Simply enter your own Skype ID. Or... more then one Skype ID seperated with a semi-colon (<strong>;</strong>) <em>is</em> possible if you want the button to invoke a Skype multichat or conference call <em>and</em> you may also enter phone numbers (a regular phone number or even a SkypeOut number, starting with a <strong>+</strong> followed by country code; note that callers need to have SkypeOut to call) all depending on what you want to achieve!</p>
 			<p><label for="user_name">Your Skype name:</label> <input type="text" style="width: 250px;" name="user_name" id="user_name" value="<?php echo stripslashes(htmlspecialchars($option['user_name'])); ?>" /><br />Your full name as you want it to appear in Skype links, link-titles and image alt-texts on your blog.</p>
 		</fieldset>
 
-		<fieldset class="options"><legend>Function</legend>
+		<fieldset class="options"><<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>Function</<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>
 			<p>Some of the button themes will show your online status in an icon/image, without having a specific function assigned. This means you can select what the button should do when clicked by a visitor.<br />
 			<label for="button_function">Use <strong>Function</strong> for the {function} tag?*</label> <select name="button_function" id="button_function">
 				<?php foreach ($skype_avail_functions as $key => $value) {
@@ -233,17 +233,18 @@ function skype_status_options() {
 		}
 		</script>
 
-		<fieldset class="options"><legend>Theme</legend>
+		<fieldset class="options"><<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>Theme</<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>
 			<div style="float:right;width:250px;border:1px solid #CCCCCC;padding:5px;margin:0 0 0 5px;">
 <style type="text/css"><!-- .no_underline a { border-bottom:none } --></style>
 				<strong>Preview theme template:</strong>
-				<div class="alternate no_underline" style="height:200px;margin:5px 0 0 0;padding:5px">
+				<div class="alternate no_underline" style="height:250px;margin:5px 0 0 0;padding:5px">
+					<div id="custom_edit" style="display:<?php if ($option['button_theme'] == "custom_edit") echo 'block'; else echo 'none' ?>;margin:0;padding:0"><div style="height:38px;border-bottom:1px dotted grey;margin:0 0 5px 0">Custom... (edit under advanced options)</div><?php echo skype_parse_theme($option);// echo skype_status($skype_id,$user_name,"",$use_voicemail,"",FALSE); ?></div>
 					<?php echo $previews; ?>
 				</div>
 			</div>
 
 			<p>Start with <strong>selecting one of the predefined theme templates</strong> to load into the database. Hover over the options to see a preview. You might later select <strong>Custom...</strong> to edit the template in the text field under <strong>Advanced Options > Display</strong>.<br /><br />If you cannot find a suitable theme, check out <a href="http://www.skype.com/share/buttons/wizard.html" target="_blank">http://www.skype.com/share/buttons/wizard.html</a>. Select your options there and copy/paste the output into the textarea under <strong>Advanced Options > Display</strong>.</p>
-			<p><label for="button_theme">Theme:</label> <select name="button_theme" id="button_theme" onchange="ChangeStyle(this);" onblur="PreviewStyle(this);"> <?php foreach ($walk['select'] as $key => $value) { echo "<option value=\"$value\""; if ($value == $option['button_theme']) { echo " selected=\"selected\""; } echo " onmouseover=\"PreviewStyle(this);\" onmouseout=\"UnPreviewStyle(this);\">$key</option>"; } unset($value); ?> </select></p>
+			<p><label for="button_theme">Theme:</label> <select name="button_theme" id="button_theme" onchange="ChangeStyle(this);" onblur="PreviewStyle(this);"><option value="custom_edit"<?php if ($option['button_theme'] == "custom_edit") echo " selected=\"selected\""; ?> onmouseover="PreviewStyle(this);" onmouseout="UnPreviewStyle(this);">Custom...</option><?php foreach ($walk['select'] as $key => $value) { echo "<option value=\"$value\""; if ($value == $option['button_theme']) { echo " selected=\"selected\""; } echo " onmouseover=\"PreviewStyle(this);\" onmouseout=\"UnPreviewStyle(this);\">$key</option>"; } unset($value); ?> </select></p>
 			<p>* <em>When <strong>Custom...</strong> is selected, you can edit the template to your liking below at <strong>Customize currently loaded template</strong> under <strong>Advanced Options > Display</strong>. When you make changes to that field but select another option here, those changes will not be saved!</em></p>
 		</fieldset>
 
@@ -256,7 +257,7 @@ function skype_status_options() {
 		<p align="right" style="clear: both;"><a href="#wphead">back to top</a></p>
 
 		<h3>Advanced Options</h3>
-		<fieldset class="options"><legend>Display</legend>
+		<fieldset class="options"><<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>Display</<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>
 			<p>These settings define which options should be used to replace their respective tag (if present) in the selected template file. If unchecked, the tags will be blanked out.</p> 
 			<ul style="list-style: square;">
 				<li><input type="checkbox" name="use_voicemail" id="use_voicemail"<?php if ( $option['use_voicemail'] == "on" ) { print " checked=\"checked\""; } ?> /> <label for="use_voicemail">Use <strong>Leave a voicemail</strong> in dropdown button. Leave unchecked if you do not have a SkypeIn account or SkypeVoicemail.</label></li>
@@ -279,21 +280,21 @@ function skype_status_options() {
 						<option value="custom"<?php if ( $option['use_status'] == "custom" ) print " selected=\"selected\""; ?>>Custom (as defined below)</option>
 						<?php foreach ($skype_avail_languages as $key => $value) {
 						echo '<option value="'.$value.'"';
-						if (!SOSALLOWURLFOPEN) echo ' disabled="disabled"'; 
-						elseif ( $option['use_status'] == $value ) echo ' selected="selected"';
+						//if (!SOSALLOWURLFOPEN) echo ' disabled="disabled"'; // replaced with warning
+						if ( $option['use_status'] == $value ) echo ' selected="selected"';
 						echo '>Skype default in '.$key.'</option>
 						'; } 
 						unset($value); ?> 
 					</select><br />
-					* <em>If you select 'No', the tags {status}, {statustxt} and {sep2} will be disabled.<br />When security settings on your server are too tight (<strong>safe_mode</strong> enabled, <strong>open_basedir</strong> resticted or <strong>allow_url_fopen</strong> disabled) and you encounter an error like 'Warning: file_get_contents() [function.file-get-contents]: URL file-access is disabled in the server configuration...', use either 'Custom' or 'No' here.</em></li>
+					* <em>If you select 'No', the tags {status}, {statustxt} and {sep2} will be disabled.<br />When security settings on your server are too tight (<strong>safe_mode</strong> enabled, <strong>open_basedir</strong> resticted or <strong>allow_url_fopen</strong> disabled) and you encounter an error like 'Warning: file_get_contents() [function.file-get-contents]: URL file-access is disabled in the server configuration...', use either 'Custom' or 'No' here.</em><?php if (!SOSALLOWURLFOPEN) echo "<br /><span style=\"color:red\">Note: The security settings on your server are too tight for the online status to be read from the Skype server. It is advised to set 'Use <strong>Status text</strong>' to 'No' untill you (or your server admin) change the server ini '<strong>allow_url_fopen</strong>' and related setting.</span>"; ?></li>
 				<li><label for="button_template">Customize currently loaded template*:</label><br />
-			<textarea name="button_template" id="button_template" style="width:98%;height:240px;" onchange="javascript:document.getElementById('radio_custom_edit').selected=true;document.getElementById(visible_preview).style.display='none';document.getElementById('custom_edit').style.display='block';visible_preview='custom_edit';"><?php echo stripslashes(htmlspecialchars($option['button_template'])); ?></textarea><br />
+			<textarea name="button_template" id="button_template" style="width:98%;height:240px;" onchange="javascript:document.getElementById('button_theme').options[0].selected=true;document.getElementById(visible_preview).style.display='none';document.getElementById('custom_edit').style.display='block';visible_preview='custom_edit';"><?php echo stripslashes(htmlspecialchars($option['button_template'])); ?></textarea><br />
 				* <em>Changes to the template will only be loaded when the option <strong>Custom...</strong> under <strong>Basic Options > Theme</strong> is selected.<br />Available tags: {skypeid}, {username}, {function}, {functiontxt}, {action}, {add}, {call}, {chat}, {userinfo}, {voicemail}, {sendfile}, {status}, {statustxt}, {tag1} and {tag2}.<br />Available markers: &lt;!-- voicemail_start --&gt; and &lt;!-- voicemail_end --&gt;. See Quick Guide for more instructions.</em></li>
 			</ul>
 		</fieldset>
 
 		<div style="float:left;width:54%;">
-			<fieldset class="options"><legend>Tags</legend>
+			<fieldset class="options"><<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>Tags</<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>
 				<p>Define texts to replace their respective template tags relating to the Skype button action.</p> 
 				<table style="width:97%">
 					<tr>
@@ -314,33 +315,53 @@ function skype_status_options() {
 				} 
 				unset($value); ?> 
 				</table>
-				<br />
+<?php 
+if ($option['use_status'] == "") { 
+	echo "				<p>Please change 'Use <strong>Status text</strong>' under Advanced Options (above) to any value other than 'No' for the following options to become available.</p>";
+	$other_readonly = " readonly=\"readonly\"";
+	$other_style = "color:grey;"; 
+} else {
+	echo "				<br />"; 
+}
+?>
 				<table style="width:97%">
 					<tr>
 						<th style="width:55%">Other {tag}</th>
 						<th style="width:45%">Text</th>
 					</tr>
 					<tr>
-						<td><label for="my_status_text">My status {statustxt}: </label></td>
-						<td><input type="text" name="my_status_text" id="my_status_text" value="<?php echo stripslashes(htmlspecialchars($option['my_status_text'])); ?>" style="width:97%" /></td>
+						<td><label for="seperator1_text">First seperator {sep1}: </label></td>
+						<td><input name="seperator1_text" id="seperator1_text" value="<?php echo stripslashes(htmlspecialchars($option['seperator1_text'])); ?>"<?php echo $other_readonly; ?> style="<?php echo $other_style; ?>width:97%" /></td>
 					</tr>
 					<tr>
-						<td><label for="seperator1_text">First seperator {sep1}: </label></td>
-						<td><input name="seperator1_text" id="seperator1_text" value="<?php echo stripslashes(htmlspecialchars($option['seperator1_text'])); ?>" style="width:97%" /></td>
+						<td><label for="my_status_text">My status {statustxt}: </label></td>
+						<td><input type="text" name="my_status_text" id="my_status_text" value="<?php echo stripslashes(htmlspecialchars($option['my_status_text'])); ?>"<?php echo $other_readonly; ?> style="<?php echo $other_style; ?>width:97%" /></td>
 					</tr>
 					<tr>
 						<td><label for="seperator2_text">Second seperator {sep2}: </label></td>
-						<td><input name="seperator2_text" id="seperator2_text" value="<?php echo stripslashes(htmlspecialchars($option['seperator2_text'])); ?>" style="width:97%" /></td>
+						<td><input name="seperator2_text" id="seperator2_text" value="<?php echo stripslashes(htmlspecialchars($option['seperator2_text'])); ?>"<?php echo $other_readonly; ?> style="<?php echo $other_style; ?>width:97%" /></td>
 					</tr>
 				</table>
 			</fieldset>
-			<fieldset class="options"><legend>Custom Download Link</legend>
+			<fieldset class="options"><<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>Custom Download Link</<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>
 				<p>If you are a <a href="http://www.skype.com/partners/affiliate/">Skype Affiliate</a> select 'Custom link' at Advanced Options > Display (above) and paste your link/banner code (HTML/Javascript) here.<br /><br /><label for="getskype_custom_link"><strong>Link/Banner Code</strong></label><br /><textarea name="getskype_custom_link" id="getskype_custom_link" style="width:97%;height:100px;"><?php echo stripslashes(htmlspecialchars($option['getskype_custom_link'])); ?></textarea></p>
 			</fieldset>
 		</div>
 		<div style="float: right; width: 44%;">
-			<fieldset class="options"><legend>Custom Status texts</legend>
-				<p>Text that will replace the {status} template tag depending on actual online status when you select 'Use <strong>Status text</strong>' to 'Custom'. Note: If the security settings on your server are too tight, the status cannot be read from the Skype server and only the Error value will be used.</p>
+			<fieldset class="options"><<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>Custom Status texts</<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>
+				<p>Text that will replace the {status} template tag depending on actual online status.
+<?php 
+if ($option['use_status'] != "custom") { 
+	echo " Please change 'Use <strong>Status text</strong>' to 'Custom' under Advanced Options (above) for these options to become available first.";
+	$status_readonly = " readonly=\"readonly\""; 
+	$status_style = "color:grey;"; 
+} 
+if (!SOSALLOWURLFOPEN) { 
+	echo "<br /><span style=\"color:red\">Note: The security settings on your server are too tight for the online status to be read from the Skype server. Only the Error value will be used. It is advised to set 'Use <strong>Status text</strong>' to 'No' under Advanced Options untill you (or your server admin) change the server ini '<strong>allow_url_fopen</strong>' and related setting.</span>"; 
+	$status_readonly = " readonly=\"readonly\""; 
+	$status_style = "color:grey;";
+} ?>
+				</p>
 				<table style="width:97%">
 					<tr>
 						<th style="width:45%">Status (value)</th>
@@ -348,35 +369,35 @@ function skype_status_options() {
 					</tr>
 					<tr>
 						<td><label for="status_0_text">Unknown (0): </label></td>
-						<td><input type="text" name="status_0_text" id="status_0_text" value="<?php echo stripslashes(htmlspecialchars($option['status_0_text'])); ?>" <?php if (!SOSALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?> style="width:97%" /></td>
+						<td><input type="text" name="status_0_text" id="status_0_text" value="<?php echo stripslashes(htmlspecialchars($option['status_0_text'])); ?>"<?php echo $status_readonly; ?> style="<?php echo $status_style; ?>width:97%" /></td>
 					</tr>
 					<tr>
 						<td><label for="status_1_text">Offline (1): </label></td>
-						<td><input type="text" name="status_1_text" id="status_1_text" value="<?php echo stripslashes(htmlspecialchars($option['status_1_text'])); ?>" <?php if (!SOSALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?> style="width:97%" /></td>
+						<td><input type="text" name="status_1_text" id="status_1_text" value="<?php echo stripslashes(htmlspecialchars($option['status_1_text'])); ?>"<?php echo $status_readonly; ?> style="<?php echo $status_style; ?>width:97%" /></td>
 					</tr>
 					<tr>
 						<td><label for="status_2_text">Online (2): </label></td>
-						<td><input type="text" name="status_2_text" id="status_2_text" value="<?php echo stripslashes(htmlspecialchars($option['status_2_text'])); ?>" <?php if (!SOSALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?> style="width:97%" /></td>
+						<td><input type="text" name="status_2_text" id="status_2_text" value="<?php echo stripslashes(htmlspecialchars($option['status_2_text'])); ?>"<?php echo $status_readonly; ?> style="<?php echo $status_style; ?>width:97%" /></td>
 					</tr>
 					<tr>
 						<td><label for="status_3_text">Away (3): </label></td>
-						<td><input type="text" name="status_3_text" id="status_3_text" value="<?php echo stripslashes(htmlspecialchars($option['status_3_text'])); ?>" <?php if (!SOSALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?> style="width:97%" /></td>
+						<td><input type="text" name="status_3_text" id="status_3_text" value="<?php echo stripslashes(htmlspecialchars($option['status_3_text'])); ?>"<?php echo $status_readonly; ?> style="<?php echo $status_style; ?>width:97%" /></td>
 					</tr>
 					<tr>
 						<td><label for="status_4_text">Not available (4): </label></td>
-						<td><input type="text" name="status_4_text" id="status_4_text" value="<?php echo stripslashes(htmlspecialchars($option['status_4_text'])); ?>" <?php if (!SOSALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?> style="width:97%" /></td>
+						<td><input type="text" name="status_4_text" id="status_4_text" value="<?php echo stripslashes(htmlspecialchars($option['status_4_text'])); ?>"<?php echo $status_readonly; ?> style="<?php echo $status_style; ?>width:97%" /></td>
 					</tr>
 					<tr>
 						<td><label for="status_5_text">Do not disturb (5): </label></td>
-						<td><input type="text" name="status_5_text" id="status_5_text" value="<?php echo stripslashes(htmlspecialchars($option['status_5_text'])); ?>" <?php if (!SOSALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?> style="width:97%" /></td>
+						<td><input type="text" name="status_5_text" id="status_5_text" value="<?php echo stripslashes(htmlspecialchars($option['status_5_text'])); ?>"<?php echo $status_readonly; ?> style="<?php echo $status_style; ?>width:97%" /></td>
 					</tr>
 					<tr>
 						<td><label for="status_6_text">Invisible (6): </label></td>
-						<td><input type="text" name="status_6_text" id="status_6_text" value="<?php echo stripslashes(htmlspecialchars($option['status_6_text'])); ?>" <?php if (!SOSALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?> style="width:97%" /></td>
+						<td><input type="text" name="status_6_text" id="status_6_text" value="<?php echo stripslashes(htmlspecialchars($option['status_6_text'])); ?>"<?php echo $status_readonly; ?> style="<?php echo $status_style; ?>width:97%" /></td>
 					</tr>
 					<tr>
 						<td><label for="status_7_text">Skype me (7): </label></td>
-						<td><input type="text" name="status_7_text" id="status_7_text" value="<?php echo stripslashes(htmlspecialchars($option['status_7_text'])); ?>" <?php if (!SOSALLOWURLFOPEN) echo "readonly=\"readonly\" style=\"color:grey;\""; ?> style="width:97%" /></td>
+						<td><input type="text" name="status_7_text" id="status_7_text" value="<?php echo stripslashes(htmlspecialchars($option['status_7_text'])); ?>"<?php echo $status_readonly; ?> style="<?php echo $status_style; ?>width:97%" /></td>
 					</tr>
 					<tr>
 						<td><label for="status_error_text">Error (none): </label></td>
@@ -387,7 +408,7 @@ function skype_status_options() {
 
 		</div>
 
-		<fieldset class="options" style="clear: both;"><legend>Post content</legend>
+		<fieldset class="options" style="clear: both;"><<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>Post content</<?php if ( $wp_db_version >= 6846 ) { ?>h4<?php } else { ?>legend<?php } ?>>
 			<p>When writing posts you can insert a Skype button with a simple quicktag <strong>&lt;!--skype status--&gt;</strong> ( or <strong>[-skype status-]</strong> ) but to make life even easier, a small button on the WYSIWYG editor can do it for you. Check this option to show <img src="<?php echo SOSPLUGINURL; ?>skype_button.gif" alt="Skype Online Status" style="vertical-align:text-bottom;" /> or uncheck to hide it. You may still insert the quicktag  in the HTML code of your post or page content manually.<br /><br />
 			<input type="checkbox" name="use_buttonsnap" id="use_buttonsnap"<?php if ( $option['use_buttonsnap'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_buttonsnap">Use <strong>Skype Status quicktag button</strong> in the RTE for posts.</label></p>
 		</fieldset>
@@ -492,7 +513,7 @@ function skype_status_options() {
 			<li><a href="#prl">Version, Support, Pricing and Licensing</a></li>
 			<li><a href="#live">Live support</a></li>
 			<li><a href="#credits">Credits</a></li>
-			<li><a href="#revhist">Revision History, Todo and other notes</a></li>
+			<li><a href="#revhist">FAQ's, Revision History, Todo and other notes</a></li>
 		</ul>
 
 		<p id="prl" align="right"><a href="#wphead">back to top</a></p>
@@ -518,11 +539,12 @@ function skype_status_options() {
 		<p id="credits" align="right"><a href="#wphead">back to top</a></p>
 		
 		<h4>Credits</h4>
-		<p>This plugin was built by <em>RavanH</em>. It is based upon the neat little plugin <a href="http://anti.masendav.com/skype-button-for-wordpress/">Skype Button v2.01</a> by <em>Anti Veeranna</em>. The plugin makes use of Owen's excellent <a href="http://redalt.com/wiki/ButtonSnap">ButtonSnap library</a>. Many thanks!</p>
+		<p>This plugin was built by <em>RavanH</em>. It is based upon the neat little plugin <a href="http://anti.masendav.com/skype-button-for-wordpress/">Skype Button v2.01</a> by <em>Anti Veeranna</em>. The plugin makes use of Owen's excellent <a href="http://redalt.com/wiki/ButtonSnap">ButtonSnap library</a>. My continued development of this plugin is supported by donators, mentioned in the sidebar. Many thanks!</p>
 
 		<p id="revhist" align="right"><a href="#wphead">back to top</a></p>
-		<h4>Revision History, Todo and other info</h4>
-		<p>See the included <a href="<?php echo SOSPLUGINURL; ?>readme.txt">README</a> file.
+		<h4>FAQ's, Revision History, Todo and other info</h4>
+		<p>See the included <a href="<?php echo SOSPLUGINURL; ?>readme.txt">README</a> file:</p>
+		<iframe src="<?php echo SOSPLUGINURL; ?>readme.txt" border="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:580px"></iframe>
 		<p align="right"><a href="#wphead">back to top</a></p>
 	</div>
 	
