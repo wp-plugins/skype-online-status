@@ -55,14 +55,12 @@ function skype_button_init() {
 		// use Owen's excellent ButtonSnap library
 		if(file_exists(ABSPATH . 'wp-content/plugins/skype-online-status/buttonsnap.php')) {
 			require_once(ABSPATH . 'wp-content/plugins/skype-online-status/buttonsnap.php');
-			define('SOSBUTTONSNAP', TRUE);
+			define('SOSBUTTONSNAPFLAG', TRUE);
 			// -- ButtonSnap configuration -- 
 			// Register our button in the QuickTags bar
 			$url = get_option('siteurl') . '/wp-content/plugins/skype-online-status/skype_button.gif';
 			buttonsnap_textbutton($url, 'Skype Online Status', '<!--skype status-->');
 			buttonsnap_register_marker('skypeonlinestatus', 'skype_marker');
-		} else {
-			define('SOSBUTTONSNAP', FALSE);
 		}
 	}
 }

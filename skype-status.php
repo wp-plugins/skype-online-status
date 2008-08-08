@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
-Version: 2.6.3.0
+Version: 2.6.3.1
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -30,8 +30,8 @@ Author URI: http://4visions.nl/
 */
 
 // Plugin version number and date
-define('SOSVERSION', '2.6.3.0');
-define('SOSVERSION_DATE', '2008-08-06');
+define('SOSVERSION', '2.6.3.1');
+define('SOSVERSION_DATE', '2008-08-08');
 define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/skype-online-status/');
 
 ////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
@@ -114,7 +114,12 @@ $skype_widget_default_values = array (
 );
 
 // Print all Skype settings from the database at the bottom of the settings page for debugging (normally, leave to FALSE)
-define('SOSDATADUMP', FALSE);
+define('SOSDATADUMP', TRUE);
+// and some flags for datadump purposes
+define('SOSREMOVEFLAG', FALSE);
+define('SOSBUTTONSNAPFLAG', FALSE);
+define('SOSCURLFLAG', FALSE);
+
 
 // Checks wether fopen_wrappers are enabled on your server so the remote Skype status file can be read
 // Comment-out (with //) the if..else statements and one unwanted define-value line if you want to force this setting in spite of server settings
@@ -130,7 +135,6 @@ $soswhatsnew_recent = "
 	- Major admin page layout changes<br />
 	- Automatic language detection (English, French, German, Japanese, Chinese, Taiwanese, Portuguese, Brazilian, Italian, Spanish, Polish, Swedish) for online status messages<br />
 	- Widgetized";
-
 
 ////////-----------------------------------------.oO//\\Oo.-----------------------------------------\\\\\\\\
 // Stop editing here!

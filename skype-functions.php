@@ -59,13 +59,17 @@ function skype_default_values() {
 // online status checker function
 // needs allow_url_fopen to be enabled on your server (if not, see default settings)
 function skype_status_check($skypeid, $format=".txt") {
-	$str = "error";
 	if (SOSALLOWURLFOPEN && $skypeid) { 
-		if (function_exists('file_get_contents')) 
+		if (function_exists('curl_exec')) {
+			$tmp = curl_get_file_contents('http://mystatus.skype.com/'.$skypeid.$format);
+			define('SOSCURLFLAG', TRUE);
+		} elseif (function_exists('file_get_contents')) 
 			$tmp = file_get_contents('http://mystatus.skype.com/'.$skypeid.$format);
 		else $tmp = implode('', file('http://mystatus.skype.com/'.$skypeid.$format));
-		if ($tmp!="") $str = str_replace("\n", "", $tmp);
+		if ($tmp && $tmp!="") $contents = str_replace("\n", "", $tmp);
 	}
+        if ($contents) return $contents;
+            else return FALSE;
 	return $str;
 }
 
@@ -228,6 +232,45 @@ function skype_status_callback($content) {
 		$content = preg_replace('/(<p.*>)?(<!-|\[)?-skype status-(->|\])?(<\/p>)?/', skype_status(), $content);
 	}
 	return $content;
+}
+
+////////// aditional PHP functions
+
+//get file content using curl
+if (!function_exists('curl_get_file_contents')) {
+function curl_get_file_contents($URL) {
+        $c = curl_init();
+        curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($c, CURLOPT_URL, $URL);
+        $contents = curl_exec($c);
+        curl_close($c);
+
+        if ($contents) return $contents;
+            else return FALSE;
+    }
+}
+
+//PHP 4.2.x Compatibility function
+if (!function_exists('file_get_contents')) {
+	function file_get_contents($filename, $incpath = false, $resource_context = null) {
+	  if (false === $fh = fopen($filename, 'rb', $incpath)) {
+	      trigger_error('file_get_contents() failed to open stream: No such file or directory', E_USER_WARNING);
+	      return false;
+	  }
+
+	  clearstatcache();
+	  if ($fsize = @filesize($filename)) {
+	      $data = fread($fh, $fsize);
+	  } else {
+	      $data = '';
+	      while (!feof($fh)) {
+		  $data .= fread($fh, 8192);
+	      }
+	  }
+
+	  fclose($fh);
+	  return $data;
+	}
 }
 
 ?>
