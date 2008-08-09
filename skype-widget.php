@@ -52,7 +52,7 @@ function skype_widget_options ($widget_args = 1) {
 		}
 
 		foreach ( (array) $_POST['skype_widget'] as $widget_number => $widget_opt ) {
-			if ( !isset($widget_opt['submit']) && isset($options[$widget_number]) ) // user clicked cancel
+			if ( !isset($widget_opt['title']) && isset($options[$widget_number]) ) // user clicked cancel
 				continue;
 
 			if ($widget_opt['button_theme']!="") // then get template file content to load into db
@@ -209,7 +209,6 @@ function skype_widget_register() {
 function skype_widget_upgrade() {
 	global $skype_widget_config;
 	if ( !isset( $skype_widget_config['title'] ) ) {
-error_log("#### skype_widget_upgrade (return)");
 		return $skype_widget_config;
 }
 
@@ -232,6 +231,5 @@ error_log("#### skype_widget_upgrade (return)");
 	}
 
 	return $newoptions;
-error_log("#### skype_widget_upgrade (end)");
 }
 ?>
