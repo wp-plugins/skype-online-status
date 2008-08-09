@@ -130,7 +130,8 @@ else
 
 $soswhatsnew_this = "
 	- Major upgrade: Multiple Widgets! <strong>Please, VERIFY YOUR <a href=\"widgets.php\">WIDGET SETTINGS</a>!!</strong><br />
-	- Small admin page improvements";
+	- Small admin page improvements
+	- Use cURL (if available) for remote status reading";
 $soswhatsnew_recent = "
 	- Major admin page layout changes<br />
 	- Automatic language detection (English, French, German, Japanese, Chinese, Taiwanese, Portuguese, Brazilian, Italian, Spanish, Polish, Swedish) for online status messages<br />
