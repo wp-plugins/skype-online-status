@@ -8,16 +8,16 @@ function skype_status_options() {
 	if (!empty($_POST['skype_status_remove'])) { // hit remove button
 		delete_option('skype_status');
 		delete_option('skype_widget_options');
-		echo "<div class=\"updated fade\"><p><strong>".__('Your Skype Online Status database settings have been cleared from the database for removal of this plugin!', 'skype_status')."</strong><br />".__('You can still resave the old settings shown below to (partly) undo this action but custom widget settings will be reverted to default.', 'skype_status')."<br /><br />".__('Are you sure?', 'skype_status')." ";
+		echo "<div class=\"updated fade\"><p><strong>".__('Your Skype Online Status database settings have been cleared from the database for removal of this plugin!', 'skype-online-status')."</strong><br />".__('You can still resave the old settings shown below to (partly) undo this action but custom widget settings will be reverted to default.', 'skype-online-status')."<br /><br />".__('Are you sure?', 'skype-online-status')." ";
 		if (function_exists('wp_nonce_url')) 
 			echo "<a href=\"" . wp_nonce_url('plugins.php?action=deactivate&amp;plugin='.$plugin_file, 'deactivate-plugin_'.$plugin_file) . "\" title=\"" . __('Deactivate this plugin') . "\" class=\"delete\">" . __('Deactivate') . "</a>.";
 		else
-			_e('Go to the <a href="plugins.php">Plugins page</a> and deactivate it.', 'skype_status');
-		echo "<br /><br />".__('Please, keep in mind that any WP theme template file changes you have made, can not be undone through this process. Also, any post quicktags that have been inserted in posts will (harmlessly) remain there. If you changed your mind about removing this plugin, just resave the settings NOW (or all your settings will be lost) or revert to default settings at the bottom of this page.', 'skype_status')."</p></div>";
+			_e('Go to the <a href="plugins.php">Plugins page</a> and deactivate it.', 'skype-online-status');
+		echo "<br /><br />".__('Please, keep in mind that any WP theme template file changes you have made, can not be undone through this process. Also, any post quicktags that have been inserted in posts will (harmlessly) remain there. If you changed your mind about removing this plugin, just resave the settings NOW (or all your settings will be lost) or revert to default settings at the bottom of this page.', 'skype-online-status')."</p></div>";
 	} elseif ($skype_status_config['upgraded'] == TRUE) {
 		$skype_status_config['upgraded'] = FALSE;
 		update_option('skype_status',$skype_status_config);
-		echo "<div class=\"updated fade\"><p><strong>".__('Skype Online Status plugin has been upgraded to version ', 'skype_status').SOSVERSION."</strong><br />".__('Please, verify your settings now.', 'skype_status')."</p><p><strong>".__('What\'s new?', 'skype_status')."</strong><p><em>".__('Latest:', 'skype_status')."</em><br />".$soswhatsnew_this."</p><p><em>".__('Recent:', 'skype_status')."</em><br />".$soswhatsnew_recent."</p></div>";
+		echo "<div class=\"updated fade\"><p><strong>".__('Skype Online Status plugin has been upgraded to version ', 'skype-online-status').SOSVERSION."</strong><br />".__('Please, verify your settings now.', 'skype-online-status')."</p><p><strong>".__('What\'s new?', 'skype-online-status')."</strong><p><em>".__('Latest:', 'skype-online-status')."</em><br />".$soswhatsnew_this."</p><p><em>".__('Recent:', 'skype-online-status')."</em><br />".$soswhatsnew_recent."</p></div>";
 	} elseif ($skype_status_config['installed'] == TRUE) {
 		$skype_status_config['installed'] = FALSE;
 		update_option('skype_status',$skype_status_config);
@@ -35,17 +35,17 @@ function skype_status_options() {
 		$r = $current->response[$plugin_file];
 		echo "<div class=\"updated fade-ff0000\"><p><strong>";
 		if ( !current_user_can('edit_plugins') )
-			printf( __('There is a new version of %1$s available. <a href="%2$s">Download version %3$s here</a>.'), __('Skype Online Status', 'skype_status'), $r->url, $r->new_version);
+			printf( __('There is a new version of %1$s available. <a href="%2$s">Download version %3$s here</a>.'), __('Skype Online Status', 'skype-online-status'), $r->url, $r->new_version);
 		else if ( empty($r->package) )
-			printf( __('There is a new version of %1$s available. <a href="%2$s">Download version %3$s here</a> <em>automatic upgrade unavailable for this plugin</em>.'), __('Skype Online Status', 'skype_status'), $r->url, $r->new_version);
+			printf( __('There is a new version of %1$s available. <a href="%2$s">Download version %3$s here</a> <em>automatic upgrade unavailable for this plugin</em>.'), __('Skype Online Status', 'skype-online-status'), $r->url, $r->new_version);
 		else
-			printf( __('There is a new version of %1$s available. <a href="%2$s">Download version %3$s here</a> or <a href="%4$s">upgrade automatically</a>.'), __('Skype Online Status', 'skype_status'), $r->url, $r->new_version, wp_nonce_url("update.php?action=upgrade-plugin&amp;plugin=$plugin_file", 'upgrade-plugin_' . $plugin_file) );
+			printf( __('There is a new version of %1$s available. <a href="%2$s">Download version %3$s here</a> or <a href="%4$s">upgrade automatically</a>.'), __('Skype Online Status', 'skype-online-status'), $r->url, $r->new_version, wp_nonce_url("update.php?action=upgrade-plugin&amp;plugin=$plugin_file", 'upgrade-plugin_' . $plugin_file) );
 		echo "</strong></p></div>";
 	}
 
 	// warning about furl 
 	if (!ini_get('allow_url_fopen')) { 
-		echo "<div class=\"updated fade\"><p>".__('Your server settings prevent this plugin from reading your online status from the remote Skype server.').__('Please, check if your server INI settings <strong>allow_url_fopen</strong> is set to ON or ask your server admin / hosting provider to take care of this.<br /><br />With <strong>allow_url_fopen</strong> OFF, the plugin will function like normal except for some of the advanced features concerning online status messages. Skype button themes that also show your online status by way of images (that are provided by the same Skype server) will still do so.', 'skype_status')."</p></div>";
+		echo "<div class=\"updated fade\"><p>".__('Your server settings prevent this plugin from reading your online status from the remote Skype server.').__('Please, check if your server INI settings <strong>allow_url_fopen</strong> is set to ON or ask your server admin / hosting provider to take care of this.<br /><br />With <strong>allow_url_fopen</strong> OFF, the plugin will function like normal except for some of the advanced features concerning online status messages. Skype button themes that also show your online status by way of images (that are provided by the same Skype server) will still do so.', 'skype-online-status')."</p></div>";
 	} else if (!SOSALLOWURLFOPEN) {  
 		echo "<div class=\"updated fade\"><p>".__('Reading your online status from the remote Skype server has been disabled (SOSALLOWURLFOPEN set to FALSE in skype-status.php). As a result, some of the advanced options will not be available.')."</p></div>";
 	}
@@ -92,12 +92,12 @@ function skype_status_options() {
 
 			$option = array_merge ($skype_status_config, $option);
 			update_option("skype_status",$option);
-			echo "<div id=\"message\" class=\"updated fade\"><p><strong>".__('Options updated!', 'skype_status')."</strong></p></div>";
+			echo "<div id=\"message\" class=\"updated fade\"><p><strong>".__('Options updated!', 'skype-online-status')."</strong></p></div>";
 		}
 	} else if (!empty($_POST['skype_status_reset'])) { // pressed reset button
 			$option = skype_default_values();
 			update_option("skype_status",$option);
-			echo "<div id=\"message\" class=\"updated fade\"><p><strong>".__('Options reset!', 'skype_status')."</strong></p></div>";
+			echo "<div id=\"message\" class=\"updated fade\"><p><strong>".__('Options reset!', 'skype-online-status')."</strong></p></div>";
 	}
 
 	// get all the selected options and their previews into an array
@@ -118,7 +118,7 @@ function skype_status_options() {
 	unset($value);
 	?>
 
-	<div id="loading" class="updated fade"><p><strong><?php _e('Please, wait while page has loaded completely.<br /> When the Skype server at http://mystatus.skype.com/ is slow or down, this might take a while...', 'skype_status'); ?></strong></p></div>
+	<div id="loading" class="updated fade"><p><strong><?php _e('Please, wait while page has loaded completely.<br /> When the Skype server at http://mystatus.skype.com/ is slow or down, this might take a while...', 'skype-online-status'); ?></strong></p></div>
 
 <script type="text/javascript">
 var visible_preview = "<?php echo $option['button_theme']; ?>";
@@ -151,7 +151,7 @@ function SwitchInfoBlock(id){
 </script>
 
 <div class="wrap">
-<h2><?php echo __('Skype Online Status', 'skype_status')." ".SOSVERSION; ?></h2>
+<h2><?php echo __('Skype Online Status', 'skype-online-status')." ".SOSVERSION; ?></h2>
 <form enctype="multipart/form-data" method="post" action="#">
 <?php wp_nonce_field('update-options'); ?>
 <div id="poststuff">
@@ -229,8 +229,8 @@ function SwitchInfoBlock(id){
 
 		<p class="submit">
 			<input type="submit" name="skype_status_update" value="<?php _e('Save Changes'); ?> &raquo;" /> <br />
-			<input type="submit" class="submitdelete delete" onclick='return confirm("<?php _e('WARNING !', 'skype_status'); ?> \r\n \r\n<?php _e('All your personal settings will be overwritten with the plugin default settings, including Skype ID, User name and Theme.', 'skype_status'); ?> \r\n \r\n<?php _e('Are you sure?', 'skype_status'); ?>");' name="skype_status_reset" value="<?php _e('Reset'); ?> &raquo;" /> <br />
-			<input type="submit" class="submitdelete delete" onclick='return confirm("<?php _e('WARNING !', 'skype_status'); ?>  \r\n \r\n<?php _e('All your Skype Online Status AND widget settings will be cleared from the database so the plugin can be COMPLETELY removed. All Skype buttons on your blog will be deactivated.', 'skype_status'); ?> \r\n \r\n<?php _e('Are you sure?', 'skype_status'); ?>");' name="skype_status_remove" value="<?php _e('Remove'); ?> &raquo;" />
+			<input type="submit" class="submitdelete delete" onclick='return confirm("<?php _e('WARNING !', 'skype-online-status'); ?> \r\n \r\n<?php _e('All your personal settings will be overwritten with the plugin default settings, including Skype ID, User name and Theme.', 'skype-online-status'); ?> \r\n \r\n<?php _e('Are you sure?', 'skype-online-status'); ?>");' name="skype_status_reset" value="<?php _e('Reset'); ?> &raquo;" /> <br />
+			<input type="submit" class="submitdelete delete" onclick='return confirm("<?php _e('WARNING !', 'skype-online-status'); ?>  \r\n \r\n<?php _e('All your Skype Online Status AND widget settings will be cleared from the database so the plugin can be COMPLETELY removed. All Skype buttons on your blog will be deactivated.', 'skype-online-status'); ?> \r\n \r\n<?php _e('Are you sure?', 'skype-online-status'); ?>");' name="skype_status_remove" value="<?php _e('Remove'); ?> &raquo;" />
 
 		</p> 
 
@@ -238,25 +238,25 @@ function SwitchInfoBlock(id){
 
 	<div id="post-body">
 	<div id="settings" style="min-height: 800px;">
-		<p><?php _e('Define all your <em>default</em> Skype Status settings here.', 'skype_status'); ?> 
-		<?php printf(__('Start simply by setting the basics like %1$s, %2$s and the button %3$s you want to show on your blog.', 'skype_status'),"<strong>".__('Skype ID', 'skype_status')."</strong>","<strong>".__('Full Name', 'skype_status')."</strong>","<strong>".__('Theme', 'skype_status')."</strong>"); ?> 
-		<?php printf(__('Then activate the Skype Status Widget on your <a href="widgets.php">Widgets</a> page or use the Skype Status quicktag button %s in the WYSIWYG editor (TinyMCE) to place the Skype Online Status button in any post or page.', 'skype_status'),'<img src="'.SOSPLUGINURL.'skype_button.gif" alt="'.__('Skype Online Status', 'skype_status').'" style="vertical-align:text-bottom;" />'); ?> 
-		<?php _e('Later on, you can fine-tune everything until it fits just perfectly on you pages.', 'skype_status'); ?> 
-		<?php _e('Note:', 'skype_status'); _e('Some basic settings may be overridden per Widget settings or when calling the Skype button with a template function.', 'skype_status'); ?></p>
-		<p><?php _e('Read more about configuring this plugin and more ways to trigger Skype Online Status buttons on your blog in the <strong>Quick Guide</strong> section. If you have any remaining questions, see the <strong>Notes &amp; Live Support</strong> page to get help.', 'skype_status'); ?></p>
+		<p><?php _e('Define all your <em>default</em> Skype Status settings here.', 'skype-online-status'); ?> 
+		<?php printf(__('Start simply by setting the basics like %1$s, %2$s and the button %3$s you want to show on your blog.', 'skype-online-status'),"<strong>".__('Skype ID', 'skype-online-status')."</strong>","<strong>".__('Full Name', 'skype-online-status')."</strong>","<strong>".__('Theme', 'skype-online-status')."</strong>"); ?> 
+		<?php printf(__('Then activate the Skype Status Widget on your <a href="widgets.php">Widgets</a> page or use the Skype Status quicktag button %s in the WYSIWYG editor (TinyMCE) to place the Skype Online Status button in any post or page.', 'skype-online-status'),'<img src="'.SOSPLUGINURL.'skype_button.gif" alt="'.__('Skype Online Status', 'skype-online-status').'" style="vertical-align:text-bottom;" />'); ?> 
+		<?php _e('Later on, you can fine-tune everything until it fits just perfectly on you pages.', 'skype-online-status'); ?> 
+		<?php _e('Note:', 'skype-online-status'); _e('Some basic settings may be overridden per Widget settings or when calling the Skype button with a template function.', 'skype-online-status'); ?></p>
+		<p><?php _e('Read more about configuring this plugin and more ways to trigger Skype Online Status buttons on your blog in the <strong>Quick Guide</strong> section. If you have any remaining questions, see the <strong>Notes &amp; Live Support</strong> page to get help.', 'skype-online-status'); ?></p>
 		
-		<p align="right"><a href="#wphead"><?php _e('back to top', 'skype_status'); ?></a></p>
+		<p align="right"><a href="#wphead"><?php _e('back to top', 'skype-online-status'); ?></a></p>
 
-		<h3><?php _e('Basic Options', 'skype_status'); ?></h3>
+		<h3><?php _e('Basic Options', 'skype-online-status'); ?></h3>
 
-		<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Skype', 'skype_status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
-			<p><label for="skype_id"><?php _e('Skype ID', 'skype_status'); _e(': ', 'skype_status'); ?></label><input type="text" name="skype_id" id="skype_id" value="<?php echo $option['skype_id']; ?>" /><br /><?php _e('Simply enter your Skype ID. Or... If you want the button to invoke a Skype multichat or conference call, enter more then one Skype ID seperated with a semi-colon (<strong>;</strong>). You may also enter a regular phone number (starting with a <strong>+</strong> followed by country code; note that callers need to have SkypeOut to call). It just all depends on what you want to achieve!', 'skype_status'); ?></p>
-			<p><label for="user_name"><?php _e('Full Name', 'skype_status'); _e(': ', 'skype_status'); ?></label><input type="text" style="width: 250px;" name="user_name" id="user_name" value="<?php echo stripslashes(htmlspecialchars($option['user_name'])); ?>" /><br /><?php _e('Your full name as you want it to appear in Skype links, link-titles and image alt-texts on your blog.', 'skype_status'); ?></p>
+		<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Skype', 'skype-online-status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
+			<p><label for="skype_id"><?php _e('Skype ID', 'skype-online-status'); _e(': ', 'skype-online-status'); ?></label><input type="text" name="skype_id" id="skype_id" value="<?php echo $option['skype_id']; ?>" /><br /><?php _e('Simply enter your Skype ID. Or... If you want the button to invoke a Skype multichat or conference call, enter more then one Skype ID seperated with a semi-colon (<strong>;</strong>). You may also enter a regular phone number (starting with a <strong>+</strong> followed by country code; note that callers need to have SkypeOut to call). It just all depends on what you want to achieve!', 'skype-online-status'); ?></p>
+			<p><label for="user_name"><?php _e('Full Name', 'skype-online-status'); _e(': ', 'skype-online-status'); ?></label><input type="text" style="width: 250px;" name="user_name" id="user_name" value="<?php echo stripslashes(htmlspecialchars($option['user_name'])); ?>" /><br /><?php _e('Your full name as you want it to appear in Skype links, link-titles and image alt-texts on your blog.', 'skype-online-status'); ?></p>
 		</fieldset>
 
-		<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Function', 'skype_status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
-			<p><?php _e('Some of the button themes will show your online status in an icon/image, without having a specific function assigned. This means you can select what the button should do when clicked by a visitor.', 'skype_status'); ?><br />
-			<label for="button_function"><strong><?php _e('Function', 'skype_status'); ?></strong> <?php printf(__('for the %s tag', 'skype_status'),"{function}"); _e(': ', 'skype_status'); ?></label><select name="button_function" id="button_function">
+		<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Function', 'skype-online-status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
+			<p><?php _e('Some of the button themes will show your online status in an icon/image, without having a specific function assigned. This means you can select what the button should do when clicked by a visitor.', 'skype-online-status'); ?><br />
+			<label for="button_function"><strong><?php _e('Function', 'skype-online-status'); ?></strong> <?php printf(__('for the %s tag', 'skype-online-status'),"{function}"); _e(': ', 'skype-online-status'); ?></label><select name="button_function" id="button_function">
 				<?php foreach ($skype_avail_functions as $key => $value) {
 				echo '<option value="'.$key.'"';
 				if ( $option['button_function'] == $key ) echo ' selected="selected"';
@@ -264,63 +264,63 @@ function SwitchInfoBlock(id){
 				'; } 
 				unset($value); ?> 
 			</select> <a href="#" onclick="javascript:SwitchInfoBlock('function_info');return(false);">?</a></p>
-			<blockquote id="function_info" style="display:none"><em><?php _e('Note:', 'skype_status'); echo " "; printf(__('This setting will only be used in the \'%1$s\' theme templates, or in your own custom template when the tags %2$s and %3$s are used.', 'skype_status'),"My Status","{function}","{functiontxt}");?></em></blockquote>
+			<blockquote id="function_info" style="display:none"><em><?php _e('Note:', 'skype-online-status'); echo " "; printf(__('This setting will only be used in the \'%1$s\' theme templates, or in your own custom template when the tags %2$s and %3$s are used.', 'skype-online-status'),"My Status","{function}","{functiontxt}");?></em></blockquote>
 		</fieldset>
 
-		<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Theme', 'skype_status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
+		<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Theme', 'skype-online-status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
 			<div style="float:right;width:250px;border:1px solid #CCCCCC;padding:5px;margin:0 0 0 5px;">
 <style type="text/css"><!-- .no_underline a { border-bottom:none } --></style>
-				<strong><?php _e('Preview theme template:', 'skype_status'); ?></strong>
+				<strong><?php _e('Preview theme template:', 'skype-online-status'); ?></strong>
 				<div class="alternate no_underline" style="height:250px;margin:5px 0 0 0;padding:5px">
-					<div id="custom_edit" style="display:<?php if ($option['button_theme'] == 'custom_edit') echo 'block'; else echo 'none'; ?>;margin:0;padding:0"><div style="height:38px;border-bottom:1px dotted grey;margin:0 0 5px 0"><?php _e('Custom...', 'skype_status'); _e(' (edit under advanced options)', 'skype_status'); ?></div><?php echo skype_parse_theme($option);// echo skype_status($skype_id,$user_name,"",$use_voicemail,"",FALSE); ?></div>
+					<div id="custom_edit" style="display:<?php if ($option['button_theme'] == 'custom_edit') echo 'block'; else echo 'none'; ?>;margin:0;padding:0"><div style="height:38px;border-bottom:1px dotted grey;margin:0 0 5px 0"><?php _e('Custom...', 'skype-online-status'); _e(' (edit under advanced options)', 'skype-online-status'); ?></div><?php echo skype_parse_theme($option);// echo skype_status($skype_id,$user_name,"",$use_voicemail,"",FALSE); ?></div>
 					<?php echo $previews; ?>
 				</div>
 			</div>
 
-			<p><?php printf(__('Start with <strong>selecting one of the predefined theme templates</strong> to load into the database. Hover over the options to see a preview. You might later select %1$s to edit the template in the text field under %2$s.', 'skype_status'),"<strong>".__('Custom...', 'skype_status')."</strong>","<strong>".__('Advanced Options', 'skype_status')." / ".__('Custom Template', 'skype_status')."</strong>"); ?><br /><br /><?php printf(__('If you cannot find a suitable theme, check out <a href="http://www.skype.com/share/buttons/wizard.html" target="_blank">http://www.skype.com/share/buttons/wizard.html</a>. Select your options there and copy/paste the output into the textarea under %s.', 'skype_status'),"<strong>".__('Advanced Options', 'skype_status')." / ".__('Display', 'skype_status')."</strong>"); ?></p>
-			<p><label for="button_theme"><?php echo __('Theme', 'skype_status') . __(': ', 'skype_status'); ?></label> <select name="button_theme" id="button_theme" onchange="ChangeStyle(this);" onblur="PreviewStyle(this);"><option value="custom_edit"<?php if ($option['button_theme'] == "custom_edit") echo " selected=\"selected\""; ?> onmouseover="PreviewStyle(this);" onmouseout="UnPreviewStyle(this);"><?php _e('Custom...', 'skype_status'); ?></option><?php foreach ($walk['select'] as $key => $value) { echo "<option value=\"$value\""; if ($value == $option['button_theme']) { echo " selected=\"selected\""; } echo " onmouseover=\"PreviewStyle(this);\" onmouseout=\"UnPreviewStyle(this);\">$key</option>"; } unset($value); ?> </select> <a href="#" onclick="javascript:SwitchInfoBlock('theme_info');return(false);">?</a></p>
-			<blockquote id="theme_info" style="display:none"><em><?php printf(__('When %1$s is selected, you can edit the template to your liking below at %2$s under %3$s. When you make changes to that field but select another theme template here, those changes will be overwriten by the new template!', 'skype_status'),"<strong>".__('Custom...', 'skype_status')."</strong>","<strong>".__('Customize currently loaded template', 'skype_status')."</strong>","<strong>".__('Advanced Options', 'skype_status')." / ".__('Custom Template', 'skype_status')."</strong>"); ?></em></blockquote>
+			<p><?php printf(__('Start with <strong>selecting one of the predefined theme templates</strong> to load into the database. Hover over the options to see a preview. You might later select %1$s to edit the template in the text field under %2$s.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Custom Template', 'skype-online-status')."</strong>"); ?><br /><br /><?php printf(__('If you cannot find a suitable theme, check out <a href="http://www.skype.com/share/buttons/wizard.html" target="_blank">http://www.skype.com/share/buttons/wizard.html</a>. Select your options there and copy/paste the output into the textarea under %s.', 'skype-online-status'),"<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Display', 'skype-online-status')."</strong>"); ?></p>
+			<p><label for="button_theme"><?php echo __('Theme', 'skype-online-status') . __(': ', 'skype-online-status'); ?></label> <select name="button_theme" id="button_theme" onchange="ChangeStyle(this);" onblur="PreviewStyle(this);"><option value="custom_edit"<?php if ($option['button_theme'] == "custom_edit") echo " selected=\"selected\""; ?> onmouseover="PreviewStyle(this);" onmouseout="UnPreviewStyle(this);"><?php _e('Custom...', 'skype-online-status'); ?></option><?php foreach ($walk['select'] as $key => $value) { echo "<option value=\"$value\""; if ($value == $option['button_theme']) { echo " selected=\"selected\""; } echo " onmouseover=\"PreviewStyle(this);\" onmouseout=\"UnPreviewStyle(this);\">$key</option>"; } unset($value); ?> </select> <a href="#" onclick="javascript:SwitchInfoBlock('theme_info');return(false);">?</a></p>
+			<blockquote id="theme_info" style="display:none"><em><?php printf(__('When %1$s is selected, you can edit the template to your liking below at %2$s under %3$s. When you make changes to that field but select another theme template here, those changes will be overwriten by the new template!', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Customize currently loaded template', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Custom Template', 'skype-online-status')."</strong>"); ?></em></blockquote>
 		</fieldset>
 
 		<p class="submit">
 			<input type="submit" name="skype_status_update" value="<?php _e('Save Changes'); ?> &raquo;" />
 		</p>
 
-		<p><?php _e('If you have your basic settings correct and there is a Skype button visible on blog, you can fine-tune it\'s appearance and function with the advanced settings. Each option is annotated but you can read more in the Quick Guide section.', 'skype_status'); ?></p>
+		<p><?php _e('If you have your basic settings correct and there is a Skype button visible on blog, you can fine-tune it\'s appearance and function with the advanced settings. Each option is annotated but you can read more in the Quick Guide section.', 'skype-online-status'); ?></p>
 
-		<p align="right" style="clear: both;"><a href="#wphead"><?php _e('back to top', 'skype_status'); ?></a></p>
+		<p align="right" style="clear: both;"><a href="#wphead"><?php _e('back to top', 'skype-online-status'); ?></a></p>
 
 
 
-		<h3><?php _e('Advanced Options', 'skype_status'); ?></h3>
+		<h3><?php _e('Advanced Options', 'skype-online-status'); ?></h3>
 
-		<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Post content', 'skype_status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
-			<p><?php printf(__('When writing posts you can insert a Skype button with a simple quicktag %1$s or %2$s but to make life even easier, a small button on the WYSIWYG editor can do it for you. Check this option to show %3$s or uncheck to hide it. You may still insert the quicktag  in the HTML code of your post or page content manually.', 'skype_status'),"<strong>&lt;!--skype status--&gt;</strong>","<strong>[-skype status-]</strong>","<img src=\"".SOSPLUGINURL."skype_button.gif\" alt=\"".__('Skype Online Status', 'skype_status')."\" style=\"vertical-align:text-bottom;\" />"); ?><br /><br />
+		<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Post content', 'skype-online-status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
+			<p><?php printf(__('When writing posts you can insert a Skype button with a simple quicktag %1$s or %2$s but to make life even easier, a small button on the WYSIWYG editor can do it for you. Check this option to show %3$s or uncheck to hide it. You may still insert the quicktag  in the HTML code of your post or page content manually.', 'skype-online-status'),"<strong>&lt;!--skype status--&gt;</strong>","<strong>[-skype status-]</strong>","<img src=\"".SOSPLUGINURL."skype_button.gif\" alt=\"".__('Skype Online Status', 'skype-online-status')."\" style=\"vertical-align:text-bottom;\" />"); ?><br /><br />
 			<input type="checkbox" name="use_buttonsnap" id="use_buttonsnap"<?php if ( $option['use_buttonsnap'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_buttonsnap"><?php _e('Use <strong>Skype Status quicktag button</strong> in the RTE for posts.','skype_status'); ?></label></p>
 		</fieldset>
 
-		<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Display &amp; Function', 'skype_status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
+		<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Display &amp; Function', 'skype-online-status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
 			<p><?php _e('These settings define which options should be used to replace their respective tag (if present) in the selected template file. If unchecked, the tags will be blanked out.','skype_status'); ?></p> 
 			<ul style="list-style: square;">
-				<li><input type="checkbox" name="use_voicemail" id="use_voicemail"<?php if ( $option['use_voicemail'] == "on" ) { print " checked=\"checked\""; } ?> /> <label for="use_voicemail"><?php printf(__('Use %s in dropdown button. Leave unchecked if you do not have a SkypeIn account or SkypeVoicemail.', 'skype_status'),"<strong>".__('Leave me voicemail', 'skype_status')."</strong>"); ?></label></li>
-				<li><input type="checkbox" name="use_function" id="use_function"<?php if ( $option['use_function'] == "on" ) { print " checked=\"checked\""; } ?> /> <label for="use_function"><?php printf(__('Use %1$s (define below) for %2$s tags.', 'skype_status'),"<strong>".__('Action text', 'skype_status')."</strong>","{add/call/chat/userinfo/voicemail/sendfile}"); ?></label></li>
-				<li><input type="checkbox" name="use_getskype" id="use_getskype"<?php if ( $option['use_getskype'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_getskype"><?php printf(__('Use %s link.', 'skype_status'),"<strong>".__('Download Skype now!','skype_status')."</strong>"); ?></label>
+				<li><input type="checkbox" name="use_voicemail" id="use_voicemail"<?php if ( $option['use_voicemail'] == "on" ) { print " checked=\"checked\""; } ?> /> <label for="use_voicemail"><?php printf(__('Use %s in dropdown button. Leave unchecked if you do not have a SkypeIn account or SkypeVoicemail.', 'skype-online-status'),"<strong>".__('Leave me voicemail', 'skype-online-status')."</strong>"); ?></label></li>
+				<li><input type="checkbox" name="use_function" id="use_function"<?php if ( $option['use_function'] == "on" ) { print " checked=\"checked\""; } ?> /> <label for="use_function"><?php printf(__('Use %1$s (define below) for %2$s tags.', 'skype-online-status'),"<strong>".__('Action text', 'skype-online-status')."</strong>","{add/call/chat/userinfo/voicemail/sendfile}"); ?></label></li>
+				<li><input type="checkbox" name="use_getskype" id="use_getskype"<?php if ( $option['use_getskype'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_getskype"><?php printf(__('Use %s link.', 'skype-online-status'),"<strong>".__('Download Skype now!','skype_status')."</strong>"); ?></label>
 					<ul>
-						<li><input type="checkbox" name="getskype_newline" id="getskype_newline"<?php if ( $option['getskype_newline'] == "on") { print " checked=\"checked\""; } ?> /> <label for="getskype_newline"><?php _e('Place link on a new line.', 'skype_status'); ?></label></li>
-						<li><label for="getskype_text"><?php _e('Link text', 'skype_status'); _e(': ', 'skype_status'); ?></label><input name="getskype_text" style="width: 250px;" id="getskype_text" value="<?php echo stripslashes(htmlspecialchars($option['getskype_text'])); ?>" /></li>
-						<li><label for="getskype_link"><?php _e('Link URL', 'skype_status'); _e(': ', 'skype_status'); ?></label>
+						<li><input type="checkbox" name="getskype_newline" id="getskype_newline"<?php if ( $option['getskype_newline'] == "on") { print " checked=\"checked\""; } ?> /> <label for="getskype_newline"><?php _e('Place link on a new line.', 'skype-online-status'); ?></label></li>
+						<li><label for="getskype_text"><?php _e('Link text', 'skype-online-status'); _e(': ', 'skype-online-status'); ?></label><input name="getskype_text" style="width: 250px;" id="getskype_text" value="<?php echo stripslashes(htmlspecialchars($option['getskype_text'])); ?>" /></li>
+						<li><label for="getskype_link"><?php _e('Link URL', 'skype-online-status'); _e(': ', 'skype-online-status'); ?></label>
 						<select name="getskype_link" id="getskype_link">
-							<option value=""<?php if ( $option['getskype_link'] == "" ) print " selected=\"selected\""; ?>><?php _e('Default Skype link', 'skype_status'); ?></option>
-							<option value="skype_mainpage"<?php if ( $option['getskype_link'] == "skype_mainpage" ) print " selected=\"selected\""; ?>><?php _e('Skype main page', 'skype_status'); ?></option>
-							<option value="skype_downloadpage"<?php if ( $option['getskype_link'] == "skype_downloadpage" ) print " selected=\"selected\""; ?>><?php _e('Skype download page', 'skype_status'); ?></option>
-							<option value="custom_link"<?php if ( $option['getskype_link'] == "custom_link" ) print " selected=\"selected\""; ?>><?php _e('Custom...', 'skype_status'); ?></option>
+							<option value=""<?php if ( $option['getskype_link'] == "" ) print " selected=\"selected\""; ?>><?php _e('Default Skype link', 'skype-online-status'); ?></option>
+							<option value="skype_mainpage"<?php if ( $option['getskype_link'] == "skype_mainpage" ) print " selected=\"selected\""; ?>><?php _e('Skype main page', 'skype-online-status'); ?></option>
+							<option value="skype_downloadpage"<?php if ( $option['getskype_link'] == "skype_downloadpage" ) print " selected=\"selected\""; ?>><?php _e('Skype download page', 'skype-online-status'); ?></option>
+							<option value="custom_link"<?php if ( $option['getskype_link'] == "custom_link" ) print " selected=\"selected\""; ?>><?php _e('Custom...', 'skype-online-status'); ?></option>
 						</select> <a href="#" onclick="javascript:SwitchInfoBlock('linkurl_info');return(false);">?</a> 
-						<blockquote id="linkurl_info" style="display:none"><em><?php _e('Leave to Default if you are generous and think downloads should create some small possible revenue for the developer of this plugin -- that\'s me, thanks! :) -- but if you think open source developers are greedy bastards and should go away, select one of the other options -- just kidding, feel free... Really! You can always donate on the Notes & Live Support section ;).', 'skype_status'); printf(__('If you want to create your own link (say you have a Commission Junction, TradeDoubler or ValueCommerce account, read more on http://www.skype.com/partners/affiliate/) to get possible revenue from downloads yourself, select %1$s and paste the link code in the textarea under %2$s below.', 'skype_status'),"<strong>".__('Custom...', 'skype_status')."</strong>","<strong>".__('Advanced Options', 'skype_status')." / ".__('Custom Download Link', 'skype_status')."</strong>"); ?></em></blockquote></li>
+						<blockquote id="linkurl_info" style="display:none"><em><?php _e('Leave to Default if you are generous and think downloads should create some small possible revenue for the developer of this plugin -- that\'s me, thanks! :) -- but if you think open source developers are greedy bastards and should go away, select one of the other options -- just kidding, feel free... Really! You can always donate on the Notes & Live Support section ;).', 'skype-online-status'); printf(__('If you want to create your own link (say you have a Commission Junction, TradeDoubler or ValueCommerce account, read more on http://www.skype.com/partners/affiliate/) to get possible revenue from downloads yourself, select %1$s and paste the link code in the textarea under %2$s below.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Custom Download Link', 'skype-online-status')."</strong>"); ?></em></blockquote></li>
 					</ul>
 				</li>
-				<li><label for="use_status"><strong><?php _e('Status texts', 'skype_status'); ?></strong> <?php printf(__('for the %s tag', 'skype_status'),"{status}"); _e(': ', 'skype_status'); ?></label><select name="use_status" id="use_status">
-						<option value=""<?php if ( $option['use_status'] == "" ) print " selected=\"selected\""; ?>><?php _e('Disabled', 'skype_status'); ?></option>
-						<option value="custom"<?php if ( $option['use_status'] == "custom" ) print " selected=\"selected\""; ?>><?php _e('Custom...', 'skype_status'); ?></option>
+				<li><label for="use_status"><strong><?php _e('Status texts', 'skype-online-status'); ?></strong> <?php printf(__('for the %s tag', 'skype-online-status'),"{status}"); _e(': ', 'skype-online-status'); ?></label><select name="use_status" id="use_status">
+						<option value=""<?php if ( $option['use_status'] == "" ) print " selected=\"selected\""; ?>><?php _e('Disabled', 'skype-online-status'); ?></option>
+						<option value="custom"<?php if ( $option['use_status'] == "custom" ) print " selected=\"selected\""; ?>><?php _e('Custom...', 'skype-online-status'); ?></option>
 						<?php foreach ($skype_avail_languages as $key => $value) {
 						echo '<option value="'.$key.'"';
 						if ( $option['use_status'] == $key ) echo ' selected="selected"';
@@ -328,23 +328,23 @@ function SwitchInfoBlock(id){
 						'; } 
 						unset($value); ?> 
 					</select> <a href="#" onclick="javascript:SwitchInfoBlock('statustext_info');return(false);">?</a> 
-			<blockquote id="statustext_info" style="display:none"><em><?php printf(__('If you select %1$s, the tags %2$s, %3$s and %4$s in the button template will be ignored.', 'skype_status'),"<strong>".__('Disabled', 'skype_status')."</strong>","{status}","{statustxt}","{sep2}"); 
+			<blockquote id="statustext_info" style="display:none"><em><?php printf(__('If you select %1$s, the tags %2$s, %3$s and %4$s in the button template will be ignored.', 'skype-online-status'),"<strong>".__('Disabled', 'skype-online-status')."</strong>","{status}","{statustxt}","{sep2}"); 
 						echo "<br />"; 
-						printf(__('When security settings on your server are too tight (<strong>safe_mode</strong> enabled, <strong>open_basedir</strong> restictions or <strong>allow_url_fopen</strong> being disabled), your status does not show or the Skype button doesn\'t load and you find an error like "Warning: file_get_contents() [function.file-get-contents]: URL file-access is disabled in the server configuration..." in the server log files, use either %1$s or %1$s here.','skype_status'),"<strong>".__('Custom...', 'skype_status')."</strong>","<strong>".__('Disabled', 'skype_status')."</strong>"); ?></em></blockquote>
+						printf(__('When security settings on your server are too tight (<strong>safe_mode</strong> enabled, <strong>open_basedir</strong> restictions or <strong>allow_url_fopen</strong> being disabled), your status does not show or the Skype button doesn\'t load and you find an error like "Warning: file_get_contents() [function.file-get-contents]: URL file-access is disabled in the server configuration..." in the server log files, use either %1$s or %1$s here.','skype_status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Disabled', 'skype-online-status')."</strong>"); ?></em></blockquote>
 					<?php if (!ini_get('allow_url_fopen')) {
 						$status_readonly = " readonly=\"readonly\""; 
 						$status_style = "color:grey;";
-						echo "<br /><span style=\"color:red\">" . __('Note:', 'skype_status') . " " . __('The security settings on your server are too tight for the online status to be read from the Skype server.', 'skype_status') . " " . sprintf(__('It is advised to set %1$s to %2$s here untill you (or your server admin) change the server INI <strong>allow_url_fopen</strong> and related setting.', 'skype_status'),"<strong>".__('Status texts', 'skype_status')."</strong>","<strong>".__('Disabled', 'skype_status')."</strong>") . sprintf(__('You can also select %1$s but only the %2$s status text will be available.', 'skype_status'),"<strong>".__('Custom...', 'skype_status')."</strong>","<strong>".__('Error', 'skype_status')."</strong>") . "</span>"; } ?>
+						echo "<br /><span style=\"color:red\">" . __('Note:', 'skype-online-status') . " " . __('The security settings on your server are too tight for the online status to be read from the Skype server.', 'skype-online-status') . " " . sprintf(__('It is advised to set %1$s to %2$s here untill you (or your server admin) change the server INI <strong>allow_url_fopen</strong> and related setting.', 'skype-online-status'),"<strong>".__('Status texts', 'skype-online-status')."</strong>","<strong>".__('Disabled', 'skype-online-status')."</strong>") . sprintf(__('You can also select %1$s but only the %2$s status text will be available.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Error', 'skype-online-status')."</strong>") . "</span>"; } ?>
 				</li>
 			</ul>
 		</fieldset>
 
 		<div style="float:left;width:46%;">
-			<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Custom Status texts', 'skype_status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
-				<p><?php printf(__('Text that will replace the %s tag depending on actual online status.', 'skype_status'),"{status}"); 
+			<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Custom Status texts', 'skype-online-status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
+				<p><?php printf(__('Text that will replace the %s tag depending on actual online status.', 'skype-online-status'),"{status}"); 
 
 	if ($option['use_status'] != "custom") { 
-	echo " " . sprintf(__('Please, change %1$s to %2$s under %3$s (above) for these options to become available first.', 'skype_status'),"<strong>".__('Status texts', 'skype_status')."</strong>","<strong>".__('Custom...', 'skype_status')."</strong>","<strong>".__('Advanced Options', 'skype_status')." / ".__('Display', 'skype_status')."</strong>");
+	echo " " . sprintf(__('Please, change %1$s to %2$s under %3$s (above) for these options to become available first.', 'skype-online-status'),"<strong>".__('Status texts', 'skype-online-status')."</strong>","<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Display', 'skype-online-status')."</strong>");
 	$status_readonly = " readonly=\"readonly\""; 
 	$status_style = "color:grey;"; 
 	} 
@@ -352,9 +352,9 @@ function SwitchInfoBlock(id){
 				</p>
 				<table>
 					<tr>
-						<th><?php _e('Status', 'skype_status'); ?></th>
-						<th><?php _e('Value', 'skype_status'); ?></th>
-						<th><?php _e('Text', 'skype_status'); ?></th>
+						<th><?php _e('Status', 'skype-online-status'); ?></th>
+						<th><?php _e('Value', 'skype-online-status'); ?></th>
+						<th><?php _e('Text', 'skype-online-status'); ?></th>
 					</tr>
 				<?php foreach ($skype_avail_statusmsg as $key => $value) {
 				echo '
@@ -369,21 +369,21 @@ function SwitchInfoBlock(id){
 				} 
 				unset($value); ?> 
 					<tr>
-						<td><label for="status_error_text"><?php _e('Error', 'skype_status'); ?></label></td>
-						<td><?php _e('(none)', 'skype_status'); ?></td>
+						<td><label for="status_error_text"><?php _e('Error', 'skype-online-status'); ?></label></td>
+						<td><?php _e('(none)', 'skype-online-status'); ?></td>
 						<td><input type="text" name="status_error_text" id="status_error_text" value="<?php echo stripslashes(htmlspecialchars($option['status_error_text'])); ?>" /></td>
 					</tr>
 				</table>
 			</fieldset>
 		</div>
 		<div style="float: right; width: 50%;">
-			<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Tag texts', 'skype_status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
-				<p><?php _e('Define texts to replace their respective template tags relating to the Skype button action.', 'skype_status'); ?></p> 
+			<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Tag texts', 'skype-online-status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
+				<p><?php _e('Define texts to replace their respective template tags relating to the Skype button action.', 'skype-online-status'); ?></p> 
 				<table>
 					<tr>
-						<th><?php _e('Action', 'skype_status'); ?></th>
-						<th><?php _e('Tag', 'skype_status'); ?></th>
-						<th><?php _e('Text', 'skype_status'); ?></th>
+						<th><?php _e('Action', 'skype-online-status'); ?></th>
+						<th><?php _e('Tag', 'skype-online-status'); ?></th>
+						<th><?php _e('Text', 'skype-online-status'); ?></th>
 					</tr>
 				<?php foreach ($skype_avail_functions as $key => $value) {
 				echo '
@@ -400,7 +400,7 @@ function SwitchInfoBlock(id){
 				</table>
 	<?php 
 	if ($option['use_status'] == "") { 
-		echo "<p>" . sprintf(__('Please, change %1$s under %3$s (above) to any value other than %2$s for the following options to become available first.', 'skype_status'),"<strong>".__('Status texts', 'skype_status')."</strong>","<strong>".__('Disabled', 'skype_status')."</strong>","<strong>".__('Advanced Options', 'skype_status')." / ".__('Display', 'skype_status')."</strong>") . "</p>";
+		echo "<p>" . sprintf(__('Please, change %1$s under %3$s (above) to any value other than %2$s for the following options to become available first.', 'skype-online-status'),"<strong>".__('Status texts', 'skype-online-status')."</strong>","<strong>".__('Disabled', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Display', 'skype-online-status')."</strong>") . "</p>";
 		$other_readonly = " readonly=\"readonly\"";
 		$other_style = "color:grey;"; 
 	} else {
@@ -409,22 +409,22 @@ function SwitchInfoBlock(id){
 	?>
 				<table>
 					<tr>
-						<th><?php _e('Other', 'skype_status'); ?></th>
-						<th><?php _e('Tag', 'skype_status'); ?></th>
-						<th><?php _e('Text', 'skype_status'); ?></th>
+						<th><?php _e('Other', 'skype-online-status'); ?></th>
+						<th><?php _e('Tag', 'skype-online-status'); ?></th>
+						<th><?php _e('Text', 'skype-online-status'); ?></th>
 					</tr>
 					<tr>
-						<td><label for="seperator1_text"><?php _e('First seperator', 'skype_status'); ?></label></td>
+						<td><label for="seperator1_text"><?php _e('First seperator', 'skype-online-status'); ?></label></td>
 						<td>{sep1}</td>
 						<td><input name="seperator1_text" id="seperator1_text" value="<?php echo stripslashes(htmlspecialchars($option['seperator1_text'])); ?>"<?php echo $other_readonly; ?> style="<?php echo $other_style; ?>" /></td>
 					</tr>
 					<tr>
-						<td><label for="my_status_text"><?php _e('My status', 'skype_status'); ?></label></td>
+						<td><label for="my_status_text"><?php _e('My status', 'skype-online-status'); ?></label></td>
 						<td>{statustxt}</td>
 						<td><input type="text" name="my_status_text" id="my_status_text" value="<?php echo stripslashes(htmlspecialchars($option['my_status_text'])); ?>"<?php echo $other_readonly; ?> style="<?php echo $other_style; ?>" /></td>
 					</tr>
 					<tr>
-						<td><label for="seperator2_text"><?php _e('Second seperator', 'skype_status'); ?></label></td>
+						<td><label for="seperator2_text"><?php _e('Second seperator', 'skype-online-status'); ?></label></td>
 						<td>{sep2}</td>
 						<td><input name="seperator2_text" id="seperator2_text" value="<?php echo stripslashes(htmlspecialchars($option['seperator2_text'])); ?>"<?php echo $other_readonly; ?> style="<?php echo $other_style; ?>" /></td>
 					</tr>
@@ -432,14 +432,14 @@ function SwitchInfoBlock(id){
 			</fieldset>
 		</div>
 
-		<fieldset class="options" style="clear:both"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Custom Template', 'skype_status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
-			<p><?php printf(__('The currently selected template has been loaded into the database. You can edit it here if you like, but be sure to select %1$s under %2$s or your changes will be lost.', 'skype_status'),"<strong>".__('Custom...', 'skype_status')."</strong>","<strong>".__('Basic Options', 'skype_status')." / ".__('Theme', 'skype_status')."</strong>"); ?> <br /><br /><label for="button_template"><?php _e('Customize currently loaded template', 'skype_status'); _e(': ', 'skype_status'); ?></label> <a href="#" onclick="javascript:SwitchInfoBlock('customtemplate_info');return(false);">?</a><br />
+		<fieldset class="options" style="clear:both"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Custom Template', 'skype-online-status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
+			<p><?php printf(__('The currently selected template has been loaded into the database. You can edit it here if you like, but be sure to select %1$s under %2$s or your changes will be lost.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Basic Options', 'skype-online-status')." / ".__('Theme', 'skype-online-status')."</strong>"); ?> <br /><br /><label for="button_template"><?php _e('Customize currently loaded template', 'skype-online-status'); _e(': ', 'skype-online-status'); ?></label> <a href="#" onclick="javascript:SwitchInfoBlock('customtemplate_info');return(false);">?</a><br />
 			<textarea name="button_template" id="button_template" style="width:98%;height:240px;" onchange="javascript:document.getElementById('button_theme').options[0].selected=true;document.getElementById(visible_preview).style.display='none';document.getElementById('custom_edit').style.display='block';visible_preview='custom_edit';"><?php echo stripslashes(htmlspecialchars($option['button_template'])); ?></textarea></p>
-						<blockquote id="customtemplate_info" style="display:none"><em><?php _e('Available tags:','skype_status'); ?> {skypeid} {username} {function} {functiontxt} {action} {add} {call} {chat} {userinfo} {voicemail} {sendfile} {status} {statustxt} {tag1} {tag2} <br /><?php _e('Available markers:','skype_status'); ?> &lt;!-- voicemail_start --&gt; &lt;!-- voicemail_end --&gt; <br /><?php _e('See Quick Guide for more instructions.','skype_status'); ?><br /><span style="color:red"><?php printf(__('Oh, and did I mention this? Changes to the template will only be loaded when the option %1$s under %2$s is selected!', 'skype_status'),"<strong>".__('Custom...', 'skype_status')."</strong>","<strong>".__('Basic Options', 'skype_status')." / ".__('Theme', 'skype_status')."</strong>"); ?></span></em></blockquote>
+						<blockquote id="customtemplate_info" style="display:none"><em><?php _e('Available tags:','skype_status'); ?> {skypeid} {username} {function} {functiontxt} {action} {add} {call} {chat} {userinfo} {voicemail} {sendfile} {status} {statustxt} {tag1} {tag2} <br /><?php _e('Available markers:','skype_status'); ?> &lt;!-- voicemail_start --&gt; &lt;!-- voicemail_end --&gt; <br /><?php _e('See Quick Guide for more instructions.','skype_status'); ?><br /><span style="color:red"><?php printf(__('Oh, and did I mention this? Changes to the template will only be loaded when the option %1$s under %2$s is selected!', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Basic Options', 'skype-online-status')." / ".__('Theme', 'skype-online-status')."</strong>"); ?></span></em></blockquote>
 		</fieldset>
 
-		<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Custom Download Link', 'skype_status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
-			<p><?php printf(__('If you are a <a href="http://www.skype.com/partners/affiliate/">Skype Affiliate</a> select %1$s under %2$s (above) and paste your link/banner code (HTML/Javascript) here.', 'skype_status'),"<strong>".__('Custom...', 'skype_status')."</strong>","<strong>".__('Advanced Options', 'skype_status')." / ".__('Display &amp; Function', 'skype_status')."</strong>"); ?><br /><br /><label for="getskype_custom_link"><strong><?php _e('Link/Banner Code', 'skype_status'); _e(': ', 'skype_status'); ?></strong></label><br /><textarea name="getskype_custom_link" id="getskype_custom_link" style="width:97%;height:100px;"><?php echo stripslashes(htmlspecialchars($option['getskype_custom_link'])); ?></textarea></p>
+		<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Custom Download Link', 'skype-online-status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
+			<p><?php printf(__('If you are a <a href="http://www.skype.com/partners/affiliate/">Skype Affiliate</a> select %1$s under %2$s (above) and paste your link/banner code (HTML/Javascript) here.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Display &amp; Function', 'skype-online-status')."</strong>"); ?><br /><br /><label for="getskype_custom_link"><strong><?php _e('Link/Banner Code', 'skype-online-status'); _e(': ', 'skype-online-status'); ?></strong></label><br /><textarea name="getskype_custom_link" id="getskype_custom_link" style="width:97%;height:100px;"><?php echo stripslashes(htmlspecialchars($option['getskype_custom_link'])); ?></textarea></p>
 		</fieldset>
 
 		<p align="right"><a href="#wphead">back to top</a></p>

@@ -145,38 +145,38 @@ function UnPreviewStyle(elmnt) {
 </div>
 <div style="width:64%;float:left;">
 <p style="text-align:left">
-<label for="skype_widget_skype_id-<?php echo $number; ?>">Skype ID:</label>* 
+<label for="skype_widget_skype_id-<?php echo $number; ?>"><?php _e('Skype ID', 'skype-online-status'); ?>*<?php _e(': ', 'skype-online-status'); ?></label>
 <input class="widefat" type="text" id="skype_widget_skype_id-<?php echo $number; ?>" name="skype_widget[<?php echo $number; ?>][skype_id]" value="<?php echo stripslashes(htmlspecialchars($skype_id)); ?>" />
 </p>
 <p style="text-align:left">
-<label for="skype_widget_user_name-<?php echo $number; ?>">Username:</label>* 
+<label for="skype_widget_user_name-<?php echo $number; ?>"><?php _e('Full Name', 'skype-online-status'); ?>*<?php _e(': ', 'skype-online-status'); ?></label>
 <input class="widefat" type="text" id="skype_widget_user_name-<?php echo $number; ?>" name="skype_widget[<?php echo $number; ?>][user_name]" value="<?php echo stripslashes(htmlspecialchars($user_name)); ?>" />
 </p>
 <p style="text-align:left">
-<label for="skype_widget_before-<?php echo $number; ?>">Text before button:</label>** 
+<label for="skype_widget_before-<?php echo $number; ?>"><?php _e('Text before button', 'skype-online-status'); ?>**<?php _e(': ', 'skype-online-status'); ?></label>
 <input class="widefat" type="text" id="skype_widget_before-<?php echo $number; ?>" name="skype_widget[<?php echo $number; ?>][before]" value="<?php echo stripslashes(htmlspecialchars($before)); ?>" />
 </p>
 <p style="text-align:left">
-<label for="skype_widget_after-<?php echo $number; ?>">Text after button:</label>** 
+<label for="skype_widget_after-<?php echo $number; ?>"><?php _e('Text after button', 'skype-online-status'); ?>**<?php _e(': ', 'skype-online-status'); ?></label>
 <input class="widefat" type="text" id="skype_widget_after-<?php echo $number; ?>" name="skype_widget[<?php echo $number; ?>][after]" value="<?php echo stripslashes(htmlspecialchars($after)); ?>" />
 </p>
 <p style="text-align:left">
-<label for="skype_widget_use_voicemail-<?php echo $number; ?>">Use Voicemail?</label>*** <select class="select" name="skype_widget[<?php echo $number; ?>][use_voicemail]" id="skype_widget_use_voicemail-<?php echo $number; ?>">
-<option value=""<?php if ($use_voicemail == "") print " selected=\"selected\""; ?>>Default</option>
+<label for="skype_widget_use_voicemail-<?php echo $number; ?>"><?php _e('Use Voicemail?', 'skype-online-status'); ?></label>*** <select class="select" name="skype_widget[<?php echo $number; ?>][use_voicemail]" id="skype_widget_use_voicemail-<?php echo $number; ?>">
+<option value=""<?php if ($use_voicemail == "") print " selected=\"selected\""; ?>><?php _e('Default', 'skype-online-status'); ?></option>
 <option value="on"<?php if ($use_voicemail == "on") print " selected=\"selected\""; ?>><?php _e('Yes'); ?></option>
 <option value="off"<?php if ($use_voicemail == "off") print " selected=\"selected\""; ?>><?php _e('No'); ?></option></select>
 </label> 
 </p>
 <p style="text-align:left">
-<label for="skype_widget_button_theme-<?php echo $number; ?>">Theme:</label> <select name="skype_widget[<?php echo $number; ?>][button_theme]" id="skype_widget_button_theme-<?php echo $number; ?>" onchange="ChangeStyle(this);" onblur="PreviewStyle(this);">
-<option value=""<?php if ($button_theme == "") echo " selected=\"selected\""; ?> onmouseover="PreviewStyle(this);" onmouseout="UnPreviewStyle(this);">Default</option>
+<label for="skype_widget_button_theme-<?php echo $number; ?>"><?php _e('Theme', 'skype-online-status'); ?><?php _e(': ', 'skype-online-status'); ?></label> <select name="skype_widget[<?php echo $number; ?>][button_theme]" id="skype_widget_button_theme-<?php echo $number; ?>" onchange="ChangeStyle(this);" onblur="PreviewStyle(this);">
+<option value=""<?php if ($button_theme == "") echo " selected=\"selected\""; ?> onmouseover="PreviewStyle(this);" onmouseout="UnPreviewStyle(this);"><?php _e('Default', 'skype-online-status'); ?></option>
 <?php foreach ($walk['select'] as $key => $value) { echo "<option value=\"$value\""; if ($value == $button_theme) { echo " selected=\"selected\""; } echo " onmouseover=\"PreviewStyle(this);\" onmouseout=\"UnPreviewStyle(this);\">$key</option>
 "; } unset($value); ?></select>
 </p>
 </div>
-<p style="clear:both;font-size:78%;font-weight:lighter;">* Leave blank to use the default options as you defined on the <a href="options-general.php?page=skype-status.php">Skype Online Status Settings</a> page.<br />
-** You can use some basic HTML here like &lt;br /&gt; for new line.<br />
-*** Leave to <em>Always off</em> if you do not have a SkypeIn account or SkypeVoicemail.</p>
+<p style="clear:both;font-size:78%;font-weight:lighter;">* <?php _e('Leave blank to use the default options as you defined on the <a href="options-general.php?page=skype-status.php">Skype Online Status Settings</a> page.', 'skype-online-status'); ?><br />
+** <?php _e('You can use some basic HTML here like &lt;br /&gt; for new line.', 'skype-online-status'); ?><br />
+*** <?php printf(__('Set to %s if you do not have a SkypeIn account or SkypeVoicemail.', 'skype-online-status'), __('No')); ?></p>
 <input type="hidden" id="skype_widget_submit-<?php echo $number; ?>" name="skype_widget[<?php echo $number; ?>][submit]" value="1" />
 
 <?php 

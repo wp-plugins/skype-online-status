@@ -35,7 +35,7 @@ define('SOSVERSION_DATE', '2008-08-10');
 define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/skype-online-status/');
 
 // Internationalization
-load_plugin_textdomain('skype_status');
+load_plugin_textdomain('skype-online-status');
 
 ////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
 // The values below are the default settings
@@ -43,7 +43,7 @@ load_plugin_textdomain('skype_status');
 
 $skype_default_values = array(
 	"skype_id" => "echo123", 			// Skype ID to replace {skypeid} in template files
-	"user_name" => __('Skype Test Call', 'skype_status'), 		// User name to replace {username} in template files
+	"user_name" => __('Skype Test Call', 'skype-online-status'), 		// User name to replace {username} in template files
 	"button_theme" => "transparent_dropdown", 	// Theme to be used, value must match a filename (without extention) from the /plugins/skype-online-status/templates/ directory or leave blank
 	"button_template" => "", 			// Will hold template loaded from user-selected template file
 	"button_function" => "call",			// Function to replace {function} in template files
@@ -51,22 +51,22 @@ $skype_default_values = array(
 	"use_function" => "on", 			// Wether to replace the tags {add/call/chat/userinfo/voicemail/sendfile} ("on") or not ("")
 	"use_status" => "custom",			// Wether to replace the tag {status} with your custom texts ("custom") or Skype default according to language (e.g. "en" for english) or nothing ("", use this when allow_url_fopen is not enabled on your server!)
 	"use_buttonsnap" => "on", 			// Wether to display a Skype Status quicktag button in RTE for posts ("on") or not ("")
-	"seperator1_text" => __(' - ', 'skype_status'), 			// Text to replace {sep1} in template files
-	"seperator2_text" => __(': ', 'skype_status'), 			// Text to replace {sep2} in template files
+	"seperator1_text" => __(' - ', 'skype-online-status'), 			// Text to replace {sep1} in template files
+	"seperator2_text" => __(': ', 'skype-online-status'), 			// Text to replace {sep2} in template files
 	"use_getskype" => "on", 			// Wether to show the Download Skype now! link
 	"getskype_newline" => "on",			// Put the Download Skype now! link on a new line ("on") or not ("")
-	"getskype_text" => __('&raquo; Get Skype, call free!', 'skype_status'), 	// Text to use for the Download Skype now! link
+	"getskype_text" => __('&raquo; Get Skype, call free!', 'skype-online-status'), 	// Text to use for the Download Skype now! link
 	"getskype_link" => "",				// What link to use for download: the default ("") will generate some revenue for me (thanks! :-) ), "skype_mainpage" for skype.com main page, "skype_downloadpage" for skype.com download page
 	"getskype_custom_link" => "",			// put your own customized link here
 	"skype_status_version" => SOSVERSION,
 	"upgraded" => FALSE,
 	"installed" => FALSE,
-	"my_status_text" => __('My status is', 'skype_status') . " ", 		// Text to replace {statustxt} in template files
-	"status_error_text" => __('Unknown', 'skype_status'), 		// Text to replace {status} in template files when status could not be checked
+	"my_status_text" => __('My status is', 'skype-online-status') . " ", 		// Text to replace {statustxt} in template files
+	"status_error_text" => __('Unknown', 'skype-online-status'), 		// Text to replace {status} in template files when status could not be checked
 );
 
 $skype_widget_default_values = array ( 
-	"title" => __('Skype Online Status', 'skype_status'),	// Widget title
+	"title" => __('Skype Online Status', 'skype-online-status'),	// Widget title
 	"skype_id" => "",			// Skype ID to replace {skypeid} in template files
 	"user_name" => "",			// User name to replace {username} in template files
 	"button_theme" => "",			// Theme to be used, value must match a filename (without extention) from the /plugins/skype_status/templates/ directory or leave blank
@@ -77,40 +77,40 @@ $skype_widget_default_values = array (
 );
 
 // Available status messages as provided by Skype
-$skype_avail_statusmsg = array ( 	"0" => __('Unknown', 'skype_status'), 			// Text to replace {status} in template files when status is unknown (0)
-	"1" => __('Offline', 'skype_status'), 			// Text to replace {status} in template files when status is offline (1)
-	"2" => __('Online', 'skype_status'), 			// Text to replace {status} in template files when status is online (2)
-	"3" => __('Away', 'skype_status'), 			// Text to replace {status} in template files when status is away (3)
-	"4" => __('Not available', 'skype_status'), 		// Text to replace {status} in template files when status is not available (4)
-	"5" => __('Do not disturb', 'skype_status'),		// Text to replace {status} in template files when status is do not disturb (5)
-	//"6" => __('Invisible', 'skype_status'), 		// Text to replace {status} in template files when status is invisible (6)
-	"7" => __('Skype me!', 'skype_status'), 		// Text to replace {status} in template files when status is skype me! (7)
+$skype_avail_statusmsg = array ( 	"0" => __('Unknown', 'skype-online-status'), 			// Text to replace {status} in template files when status is unknown (0)
+	"1" => __('Offline', 'skype-online-status'), 			// Text to replace {status} in template files when status is offline (1)
+	"2" => __('Online', 'skype-online-status'), 			// Text to replace {status} in template files when status is online (2)
+	"3" => __('Away', 'skype-online-status'), 			// Text to replace {status} in template files when status is away (3)
+	"4" => __('Not available', 'skype-online-status'), 		// Text to replace {status} in template files when status is not available (4)
+	"5" => __('Do not disturb', 'skype-online-status'),		// Text to replace {status} in template files when status is do not disturb (5)
+	//"6" => __('Invisible', 'skype-online-status'), 		// Text to replace {status} in template files when status is invisible (6)
+	"7" => __('Skype me!', 'skype-online-status'), 		// Text to replace {status} in template files when status is skype me! (7)
 );
 
 // Available status message languages as provided by Skype, e.g. http://mystatus.skype.com/yourusername.txt.pt-br will show your online status message in Brazilian portuguese.
 // If there are new languages available, they can be added to this array to make them optional on the Skype Settings page.
 $skype_avail_languages = array ( 
-	"en" => __('English', 'skype_status'),
-	"fr" => __('French', 'skype_status'),
-	"de" => __('German', 'skype_status'),
-	"ja" => __('Japanese', 'skype_status'),
-	"zh" => __('Chinese', 'skype_status'),
-	"zh-tw" => __('Taiwanese', 'skype_status'),
-	"pt" => __('Portuguese', 'skype_status'),
-	"pt-br" => __('Brazilian', 'skype_status'),
-	"it" => __('Italian', 'skype_status'),
-	"es" => __('Spanish', 'skype_status'),
-	"pl" => __('Polish', 'skype_status'),
-	"se" => __('Swedish', 'skype_status'),
+	"en" => __('English', 'skype-online-status'),
+	"fr" => __('French', 'skype-online-status'),
+	"de" => __('German', 'skype-online-status'),
+	"ja" => __('Japanese', 'skype-online-status'),
+	"zh" => __('Chinese', 'skype-online-status'),
+	"zh-tw" => __('Taiwanese', 'skype-online-status'),
+	"pt" => __('Portuguese', 'skype-online-status'),
+	"pt-br" => __('Brazilian', 'skype-online-status'),
+	"it" => __('Italian', 'skype-online-status'),
+	"es" => __('Spanish', 'skype-online-status'),
+	"pl" => __('Polish', 'skype-online-status'),
+	"se" => __('Swedish', 'skype-online-status'),
 );
 
 $skype_avail_functions = array (
-	"call" => __('Call me!', 'skype_status'),
-	"add" => __('Add me to Skype', 'skype_status'),
-	"chat" => __('Chat with me', 'skype_status'),
-	"userinfo" => __('View my profile', 'skype_status'),
-	"voicemail" => __('Leave me voicemail', 'skype_status'),
-	"sendfile" => __('Send me a file', 'skype_status'),
+	"call" => __('Call me!', 'skype-online-status'),
+	"add" => __('Add me to Skype', 'skype-online-status'),
+	"chat" => __('Chat with me', 'skype-online-status'),
+	"userinfo" => __('View my profile', 'skype-online-status'),
+	"voicemail" => __('Leave me voicemail', 'skype-online-status'),
+	"sendfile" => __('Send me a file', 'skype-online-status'),
 );
 
 // Print all Skype settings from the database at the bottom of the settings page for debugging (normally, leave to FALSE)
@@ -137,11 +137,10 @@ else
 	define('SOSUSECURL', FALSE);
 
 $soswhatsnew_this = "
-	- Internationalization! If your language is not available, and you would like to contribute to this plugin, your translation (.pot file or .mo file) will be MUCH appreciated :)
-	- Small admin page improvements and a bugfix on the Widget
-	- Use cURL (if available) for remote status reading";
+	- Internationalization! If your language is not available, and you would like to contribute to this plugin, your translation (.mo file) will be MUCH appreciated :)";
 $soswhatsnew_recent = "
-	- Multiple Widgets (if upgrading from version 2.6.2.9 , <strong>please VERIFY YOUR <a href=\"widgets.php\">WIDGET SETTINGS</a>!!</strong><br />
+	- Use cURL (if available) for remote status reading
+	- Multiple Widgets (if upgrading from version 2.6.2.9, <strong>please VERIFY YOUR <a href=\"widgets.php\">WIDGET SETTINGS</a>!!</strong>)<br />
 	- Major admin page layout changes<br />
 	- Blog language detection for online status messages in English, French, German, Japanese, Chinese, Taiwanese, Portuguese, Brazilian, Italian, Spanish, Polish, Swedish";
 
@@ -192,7 +191,7 @@ if ($skype_status_config['skype_status_version'] != "" && $skype_status_config['
 // admin hook
 function skype_status_add_option() {
 	if (function_exists('add_options_page')) {
-		add_options_page(__('Skype Online Status', 'skype_status'),__('Skype Status', 'skype_status'),2,basename(__FILE__),'skype_status_options');
+		add_options_page(__('Skype Online Status', 'skype-online-status'),__('Skype Status', 'skype-online-status'),2,basename(__FILE__),'skype_status_options');
 	}
 }
 

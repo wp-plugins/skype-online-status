@@ -221,8 +221,6 @@ function skype_status_script() {
 
 	if ($skype_status_config['getskype_link'] == "skype_mainpage" || $skype_status_config['getskype_link'] == "skype_downloadpage")
 		echo '<script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>';
-	//elseif ($config['getskype_link'] == "custom_link" && $config['getskype_custom_link'] != "" )
-	//	echo '<script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>'; // unfinnished: code to custom download link here
 	else
 		echo '<script type="text/javascript" src="'.SOSPLUGINURL.'js/skypeCheck.js.php"></script>';
 
