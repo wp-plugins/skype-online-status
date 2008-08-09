@@ -1,18 +1,20 @@
 === Skype Online Status ===
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e6%2e2%2e9&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8
-Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce
+Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
 Requires at least: 2.0
 Tested up to: 2.6
 Stable tag: 2.6.3.1
 
-Add a single or multiple, highly customizable and accessible Skype buttons to your blog through widget, post quicktag and/or template tag.
+Add unlimited, highly customizable and accessible Skype buttons to your blog through widgets, post quicktag and/or template tag. Easy to configure and well documented so it can be made to fit any blog.
 
 == Description ==
 
-The plugin Skype Online Status allows you to add one or multiple, highly customizable and accessible (!) Skype buttons to your blog. You can pick any of the available Skype button themes that will show your online status and place them in your pages/posts content (with a neat little Skype quicktag button in the WYSIWYG editor), in your sidebar via a widget or anywhere in your theme template files.
+The plugin Skype Online Status allows you to add one or multiple, highly customizable and accessible (!) Skype buttons to your blog. You can pick any of the available Skype button themes that will show your online status and place them in your *pages and posts content* (with a neat little Skype quicktag button in the WYSIWYG editor), in your sidebar via *widgets* (unlimited number) or anywhere in your theme template files.
 
-Button themes are mostly based on the themes you can find on (Skype's button wizard page](http://www.skype.com/share/buttons/wizard.html "Skype buttons") but much more feature rich, like showing your online status in the alt text of the image, more accessible (!) and much more customizable, like setting your own Status texts in your blogs language. Even a button to invoke normal phone calls or multichats or conference calls is possible!
+The Skype Status admin page and Skype Widget options are adequately annotated but there is also a *Quick Guide* section with lots of information on all the possible ways to get you blog Skyped. If you still cannot get it working the way you want to, find a Skype link to the developer on the *Notes &amp; Live Support* section.
+
+Button themes are mostly based on the themes you can find on [Skype's button wizard page](http://www.skype.com/share/buttons/wizard.html "Skype buttons") but much more feature rich, like showing your online status in the alt text of the image, more accessible (!) and much more customizable, like setting your own Status texts in your blogs language. Even a button to invoke normal phone calls or multichats or conference calls is possible!
 
 Older versions have been developed for WordPress 2.0+, 2.1+ and 2.3+ but from version 2.6.1.0 upward, the main development focus is on WordPress 2.5+.
 
