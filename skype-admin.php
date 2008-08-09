@@ -243,7 +243,7 @@ function SwitchInfoBlock(id){
 		<?php printf(__('Then activate the Skype Status Widget on your <a href="widgets.php">Widgets</a> page or use the Skype Status quicktag button %s in the WYSIWYG editor (TinyMCE) to place the Skype Online Status button in any post or page.', 'skype-online-status'),'<img src="'.SOSPLUGINURL.'skype_button.gif" alt="'.__('Skype Online Status', 'skype-online-status').'" style="vertical-align:text-bottom;" />'); ?> 
 		<?php _e('Later on, you can fine-tune everything until it fits just perfectly on you pages.', 'skype-online-status'); ?> 
 		<?php _e('Note:', 'skype-online-status'); _e('Some basic settings may be overridden per Widget settings or when calling the Skype button with a template function.', 'skype-online-status'); ?></p>
-		<p><?php _e('Read more about configuring this plugin and more ways to trigger Skype Online Status buttons on your blog in the <strong>Quick Guide</strong> section. If you have any remaining questions, see the <strong>Notes &amp; Live Support</strong> page to get help.', 'skype-online-status'); ?></p>
+		<p><?php printf(__('Read more about configuring this plugin and more ways to trigger Skype buttons on your blog in the %1$s section. If you have any remaining questions, see the %2$s page to get help.', 'skype-online-status'),"<strong>".__('Quick Guide', 'skype-online-status')."</strong>","<strong>".__('Notes &amp; Live Support', 'skype-online-status')."</strong>"); ?></p>
 		
 		<p align="right"><a href="#wphead"><?php _e('back to top', 'skype-online-status'); ?></a></p>
 
@@ -286,7 +286,7 @@ function SwitchInfoBlock(id){
 			<input type="submit" name="skype_status_update" value="<?php _e('Save Changes'); ?> &raquo;" />
 		</p>
 
-		<p><?php _e('If you have your basic settings correct and there is a Skype button visible on blog, you can fine-tune it\'s appearance and function with the advanced settings. Each option is annotated but you can read more in the Quick Guide section.', 'skype-online-status'); ?></p>
+		<p><?php printf(__('If you have your basic settings correct and there is a Skype button visible on blog, you can fine-tune it\'s appearance and function with the advanced settings. Each option is annotated but you can read more in the %s section.', 'skype-online-status'),"<strong>".__('Quick Guide', 'skype-online-status')."</strong>"); ?></p>
 
 		<p align="right" style="clear: both;"><a href="#wphead"><?php _e('back to top', 'skype-online-status'); ?></a></p>
 
@@ -435,7 +435,7 @@ function SwitchInfoBlock(id){
 		<fieldset class="options" style="clear:both"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Custom Template', 'skype-online-status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
 			<p><?php printf(__('The currently selected template has been loaded into the database. You can edit it here if you like, but be sure to select %1$s under %2$s or your changes will be lost.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Basic Options', 'skype-online-status')." / ".__('Theme', 'skype-online-status')."</strong>"); ?> <br /><br /><label for="button_template"><?php _e('Customize currently loaded template', 'skype-online-status'); _e(': ', 'skype-online-status'); ?></label> <a href="#" onclick="javascript:SwitchInfoBlock('customtemplate_info');return(false);">?</a><br />
 			<textarea name="button_template" id="button_template" style="width:98%;height:240px;" onchange="javascript:document.getElementById('button_theme').options[0].selected=true;document.getElementById(visible_preview).style.display='none';document.getElementById('custom_edit').style.display='block';visible_preview='custom_edit';"><?php echo stripslashes(htmlspecialchars($option['button_template'])); ?></textarea></p>
-						<blockquote id="customtemplate_info" style="display:none"><em><?php _e('Available tags:','skype_status'); ?> {skypeid} {username} {function} {functiontxt} {action} {add} {call} {chat} {userinfo} {voicemail} {sendfile} {status} {statustxt} {tag1} {tag2} <br /><?php _e('Available markers:','skype_status'); ?> &lt;!-- voicemail_start --&gt; &lt;!-- voicemail_end --&gt; <br /><?php _e('See Quick Guide for more instructions.','skype_status'); ?><br /><span style="color:red"><?php printf(__('Oh, and did I mention this? Changes to the template will only be loaded when the option %1$s under %2$s is selected!', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Basic Options', 'skype-online-status')." / ".__('Theme', 'skype-online-status')."</strong>"); ?></span></em></blockquote>
+			<blockquote id="customtemplate_info" style="display:none"><em><?php _e('Available tags:','skype_status'); ?> {skypeid} {username} {function} {functiontxt} {action} {add} {call} {chat} {userinfo} {voicemail} {sendfile} {status} {statustxt} {tag1} {tag2} <br /><?php _e('Available markers:','skype_status'); ?> &lt;!-- voicemail_start --&gt; &lt;!-- voicemail_end --&gt; <br /><?php printf(__('See %s for more instructions.','skype_status'),"<strong>".__('Quick Guide', 'skype-online-status')."</strong>"); ?><br /><span style="color:red"><?php printf(__('Oh, and did I mention this? Changes to the template will only be loaded when the option %1$s under %2$s is selected!', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Basic Options', 'skype-online-status')." / ".__('Theme', 'skype-online-status')."</strong>"); ?></span></em></blockquote>
 		</fieldset>
 
 		<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Custom Download Link', 'skype-online-status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
@@ -450,7 +450,7 @@ function SwitchInfoBlock(id){
 
 	</div>
 	<div id="guide" style="min-height: 800px;">
-		<h3><?php _e('Quick guide','skype_status'); ?></h3>
+		<h3><?php _e('Quick Guide','skype_status'); ?></h3>
 		<ul>
 			<li><a href="#basic">Basic Use</a></li>
 			<li><a href="#adv">Advanced</a></li>
