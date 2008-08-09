@@ -2,9 +2,9 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e6%2e2%2e9&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce
-Requires at least: 1.5
+Requires at least: 2.0
 Tested up to: 2.6
-Stable tag: 2.6.3.0
+Stable tag: 2.6.3.1
 
 Add a single or multiple, highly customizable and accessible Skype buttons to your blog through widget, post quicktag and/or template tag.
 
@@ -49,7 +49,7 @@ Steps:
 
 4. Configure (or update) your SkypeID and settings on the Options > Skype Status page
 
-5. Activate the widget or put <?php if (function_exists(get_skype_status)) { get_skype_status(''); } ?> in your sidebar.php (or any other template file) and use the <!--skype status--> quicktag in your posts to display the Skyp button on your blog pages. 
+5. Activate the widget or put <?php if (function_exists(get_skype_status)) { get_skype_status(''); } ?> in your sidebar.php (or any other template file) and use the <!--skype status--> quicktag in your posts to display the Skype button on your blog pages. 
 
 Read more on usage in the Quick Guide section of the Options > Skype Status page, available after installation.
 
@@ -99,11 +99,11 @@ Post your questions, bugs and feature requests on [Skype Online Status Google Gr
 
 When reporting bugs, please describe as carefully as possible and provide information like the version number of the plugin, WordPress and - if relevant - server security settings, PHP and MySQL version.
 
-This readme comes packed with version 2.6.3.0 of the 'Skype Online Status' plugin for WordPress 2+.
+This readme comes packed with version 2.6.4.0 of the 'Skype Online Status' plugin for WordPress 2+.
 
-    Version: 2.6.3.0
-    Status: Stable 
-    Latest stable: 2.6.3.0
+    Version: 2.6.4.0
+    Status: Beta 
+    Latest stable: 2.6.3.1
     Licence: GNU General Public License
 
 == What's New ==
@@ -123,6 +123,7 @@ And some new features:
 - automatic plugin upgrade check showing on the options page!
 
 Since version 2.6.3.0 there are unlimited customizable Skype Status Widgets available :)
+This version 2.6.4.0 is geared towards internationalization... Anyone who wants to contribute, please consider doing a translation.
 
 == Notes ==
 
@@ -134,24 +135,23 @@ This program is free software; you can redistribute it and/or modify it under th
 
 For version 3 and beyond :)
 
-- Skype-like wizard...
-- Add Skypecasts widget
-- Upload your own button
-- integration with WP user system
-- Internationalization
+- Skypecasts widgets !
+- Skype-like button theme wizard...
+- Upload your own button/template file
+- integration with WP user system (skype field on the Profile page, ++)
 - Get XML online status (and local time?)
 
-= Know bugs =
+= Bugs =
 
-- Since 2.6.2.1 no known bugs yet, please report anything you find on [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group")
+Please report anything you find on [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group"). Provide as much related info as you can, so we can reproduce the error... And fix it :) 
 
-= Know issues =
+= Known issues =
 
 - The javascript provided by Skype that detects whether Skype is installed (client side), does not work properly on Linux. It defaults to displaying a download popup even if Skype is installed on the visitors computer after the Skype button is clicked. Hopefully, Skype will fix this some day :/
 
 == Revision History ==
 
-- [2008-08-06] version 2.6.3.0: Multiple widgets!! + Thanks-box for donators at backend- [2008-06-23] version 2.6.2.1: bugfix in Custom template save to db (stripslashes)- [2008-06-21] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview- [2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
+- [2008-08-10] version 2.6.4.0: Internationalization (send in your translations please!)- [2008-08-08] version 2.6.3.1: Implement the use of cURL if available, bugfix in widget options page function- [2008-08-06] version 2.6.3.0: Multiple widgets!! + Thanks-box for donators at backend- [2008-06-23] version 2.6.2.1: bugfix in Custom template save to db (stripslashes)- [2008-06-21] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview- [2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
 - [2008-06-04] version 2.6.1.0: added simple widget, removed built-in update checker (redundant since WP2.5 auto-update), some bugfixes and code improvements, add your own download link
 - [2007-04-09] version 2.6.0.9: improved reg_exp for quicktag replacement (defeating wpautop's wrapping p), minor changes in available settings (newline for download link optional), fixed &-sign in fields causing failed w3c validation
 - [2007-02-18] version 2.5: made quicktag work for 2.1+ new TinyMCE button plugin routine

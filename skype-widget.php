@@ -1,27 +1,32 @@
 <?php
 function skype_status_widget ($args, $widget_args = 1) {
-	global $skype_widget_config;
 	extract($args, EXTR_SKIP);
 	if ( is_numeric($widget_args) )
 		$widget_args = array( 'number' => $widget_args );
+	$widget_args = wp_parse_args( $widget_args, array( 'number' => -1 ) );
 	extract( $widget_args, EXTR_SKIP );
 
-	if (!isset($skype_widget_config[$number]))
+	$options = get_option('skype_widget_options');
+	if (!isset($options[$number]))
 		return;
 
+	$title = apply_filters('widget_title', $options[$number]['title']);
+	$before = apply_filters('widget_text', $options[$number]['before']);
+	$after = apply_filters('widget_text', $options[$number]['after']);
+
 	echo $before_widget;
-	if ($skype_widget_config[$number]['title'])
-		echo $before_title . $skype_widget_config[$number]['title'] . $after_title;
+	if (!empty( $title ))
+		echo $before_title . $title . $after_title;
 	echo "<div class=\"skype-status-button\">";
-	echo stripslashes($skype_widget_config[$number]['before']);
-	echo skype_status($skype_widget_config[$number]['skype_id'],$skype_widget_config[$number]['user_name'],"",$skype_widget_config[$number]['use_voicemail'],stripslashes($skype_widget_config[$number]['button_template']));
-	echo stripslashes($skype_widget_config[$number]['after']);
+	echo $before;
+	echo skype_status($options[$number]['skype_id'],$options[$number]['user_name'],"",$options[$number]['use_voicemail'],stripslashes($options[$number]['button_template']));
+	echo $after;
 	echo "</div>";
 	echo $after_widget;
 }
 
 function skype_widget_options ($widget_args = 1) {
-	global $skype_widget_default_values, $skype_widget_config, $skype_status_config, $wp_registered_widgets;
+	global $skype_widget_default_values, $wp_registered_widgets;
 	static $updated = false; 
 
 	if ( is_numeric($widget_args) )
@@ -29,8 +34,7 @@ function skype_widget_options ($widget_args = 1) {
 	$widget_args = wp_parse_args( $widget_args, array( 'number' => -1 ) );
 	extract( $widget_args, EXTR_SKIP );
 
-	$options = $skype_widget_config;
-
+	$options = get_option('skype_widget_options');
 	if (!is_array ($options)) 
 		$options = array();
 
@@ -52,7 +56,7 @@ function skype_widget_options ($widget_args = 1) {
 		}
 
 		foreach ( (array) $_POST['skype_widget'] as $widget_number => $widget_opt ) {
-			if ( !isset($widget_opt['submit']) && isset($options[$widget_number]) ) // user clicked cancel
+			if ( !isset($widget_opt['title']) && isset($options[$widget_number]) ) // user clicked cancel
 				continue;
 
 			if ($widget_opt['button_theme']!="") // then get template file content to load into db
@@ -77,10 +81,10 @@ function skype_widget_options ($widget_args = 1) {
 				'after' => stripslashes($widget_opt['after'])
 				);
 		}
+		unset($$widget_opt);
 
 		update_option('skype_widget_options', $options);
 		$updated = true;
-
 	}
 
 	if ( -1 == $number ) {
@@ -179,12 +183,11 @@ function UnPreviewStyle(elmnt) {
 }
 
 function skype_widget_register() {
-	global $skype_widget_config;
-	if ( !$skype_widget_config )
-		$skype_widget_config = array();
+	if ( !$options = get_option('skype_widget_options') )
+		$options = array();
 
-	if ( isset( $skype_widget_config['title'] ) )
-		$skype_widget_config = skype_widget_upgrade();
+	if ( isset( $options['title'] ) )
+		$options = skype_widget_upgrade();
 
 	$widget_ops = array( 'classname' => 'skype_widget', 'description' => "Skype Online Status button" );
 	$control_ops = array('width' => 600, 'id_base' => 'skype-status');
@@ -192,8 +195,8 @@ function skype_widget_register() {
 	$name = "Skype Status";
 
 	$id = false;
-	foreach ( array_keys($skype_widget_config) as $o ) {
-		if ( !isset($skype_widget_config[$o]['widget_id']) )
+	foreach ( array_keys($options) as $o ) {
+		if ( !isset($options[$o]['widget_id']) )
 			continue;
 		$id = "skype-status-$o";
 		wp_register_sidebar_widget( $id, $name, 'skype_status_widget', $widget_ops, array( 'number' => $o ) );
@@ -207,13 +210,11 @@ function skype_widget_register() {
 }
 
 function skype_widget_upgrade() {
-	global $skype_widget_config;
-	if ( !isset( $skype_widget_config['title'] ) ) {
-error_log("#### skype_widget_upgrade (return)");
-		return $skype_widget_config;
-}
+	$options = get_option('skype_widget_options');
+	if ( !isset( $options['title'] ) ) 
+		return $options;
 
-	$newoptions = array( 1 => $skype_widget_config );
+	$newoptions = array( 1 => $options );
 
 	update_option( 'skype_widget_options', $newoptions );
 
@@ -232,6 +233,5 @@ error_log("#### skype_widget_upgrade (return)");
 	}
 
 	return $newoptions;
-error_log("#### skype_widget_upgrade (end)");
 }
 ?>

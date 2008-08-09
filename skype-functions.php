@@ -31,42 +31,60 @@ function skype_walk_templates($buttondir,$option_preview,$select,$previews,$use_
 }
 
 function skype_default_values() { 
-	global $skype_default_values, $skype_avail_languages;
+	global $skype_default_values,$skype_avail_languages,$skype_avail_statusmsg,$skype_avail_functions;
+
+	//build status texts
+	foreach ($skype_avail_statusmsg as $key => $value) {
+		$fullkey = "status_".$key."_text";
+		$skype_default_values[$fullkey] = $value;
+	}
+	unset($value);
+
+	//build function texts
+	foreach ($skype_avail_functions as $key => $value) {
+		$fullkey = $key."_text";
+		$skype_default_values[$fullkey] = $value;
+	}
+	unset($value);
+
 	// set language to blogs WPLANG (or leave unchanged)
-	if (WPLANG=='') {
-		$skype_default_values['use_status'] = "en";
-	} else {
-		$conv = strtolower(str_replace("_","-",WPLANG));
-		$first_two = substr(WPLANG,0,2);
-		foreach ($skype_avail_languages as $value) {
-			if ( $conv == $value ) { // get full language/country match
-				$skype_default_values['use_status'] = $value;
-				break;
-			} elseif ( $first_two == substr($value,0,2) ) { // or try to get language only match
-				$skype_default_values['use_status'] = substr($value,0,2);
-				break;
+	if (SOSALLOWURLFOPEN) {
+		if (WPLANG=='') {
+			$skype_default_values['use_status'] = "en";
+		} else {
+			$conv = strtolower(str_replace("_","-",WPLANG));
+			$first_two = substr(WPLANG,0,2);
+			foreach ($skype_avail_languages as $key) {
+				if ( $conv == $key ) { // get full language/country match
+					$skype_default_values['use_status'] = $key;
+					break;
+				} elseif ( $first_two == substr($key,0,2) ) { // or try to get language only match
+					$skype_default_values['use_status'] = substr($key,0,2);
+					break;
+				}
 			}
 		}
-		unset($value);
 	}
+
 	if ($skype_default_values['button_theme']!="custom_edit") // get template file content to load into db
 		$skype_default_values['button_template'] = skype_get_template_file($skype_default_values['button_theme']);
-	if (!SOSALLOWURLFOPEN)
-		$skype_default_values['use_status'] = "";
+
 	return $skype_default_values;
 }
 
 // online status checker function
 // needs allow_url_fopen to be enabled on your server (if not, see default settings)
 function skype_status_check($skypeid, $format=".txt") {
-	$str = "error";
 	if (SOSALLOWURLFOPEN && $skypeid) { 
-		if (function_exists('file_get_contents')) 
-			$tmp = file_get_contents('http://mystatus.skype.com/'.$skypeid.$format);
-		else $tmp = implode('', file('http://mystatus.skype.com/'.$skypeid.$format));
-		if ($tmp!="") $str = str_replace("\n", "", $tmp);
+		if (SOSUSECURL) {
+			$tmp = curl_get_file_contents('http://mystatus.skype.com/'.$skypeid.$format);
+			define('SOSCURLFLAG', TRUE);
+		} else { $tmp = file_get_contents('http://mystatus.skype.com/'.$skypeid.$format); }
+		if ($tmp && $tmp!="") $contents = str_replace("\n", "", $tmp);
 	}
-	return $str;
+
+        if ($contents) return $contents;
+            else return FALSE;
 }
 
 // helper functions to make sure that only valid data gets into database
@@ -79,6 +97,8 @@ function skype_status_valid_theme($theme) {
 }
 
 function skype_parse_theme($config,$use_js = TRUE) {
+	global $skype_avail_functions;
+
 	// get online status to replace {status} tag
 	if ($config['use_status']=="custom") {
 		$num = skype_status_check($config['skype_id'], ".num");
@@ -89,16 +109,6 @@ function skype_parse_theme($config,$use_js = TRUE) {
 		$config['seperator2_text'] = "";
 	} else {
 		$status = skype_status_check($config['skype_id'], ".txt.".$config['use_status']);
-	}
-
-	// disable function texts if set to off
-	if ($config['use_function']!="on") {
-		$config['add_text'] = "";
-		$config['call_text'] = "";
-		$config['chat_text'] = "";
-		$config['sendfile_text'] = "";
-		$config['userinfo_text'] = "";
-		$config['voicemail_text'] = "";
 	}
 
 	//define value to replace {functiontxt} based on {function}
@@ -114,14 +124,13 @@ function skype_parse_theme($config,$use_js = TRUE) {
 		"{username}" => $config['user_name'],
 		"{sep1}" => $config['seperator1_text'],
 		"{sep2}" => $config['seperator2_text'],
-		"{add}" => $config['add_text'],
-		"{call}" => $config['call_text'],
-		"{chat}" => $config['chat_text'],
-		"{sendfile}" => $config['sendfile_text'],
-		"{userinfo}" => $config['userinfo_text'],
-		"{voicemail}" => $config['voicemail_text']
 		);
-
+	//and append with function texts 
+	foreach ($skype_avail_functions as $key => $value) {
+		if ($config['use_function']!="on")
+			$config[$key.'_text'] = "";
+		$tags_replace["{".$key."}"] = $config[$key.'_text'];
+	}
 
 	// delete javascript from template if disabled
 	if ($use_js == FALSE) {
@@ -230,4 +239,42 @@ function skype_status_callback($content) {
 	return $content;
 }
 
+////////// aditional PHP functions
+
+//get file content using curl
+if (!function_exists('curl_get_file_contents')) {
+function curl_get_file_contents($URL) {
+        $c = curl_init();
+        curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($c, CURLOPT_URL, $URL);
+        $contents = curl_exec($c);
+        curl_close($c);
+
+        if ($contents) return $contents;
+            else return FALSE;
+    }
+}
+
+//PHP 4.2.x Compatibility function
+if (!function_exists('file_get_contents')) {
+	function file_get_contents($filename, $incpath = false, $resource_context = null) {
+	  if (false === $fh = fopen($filename, 'rb', $incpath)) {
+	      trigger_error('file_get_contents() failed to open stream: No such file or directory', E_USER_WARNING);
+	      return false;
+	  }
+
+	  clearstatcache();
+	  if ($fsize = @filesize($filename)) {
+	      $data = fread($fh, $fsize);
+	  } else {
+	      $data = '';
+	      while (!feof($fh)) {
+		  $data .= fread($fh, 8192);
+	      }
+	  }
+
+	  fclose($fh);
+	  return $data;
+	}
+}
 ?>
