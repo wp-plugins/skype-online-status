@@ -114,7 +114,7 @@ $skype_widget_default_values = array (
 );
 
 // Print all Skype settings from the database at the bottom of the settings page for debugging (normally, leave to FALSE)
-define('SOSDATADUMP', TRUE);
+define('SOSDATADUMP', FALSE);
 // and some flags for datadump purposes
 define('SOSREMOVEFLAG', FALSE);
 define('SOSBUTTONSNAPFLAG', FALSE);
