@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
 Requires at least: 2.0
 Tested up to: 2.6
-Stable tag: 2.6.3.1
+Stable tag: 2.6.3.2
 
 Add unlimited, highly customizable and accessible Skype buttons to your blog through widgets, post quicktag and/or template tag. Easy to configure and well documented so it can be made to fit any blog.
 
