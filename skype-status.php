@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
-Version: 2.6.3.1
+Version: 2.6.3.2
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -30,8 +30,8 @@ Author URI: http://4visions.nl/
 */
 
 // Plugin version number and date
-define('SOSVERSION', '2.6.3.1');
-define('SOSVERSION_DATE', '2008-08-08');
+define('SOSVERSION', '2.6.3.2');
+define('SOSVERSION_DATE', '2008-08-10');
 define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/skype-online-status/');
 
 ////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
