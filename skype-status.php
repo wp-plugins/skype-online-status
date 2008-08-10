@@ -170,7 +170,7 @@ add_action('wp_head', 'skype_status_script');
 add_action('admin_menu', 'skype_status_add_option');
 add_filter('the_content', 'skype_status_callback', 10);
 if ( $wp_db_version < 6846 ) // next action only when before wp2.5
-	add_action('init', 'skype_widget_register');
+	add_action('init', 'skype_add_widget');
 else
 	add_action('widgets_init', 'skype_widget_register');
 

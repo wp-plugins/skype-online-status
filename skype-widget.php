@@ -206,6 +206,14 @@ function skype_widget_register() {
 	}
 }
 
+function skype_add_widget () {
+	// used for WP < 2.5
+	if (function_exists ('register_sidebar_widget')) {
+		register_sidebar_widget ('Skype Status','skype_status_widget');
+		register_widget_control ('Skype Status','skype_widget_options');
+	}
+}
+
 function skype_widget_upgrade() {
 	global $skype_widget_config;
 	if ( !isset( $skype_widget_config['title'] ) ) {
