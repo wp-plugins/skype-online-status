@@ -157,7 +157,7 @@ function SwitchInfoBlock(id){
 <div id="poststuff">
 
 	<div <?php if ( $wp_db_version >= 6846 ) echo "id=\"submitpost\"  class=\"submitbox\""; else echo "id=\"moremeta\" class=\"dbx-group\""; ?>>
-		<?php if ( $wp_db_version >= 6846 ) echo "<div id=\"previewview\"><p><strong><?php _e('Sections','skype_status'); ?></strong> <br /> <br />"; else echo "<fieldset class=\"dbx-box\"> <h3 class=\"dbx-handle\">Sections</h3><div class=\"dbx-content\">"; ?>
+		<?php if ( $wp_db_version >= 6846 ) echo "<div id=\"previewview\"><p><strong>" . __('Sections','skype_status') . "</strong> <br /> <br />"; else echo "<fieldset class=\"dbx-box\"> <h3 class=\"dbx-handle\">" . __('Sections','skype_status') . "</h3><div class=\"dbx-content\">"; ?>
 			<a style="color:#d54e21" id="settingslink" href="#settings" onclick="javascript:
 				document.getElementById('notes').style.display='none'; 
 				document.getElementById('guide').style.display='none'; 

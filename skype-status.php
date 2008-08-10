@@ -176,7 +176,7 @@ add_action('wp_head', 'skype_status_script');
 add_action('admin_menu', 'skype_status_add_option');
 add_filter('the_content', 'skype_status_callback', 10);
 if ( $wp_db_version < 6846 ) // next action only when before wp2.5
-	add_action('init', 'skype_widget_register');
+	add_action('init', 'skype_add_widget');
 else
 	add_action('widgets_init', 'skype_widget_register');
 
@@ -199,7 +199,7 @@ function skype_status_add_option() {
 
 // initialization
 function skype_status_install() {
-	global $skype_status_config,$skype_widget_default_values;
+	global $skype_status_config;
 	if (!is_array($skype_status_config)) {
 		$skype_status_config = skype_default_values();
 		$skype_status_config['installed'] = TRUE;

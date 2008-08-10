@@ -194,18 +194,27 @@ function skype_widget_register() {
 
 	$name = "Skype Status";
 
-	$id = false;
+	$registered = false;
 	foreach ( array_keys($options) as $o ) {
 		if ( !isset($options[$o]['widget_id']) )
 			continue;
 		$id = "skype-status-$o";
+		$registered = true;
 		wp_register_sidebar_widget( $id, $name, 'skype_status_widget', $widget_ops, array( 'number' => $o ) );
 		wp_register_widget_control( $id, $name, 'skype_widget_options', $control_ops, array( 'number' => $o ) );
 	}
 
-	if ( !$id ) {
+	if ( !$registered ) {
 		wp_register_sidebar_widget( 'skype-status-1', $name, 'skype_status_widget', $widget_ops, array( 'number' => -1 ) );
 		wp_register_widget_control( 'skype-status-1', $name, 'skype_widget_options', $control_ops, array( 'number' => -1 ) );
+	}
+}
+
+function skype_add_widget () {
+	// used for WP < 2.5
+	if (function_exists ('register_sidebar_widget')) {
+		register_sidebar_widget ('Skype Status','skype_status_widget');
+		register_widget_control ('Skype Status','skype_widget_options');
 	}
 }
 
