@@ -29,13 +29,15 @@ Author URI: http://4visions.nl/
     For Installation instructions, usage, revision history and other info: see readme.txt included in this package
 */
 
+$sosplugindir = basename(dirname(__FILE__));
+
 // Plugin version number and date
 define('SOSVERSION', '2.6.4.0');
 define('SOSVERSION_DATE', '2008-08-10');
-define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/skype-online-status/');
+define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/'.$sosplugindir.'/');
 
 // Internationalization
-load_plugin_textdomain('skype-online-status');
+load_plugin_textdomain('skype-online-status','wp-content/plugins/'.$sosplugindir.'/languages/');
 
 ////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
 // The values below are the default settings
