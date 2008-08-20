@@ -33,7 +33,7 @@ $sosplugindir = basename(dirname(__FILE__));
 
 // Plugin version number and date
 define('SOSVERSION', '2.6.4.0');
-define('SOSVERSION_DATE', '2008-08-10');
+define('SOSVERSION_DATE', '2008-08-30');
 define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/'.$sosplugindir.'/');
 
 // Internationalization
@@ -152,6 +152,8 @@ $soswhatsnew_recent = "
 
 // load database options
 $skype_status_config = get_option('skype_status');
+if (!is_array($skype_status_config))
+	$skype_status_config = $skype_default_values;
 
 // load other plugin files
 require_once(dirname(__FILE__) . '/skype-admin.php');

@@ -87,7 +87,7 @@ msgstr ""
 
 #: skype-admin.php:38 skype-admin.php:40 skype-admin.php:42
 #: skype-admin.php:154 skype-admin.php:243 skype-admin.php:298
-#: skype-status.php:69 skype-status.php:194
+#: skype-admin.php:196 skype-status.php:69 skype-status.php:194
 msgid "Skype Online Status"
 msgstr ""
 
@@ -135,6 +135,10 @@ msgstr ""
 
 #: skype-admin.php:190
 msgid "Resources"
+msgstr ""
+
+#: skype-admin.php:196
+msgid "Google Group"
 msgstr ""
 
 #: skype-admin.php:196
