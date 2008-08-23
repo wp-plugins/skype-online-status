@@ -302,8 +302,23 @@ msgid ""
 "multichat or conference call, enter more then one Skype ID seperated with a "
 "semi-colon (<strong>;</strong>). You may also enter a regular phone number "
 "(starting with a <strong>+</strong> followed by country code; note that "
-"callers need to have SkypeOut to call). It just all depends on what you want "
+"callers need to have %s to call). It just all depends on what you want "
 "to achieve!"
+msgstr ""
+
+#: skype-admin.php:253
+msgid ""
+"SkypeOut"
+msgstr ""
+
+#: skype-admin.php:253
+msgid ""
+"SkypeIn"
+msgstr ""
+
+#: skype-admin.php:253
+msgid ""
+"Skype Voicemail"
 msgstr ""
 
 #: skype-admin.php:254
@@ -426,8 +441,8 @@ msgstr ""
 #: skype-admin.php:305
 #, php-format
 msgid ""
-"Use %s in dropdown button. Leave unchecked if you do not have a SkypeIn "
-"account or SkypeVoicemail."
+"Use %1$s in dropdown button. Leave unchecked if you do not have %2$s "
+"or %3$s."
 msgstr ""
 
 #: skype-admin.php:305 skype-status.php:112

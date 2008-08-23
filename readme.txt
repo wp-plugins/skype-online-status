@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
 Requires at least: 2.0
 Tested up to: 2.6.1
-Stable tag: 2.6.3.2
+Stable tag: 2.6.3.3
 
 Add unlimited, highly customizable and accessible Skype buttons to your blog through widgets, post quicktag and/or template tag. Easy to configure and well documented so it can be made to fit any blog.
 
@@ -105,7 +105,7 @@ This readme comes packed with version 2.6.4.0 of the 'Skype Online Status' plugi
 
     Version: 2.6.4.0
     Status: Beta 
-    Latest stable: 2.6.3.2
+    Latest stable: 2.6.3.3
     Licence: GNU General Public License
 
 == What's New ==
@@ -153,7 +153,7 @@ Please report anything you find on [Skype Online Status Google Group](http://gro
 
 == Revision History ==
 
-- [2008-08-10] version 2.6.4.0beta: Internationalization (send in your translations please!)- [2008-08-10] version 2.6.3.2: Bugfix in widgets for WP < 2.5- [2008-08-08] version 2.6.3.1: Implement the use of cURL if available, bugfix in widget options page function- [2008-08-06] version 2.6.3.0: Multiple widgets!! + Thank-you box for donators at backend- [2008-06-23] version 2.6.2.1: bugfix in Custom template save to db (stripslashes)- [2008-06-21] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview- [2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
+- [2008-08-23] version 2.6.3.3: Bugfix in get_skype_status and valid characters in SkypeID- [2008-08-11] version 2.6.4.0beta: Internationalization (send in your translations please!)- [2008-08-10] version 2.6.3.2: Bugfix in widgets for WP < 2.5- [2008-08-08] version 2.6.3.1: Implement the use of cURL if available, bugfix in widget options page function- [2008-08-06] version 2.6.3.0: Multiple widgets!! + Thank-you box for donators at backend- [2008-06-23] version 2.6.2.1: bugfix in Custom template save to db (stripslashes)- [2008-06-21] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview- [2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
 - [2008-06-04] version 2.6.1.0: added simple widget, removed built-in update checker (redundant since WP2.5 auto-update), some bugfixes and code improvements, add your own download link
 - [2007-04-09] version 2.6.0.9: improved reg_exp for quicktag replacement (defeating wpautop's wrapping p), minor changes in available settings (newline for download link optional), fixed &-sign in fields causing failed w3c validation
 - [2007-02-18] version 2.5: made quicktag work for 2.1+ new TinyMCE button plugin routine
