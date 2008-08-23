@@ -3,7 +3,7 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e6%2e2%2e9&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce
 Requires at least: 2.0
-Tested up to: 2.6
+Tested up to: 2.6.1
 Stable tag: 2.6.3.3
 
 Add a single or multiple, highly customizable and accessible Skype buttons to your blog through widget, post quicktag and/or template tag.
