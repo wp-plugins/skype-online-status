@@ -157,7 +157,7 @@ function skype_parse_theme($config,$use_js = TRUE) {
 		elseif ($config['getskype_link'] == "custom_link" && $config['getskype_custom_link'] != "" )
 			$theme_output .= $config['getskype_custom_link'];
 		else
-			$theme_output .= " <a href=\"http://www.jdoqocy.com/click-3049686-10386659\" title=\"".$config['getskype_text']."\">".$config['getskype_text']."</a><img src=\"http://www.ftjcfx.com/image-3049686-10386659\" alt=\"\" style=\"width:0;height0;border:0\" />";
+			$theme_output .= " <a href=\"http://www.anrdoezrs.net/dc100ft1zt0GKHLQNPNGIHLJJNLI\" title=\"".$config['getskype_text']."\" onmouseover=\"window.status='http://www.skype.com';return true;\" onmouseout=\"window.status=' ';return true;\">".$config['getskype_text']."</a><img src=\"http://www.tqlkg.com/ah81xjnbhf0415A797021533752\" alt=\"\" style=\"width:0;height0;border:0\" />";
 		}
 
 	return str_replace(array("\r\n", "\n\r", "\n", "\r", "%0D%0A", "%0A%0D", "%0D", "%0A"), "", $theme_output);
@@ -174,9 +174,7 @@ function skype_get_template_file($filename) { // check template file existence a
 // template tag hook
 function get_skype_status($args = '') {
 	parse_str($args, $r);
-	if ($r['use_js'] == "0" || $r['use_js'] == "no" )
-		$r['use_js'] = FALSE;
-	echo skype_status($r['skype_id'], $r['user_name'], $r['button_theme'], $r['use_voicemail'], "", $r['use_js']);
+	echo skype_status($r['skype_id'], $r['user_name'], $r['button_theme'], $r['use_voicemail'], "", TRUE);
 }
 
 // main function

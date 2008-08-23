@@ -46,7 +46,7 @@ function skype_status_options() {
 
 	// update the options if form is saved
 	if (!empty($_POST['skype_status_update'])) { // pressed udate button
-		if (skype_status_valid_id($_POST['skype_id']) && skype_status_valid_theme($_POST['button_theme'])) {
+		//if (skype_status_valid_id($_POST['skype_id']) && skype_status_valid_theme($_POST['button_theme'])) {
 			if ($_POST['button_theme']!="custom_edit") // get template file content to load into db
 				$_POST['button_template'] = skype_get_template_file($_POST['button_theme']);
 			$option = array(
@@ -87,7 +87,7 @@ function skype_status_options() {
 			$option = array_merge ($skype_status_config, $option);
 			update_option("skype_status",$option);
 			echo "<div id=\"message\" class=\"updated fade\"><p><strong>Options updated!</strong></p></div>";
-		}
+		//}
 	} else if (!empty($_POST['skype_status_reset'])) { // pressed reset button
 			$option = skype_default_values();
 			update_option("skype_status",$option);

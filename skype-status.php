@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
-Version: 2.6.3.1
+Version: 2.6.3.3
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -30,8 +30,8 @@ Author URI: http://4visions.nl/
 */
 
 // Plugin version number and date
-define('SOSVERSION', '2.6.3.1');
-define('SOSVERSION_DATE', '2008-08-08');
+define('SOSVERSION', '2.6.3.3');
+define('SOSVERSION_DATE', '2008-08-23');
 define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/skype-online-status/');
 
 ////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
@@ -114,7 +114,7 @@ $skype_widget_default_values = array (
 );
 
 // Print all Skype settings from the database at the bottom of the settings page for debugging (normally, leave to FALSE)
-define('SOSDATADUMP', TRUE);
+define('SOSDATADUMP', FALSE);
 // and some flags for datadump purposes
 define('SOSREMOVEFLAG', FALSE);
 define('SOSBUTTONSNAPFLAG', FALSE);
@@ -129,13 +129,14 @@ else
 	define('SOSALLOWURLFOPEN', FALSE);
 
 $soswhatsnew_this = "
-	- Major upgrade: Multiple Widgets! <strong>Please, VERIFY YOUR <a href=\"widgets.php\">WIDGET SETTINGS</a>!!</strong><br />
-	- Small admin page improvements
-	- Use cURL (if available) for remote status reading";
+	- Small bugfixes
+";
 $soswhatsnew_recent = "
+	- Major upgrade: Multiple Widgets! <strong>Please, VERIFY YOUR <a href=\"widgets.php\">WIDGET SETTINGS</a>!!</strong><br />
+	- Small admin page improvements<br />
+	- Use cURL (if available) for remote status reading<br />
 	- Major admin page layout changes<br />
-	- Automatic language detection (English, French, German, Japanese, Chinese, Taiwanese, Portuguese, Brazilian, Italian, Spanish, Polish, Swedish) for online status messages<br />
-	- Widgetized";
+	- Automatic language detection (English, French, German, Japanese, Chinese, Taiwanese, Portuguese, Brazilian, Italian, Spanish, Polish, Swedish) for online status messages";
 
 ////////-----------------------------------------.oO//\\Oo.-----------------------------------------\\\\\\\\
 // Stop editing here!
@@ -199,8 +200,6 @@ function skype_status_install() {
 		$skype_status_config['installed'] = TRUE;
 		add_option('skype_status',$skype_status_config);
 	}
-	//if (!is_array($skype_widget_config))
-	//	add_option('skype_widget_options',array(-1 => $skype_widget_default_values));
 }
 
 ?>
