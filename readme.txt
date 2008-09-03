@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
 Requires at least: 2.0
 Tested up to: 2.6.1
-Stable tag: 2.6.3.3
+Stable tag: 2.6.4.0
 
 Add unlimited, highly customizable and accessible Skype buttons to your blog through widgets, post quicktag and/or template tag. Easy to configure and well documented so it can be made to fit any blog.
 
@@ -14,13 +14,21 @@ The plugin Skype Online Status allows you to add one or multiple, highly customi
 
 The Skype Status admin page and Skype Widget options are adequately annotated but there is also a *Quick Guide* section with lots of information on all the possible ways to get you blog Skyped. If you still cannot get it working the way you want to, find a Skype link to the developer on the *Notes &amp; Live Support* section.
 
-Button themes are mostly based on the themes you can find on [Skype's button wizard page](http://www.skype.com/share/buttons/wizard.html "Skype buttons") but much more feature rich, like showing your online status in the alt text of the image, more accessible (!) and much more customizable, like setting your own Status texts in your blogs language. Even a button to invoke normal phone calls or multichats or conference calls is possible!
+Button themes are mostly based on the themes you can find on [Skype's button wizard page](http://www.skype.com/share/buttons/wizard.html "Skype buttons") but more feature rich, like showing your online status in the alt text of the image, more accessible (!) and much more customizable, like setting your own Status texts in your blogs language. Even a button to invoke normal phone calls or multichats or conference calls is possible!
 
-Older versions have been developed for WordPress 2.0+, 2.1+ and 2.3+ but from version 2.6.1.0 upward, the main development focus is on WordPress 2.5+.
+= Which vresion? =
+
+Older versions have been developed for WordPress 2.0+, 2.1+ and 2.3+ but from version 2.6.1.0 upward, the main development focus is on WordPress 2.6+. This plugin also has been tested on WPMU 2.6.
+
+= Translations =
+
+Since version 2.6.4.0, Skype Online Status is ready for internationalization. Anyone who wants to contribute can do so by making a transation. Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") (also included in the latest package) for more info.
+
+Translations and their Authors will be mentioned here.
 
 == Installation ==
 
-Note: When upgrading from version 2.5 or previous: please deactivate plugin and remove the old directories and files before uploading! Or just use the auto-update feature on your Pugins page ;)
+Note: When upgrading from version 2.5.x or previous: please deactivate plugin and remove the old directories and files before uploading! Or just use the auto-update feature on your Pugins page ;)
 
 Steps:
 
@@ -83,7 +91,7 @@ If your online status is still incorrect, type in your webbrowser http://mystatu
 
 *Q:* I would like to contribute. Is that possible?
 
-*A:* Ofcource! What did you have in mind? Monetary funding is always appreciated but if you can help me out in development, that's cool too :) 
+*A:* Ofcource! What did you have in mind? Monetary funding is always appreciated but if you can help me out in development, that's cool too :) Right now, translation (.mo) files are MORE then welcome! Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") (also included in the latest package) for more info.
 
 Any small donation via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e6%2e2%2e9&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8 "PayPal Donate") to keep me developing is _VERY_ welcome. Thanks!
 
@@ -105,7 +113,7 @@ This readme comes packed with version 2.6.4.0 of the 'Skype Online Status' plugi
 
     Version: 2.6.4.0
     Status: Beta 
-    Latest stable: 2.6.3.3
+    Latest stable: 2.6.4.0
     Licence: GNU General Public License
 
 == What's New ==
@@ -114,6 +122,7 @@ Since version 1.1 there have been some major changes to the layout of the 'Optio
 
 And some new features:
 
+- internationalization
 - widgetized!
 - lots of new templates
 - some new tags for the template files,
@@ -122,7 +131,6 @@ And some new features:
 - editable template
 - language switch for Skype default status texts
 - download skype now link (replaceable with your own referral link since version 2.6)
-- automatic plugin upgrade check showing on the options page!
 
 Since version 2.6.3.0 there are unlimited customizable Skype Status Widgets available :)
 This version 2.6.4.0 is geared towards internationalization... Anyone who wants to contribute, please consider doing a translation.
@@ -137,6 +145,7 @@ This program is free software; you can redistribute it and/or modify it under th
 
 For version 3 and beyond :)
 
+- Translations! Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") (also included in the latest package) for more info.
 - Skypecasts widgets !
 - Skype-like button theme wizard...
 - Upload your own button/template file
@@ -153,7 +162,7 @@ Please report anything you find on [Skype Online Status Google Group](http://gro
 
 == Revision History ==
 
-- [2008-08-23] version 2.6.3.3: Bugfix in get_skype_status and valid characters in SkypeID- [2008-08-11] version 2.6.4.0beta: Internationalization (send in your translations please!)- [2008-08-10] version 2.6.3.2: Bugfix in widgets for WP < 2.5- [2008-08-08] version 2.6.3.1: Implement the use of cURL if available, bugfix in widget options page function- [2008-08-06] version 2.6.3.0: Multiple widgets!! + Thank-you box for donators at backend- [2008-06-23] version 2.6.2.1: bugfix in Custom template save to db (stripslashes)- [2008-06-21] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview- [2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
+- [2008-09-03] version 2.6.4.0: Internationalization. Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") for more info.- [2008-08-23] version 2.6.3.3: Bugfix in get_skype_status and valid characters in SkypeID- [2008-08-11] version 2.6.4.0beta: Internationalization (send in your translations please!)- [2008-08-10] version 2.6.3.2: Bugfix in widgets for WP < 2.5- [2008-08-08] version 2.6.3.1: Implement the use of cURL if available, bugfix in widget options page function- [2008-08-06] version 2.6.3.0: Multiple widgets!! + Thank-you box for donators at backend- [2008-06-23] version 2.6.2.1: bugfix in Custom template save to db (stripslashes)- [2008-06-21] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview- [2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
 - [2008-06-04] version 2.6.1.0: added simple widget, removed built-in update checker (redundant since WP2.5 auto-update), some bugfixes and code improvements, add your own download link
 - [2007-04-09] version 2.6.0.9: improved reg_exp for quicktag replacement (defeating wpautop's wrapping p), minor changes in available settings (newline for download link optional), fixed &-sign in fields causing failed w3c validation
 - [2007-02-18] version 2.5: made quicktag work for 2.1+ new TinyMCE button plugin routine
