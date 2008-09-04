@@ -141,7 +141,7 @@ else
 $soswhatsnew_this = "
 	- Internationalization! If your language is not available, and you would like to contribute to this plugin, your translation (.mo file) will be MUCH appreciated :)";
 $soswhatsnew_recent = "
-	- Use cURL (if available) for remote status reading
+	- Use cURL (if available) for remote status reading<br />
 	- Multiple Widgets (if upgrading from version 2.6.2.9, <strong>please VERIFY YOUR <a href=\"widgets.php\">WIDGET SETTINGS</a>!!</strong>)<br />
 	- Major admin page layout changes<br />
 	- Blog language detection for online status messages in English, French, German, Japanese, Chinese, Taiwanese, Portuguese, Brazilian, Italian, Spanish, Polish, Swedish";
