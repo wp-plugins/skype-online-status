@@ -1,4 +1,14 @@
+/**
+ * $Id: mce3_editor_plugin.js 201 2008-02-12 15:56:56Z ravanh $
+ *
+ * @author Moxiecode
+ * @copyright Copyright © 2004-2008, Moxiecode Systems AB, All rights reserved.
+ */
+
 (function() {
+	// Load plugin specific language pack
+	tinymce.PluginManager.requireLangPack('sosquicktag');
+
 	tinymce.create('tinymce.plugins.SOSQuicktagPlugin', {
 		init : function(ed, url) {
 			var pb = '<img src="' + url + '/../spacer.gif" class="mceSOSQuicktag mceItemNoResize" />', cls = 'mceSOSQuicktag', sep = ed.getParam('separator', '<!--skype status-->'), pbRE;
@@ -11,7 +21,7 @@
 			});
 
 			// Register buttons
-			ed.addButton('sosquicktag', {title : 'Insert Skype Online Status Quicktag', image : url + '/../skype_button.gif', cmd : cls});
+			ed.addButton('sosquicktag', {title : 'sosquicktag.title', image : url + '/../skype_button.gif', cmd : cls});
 
 			ed.onInit.add(function() {
 				ed.dom.loadCSS(url + "/sosquicktag.css");
