@@ -16,7 +16,7 @@ The Skype Status admin page and Skype Widget options are adequately annotated bu
 
 Button themes are mostly based on the themes you can find on [Skype's button wizard page](http://www.skype.com/share/buttons/wizard.html "Skype buttons") but more feature rich, like showing your online status in the alt text of the image, more accessible (!) and much more customizable, like setting your own Status texts in your blogs language. Even a button to invoke normal phone calls or multichats or conference calls is possible!
 
-= Which vresion? =
+= Which version? =
 
 Older versions have been developed for WordPress 2.0+, 2.1+ and 2.3+ but from version 2.6.1.0 upward, the main development focus is on WordPress 2.6+. This plugin also has been tested on WPMU 2.6.
 
@@ -36,23 +36,23 @@ Steps:
 
 2. Upload and save (or overwrite) files and folders to the plugins folder directory. You should have the following file structure below /wp-content/plugins/
 
-     skype-online-status/js/langs/*.js
-     skype-online-status/js/editor_plugin.js
-     skype-online-status/js/mce3_editor_plugin.js
-     skype-online-status/js/sosquicktag.css
-     skype-online-status/js/skypeCheck.js.php
-     skype-online-status/oops/*.html
-     skype-online-status/oops/*.css
-     skype-online-status/templates/*.html
-     skype-online-status/buttonsnap.php (only needed for WP 2.0 and previous)
-     skype-online-status/editor.php
-     skype-online-status/skype-admin.php
-     skype-online-status/skype-functions.php
-     skype-online-status/skype-status.php
-     skype-online-status/skype-widget.php
-     skype-online-status/skype_button.gif
-     skype-online-status/skype_marker.gif
-     skype-online-status/spacer.gif
+    skype-online-status/js/langs/*.js
+    skype-online-status/js/editor_plugin.js
+    skype-online-status/js/mce3_editor_plugin.js
+    skype-online-status/js/sosquicktag.css
+    skype-online-status/js/skypeCheck.js.php
+    skype-online-status/oops/*.html
+    skype-online-status/oops/*.css
+    skype-online-status/templates/*.html
+    skype-online-status/buttonsnap.php (only needed for WP 2.0 and previous)
+    skype-online-status/editor.php
+    skype-online-status/skype-admin.php
+    skype-online-status/skype-functions.php
+    skype-online-status/skype-status.php
+    skype-online-status/skype-widget.php
+    skype-online-status/skype_button.gif
+    skype-online-status/skype_marker.gif
+    skype-online-status/spacer.gif
      
 
 3. Activate plugin on the Plug-ins page

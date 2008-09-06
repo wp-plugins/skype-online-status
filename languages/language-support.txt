@@ -1,6 +1,5 @@
 
-Skype Online Status supports WP localization
---------------------------------------------
+== Skype Online Status supports WP localization ==
 
 (1) IF your WP_LANG variable is set correctly (wp-config.php) and IF there is a translation file (.mo) in your 
     wp-content/plugins/skype-online-status/language folder, the translation should be picked up immediately.
@@ -11,8 +10,7 @@ Skype Online Status supports WP localization
     and send it to ravanhagen@gmail.com for inclusion on http://extend.wordpress.org/plugins/skype-online-status
 
 
-Note
-====
+= Note =
 
 If you have suggestions or corrections, please get in touch with the actual author
 of the translation file (see list below).
@@ -21,8 +19,7 @@ If you would like to contribute a new language file, send me an email:
 ravanhagen@gmail.com
 
 
-Authors
-=======
+= Authors =
 
 Skype Online Status currently supports the following languages:
 
@@ -31,8 +28,7 @@ Skype Online Status currently supports the following languages:
 *) Dutch               Author: R.A. van Hagen           ravanhagen@gmail.com      (incomplete)
 
 
-Rough Translation Guide
-=======================
+== Rough Translation Guide ==
 
 This step-by-step takes French (France) as an example language/locale: fr_FR
 Please adapt for your language the language and country code.
