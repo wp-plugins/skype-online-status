@@ -194,6 +194,7 @@ function SwitchInfoBlock(id){
 			<input type="submit" class="submitdelete delete" onclick='return confirm("<?php _e('WARNING !', 'skype-online-status'); ?>  \r\n \r\n<?php _e('All your Skype Online Status AND widget settings will be cleared from the database so the plugin can be COMPLETELY removed. All Skype buttons on your blog will be deactivated.', 'skype-online-status'); ?> \r\n \r\n<?php _e('Are you sure?', 'skype-online-status'); ?>");' name="skype_status_remove" value="<?php _e('Remove'); ?> &raquo;" />
 
 		</p>
+
 		<?php if ( $wp_db_version >= 6846 ) 
 			echo "
 		<div id=\"thanks\" class=\"side-info\"><h5>"; 
@@ -215,6 +216,8 @@ function SwitchInfoBlock(id){
 		<a href="http://www.jdoqocy.com/rn68biroiq596AFCEC5769EF78A" target="_top" onmouseover="window.status='http://www.skype.com';return true;" onmouseout="window.status=' ';return true;">
 <img src="http://www.awltovhc.com/85116bosgmk596AFCEC5769EF78A" alt="" border="0"/></a>
 		</div>
+
+		<div class="inside"><p>Rate this plugin at <a href="http://wordpress.org/extend/plugins/skype-online-status/">WordPress</a> :)</p></div>
 
 		<?php if ( $wp_db_version >= 6846 )
 			echo "<div id=\"resources\" class=\"side-info\"><h5>"; 
