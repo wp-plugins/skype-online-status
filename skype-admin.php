@@ -238,6 +238,8 @@ function SwitchInfoBlock(id){
 			</ul>
 		</div>
 
+		<div class="inside"><p>Rate this plugin at <a href="http://wordpress.org/extend/plugins/skype-online-status/">WordPress</a> :)</p></div>
+
 		<?php if ( $wp_db_version >= 6846 )
 			echo "<div id=\"discuss\" class=\"side-info\"><h5>"; 
 		else
