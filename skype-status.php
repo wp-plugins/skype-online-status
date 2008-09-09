@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
-Version: 2.6.4.0
+Version: 2.6.4.1
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -32,8 +32,8 @@ Author URI: http://4visions.nl/
 $sosplugindir = basename(dirname(__FILE__));
 
 // Plugin version number and date
-define('SOSVERSION', '2.6.4.0');
-define('SOSVERSION_DATE', '2008-08-30');
+define('SOSVERSION', '2.6.4.1');
+define('SOSVERSION_DATE', '2008-09-09');
 define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/'.$sosplugindir.'/');
 
 // Internationalization
@@ -139,12 +139,13 @@ else
 	define('SOSUSECURL', FALSE);
 
 $soswhatsnew_this = "
-	- Internationalization! If your language is not available, and you would like to contribute to this plugin, your translation (.mo file) will be MUCH appreciated :)";
+	+ Italian language and small language fixes";
 $soswhatsnew_recent = "
-	- Use cURL (if available) for remote status reading<br />
-	- Multiple Widgets (if upgrading from version 2.6.2.9, <strong>please VERIFY YOUR <a href=\"widgets.php\">WIDGET SETTINGS</a>!!</strong>)<br />
-	- Major admin page layout changes<br />
-	- Blog language detection for online status messages in English, French, German, Japanese, Chinese, Taiwanese, Portuguese, Brazilian, Italian, Spanish, Polish, Swedish";
+	2.6.4.0: Internationalization! If your language is not available, and you would like to contribute to this plugin, your translation (.mo file) will be MUCH appreciated :)<br />
+	2.6.3.1: Use cURL (if available) for remote status reading<br />
+	2.6.3.0: Multiple Widgets (if upgrading from version 2.6.2.9, <strong>please VERIFY YOUR <a href=\"widgets.php\">WIDGET SETTINGS</a>!!</strong>)<br />
+	+ Major admin page layout changes<br />
+	2.6.1.2: Blog language detection for online status messages in English, French, German, Japanese, Chinese, Taiwanese, Portuguese, Brazilian, Italian, Spanish, Polish, Swedish";
 
 
 ////////-----------------------------------------.oO//\\Oo.-----------------------------------------\\\\\\\\
