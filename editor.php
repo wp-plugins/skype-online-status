@@ -1,4 +1,5 @@
 <?php
+
 // Add button for WordPress 2.5+ using built in hooks, thanks to Subscribe2
 function sos_mce3_plugin($arr) {
 	$path = get_option('siteurl') . '/wp-content/plugins/skype-online-status/js/mce3_editor_plugin.js';
