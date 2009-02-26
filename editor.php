@@ -40,7 +40,7 @@ function skype_button_init() {
 	if (!current_user_can('edit_posts') && !current_user_can('edit_pages')) return;
 	
 	// check for WP version (first 2.5+ then 2.1 then older) and activated RTE
-	if ( $wp_db_version >= 6846 && 'true' == get_user_option('rich_editing') ) {
+	if ( $wp_db_version >= 6846 && 'true' && 'true' == get_user_option('rich_editing') ) {
 			add_filter('mce_external_plugins', 'sos_mce3_plugin');
 			add_filter('mce_buttons', 'sos_mce3_button');
 	} elseif ( 3664 <= $wp_db_version && 'true' == get_user_option('rich_editing') ) {
