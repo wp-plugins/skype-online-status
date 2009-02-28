@@ -2,9 +2,9 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e6%2e2%2e9&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
-Requires at least: 2.0
-Tested up to: 2.6.1
-Stable tag: 2.6.4.1
+Requires at least: 2.3
+Tested up to: 2.7.1
+Stable tag: 2.6.9.0
 
 Unlimited, highly customizable and accessible (!) Skype buttons through widgets, post quicktags and/or template tags.
 
@@ -18,7 +18,9 @@ Button themes are mostly based on the themes you can find on [Skype's button wiz
 
 = Which version? =
 
-Older versions have been developed for WordPress 2.0+, 2.1+ and 2.3+ but from version 2.6.1.0 upward, the main development focus is on WordPress 2.6+. This plugin also has been tested on WPMU 2.6.
+Older versions have been developed for WordPress 2.0+, 2.1+ and 2.3+ but with versions 2.6.x the main development focus was on WordPress 2.6. From version 2.6.9, WordPress 2.7+ is supported but support for below WordPress 2.1 has been dropped. 
+
+This plugin also has been tested on WPMU.
 
 = Translations =
 
@@ -47,7 +49,7 @@ Steps:
     - skype-online-status/oops/\*.html
     - skype-online-status/oops/\*.css
     - skype-online-status/templates/\*.html
-    - skype-online-status/buttonsnap.php (only needed for WP 2.0 and previous)
+    - skype-online-status/buttonsnap.php (only for WP 2.0 and previous)
     - skype-online-status/editor.php
     - skype-online-status/skype-admin.php
     - skype-online-status/skype-functions.php

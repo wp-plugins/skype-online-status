@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
-Version: 2.6.4.1
+Version: 2.6.9.0
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -32,8 +32,8 @@ Author URI: http://4visions.nl/
 $sosplugindir = basename(dirname(__FILE__));
 
 // Plugin version number and date
-define('SOSVERSION', '2.6.4.1');
-define('SOSVERSION_DATE', '2008-09-09');
+define('SOSVERSION', '2.6.9.0');
+define('SOSVERSION_DATE', '2009-02-26');
 define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/'.$sosplugindir.'/');
 
 // Internationalization
@@ -139,8 +139,9 @@ else
 	define('SOSUSECURL', FALSE);
 
 $soswhatsnew_this = "
-	+ Italian language and small language fixes";
+	Removal of good old Buttonsnap Library to avoid showstopper error in WP 2.7 + adaptation of settings page to fit the new WP 2.7 backend. Dropped support for WP versions below 2.1";
 $soswhatsnew_recent = "
+	2.6.4.1: Added Italian language and small language fixes<br />
 	2.6.4.0: Internationalization! If your language is not available, and you would like to contribute to this plugin, your translation (.mo file) will be MUCH appreciated :)<br />
 	2.6.3.1: Use cURL (if available) for remote status reading<br />
 	2.6.3.0: Multiple Widgets (if upgrading from version 2.6.2.9, <strong>please VERIFY YOUR <a href=\"widgets.php\">WIDGET SETTINGS</a>!!</strong>)<br />
@@ -157,8 +158,11 @@ if (!is_array($skype_status_config))
 	$skype_status_config = $skype_default_values;
 
 // load other plugin files
-require_once(dirname(__FILE__) . '/skype-admin.php');
 require_once(dirname(__FILE__) . '/skype-functions.php');
+if ( $wp_db_version >= 9872 ) 
+	require_once(dirname(__FILE__) . '/skype-admin2.7.php');
+else
+	require_once(dirname(__FILE__) . '/skype-admin.php');
 require_once(dirname(__FILE__) . '/skype-widget.php');
 
 // activate wisywig button
