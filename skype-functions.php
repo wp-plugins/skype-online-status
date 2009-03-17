@@ -84,7 +84,7 @@ function skype_status_check($skypeid, $format=".txt") {
 	}
 
         if ($contents) return $contents;
-            else return FALSE;
+            else return 'error';
 }
 
 // helper functions to make sure that only valid data gets into database
