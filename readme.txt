@@ -2,9 +2,9 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e6%2e2%2e9&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
-Requires at least: 2.3
+Requires at least: 2.1
 Tested up to: 2.7.1
-Stable tag: 2.6.9.0
+Stable tag: 2.6.9.1
 
 Unlimited, highly customizable and accessible (!) Skype buttons through widgets, post quicktags and/or template tags.
 
@@ -113,11 +113,11 @@ Post your questions, bugs and feature requests on [Skype Online Status Google Gr
 
 When reporting bugs, please describe as carefully as possible and provide information like the version number of the plugin, WordPress and - if relevant - server security settings, PHP and MySQL version.
 
-This readme comes packed with version 2.6.4.0 of the 'Skype Online Status' plugin for WordPress 2+.
+This readme comes packed with version 2.6.9.1 of the 'Skype Online Status' plugin for WordPress 2+.
 
-    Version: 2.6.4.0
+    Version: 2.6.9.1
     Status: Beta 
-    Latest stable: 2.6.4.0
+    Latest stable: 2.6.9.1
     Licence: GNU General Public License
 
 == What's New ==
@@ -166,7 +166,8 @@ Please report anything you find on [Skype Online Status Google Group](http://gro
 
 == Revision History ==
 
-- [2008-09-09] version 2.6.4.1: Italian translation + small transl. bugfixes
+- [2008-09-09] version 2.6.9.1: Bugfix: allow the use of cURL library (if available) while allow_url_fopen is off
+- [2008-02-26] version 2.6.9.0: Removal of good old Buttonsnap Library to avoid showstopper error in WP 2.7 + adaptation of settings page to fit the new WP 2.7 backend. Dropped support for WP versions below 2.1
 - [2008-09-03] version 2.6.4.0: Internationalization. Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") for more info.
 - [2008-08-23] version 2.6.3.3: Bugfix in get\_skype\_status and valid characters in SkypeID
 - [2008-08-11] version 2.6.4.0beta: Internationalization (send in your translations please!)

@@ -48,7 +48,7 @@ function skype_default_values() {
 	unset($value);
 
 	// set language to blogs WPLANG (or leave unchanged)
-	if (SOSALLOWURLFOPEN) {
+	if (SOSALLOWURLFOPEN || SOSUSECURL || SOSUSEFSOCK) {
 		if (WPLANG=='') {
 			$skype_default_values['use_status'] = "en";
 		} else {
@@ -75,11 +75,16 @@ function skype_default_values() {
 // online status checker function
 // needs allow_url_fopen to be enabled on your server (if not, see default settings)
 function skype_status_check($skypeid, $format=".txt") {
-	if (SOSALLOWURLFOPEN && $skypeid) { 
+define('SOSCURLFLAG', FALSE);
+define('SOSFSOCKFLAG', FALSE);
+	if ($skypeid) { 
 		if (SOSUSECURL) {
 			$tmp = curl_get_file_contents('http://mystatus.skype.com/'.$skypeid.$format);
 			define('SOSCURLFLAG', TRUE);
-		} else { $tmp = file_get_contents('http://mystatus.skype.com/'.$skypeid.$format); }
+		} elseif (SOSUSEFSOCK) {
+			$tmp = fsock_get_file_contents('mystatus.skype.com',$skypeid.$format);
+			define('SOSFSOCKFLAG', TRUE);
+		} elseif (SOSALLOWURLFOPEN) { $tmp = file_get_contents('http://mystatus.skype.com/'.$skypeid.$format); }
 		if ($tmp && $tmp!="") $contents = str_replace("\n", "", $tmp);
 	}
 
@@ -240,16 +245,35 @@ function skype_status_callback($content) {
 //get file content using curl
 if (!function_exists('curl_get_file_contents')) {
 function curl_get_file_contents($URL) {
-        $c = curl_init();
-        curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($c, CURLOPT_URL, $URL);
-        $contents = curl_exec($c);
-        curl_close($c);
+	$c = curl_init();
+	curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($c, CURLOPT_URL, $URL);
+	curl_setopt ( $c, CURLOPT_TIMEOUT, SOSTIMEOUT);
+	$contents = curl_exec($c);
+	curl_close($c);
 
-        if ($contents) return $contents;
-            else return FALSE;
+	if ($contents) return $contents;
+	else return FALSE;
     }
 }
+
+//get file content using fsock
+if (!function_exists('fsock_get_file_contents')) {
+function fsock_get_file_contents($host,$URL) {
+	$fp = fsockopen($host, 80, $errno, $errstr, SOSTIMEOUT);
+	if ($fp) {
+	    fputs($fp, "GET /".$URL." HTTP/1.1\r\nHost: ".$host."\r\n\r\n");
+	    while (!feof($fp)) {
+		$contents = fgets($fp);
+	    }
+	    fclose($fp);
+	} else { echo "$errstr ($errno)<br />\n"; }
+	if ($contents) return $contents;
+	else return FALSE;
+    }
+}
+
+
 
 //PHP 4.2.x Compatibility function
 if (!function_exists('file_get_contents')) {
