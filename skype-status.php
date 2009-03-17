@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
-Version: 2.6.9.0
+Version: 2.6.9.1
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -32,8 +32,8 @@ Author URI: http://4visions.nl/
 $sosplugindir = basename(dirname(__FILE__));
 
 // Plugin version number and date
-define('SOSVERSION', '2.6.9.0');
-define('SOSVERSION_DATE', '2009-02-26');
+define('SOSVERSION', '2.6.9.1');
+define('SOSVERSION_DATE', '2009-03-17');
 define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/'.$sosplugindir.'/');
 
 // Internationalization
@@ -117,10 +117,9 @@ $skype_avail_functions = array (
 
 // Print all Skype settings from the database at the bottom of the settings page for debugging (normally, leave to FALSE)
 define('SOSDATADUMP', FALSE);
-// and some flags for datadump purposes
-define('SOSREMOVEFLAG', FALSE);
-define('SOSBUTTONSNAPFLAG', FALSE);
-define('SOSCURLFLAG', FALSE);
+
+// Set global timeout value for remote online status reading
+define('SOSTIMEOUT', '3');
 
 // Checks wether fopen_wrappers are enabled on your server so the remote Skype status file can be read
 // If you want to force this setting in spite of server settings, comment-out (with //) all the lines in the if..else statement
@@ -138,14 +137,21 @@ if (function_exists('curl_exec'))
 else 
 	define('SOSUSECURL', FALSE);
 
+// Checks wether fsockopen is available on your server so the remote Skype status file can be read using fsockopen.
+// If you want to force this setting in spite of server settings, comment-out (with //) all the lines in the if..else statement
+// except the wanted define-value line.
+if (function_exists('fsockopen')) 
+	define('SOSUSEFSOCK', TRUE);
+else 
+	define('SOSUSEFSOCK', FALSE);
+
+
 $soswhatsnew_this = "
-	Removal of good old Buttonsnap Library to avoid showstopper error in WP 2.7 + adaptation of settings page to fit the new WP 2.7 backend. Dropped support for WP versions below 2.1";
+	Bugfix: Use cURL (if available) for remote status reading even when allow_url_fopen is OFF";
 $soswhatsnew_recent = "
-	2.6.4.1: Added Italian language and small language fixes<br />
+	2.6.9.0: Removal of good old Buttonsnap Library to avoid showstopper error in WP 2.7 + adaptation of settings page to fit the new WP 2.7 backend. Dropped support for WP versions below 2.1
 	2.6.4.0: Internationalization! If your language is not available, and you would like to contribute to this plugin, your translation (.mo file) will be MUCH appreciated :)<br />
-	2.6.3.1: Use cURL (if available) for remote status reading<br />
-	2.6.3.0: Multiple Widgets (if upgrading from version 2.6.2.9, <strong>please VERIFY YOUR <a href=\"widgets.php\">WIDGET SETTINGS</a>!!</strong>)<br />
-	+ Major admin page layout changes<br />
+	2.6.3.0: Multiple Widgets<br />
 	2.6.1.2: Blog language detection for online status messages in English, French, German, Japanese, Chinese, Taiwanese, Portuguese, Brazilian, Italian, Spanish, Polish, Swedish";
 
 
