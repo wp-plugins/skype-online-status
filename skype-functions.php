@@ -75,8 +75,8 @@ function skype_default_values() {
 // online status checker function
 // needs allow_url_fopen to be enabled on your server (if not, see default settings)
 function skype_status_check($skypeid, $format=".txt") {
-define('SOSCURLFLAG', FALSE);
-define('SOSFSOCKFLAG', FALSE);
+	define('SOSCURLFLAG', FALSE);
+	define('SOSFSOCKFLAG', FALSE);
 	if ($skypeid) { 
 		if (SOSUSECURL) {
 			$tmp = curl_get_file_contents('http://mystatus.skype.com/'.$skypeid.$format);
@@ -89,7 +89,7 @@ define('SOSFSOCKFLAG', FALSE);
 	}
 
         if ($contents) return $contents;
-            else return FALSE;
+        else return 'error';
 }
 
 // helper functions to make sure that only valid data gets into database
