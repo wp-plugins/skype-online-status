@@ -149,7 +149,7 @@ else
 $soswhatsnew_this = "
 	Bugfix: Use cURL (if available) for remote status reading even when allow_url_fopen is OFF";
 $soswhatsnew_recent = "
-	2.6.9.0: Removal of good old Buttonsnap Library to avoid showstopper error in WP 2.7 + adaptation of settings page to fit the new WP 2.7 backend. Dropped support for WP versions below 2.1
+	2.6.9.0: Removal of good old Buttonsnap Library to avoid showstopper error in WP 2.7 + adaptation of settings page to fit the new WP 2.7 backend. Dropped support for WP versions below 2.1<br />
 	2.6.4.0: Internationalization! If your language is not available, and you would like to contribute to this plugin, your translation (.mo file) will be MUCH appreciated :)<br />
 	2.6.3.0: Multiple Widgets<br />
 	2.6.1.2: Blog language detection for online status messages in English, French, German, Japanese, Chinese, Taiwanese, Portuguese, Brazilian, Italian, Spanish, Polish, Swedish";
