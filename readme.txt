@@ -26,44 +26,29 @@ This plugin also has been tested on WPMU.
 
 Since version 2.6.4.0, Skype Online Status is ready for internationalization. Anyone who wants to contribute can do so by making a transation. Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") (also included in the latest package) for more info.
 
-- **Italian** \* Author: [Gianni Diurno](http://wordpress.org/extend/plugins/profile/gidibao) ([portfolio](http://gidibao.net/index.php/portfolio/ "Gianni Diurno - Portfolio"))
-- **Dutch** \* Author: [R.A. van Hagen](http://wordpress.org/extend/plugins/profile/RavanH) (unfinished)
+- **Italian** * Author: [Gianni Diurno](http://wordpress.org/extend/plugins/profile/gidibao) ([portfolio](http://gidibao.net/index.php/portfolio/ "Gianni Diurno - Portfolio"))
+- **Danish** * Author: [Adamsen](http://wordpress.blogos.dk) ([download](http://wordpress.blogos.dk/2009/03/18/skype-online-status/))
+- **Dutch** * Author: [RavanH](http://4visions.nl) (unfinished)
 
 Translations and their Authors will be mentioned here.
 
 == Installation ==
 
-Note: When upgrading from version 2.5.x or previous: please deactivate plugin and remove the old directories and files before uploading! Or just use the auto-update feature on your Pugins page ;)
+Note: When upgrading from version 2.5.x or previous: please deactivate plugin and remove the old directories and files before uploading! 
+-OR- 
+Just use that slick installation and auto update feature on your Pugins page and forget about the following steps ;)
 
 Steps:
 
 1. Download archive and unpack.
 
-2. Upload and save (or overwrite) files and folders to the plugins folder directory. You should have the following file structure below /wp-content/plugins/
-
-    - skype-online-status/js/langs/\*.js
-    - skype-online-status/js/editor_plugin.js
-    - skype-online-status/js/mce3\_editor\_plugin.js
-    - skype-online-status/js/sosquicktag.css
-    - skype-online-status/js/skypeCheck.js.php
-    - skype-online-status/oops/\*.html
-    - skype-online-status/oops/\*.css
-    - skype-online-status/templates/\*.html
-    - skype-online-status/buttonsnap.php (only for WP 2.0 and previous)
-    - skype-online-status/editor.php
-    - skype-online-status/skype-admin.php
-    - skype-online-status/skype-functions.php
-    - skype-online-status/skype-status.php
-    - skype-online-status/skype-widget.php
-    - skype-online-status/skype\_button.gif
-    - skype-online-status/skype\_marker.gif
-    - skype-online-status/spacer.gif
+2. Upload (and overwrite) the /skype-online-status/ folder and its content to the /plugins/ folder. 
 
 3. Activate plugin on the Plug-ins page
 
 4. Configure (or update) your SkypeID and settings on the Options > Skype Status page
 
-5. Activate the widget or put <?php if (function\_exists(get\_skype\_status)) { get\_skype\_status(''); } ?> in your sidebar.php (or any other template file) and use the <!--skype status--> quicktag in your posts to display the Skype button on your blog pages. 
+5. Activate the widget or put `<?php if (function_exists(get_skype_status)) { get_skype_status(''); } ?>` in your sidebar.php (or any other template file) and use the <!--skype status--> quicktag in your posts to display the Skype button on your blog pages. 
 
 Read more on usage in the Quick Guide section of the Options > Skype Status page, available after installation.
 
@@ -166,10 +151,10 @@ Please report anything you find on [Skype Online Status Google Group](http://gro
 
 == Revision History ==
 
-- [2008-09-09] version 2.6.9.1: Bugfix: allow the use of cURL library (if available) while allow_url_fopen is off
+- [2008-09-09] version 2.6.9.1: Bugfix: allow the use of cURL library (if available) while `allow_url_fopen` is off
 - [2008-02-26] version 2.6.9.0: Removal of good old Buttonsnap Library to avoid showstopper error in WP 2.7 + adaptation of settings page to fit the new WP 2.7 backend. Dropped support for WP versions below 2.1
 - [2008-09-03] version 2.6.4.0: Internationalization. Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") for more info.
-- [2008-08-23] version 2.6.3.3: Bugfix in get\_skype\_status and valid characters in SkypeID
+- [2008-08-23] version 2.6.3.3: Bugfix in `get_skype_status` and valid characters in SkypeID
 - [2008-08-11] version 2.6.4.0beta: Internationalization (send in your translations please!)
 - [2008-08-10] version 2.6.3.2: Bugfix in widgets for WP < 2.5
 - [2008-08-08] version 2.6.3.1: Implement the use of cURL if available, bugfix in widget options page function
@@ -178,10 +163,10 @@ Please report anything you find on [Skype Online Status Google Group](http://gro
 - [2008-06-21] version 2.6.2.0: heaps more themes + added new {function} tag to My Status templates + improved widget with preview
 - [2008-06-16] version 2.6.1.2: automatic blog language detection for status text, some small bugfixes + complete removal button
 - [2008-06-04] version 2.6.1.0: added simple widget, removed built-in update checker (redundant since WP2.5 auto-update), some bugfixes and code improvements, add your own download link
-- [2007-04-09] version 2.6.0.9: improved reg\_exp for quicktag replacement (defeating wpautop's wrapping p), minor changes in available settings (newline for download link optional), fixed &-sign in fields causing failed w3c validation
+- [2007-04-09] version 2.6.0.9: improved `reg_exp` for quicktag replacement (defeating wpautop's wrapping p), minor changes in available settings (newline for download link optional), fixed &-sign in fields causing failed w3c validation
 - [2007-02-18] version 2.5: made quicktag work for 2.1+ new TinyMCE button plugin routine
 - [2006-11-21] version 2.4.1: added onkeydown action on admin textarea
-- [2006-11-03] version 2.4: added backwards compatibility with PHP versions previous to 4.3 ( fallback to file() instead of file\_get\_contents() ) and a check for allow\_url\_fopen before remote file reading (used in status check and upgrade check) with dynamic options change
+- [2006-11-03] version 2.4: added backwards compatibility with PHP versions previous to 4.3 ( fallback to `file()` instead of `file_get_contents()` ) and a check for allow_url_fopen before remote file reading (used in status check and upgrade check) with dynamic options change
 - [2006-09-25] version 2.3: added Download Skype now! link (with option to change text or disable), more template files and an upgrade function
 - [2006-09-20] version 2.2.2: moved buttonsnap.php, changes to Quick Guide, template files and Live Support and bugfixes: 
  1. quicktag button not showing; 
@@ -200,13 +185,13 @@ Please report anything you find on [Skype Online Status Google Group](http://gro
 - [2006-06-21] version 1.3: added new template tags {username} {sep1} {sep2}
 - [2006-06-20] version 1.2: minor bugfixes
  1. inconsistent options page form-labels; 
- 2. skype\_status\_check not defaulting to status\_error\_txt when mystatus.skype.com is off-line 
+ 2. `skype_status_check` not defaulting to `status_error_txt` when mystatus.skype.com is off-line 
 - [2006-05-02] version 1.1: added new text template file
 - [2006-04-26] version 1.0: wrote instructions (quick guide)
 - [2006-04-20] version 0.9: added skype user name
-- [2006-04-12] version 0.8: added customizability for get\_skype\_status('options')
+- [2006-04-12] version 0.8: added customizability for `get_skype_status('options')`
 - [2006-04-10] version 0.7: redesign admin interface
 - [2006-03-05] version 0.3 - 0.6: added lot's of new settings and template tags
-- [2006-03-03] version 0.2: added function skype\_parse\_theme() and skype\_status\_check()
+- [2006-03-03] version 0.2: added function `skype_parse_theme()` and `skype_status_check()`
 - [2006-03-03] version 0.1: function and syntax conversion from plugin Skype Button (Anti Veeranna)
 
