@@ -6,6 +6,7 @@ function skype_status_options() {
 
 	// check if database has been cleared for removal or else updated after plugin upgrade 
 	if (!empty($_POST['skype_status_remove'])) { // hit remove button
+		define('SOSREMOVEFLAG', TRUE);
 		delete_option('skype_status');
 		delete_option('skype_widget_options');
 		echo "<div class=\"updated fade\"><p><strong>".__('Your Skype Online Status database settings have been cleared from the database for removal of this plugin!', 'skype-online-status')."</strong><br />".__('You can still resave the old settings shown below to (partly) undo this action but custom widget settings will be reverted to default.', 'skype-online-status')."<br /><br />".__('Are you sure?', 'skype-online-status')." ";

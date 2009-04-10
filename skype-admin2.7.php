@@ -9,7 +9,6 @@ function skype_status_options() {
 <h2><?php echo __('Skype Online Status', 'skype-online-status')." ".SOSVERSION; ?></h2>
 
 <?php	// check if database has been cleared for removal or else updated after plugin upgrade 
-	define('SOSREMOVEFLAG', FALSE);
 	if (!empty($_POST['skype_status_remove'])) { // hit remove button
 		define('SOSREMOVEFLAG', TRUE);
 		delete_option('skype_status');
@@ -231,14 +230,20 @@ function SwitchInfoBlock(id){
 
 	</div>
 
-	<div id="donationsdiv" class="postbox"><h3 class='hndle'><?php _e('Donations','skype-online-status') ?></h3><div class="inside">
-			<p><?php __('All donations are much appreciated and will (without objection) be mentioned here as a way of expressing my gratitude.','skype-online-status') ?></p>
+	<div id="donationsdiv" class="postbox"><h3 class='hndle'><?php _e('Credits','skype-online-status') ?></h3><div class="inside">
+			<h4><?php _e('Contributions','skype-online-status') ?></h4>
+			<p><em><?php _e('Translations:','skype-online-status') ?></em></p>
+			<ul>
+				<li><a href="http://wordpress.blogos.dk/">Danish - Georg S. Adamsen</a></li>
+				<li><a href="http://gidibao.net/index.php/portfolio/">Italian - Gianni Diurno</a></li>
+			</ul>
 
+			<h4><?php _e('Donations','skype-online-status') ?></h4>
+			<p><?php __('All donations are much appreciated and will (without objection) be mentioned here as a way of expressing my gratitude.','skype-online-status') ?></p>
 			<iframe border="0" frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%" src="http://4visions.nl/skype-online-status/donors.htm"><?php _e('Donorlist','skype-online-status'); ?></iframe>
 			<p><?php _e('Do you want your name and/or link up there too? Or just appreciate my work?','skype-online-status'); ?><br />
 			<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=<?php echo SOSVERSION; ?>&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8" title="<?php _e('Donate with PayPal - it\'s fast, free and secure!','skype-online-status'); ?>"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none; vertical-align:text-bottom;" alt="<?php _e('Donate with PayPal - it\'s fast, free and secure!','skype-online-status'); ?>"/></a></p>
 			<p><?php _e('Thanks!','skype-online-status'); ?></p>
-
 		</div>
 
 		<div class="inside"><p>Please <strong>rate this plugin</strong> at <a href="http://wordpress.org/extend/plugins/skype-online-status/">WordPress</a></p>
@@ -246,6 +251,8 @@ function SwitchInfoBlock(id){
 <img src="http://www.awltovhc.com/85116bosgmk596AFCEC5769EF78A" alt="" border="0"/></a></p>
 		<p><strong>Need a better bloghoster?</strong><br /><a href="http://www.tkqlhce.com/click-3049686-10428906" onmouseover="window.status='http://order.1and1.com/xml/order/Home?ac=OM.US.US856K13554T7073a';return true;" onmouseout="window.status='';return true;">Try my <img src="http://www.tqlkg.com/image-3049686-10428906" width="88" height="31" alt="#1 blog hoster" border="0"/> provider :)</a></p></div>
 	</div>
+
+
 
 	<div id="resourcesdiv" class="postbox"><h3 class='hndle'><?php _e('Resources','skype-online-status') ?></h3>
 		<div class="inside">

@@ -1,0 +1,10 @@
+Skype Online Status version 2.6.9.1
+
+Det er tænkeligt, at der vil komme en opdatering i begyndelsen af april (eller tidligere). Se nedenfor vedr. opdateringer.
+
+Sprogfilerne skal ligge i skype-online-status/languages
+Oplysning om stierne er pakket med.
+Understøtter dit udpakningsprogram anvendelse heraf,
+kan du udpakke direkte til (formentlig) wp-contents/plugins
+
+Evt. opdateringer eller info herom kan  hentes på http://wordpress.blogos.dk/tag/skype-online-status

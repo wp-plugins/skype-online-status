@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
-Version: 2.6.9.1
+Version: 2.6.9.3
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -32,8 +32,8 @@ Author URI: http://4visions.nl/
 $sosplugindir = basename(dirname(__FILE__));
 
 // Plugin version number and date
-define('SOSVERSION', '2.6.9.1');
-define('SOSVERSION_DATE', '2009-03-17');
+define('SOSVERSION', '2.6.9.3');
+define('SOSVERSION_DATE', '2009-04-10');
 define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/'.$sosplugindir.'/');
 
 // Internationalization
@@ -96,10 +96,10 @@ $skype_avail_languages = array (
 	"fr" => __('French', 'skype-online-status'),
 	"de" => __('German', 'skype-online-status'),
 	"ja" => __('Japanese', 'skype-online-status'),
-	"zh" => __('Chinese', 'skype-online-status'),
 	"zh-tw" => __('Taiwanese', 'skype-online-status'),
-	"pt" => __('Portuguese', 'skype-online-status'),
+	"zh" => __('Chinese', 'skype-online-status'),
 	"pt-br" => __('Brazilian', 'skype-online-status'),
+	"pt" => __('Portuguese', 'skype-online-status'),
 	"it" => __('Italian', 'skype-online-status'),
 	"es" => __('Spanish', 'skype-online-status'),
 	"pl" => __('Polish', 'skype-online-status'),
@@ -147,7 +147,8 @@ else
 
 
 $soswhatsnew_this = "
-	Bugfix: Use cURL (if available) for remote status reading even when allow_url_fopen is OFF";
+	Added <a href=\"http://wordpress.blogos.dk/2009/03/18/skype-online-status/\">Danish translation by Adamsen</a><br />
+	Bugfixes: Install routine, detect blog language on reset";
 $soswhatsnew_recent = "
 	2.6.9.0: Removal of good old Buttonsnap Library to avoid showstopper error in WP 2.7 + adaptation of settings page to fit the new WP 2.7 backend. Dropped support for WP versions below 2.1<br />
 	2.6.4.0: Internationalization! If your language is not available, and you would like to contribute to this plugin, your translation (.mo file) will be MUCH appreciated :)<br />
@@ -213,11 +214,10 @@ function skype_status_add_option() {
 // initialization
 function skype_status_install() {
 	global $skype_status_config;
-	if (!is_array($skype_status_config)) {
-		$skype_status_config = skype_default_values();
-		$skype_status_config['installed'] = TRUE;
-		add_option('skype_status',$skype_status_config);
-	}
+
+	$skype_status_config = skype_default_values();
+	$skype_status_config['installed'] = TRUE;
+	add_option('skype_status',$skype_status_config);
 }
 
 ?>

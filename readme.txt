@@ -27,8 +27,8 @@ This plugin also has been tested on WPMU.
 Since version 2.6.4.0, Skype Online Status is ready for internationalization. Anyone who wants to contribute can do so by making a transation. Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") (also included in the latest package) for more info.
 
 - **Italian** * Author: [Gianni Diurno](http://wordpress.org/extend/plugins/profile/gidibao) ([portfolio](http://gidibao.net/index.php/portfolio/ "Gianni Diurno - Portfolio"))
-- **Danish** * Author: [Adamsen](http://wordpress.blogos.dk) ([download](http://wordpress.blogos.dk/2009/03/18/skype-online-status/))
-- **Dutch** * Author: [RavanH](http://4visions.nl) (unfinished)
+- **Danish** * Author: [Georg S. Adamsen](http://wordpress.blogos.dk) ([download](http://wordpress.blogos.dk/2009/03/18/skype-online-status/))
+- **Dutch** * Author: [R.A. van Hagen](http://4visions.nl) (unfinished)
 
 Translations and their Authors will be mentioned here.
 

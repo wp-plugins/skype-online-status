@@ -54,12 +54,12 @@ function skype_default_values() {
 		} else {
 			$conv = strtolower(str_replace("_","-",WPLANG));
 			$first_two = substr(WPLANG,0,2);
-			foreach ($skype_avail_languages as $key) {
+			foreach ($skype_avail_languages as $key => $value) {
 				if ( $conv == $key ) { // get full language/country match
 					$skype_default_values['use_status'] = $key;
 					break;
-				} elseif ( $first_two == substr($key,0,2) ) { // or try to get language only match
-					$skype_default_values['use_status'] = substr($key,0,2);
+				} elseif ( $first_two == $key ) { // or try to get language only match
+					$skype_default_values['use_status'] = $key;
 					break;
 				}
 			}
@@ -75,8 +75,6 @@ function skype_default_values() {
 // online status checker function
 // needs allow_url_fopen to be enabled on your server (if not, see default settings)
 function skype_status_check($skypeid, $format=".txt") {
-	define('SOSCURLFLAG', FALSE);
-	define('SOSFSOCKFLAG', FALSE);
 	if ($skypeid) { 
 		if (SOSUSECURL) {
 			$tmp = curl_get_file_contents('http://mystatus.skype.com/'.$skypeid.$format);
