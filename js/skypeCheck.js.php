@@ -1,12 +1,12 @@
-<?php @ require('../../../../wp-config.php'); ?>
+<?php $skypecheckurl = "http://" . $_SERVER['HTTP_HOST'] . dirname(dirname($_SERVER['SCRIPT_NAME'])); ?>
 var activex = ((navigator.userAgent.indexOf('Win')  != -1) && (navigator.userAgent.indexOf('MSIE') != -1) && (parseInt(navigator.appVersion) >= 4 ));
 var CantDetect = ((navigator.userAgent.indexOf('Safari')  != -1) || (navigator.userAgent.indexOf('Opera')  != -1));
 
 function oopsPopup() {
     if((navigator.language && navigator.language.indexOf("ja") != -1) || (navigator.systemLanguage && navigator.systemLanguage.indexOf("ja") != -1) || (navigator.userLanguage && navigator.userLanguage.indexOf("ja") != -1)) {
-        var URLtoOpen = "<?php echo get_option('siteurl'); ?>/wp-content/plugins/skype-online-status/oops/oops_ja.html";
+        var URLtoOpen = "<?php echo $skypecheckurl; ?>/oops/oops_ja.html";
     } else {
-        var URLtoOpen = "<?php echo get_option('siteurl'); ?>/wp-content/plugins/skype-online-status/oops/oops.html";
+        var URLtoOpen = "<?php echo $skypecheckurl; ?>/oops/oops.html";
     }
 	var windowName = "oops";
 	var popW = 540, popH = 305;

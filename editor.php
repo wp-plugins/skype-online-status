@@ -2,7 +2,7 @@
 
 // Add button for WordPress 2.5+ using built in hooks, thanks to Subscribe2
 function sos_mce3_plugin($arr) {
-	$path = get_option('siteurl') . '/wp-content/plugins/skype-online-status/js/mce3_editor_plugin.js';
+	$path = SOSPLUGINURL . '/js/mce3_editor_plugin.js';
 	$arr['sosquicktag'] = $path;
 	return $arr;
 }
@@ -21,7 +21,7 @@ function sos_mce_button($button) {
 	return $button;
 }
 function sos_tinymce_before_init() {
-	echo "tinyMCE.loadPlugin('sosquicktag', '" . get_option('siteurl') . "/wp-content/plugins/skype-online-status/js/');\n"; 
+	echo "tinyMCE.loadPlugin('sosquicktag', '" . SOSPLUGINURL . "/js/');\n"; 
 }
 
 // Hide buttons the user doesn't want to see in WP v2.1+
@@ -53,7 +53,7 @@ function skype_button_init() {
 
 // Style a marker in the Rich Text Editor for the quicktag
 function skype_button_css() {
-	$skype_marker_url = get_option('siteurl') . '/wp-content/plugins/skype-online-status/skype_marker.gif';
+	$skype_marker_url = SOSPLUGINURL . '/skype_marker.gif';
 	echo "
 		.skype_marker {
 			display: block;

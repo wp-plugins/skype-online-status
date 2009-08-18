@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
-Version: 2.6.9.3
+Version: 2.7
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -29,15 +29,26 @@ Author URI: http://4visions.nl/
     For Installation instructions, usage, revision history and other info: see readme.txt included in this package
 */
 
+// Pre-2.6 compatibility
+if ( ! defined( 'WP_CONTENT_URL' ) )
+      define( 'WP_CONTENT_URL', get_option( 'siteurl' ) . '/wp-content' );
+if ( ! defined( 'WP_CONTENT_DIR' ) )
+      define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
+if ( ! defined( 'WP_PLUGIN_URL' ) )
+      define( 'WP_PLUGIN_URL', WP_CONTENT_URL. '/plugins' );
+if ( ! defined( 'WP_PLUGIN_DIR' ) )
+      define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' );
+
 $sosplugindir = basename(dirname(__FILE__));
 
 // Plugin version number and date
-define('SOSVERSION', '2.6.9.3');
-define('SOSVERSION_DATE', '2009-04-10');
-define('SOSPLUGINURL', get_option('siteurl') . '/wp-content/plugins/'.$sosplugindir.'/');
+define('SOSVERSION', '2.7');
+define('SOSVERSION_DATE', '2009-08-18');
+define('SOSPLUGINDIR', WP_PLUGIN_DIR.'/'.$sosplugindir.'/');
+define('SOSPLUGINURL', WP_PLUGIN_URL.'/'.$sosplugindir.'/');
 
 // Internationalization
-load_plugin_textdomain('skype-online-status','wp-content/plugins/'.$sosplugindir.'/languages/');
+load_plugin_textdomain('skype-online-status','',$sosplugindir.'/languages/');
 
 ////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
 // The values below are the default settings
@@ -51,7 +62,7 @@ $skype_default_values = array(
 	"button_function" => "call",			// Function to replace {function} in template files
 	"use_voicemail" => "", 				// Wether to use the voicemail invitation ("on") or not (""), set to "on" if you have a SkypeIn account
 	"use_function" => "on", 			// Wether to replace the tags {add/call/chat/userinfo/voicemail/sendfile} ("on") or not ("")
-	"use_status" => "custom",			// Wether to replace the tag {status} with your custom texts ("custom") or Skype default according to language (e.g. "en" for english) or nothing ("", use this when allow_url_fopen is not enabled on your server!)
+	"use_status" => "custom",			// Wether to replace the tag {status} with your custom texts ("custom") or Skype default according to language (e.g. "en" for english) or nothing ("" - use this when remote file access is disabled on your server!)
 	"use_buttonsnap" => "on", 			// Wether to display a Skype Status quicktag button in RTE for posts ("on") or not ("")
 	"seperator1_text" => __(' - ', 'skype-online-status'), 			// Text to replace {sep1} in template files
 	"seperator2_text" => __(': ', 'skype-online-status'), 			// Text to replace {sep2} in template files
@@ -118,37 +129,12 @@ $skype_avail_functions = array (
 // Print all Skype settings from the database at the bottom of the settings page for debugging (normally, leave to FALSE)
 define('SOSDATADUMP', FALSE);
 
-// Set global timeout value for remote online status reading
-define('SOSTIMEOUT', '3');
-
-// Checks wether fopen_wrappers are enabled on your server so the remote Skype status file can be read
-// If you want to force this setting in spite of server settings, comment-out (with //) all the lines in the if..else statement
-// except the wanted define-value line.
-if (ini_get('allow_url_fopen'))
-	define('SOSALLOWURLFOPEN', TRUE);
-else
-	define('SOSALLOWURLFOPEN', FALSE);
-
-// Checks wether cURL functions are available on your server so the remote Skype status file can be read using cURL.
-// If you want to force this setting in spite of server settings, comment-out (with //) all the lines in the if..else statement
-// except the wanted define-value line.
-if (function_exists('curl_exec')) 
-	define('SOSUSECURL', TRUE);
-else 
-	define('SOSUSECURL', FALSE);
-
-// Checks wether fsockopen is available on your server so the remote Skype status file can be read using fsockopen.
-// If you want to force this setting in spite of server settings, comment-out (with //) all the lines in the if..else statement
-// except the wanted define-value line.
-if (function_exists('fsockopen')) 
-	define('SOSUSEFSOCK', TRUE);
-else 
-	define('SOSUSEFSOCK', FALSE);
-
-
 $soswhatsnew_this = "
-	Added <a href=\"http://wordpress.blogos.dk/2009/03/18/skype-online-status/\">Danish translation by Adamsen</a><br />
-	Bugfixes: Install routine, detect blog language on reset";
+* Translations: Danish, Italian, German, Ukrainian, Russian and Belarusian!<br />
+* wp_remote_fopen replacing own cURL/remote_fopen routine<br />
+* admin page revision for WP 2.8<br />
+* switch to global WP constants (like WP_CONTENT_DIR)<br />
+* code cleanup and streamlining";
 $soswhatsnew_recent = "
 	2.6.9.0: Removal of good old Buttonsnap Library to avoid showstopper error in WP 2.7 + adaptation of settings page to fit the new WP 2.7 backend. Dropped support for WP versions below 2.1<br />
 	2.6.4.0: Internationalization! If your language is not available, and you would like to contribute to this plugin, your translation (.mo file) will be MUCH appreciated :)<br />
@@ -159,22 +145,32 @@ $soswhatsnew_recent = "
 ////////-----------------------------------------.oO//\\Oo.-----------------------------------------\\\\\\\\
 // Stop editing here!
 
+// Checks wether fopen_wrappers are enabled on your server so the remote Skype status file can be read
+if (ini_get('allow_url_fopen')) define('SOSALLOWURLFOPEN', TRUE);
+else define('SOSALLOWURLFOPEN', FALSE);
+
+// Checks wether cURL functions are available on your server so the remote Skype status file can be read using cURL.
+if (function_exists('curl_exec')) define('SOSUSECURL', TRUE);
+else define('SOSUSECURL', FALSE);
+
 // load database options
 $skype_status_config = get_option('skype_status');
 if (!is_array($skype_status_config))
 	$skype_status_config = $skype_default_values;
 
 // load other plugin files
-require_once(dirname(__FILE__) . '/skype-functions.php');
+require_once(SOSPLUGINDIR . '/skype-functions.php');
+
 if ( $wp_db_version >= 9872 ) 
-	require_once(dirname(__FILE__) . '/skype-admin2.7.php');
+	require_once(SOSPLUGINDIR . '/skype-admin.php');
 else
-	require_once(dirname(__FILE__) . '/skype-admin.php');
-require_once(dirname(__FILE__) . '/skype-widget.php');
+	require_once(SOSPLUGINDIR . '/skype-admin-legacy.php');
+
+require_once(SOSPLUGINDIR . '/skype-widget.php');
 
 // activate wisywig button
 if ($skype_status_config['use_buttonsnap']=="on") {
-	require_once(dirname(__FILE__) . '/editor.php');
+	require_once(SOSPLUGINDIR . '/editor.php');
 	add_action('init', 'skype_button_init');
 	if ( $wp_db_version < 6846 ) // next action only when before wp2.5
 		add_action('marker_css', 'skype_button_css');
@@ -188,6 +184,9 @@ if (isset($_GET['activate']) && $_GET['activate'] == 'true') {
 // create WP hooks
 add_action('wp_head', 'skype_status_script');
 add_action('admin_menu', 'skype_status_add_option');
+if ( $wp_db_version >= 11548 ) 
+	add_filter('admin_head','skype_status_admin_head');
+
 add_filter('the_content', 'skype_status_callback', 10);
 if ( $wp_db_version < 6846 ) // next action only when before wp2.5
 	add_action('init', 'skype_add_widget');
@@ -204,11 +203,15 @@ if ($skype_status_config['skype_status_version'] != "" && $skype_status_config['
 	update_option('skype_status',$skype_status_config);
 }
 
-// admin hook
+// admin hooks
 function skype_status_add_option() {
 	if (function_exists('add_options_page')) {
 		add_options_page(__('Skype Online Status', 'skype-online-status'),__('Skype Status', 'skype-online-status'),2,basename(__FILE__),'skype_status_options');
 	}
+}
+function skype_status_admin_head() {
+// conditions here
+	wp_print_scripts('post');
 }
 
 // initialization

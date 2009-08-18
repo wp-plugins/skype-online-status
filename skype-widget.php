@@ -88,7 +88,7 @@ function skype_widget_options ($widget_args = 1) {
 	}
 
 	if ( -1 == $number ) {
-		$walk = skype_walk_templates(dirname(__FILE__)."/templates/", $skype_widget_default_values, "", "",FALSE); // get list of templates
+		$walk = skype_walk_templates("", $skype_widget_default_values, "", "", FALSE); // get list of templates
 		$title = $skype_widget_default_values['title'];
 		$skype_id = $skype_widget_default_values['skype_id'];
 		$user_name = $skype_widget_default_values['user_name'];
@@ -99,7 +99,7 @@ function skype_widget_options ($widget_args = 1) {
 		$after = $skype_widget_default_values['after'];
 		$number = '%i%';
 	} else {
-		$walk = skype_walk_templates(dirname(__FILE__)."/templates/", $options[$number], "", "",FALSE); // get list of templates
+		$walk = skype_walk_templates("", $options[$number], "", "", FALSE); // get list of templates
 		$title = $options[$number]['title'];
 		$skype_id = $options[$number]['skype_id'];
 		$user_name = $options[$number]['user_name'];
@@ -112,22 +112,22 @@ function skype_widget_options ($widget_args = 1) {
 ?>
 
 <script type="text/javascript">
-var visible_preview = "<?php echo $button_theme; ?>";
+var visible_preview_<?php echo $number; ?> = "<?php echo $button_theme; ?>";
 
-function ChangeStyle(el) {
-	eval("document.getElementById('" + visible_preview + "-<?php echo $number; ?>').style.display='none'");
+function ChangeStyle<?php echo $number; ?>(el) {
+	eval("document.getElementById('" + visible_preview_<?php echo $number; ?> + "-<?php echo $number; ?>').style.display='none'");
 	eval("document.getElementById('" + el.value + "-<?php echo $number; ?>').style.display='block'");
-	visible_preview = el.value;
+	visible_preview_<?php echo $number; ?> = el.value;
 }
 
-function PreviewStyle(elmnt) {
-	eval("document.getElementById('" + visible_preview + "-<?php echo $number; ?>').style.display='none'");
+function PreviewStyle<?php echo $number; ?>(elmnt) {
+	eval("document.getElementById('" + visible_preview_<?php echo $number; ?> + "-<?php echo $number; ?>').style.display='none'");
 	eval("document.getElementById('" + elmnt.value + "-<?php echo $number; ?>').style.display='block'");
 }
 
-function UnPreviewStyle(elmnt) {
+function UnPreviewStyle<?php echo $number; ?>(elmnt) {
 	eval("document.getElementById('" + elmnt.value + "-<?php echo $number; ?>').style.display='none'");
-	eval("document.getElementById('" + visible_preview + "-<?php echo $number; ?>').style.display='block'");
+	eval("document.getElementById('" + visible_preview_<?php echo $number; ?> + "-<?php echo $number; ?>').style.display='block'");
 }
 </script>
 
@@ -168,9 +168,9 @@ function UnPreviewStyle(elmnt) {
 </label> 
 </p>
 <p style="text-align:left">
-<label for="skype_widget_button_theme-<?php echo $number; ?>"><?php _e('Theme', 'skype-online-status'); ?><?php _e(': ', 'skype-online-status'); ?></label> <select name="skype_widget[<?php echo $number; ?>][button_theme]" id="skype_widget_button_theme-<?php echo $number; ?>" onchange="ChangeStyle(this);" onblur="PreviewStyle(this);">
-<option value=""<?php if ($button_theme == "") echo " selected=\"selected\""; ?> onmouseover="PreviewStyle(this);" onmouseout="UnPreviewStyle(this);"><?php _e('Default', 'skype-online-status'); ?></option>
-<?php foreach ($walk['select'] as $key => $value) { echo "<option value=\"$value\""; if ($value == $button_theme) { echo " selected=\"selected\""; } echo " onmouseover=\"PreviewStyle(this);\" onmouseout=\"UnPreviewStyle(this);\">$key</option>
+<label for="skype_widget_button_theme-<?php echo $number; ?>"><?php _e('Theme', 'skype-online-status'); ?><?php _e(': ', 'skype-online-status'); ?></label> <select name="skype_widget[<?php echo $number; ?>][button_theme]" id="skype_widget_button_theme-<?php echo $number; ?>" onchange="ChangeStyle<?php echo $number; ?>(this);" onblur="PreviewStyle<?php echo $number; ?>(this);">
+<option value=""<?php if ($button_theme == "") echo " selected=\"selected\""; ?> onmouseover="PreviewStyle<?php echo $number; ?>(this);" onmouseout="UnPreviewStyle<?php echo $number; ?>(this);"><?php _e('Default', 'skype-online-status'); ?></option>
+<?php foreach ($walk['select'] as $key => $value) { echo "<option value=\"$value\""; if ($value == $button_theme) { echo " selected=\"selected\""; } echo " onmouseover=\"PreviewStyle$number(this);\" onmouseout=\"UnPreviewStyle$number(this);\">$key</option>
 "; } unset($value); ?></select>
 </p>
 </div>

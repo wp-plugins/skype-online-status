@@ -85,7 +85,8 @@
 		<blockquote>&lt;!-- 'My status' plain text link - http://www.skype.com/go/skypebuttons --&gt;<br />&lt;a href="skype:{skypeid}?call" onclick="return skypeCheck();" title="{username}{sep2}{status}">{username}{sep2}{status}&lt;/a&gt;</blockquote>
 		<p align="right"><a href="#wphead">back to top</a></p>
 
-	</div>
+	</div> <!-- #guide -->
+
 	<div id="notes" style="min-height: 800px;">
 
 		<h3><?php _e('Notes &amp; Live Support','skype-online-status'); ?></h3>
@@ -111,10 +112,9 @@
 		<p id="live" align="right"><a href="#wphead">back to top</a></p>
 
 		<h4>Live Support</h4>
-		<p>To get live support on this plugin with Skype, simply use the link below. It will state wether I'm online and available for chat with Skype.</p>
+		<p>To get live support on this plugin with Skype, simply click the Skype button below. Hover the button and it will state wether I'm online and available for a chat or not.</p>
 		<p>
-			Status <?php get_skype_status('skype_id=ravanhagen&user_name=Live Support&button_theme=status_plaintext'); ?><br /><br />
-			To Skype-chat with RavanH: <a href="skype:ravanhagen?chat" onclick="return skypeCheck();" title="Live chat">Live chat</a></p>
+			<?php get_skype_status('skype_id=ravanhagen&user_name=Live Support&button_theme=chat_smallclassic_blue'); ?></p>
 
 		<p id="credits" align="right"><a href="#wphead">back to top</a></p>
 		
@@ -126,12 +126,11 @@
 		<p>See the included <a href="<?php echo SOSPLUGINURL; ?>readme.txt">README</a> file:</p>
 		<iframe src="<?php echo SOSPLUGINURL; ?>readme.txt" border="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:600px"></iframe>
 		<p align="right"><a href="#wphead">back to top</a></p>
-	</div>
+	</div> <!-- #notes -->
 	
-	</div>
 	<?php
 	if (SOSDATADUMP) { 
-		echo "<div id=\"dump\" class=\"wrap\"><h3>All Skype Online Status settings</h3>
+		echo "<div id=\"dump\"><h3>All Skype Online Status settings</h3>
 		<div style=\"width:32%;float:left\"><h4>Old database values</h4><textarea readonly=\"readonly\" style=\"width:100%;height:600px\">";
 		foreach ($skype_status_config as $key => $value) {
 			echo $key . " => " . stripslashes(htmlspecialchars($value)) . "\r\n";
@@ -153,8 +152,8 @@
 		}
 		unset($value);
 		echo "</textarea></div><div style=\"clear:both\"></div>
-		<div><h4>Pluging global values and flags</h4> 
-		<p>SOSDATADUMP=".SOSDATADUMP." (obviously ;-) )<br />SOSPLUGINURL=".SOSPLUGINURL."<br />SOSVERSION=".SOSVERSION."<br />SOSVERSION_DATE=".SOSVERSION_DATE."<br />SOSALLOWURLFOPEN=".SOSALLOWURLFOPEN."<br />SOSREMOVEFLAG=".constant('SOSREMOVEFLAG')."<br />SOSUSECURL=".SOSUSECURL."<br />SOSCURLFLAG=".constant('SOSCURLFLAG')."<br />SOSUSEFSOCK=".constant('SOSUSEFSOCK')."<br />SOSFSOCKFLAG=".constant('SOSFSOCKFLAG')."
+		<div id=\"globals\"><h4>Pluging global values and flags</h4> 
+		<p>SOSDATADUMP=".SOSDATADUMP." (obviously ;-) )<br />SOSPLUGINURL=".SOSPLUGINURL."<br />SOSVERSION=".SOSVERSION."<br />SOSVERSION_DATE=".SOSVERSION_DATE."<br />SOSREMOVEFLAG=".constant('SOSREMOVEFLAG')."
 </p>
 		</div></div>";	
 	}

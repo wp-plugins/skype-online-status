@@ -1,35 +1,4 @@
 <?php
-function skype_walk_templates($buttondir,$option_preview,$select,$previews,$use_js = TRUE) {
-	if (is_dir($buttondir)) {
-		if ($dh = opendir($buttondir)) {
-			while (($file = readdir($dh)) !== false) {
-				$fname = $buttondir . $file;
-				if (is_file($fname) && ".html" == substr($fname,-5)) {
-
-					$theme_name = substr(basename($fname),0,-5);
-
-					// attempt to get the human readable name from the first line of the file
-					$option_preview['button_template'] = file_get_contents($fname);
-					preg_match("|<!-- (.*) - |ms",$option_preview['button_template'],$matches);
-					if (!$matches[1] || $matches[1]=="")
-						$matches[1] = $theme_name;
-
-					// collect the options
-					$select[$matches[1]] = $theme_name;
-					
-					// and collect their previews 
-					$previews[$matches[1]] = array( $theme_name , skype_status($option_preview['skype_id'],$option_preview['user_name'],"",$option_preview['use_voicemail'],$option_preview['button_template'],$use_js) ) ;
-				}
-			}
-			closedir($dh);
-		}
-	}
-	if ( ksort($select) && ksort($previews))
-		return array ( "select" => $select , "previews" => $previews );
-	else
-		return FALSE;
-}
-
 function skype_default_values() { 
 	global $skype_default_values,$skype_avail_languages,$skype_avail_statusmsg,$skype_avail_functions;
 
@@ -48,7 +17,7 @@ function skype_default_values() {
 	unset($value);
 
 	// set language to blogs WPLANG (or leave unchanged)
-	if (SOSALLOWURLFOPEN || SOSUSECURL || SOSUSEFSOCK) {
+	if (SOSALLOWURLFOPEN || SOSUSECURL) {
 		if (WPLANG=='') {
 			$skype_default_values['use_status'] = "en";
 		} else {
@@ -64,7 +33,7 @@ function skype_default_values() {
 				}
 			}
 		}
-	}
+	} else { $skype_default_values['use_status'] = ""; }
 
 	if ($skype_default_values['button_theme']!="custom_edit") // get template file content to load into db
 		$skype_default_values['button_template'] = skype_get_template_file($skype_default_values['button_theme']);
@@ -73,20 +42,14 @@ function skype_default_values() {
 }
 
 // online status checker function
-// needs allow_url_fopen to be enabled on your server (if not, see default settings)
-function skype_status_check($skypeid, $format=".txt") {
-	if ($skypeid) { 
-		if (SOSUSECURL) {
-			$tmp = curl_get_file_contents('http://mystatus.skype.com/'.$skypeid.$format);
-			define('SOSCURLFLAG', TRUE);
-		} elseif (SOSUSEFSOCK) {
-			$tmp = fsock_get_file_contents('mystatus.skype.com',$skypeid.$format);
-			define('SOSFSOCKFLAG', TRUE);
-		} elseif (SOSALLOWURLFOPEN) { $tmp = file_get_contents('http://mystatus.skype.com/'.$skypeid.$format); }
-		if ($tmp && $tmp!="") $contents = str_replace("\n", "", $tmp);
-	}
+function skype_status_check($skypeid=false, $format=".txt") {
+	if (!$skypeid) return 'error';
+ 
+	$tmp = wp_remote_fopen('http://mystatus.skype.com/'.$skypeid.$format);
+	if (!$tmp) return 'error';
+	else $contents = str_replace("\n", "", $tmp);
 
-        if ($contents) return $contents;
+        if ($contents!="") return $contents;
         else return 'error';
 }
 
@@ -99,19 +62,21 @@ function skype_status_valid_theme($theme) {
 	return !preg_match("/\W/",$theme);
 }
 
-function skype_parse_theme($config,$use_js = TRUE) {
+function skype_parse_theme($config, $use_js = TRUE, $status = FALSE) {
 	global $skype_avail_functions;
 
 	// get online status to replace {status} tag
-	if ($config['use_status']=="custom") {
-		$num = skype_status_check($config['skype_id'], ".num");
-		$status = $config['status_'.$num.'_text'];
-	} else if ($config['use_status']=="") {
+	if ($config['use_status']=="") {
 		$status = "";
 		$config['my_status_text'] = "";
 		$config['seperator2_text'] = "";
-	} else {
-		$status = skype_status_check($config['skype_id'], ".txt.".$config['use_status']);
+	} elseif (!$status) {
+		if ($config['use_status']=="custom") {
+			$num = skype_status_check($config['skype_id'], ".num");
+			$status = $config['status_'.$num.'_text'];
+		} else {
+			$status = skype_status_check($config['skype_id'], ".txt.".$config['use_status']);
+		}
 	}
 
 	//define value to replace {functiontxt} based on {function}
@@ -165,14 +130,14 @@ function skype_parse_theme($config,$use_js = TRUE) {
 		elseif ($config['getskype_link'] == "custom_link" && $config['getskype_custom_link'] != "" )
 			$theme_output .= $config['getskype_custom_link'];
 		else
-			$theme_output .= " <a href=\"http://www.anrdoezrs.net/dc100ft1zt0GKHLQNPNGIHLJJNLI\" title=\"".$config['getskype_text']."\" onmouseover=\"window.status='http://www.skype.com';return true;\" onmouseout=\"window.status=' ';return true;\">".$config['getskype_text']."</a><img src=\"http://www.tqlkg.com/ah81xjnbhf0415A797021533752\" alt=\"\" style=\"width:0;height0;border:0\" />";
+			$theme_output .= " <a href=\"http://www.anrdoezrs.net/dc100ft1zt0GKHLQNPNGIHLJJNLI\" title=\"".$config['getskype_text']."\" onmouseover=\"window.status='http://www.skype.com';return true;\" onmouseout=\"window.status=' ';return true;\">".$config['getskype_text']."</a><img src=\"http://www.tqlkg.com/ah81xjnbhf0415A797021533752\" alt=\"\" style=\"width:0;height:0;border:0\" />";
 		}
 
 	return str_replace(array("\r\n", "\n\r", "\n", "\r", "%0D%0A", "%0A%0D", "%0D", "%0A"), "", $theme_output);
 }
 
 function skype_get_template_file($filename) { // check template file existence and return content
-	$buttondir = dirname(__FILE__)."/templates/";
+	$buttondir = SOSPLUGINDIR."/templates/";
 	if ($filename != "" && file_exists($buttondir.$filename.".html")) 
 		return file_get_contents($buttondir.$filename.".html");
 	else 
@@ -182,11 +147,11 @@ function skype_get_template_file($filename) { // check template file existence a
 // template tag hook
 function get_skype_status($args = '') {
 	parse_str($args, $r);
-	echo skype_status($r['skype_id'], $r['user_name'], $r['button_theme'], $r['use_voicemail'], "", TRUE);
+	echo skype_status($r['skype_id'], $r['user_name'], $r['button_theme'], $r['use_voicemail'], "", TRUE, FALSE);
 }
 
 // main function
-function skype_status($skype_id = FALSE, $user_name = FALSE, $button_theme = FALSE, $use_voicemail = FALSE, $button_template = FALSE, $use_js = TRUE) {
+function skype_status($skype_id = FALSE, $user_name = FALSE, $button_theme = FALSE, $use_voicemail = FALSE, $button_template = FALSE, $use_js = TRUE, $status = FALSE) {
 	global $skype_status_config;
 	$r = $skype_status_config;
 	if (!is_array($r))
@@ -209,11 +174,59 @@ function skype_status($skype_id = FALSE, $user_name = FALSE, $button_theme = FAL
 		$r['button_template'] = '<a href="skype:{skypeid}?call" onclick="return skypeCheck();" title="{call}{sep1}{username}{sep2}{status}">{username}{sep2}{status}</a>';		
 
 	return '<!-- Skype button generated by Skype Online Status plugin version '.SOSVERSION.' ( RavanH - http://4visions.nl/ ) -->
-' . skype_parse_theme( $r , $use_js ) . '
+' . skype_parse_theme( $r , $use_js , $status ) . '
 <!-- end Skype button -->'; 
 }
 
-// script in header
+// routine to render all template files based on one config
+function skype_walk_templates($buttondir, $option_preview, $select, $previews, $use_js = TRUE) {
+	// default dir
+	if (!$buttondir) $buttondir = SOSPLUGINDIR.'/templates/';
+
+	if (is_dir($buttondir)) {
+		// do online status check once
+		if ($option_preview['use_status']=="") {
+			$status = "";
+		} else {
+			if ($option_preview['use_status']=="custom") {
+				$num = skype_status_check($option_preview['skype_id'], ".num");
+				$status = $option_preview['status_'.$num.'_text'];
+			} else {
+				$status = skype_status_check($option_preview['skype_id'], ".txt.".$option_preview['use_status']);
+			}
+		}
+
+		// go through the template files in the given directory
+		if ($dh = opendir($buttondir)) {
+			while (($file = readdir($dh)) !== false) {
+				$fname = $buttondir . $file;
+				if (is_file($fname) && ".html" == substr($fname,-5)) {
+
+					$theme_name = substr(basename($fname),0,-5);
+
+					// attempt to get the human readable name from the first line of the file
+					$option_preview['button_template'] = file_get_contents($fname);
+					preg_match("|<!-- (.*) - |ms",$option_preview['button_template'],$matches);
+					if (!$matches[1] || $matches[1]=="")
+						$matches[1] = $theme_name;
+
+					// collect the options
+					$select[$matches[1]] = $theme_name;
+					
+					// and collect their previews 
+					$previews[$matches[1]] = array( $theme_name , skype_status($option_preview['skype_id'],$option_preview['user_name'],"",$option_preview['use_voicemail'],$option_preview['button_template'],$use_js,$status) ) ;
+				}
+			}
+			closedir($dh);
+		}
+	}
+	if ( ksort($select) && ksort($previews))
+		return array ( "select" => $select , "previews" => $previews );
+	else
+		return FALSE;
+}
+
+// script in header or footer
 function skype_status_script() {
 	global $skype_status_config;
 	echo '
@@ -238,61 +251,4 @@ function skype_status_callback($content) {
 	return $content;
 }
 
-////////// aditional PHP functions
-
-//get file content using curl
-if (!function_exists('curl_get_file_contents')) {
-function curl_get_file_contents($URL) {
-	$c = curl_init();
-	curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($c, CURLOPT_URL, $URL);
-	curl_setopt ( $c, CURLOPT_TIMEOUT, SOSTIMEOUT);
-	$contents = curl_exec($c);
-	curl_close($c);
-
-	if ($contents) return $contents;
-	else return FALSE;
-    }
-}
-
-//get file content using fsock
-if (!function_exists('fsock_get_file_contents')) {
-function fsock_get_file_contents($host,$URL) {
-	$fp = fsockopen($host, 80, $errno, $errstr, SOSTIMEOUT);
-	if ($fp) {
-	    fputs($fp, "GET /".$URL." HTTP/1.1\r\nHost: ".$host."\r\n\r\n");
-	    while (!feof($fp)) {
-		$contents = fgets($fp);
-	    }
-	    fclose($fp);
-	} else { echo "$errstr ($errno)<br />\n"; }
-	if ($contents) return $contents;
-	else return FALSE;
-    }
-}
-
-
-
-//PHP 4.2.x Compatibility function
-if (!function_exists('file_get_contents')) {
-	function file_get_contents($filename, $incpath = false, $resource_context = null) {
-	  if (false === $fh = fopen($filename, 'rb', $incpath)) {
-	      trigger_error('file_get_contents() failed to open stream: No such file or directory', E_USER_WARNING);
-	      return false;
-	  }
-
-	  clearstatcache();
-	  if ($fsize = @filesize($filename)) {
-	      $data = fread($fh, $fsize);
-	  } else {
-	      $data = '';
-	      while (!feof($fh)) {
-		  $data .= fread($fh, 8192);
-	      }
-	  }
-
-	  fclose($fh);
-	  return $data;
-	}
-}
 ?>
