@@ -30,9 +30,9 @@ Since version 2.6.4.0, Skype Online Status is ready for internationalization. An
 - **Danish** * Author: [Georg S. Adamsen](http://wordpress.blogos.dk/2009/03/18/skype-online-status/))
 - **Dutch** * Author: [R.A. van Hagen](http://4visions.nl) (unfinished)
 - **German** * Author: [Fabian Schulz](http://www.fabianschulz.net/blog/2009/08/05/skype-online-status/)
-- **Russian** Author: [Leonid Jack](http://studio-xl.com/)
-- **Belorussian** Author: [M. Comfi](http://www.comfi.com)
-- **Ukrainian** Author: [Michael Svystun](http://emarketingblog.com.ua/)
+- **Russian** * Author: [Leonid Jack](http://studio-xl.com/)
+- **Belorussian** * Author: [M. Comfi](http://www.comfi.com)
+- **Ukrainian** * Author: [Michael Svystun](http://emarketingblog.com.ua/)
 
 New translations and their Authors will be mentioned here. Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") for more info.
 
@@ -150,10 +150,10 @@ Please report anything you find on [Skype Online Status Google Group](http://gro
 
 = 2.7 =
 * German, Ukrainian, Russian and Belarusian translations ! 
-* wp_remote_fopen replacing own cURL/remote_fopen routine
+* `wp_remote_fopen` replacing own cURL/`remote_fopen` routine
 * admin page revision for WP 2.8
 * code cleanup and multiple online status check streamlining
-* switch to global WP constants (like WP_CONTENT_DIR)
+* switch to global WP constants (like `WP_CONTENT_DIR`)
 * bugfix: multiple widget theme preview
 
 = 2.6.9 = 
