@@ -34,7 +34,7 @@ Since version 2.6.4.0, Skype Online Status is ready for internationalization. An
 - **Belorussian** * Author: [M. Comfi](http://www.comfi.com)
 - **Ukrainian** * Author: [Michael Svystun](http://emarketingblog.com.ua/)
 
-New translations and their Authors will be mentioned here. Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") for more info.
+New translations and their Authors will be mentioned here.
 
 == Installation ==
 

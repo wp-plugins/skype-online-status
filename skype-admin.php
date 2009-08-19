@@ -28,7 +28,7 @@ function skype_status_options() {
 		update_option('skype_status',$skype_status_config);
 		echo "<div class=\"updated fade\"><p><strong>";
 		printf(__('Skype Online Status plugin version %s has been installed!','skype-online-status'),SOSVERSION);
-		echo "</strong> ".__('Please, adapt the default settings to your personal preference so you can start using Skype buttons anywhere on your site.','skype-online-status');
+		echo "</strong> ".__('Please, adapt the default settings to your personal preference so you can start using Skype buttons anywhere on your site.','skype-online-status')." ";
 		printf(__('Read the %s section for more instructions.','skype-online-status'),"<strong>".__('Quick Guide','skype-online-status')."</strong>");
 		echo "</p></div>";
 	}
