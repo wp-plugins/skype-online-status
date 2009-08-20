@@ -1,6 +1,6 @@
 <?php
 function skype_status_widget ($args, $widget_args = 1) {
-	extract($args, EXTR_SKIP);
+	extract( $args, EXTR_SKIP );
 	if ( is_numeric($widget_args) )
 		$widget_args = array( 'number' => $widget_args );
 	$widget_args = wp_parse_args( $widget_args, array( 'number' => -1 ) );
@@ -14,12 +14,14 @@ function skype_status_widget ($args, $widget_args = 1) {
 	$before = apply_filters('widget_text', $options[$number]['before']);
 	$after = apply_filters('widget_text', $options[$number]['after']);
 
+	$args = skype_build_args($options[$number]);
+
 	echo $before_widget;
 	if (!empty( $title ))
 		echo $before_title . $title . $after_title;
 	echo "<div class=\"skype-status-button\">";
 	echo $before;
-	echo skype_status($options[$number]['skype_id'],$options[$number]['user_name'],"",$options[$number]['use_voicemail'],stripslashes($options[$number]['button_template']));
+	echo skype_status($args);
 	echo $after;
 	echo "</div>";
 	echo $after_widget;
@@ -37,6 +39,13 @@ function skype_widget_options ($widget_args = 1) {
 	$options = get_option('skype_widget_options');
 	if (!is_array ($options)) 
 		$options = array();
+
+	$args = skype_build_args($options[$number]);
+
+	// disable get skype now! link in preview
+	$skype_widget_default_values['use_getskype'] = "";
+	$options[$number]['use_getskype'] = "off";
+	$args .= "&use_getskype=";
 
 	if (!$updated && !empty($_POST['sidebar'])) {
 		$sidebar = (string) $_POST['sidebar'];
@@ -81,69 +90,39 @@ function skype_widget_options ($widget_args = 1) {
 				'after' => stripslashes($widget_opt['after'])
 				);
 		}
-		unset($$widget_opt);
+		unset($widget_opt);
 
 		update_option('skype_widget_options', $options);
 		$updated = true;
 	}
 
 	if ( -1 == $number ) {
+		extract( $skype_widget_default_values[$number], EXTR_SKIP );
 		$walk = skype_walk_templates("", $skype_widget_default_values, "", "", FALSE); // get list of templates
-		$title = $skype_widget_default_values['title'];
-		$skype_id = $skype_widget_default_values['skype_id'];
-		$user_name = $skype_widget_default_values['user_name'];
-		$button_theme = $skype_widget_default_values['button_theme'];
-		$button_template = $skype_widget_default_values['button_template'];
-		$use_voicemail = $skype_widget_default_values['use_voicemail'];
-		$before = $skype_widget_default_values['before'];
-		$after = $skype_widget_default_values['after'];
 		$number = '%i%';
 	} else {
+		extract( $options[$number], EXTR_SKIP );
+		foreach ($options[$number] as $key => $value) { if(!$value) unset($options[$number][$key]); }
 		$walk = skype_walk_templates("", $options[$number], "", "", FALSE); // get list of templates
-		$title = $options[$number]['title'];
-		$skype_id = $options[$number]['skype_id'];
-		$user_name = $options[$number]['user_name'];
-		$button_theme = $options[$number]['button_theme'];
-		$button_template = $options[$number]['button_template'];
-		$use_voicemail = $options[$number]['use_voicemail'];
-		$before = $options[$number]['before'];
-		$after = $options[$number]['after'];
 	}
 ?>
 
-<script type="text/javascript">
-var visible_preview_<?php echo $number; ?> = "<?php echo $button_theme; ?>";
+<div style="width:48%;float:right">
+	<?php _e('Theme', 'skype-online-status'); ?><?php _e(': ', 'skype-online-status'); ?>
+	<div id="-<?php echo $number; ?>" style="margin:0;padding:0;height:380px;overflow:auto;border:1px solid #ddd"> 
+		<div style="margin:5px 0;padding-top:5px;<?php if ($button_theme == '') echo 'background-color:#efefef' ?>"<label><div style="margin-left:20px"><?php echo skype_status($args,FALSE); ?></div><input type="radio" name="skype_widget[<?php echo $number; ?>][button_theme]" value=""<?php if ($button_theme == "") echo " checked=\"checked\""; ?>><?php _e('Default', 'skype-online-status'); ?></label></div> 
 
-function ChangeStyle<?php echo $number; ?>(el) {
-	eval("document.getElementById('" + visible_preview_<?php echo $number; ?> + "-<?php echo $number; ?>').style.display='none'");
-	eval("document.getElementById('" + el.value + "-<?php echo $number; ?>').style.display='block'");
-	visible_preview_<?php echo $number; ?> = el.value;
-}
+		<?php foreach ($walk['previews'] as $key => $value) { echo "<div style=\"margin:5px 0;padding-top:5px;"; if ($value[0] == $button_theme) { echo "background-color:#eee"; } echo "\"><label><div style=\"margin-left:20px\">$value[1]</div><input type=\"radio\" name=\"skype_widget[$number][button_theme]\" value=\"$value[0]\""; if ($value[0] == $button_theme) { echo " checked=\"checked\""; } echo ">$key</label></div> 
+	"; } unset($value); ?>
+	</div>
+</div>
 
-function PreviewStyle<?php echo $number; ?>(elmnt) {
-	eval("document.getElementById('" + visible_preview_<?php echo $number; ?> + "-<?php echo $number; ?>').style.display='none'");
-	eval("document.getElementById('" + elmnt.value + "-<?php echo $number; ?>').style.display='block'");
-}
-
-function UnPreviewStyle<?php echo $number; ?>(elmnt) {
-	eval("document.getElementById('" + elmnt.value + "-<?php echo $number; ?>').style.display='none'");
-	eval("document.getElementById('" + visible_preview_<?php echo $number; ?> + "-<?php echo $number; ?>').style.display='block'");
-}
-</script>
-
+<div style="width:48%;float:left;">
 <p style="text-align:left">
 <label for="skype_widget_title-<?php echo $number; ?>"><?php _e('Title'); ?>:</label><br />
 <input class="widefat" type="text" id="skype_widget_title-<?php echo $number; ?>" name="skype_widget[<?php echo $number; ?>][title]" value="<?php echo stripslashes(htmlspecialchars($title)); ?>" />
 </p>
-<div class="no_underline" style="width:34%;float:right;margin:10px 0;">
-<style type="text/css"><!-- .no_underline a { border-bottom:none;width:auto;height:100px;overflow:hidden } --></style>
-<?php echo stripslashes($before); ?>
-<div id="-<?php echo $number; ?>" style="display:<?php if ($button_theme == '') echo 'block'; else echo 'none' ?>;margin:0;padding:0"><?php echo skype_status($skype_id,$user_name,"",$use_voicemail,"",FALSE); ?></div>
-<?php foreach (array_values($walk['previews']) as $value) { echo "<div id=\"$value[0]-$number\" style=\"display:"; if ($value[0] == $button_theme) echo "block"; else echo "none"; echo ";margin:0;padding:0\">$value[1]</div>
-"; } unset($value); ?>
-<?php echo stripslashes($after); ?>
-</div>
-<div style="width:64%;float:left;">
+
 <p style="text-align:left">
 <label for="skype_widget_skype_id-<?php echo $number; ?>"><?php _e('Skype ID', 'skype-online-status'); ?>*<?php _e(': ', 'skype-online-status'); ?></label>
 <input class="widefat" type="text" id="skype_widget_skype_id-<?php echo $number; ?>" name="skype_widget[<?php echo $number; ?>][skype_id]" value="<?php echo stripslashes(htmlspecialchars($skype_id)); ?>" />
@@ -167,17 +146,13 @@ function UnPreviewStyle<?php echo $number; ?>(elmnt) {
 <option value="off"<?php if ($use_voicemail == "off") print " selected=\"selected\""; ?>><?php _e('No'); ?></option></select>
 </label> 
 </p>
-<p style="text-align:left">
-<label for="skype_widget_button_theme-<?php echo $number; ?>"><?php _e('Theme', 'skype-online-status'); ?><?php _e(': ', 'skype-online-status'); ?></label> <select name="skype_widget[<?php echo $number; ?>][button_theme]" id="skype_widget_button_theme-<?php echo $number; ?>" onchange="ChangeStyle<?php echo $number; ?>(this);" onblur="PreviewStyle<?php echo $number; ?>(this);">
-<option value=""<?php if ($button_theme == "") echo " selected=\"selected\""; ?> onmouseover="PreviewStyle<?php echo $number; ?>(this);" onmouseout="UnPreviewStyle<?php echo $number; ?>(this);"><?php _e('Default', 'skype-online-status'); ?></option>
-<?php foreach ($walk['select'] as $key => $value) { echo "<option value=\"$value\""; if ($value == $button_theme) { echo " selected=\"selected\""; } echo " onmouseover=\"PreviewStyle$number(this);\" onmouseout=\"UnPreviewStyle$number(this);\">$key</option>
-"; } unset($value); ?></select>
-</p>
-</div>
 <p style="clear:both;font-size:78%;font-weight:lighter;">* <?php _e('Leave blank to use the default options as you defined on the <a href="options-general.php?page=skype-status.php">Skype Online Status Settings</a> page.', 'skype-online-status'); ?><br />
 ** <?php _e('You can use some basic HTML here like &lt;br /&gt; for new line.', 'skype-online-status'); ?><br />
 *** <?php printf(__('Set to %s if you do not have a SkypeIn account or SkypeVoicemail.', 'skype-online-status'), __('No')); ?></p>
-<input type="hidden" id="skype_widget_submit-<?php echo $number; ?>" name="skype_widget[<?php echo $number; ?>][submit]" value="1" />
+</div>
+
+<div style="clear:both">
+<input type="hidden" id="skype_widget_submit-<?php echo $number; ?>" name="skype_widget[<?php echo $number; ?>][submit]" value="1" /></div>
 
 <?php 
 }
@@ -192,7 +167,7 @@ function skype_widget_register() {
 	$widget_ops = array( 'classname' => 'skype_widget', 'description' => "Skype Online Status button" );
 	$control_ops = array('width' => 600, 'id_base' => 'skype-status');
 
-	$name = "Skype Status";
+	$name = "Skype";
 
 	$registered = false;
 	foreach ( array_keys($options) as $o ) {
@@ -242,5 +217,18 @@ function skype_widget_upgrade() {
 	}
 
 	return $newoptions;
+}
+
+function skype_build_args($options) {
+	// build args
+	if ($options['skype_id'])
+		$args = "skype_id=".$options['skype_id']."&";
+	if ($options['user_name'])
+		$args .= "user_name=".$options['user_name']."&";
+	if ($options['use_voicemail'])
+		$args .= "use_voicemail=".$options['use_voicemail']."&";
+	if ($options['button_template'])
+		$args .= stripslashes($options['button_template']);
+	return $args;
 }
 ?>

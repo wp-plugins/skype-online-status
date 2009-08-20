@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
-Version: 2.7.1
+Version: 2.7.8
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -40,15 +40,16 @@ if ( ! defined( 'WP_PLUGIN_DIR' ) )
       define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' );
 
 $sosplugindir = basename(dirname(__FILE__));
+$sospluginfile = basename(__FILE__);
 
 // Plugin version number and date
-define('SOSVERSION', '2.7');
-define('SOSVERSION_DATE', '2009-08-18');
+define('SOSVERSION', '2.7.8');
+define('SOSVERSION_DATE', '2009-08-20');
 define('SOSPLUGINDIR', WP_PLUGIN_DIR.'/'.$sosplugindir.'/');
 define('SOSPLUGINURL', WP_PLUGIN_URL.'/'.$sosplugindir.'/');
 
 // Internationalization
-load_plugin_textdomain('skype-online-status','',$sosplugindir.'/languages/');
+load_plugin_textdomain('skype-online-status', '', $sosplugindir.'/languages/');
 
 ////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
 // The values below are the default settings
@@ -205,7 +206,7 @@ if ($skype_status_config['skype_status_version'] != "" && $skype_status_config['
 // admin hooks
 function skype_status_add_option() {
 	if (function_exists('add_options_page')) {
-		add_options_page(__('Skype Online Status', 'skype-online-status'),__('Skype Status', 'skype-online-status'),2,basename(__FILE__),'skype_status_options');
+		add_options_page(__('Skype Online Status', 'skype-online-status'),__('Skype', 'skype-online-status'),2,basename(__FILE__),'skype_status_options');
 	}
 }
 function skype_status_admin_head() {

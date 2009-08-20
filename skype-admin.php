@@ -1,8 +1,9 @@
 <?php
 function skype_status_options() {
-	global $skype_status_config, $skype_avail_languages, $skype_avail_functions, $skype_avail_statusmsg, $soswhatsnew_this, $soswhatsnew_recent;
+	global $skype_status_config, $skype_avail_languages, $skype_avail_functions, $skype_avail_statusmsg, $soswhatsnew_this, $soswhatsnew_recent, $sosplugindir, $sospluginfile;
 	$option = $skype_status_config;
-	$plugin_file = "skype-online-status/skype-status.php";
+	$plugin_file = $sosplugindir."/".$sospluginfile;
+
 ?>
 <div class="wrap">
 	<div id="icon-edit-comments" class="icon32"><br /></div>
@@ -106,8 +107,10 @@ function skype_status_options() {
 			echo "<div id=\"notice\" class=\"updated fade\"><p><strong>".__('Options reset!', 'skype-online-status')."</strong></p></div>";
 	}
 
-	// get all the selected options and their previews into an array
-	$walk = skype_walk_templates("", $option, "", "");
+	// get all the selected options (except test call id) and their previews into an array
+	$preview_options =array("skype_id" => "echo123","user_name" => __('Skype Test Call', 'skype-online-status'));
+	$preview_options = wp_parse_args( $preview_options, $option );
+	$walk = skype_walk_templates("", $preview_options, "", "", FALSE);
 
 	// build output
 	$previews = "";
@@ -171,8 +174,9 @@ function skype_status_options() {
 
 			<?php if ($current_theme_fullname) echo $current_theme_fullname; else _e('Custom...','skype-online-status') ?></p>
 
-			<?php echo skype_parse_theme($option);  ?>
+			<?php if (!$option['skype_id']) echo "<span class=\"error\">" . __('Skype button disabled:', 'skype-online-status') . " " . __('Missing Skype ID.', 'skype-online-status') . "</span>"; else echo skype_status($option);  ?>
 
+			<br />
 		      </div>
 		    </div>
 		    <div id="major-publishing-actions">
@@ -192,7 +196,7 @@ function skype_status_options() {
 
 	<div id="previewdiv" class="postbox "><h3 class='hndle'><?php _e('Preview theme template:', 'skype-online-status') ?></h3><div class="inside">
 			<div class="alternate no_underline" style="margin:5px 0 0 0;padding:5px;height:210px;">
-					<div id="custom_edit" style="display:<?php if ($option['button_theme'] == 'custom_edit') echo 'block'; else echo 'none' ?>;margin:0;padding:0"><div style="height:38px;border-bottom:1px dotted grey;margin:0 0 5px 0"><?php _e('Custom...', 'skype-online-status'); _e(' (edit under advanced options)', 'skype-online-status') ?></div><?php echo skype_parse_theme($option) ?></div>
+					<div id="custom_edit" style="display:<?php if ($option['button_theme'] == 'custom_edit') echo 'block'; else echo 'none' ?>;margin:0;padding:0"><div style="height:38px;border-bottom:1px dotted grey;margin:0 0 5px 0"><?php _e('Custom...', 'skype-online-status'); _e(' (edit under advanced options)', 'skype-online-status') ?></div><?php echo skype_parse_theme($option,FALSE) ?></div>
 					<?php echo $previews ?>
 			</div>
 
@@ -201,8 +205,8 @@ function skype_status_options() {
 	</div>
 
 	<div id="donationsdiv" class="postbox "><h3 class='hndle'><?php _e('Credits','skype-online-status') ?></h3><div class="inside">
-			<br /><h4><?php _e('Contributions','skype-online-status') ?></h4>
-			<p><em><?php _e('Translations:','skype-online-status') ?></em></p>
+			<h4><?php _e('Translations:','skype-online-status') ?></h4>
+			<p><?php _e('Translation contributions are highly appreciated. Authors of new translations or updates will be mentioned here.','skype-online-status') ?></p>
 			<ul>
 				<li><a href="http://wordpress.blogos.dk/">Danish - Georg S. Adamsen</a></li>
 				<li><a href="http://gidibao.net/index.php/portfolio/">Italian - Gianni Diurno</a></li>
@@ -211,23 +215,36 @@ function skype_status_options() {
 				<li><a href="http://www.comfi.com">Belorussian - M. Comfi</a></li>
 				<li><a href="http://emarketingblog.com.ua/">Ukrainian - Michael Svystun</a></li>
 			</ul>
-			<p>Translation contributions are highly appreciated. Authors of new translations or updates will be mentioned here. Read the <a href="http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt">translation instructions</a> included with this plugin to get started.</p>
+			<p><?php _e('Want to make your own translation too? Read the <a href="http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt">translation instructions</a> included with this plugin to get started.','skype-online-status') ?></p>
 
-			<br /><h4><?php _e('Donations','skype-online-status') ?></h4>
+			<h4><?php _e('Donations','skype-online-status') ?></h4>
 			<p><?php _e('All donations are much appreciated and will (without objection) be mentioned here as a way of expressing my gratitude.','skype-online-status') ?></p>
-			<iframe border="0" frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%" src="http://4visions.nl/skype-online-status/donors.htm"><?php _e('Donorlist','skype-online-status') ?></iframe>
-			<p><?php _e('Do you want your name and/or link up there too? Or just appreciate my work?','skype-online-status') ?><br />
+			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%" src="http://4visions.nl/skype-online-status/donors.htm"><?php _e('Donorlist','skype-online-status') ?></iframe>
+			<p><?php _e('Do you want your name and/or link up there too? Or just appreciate my work?','skype-online-status') ?><br /><br />
 			<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=<?php echo SOSVERSION ?>&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8" title="<?php _e('Donate with PayPal - it\'s fast, free and secure!','skype-online-status') ?>"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none; vertical-align:text-bottom;" alt="<?php _e('Donate with PayPal - it\'s fast, free and secure!','skype-online-status') ?>"/></a></p>
-			<p><?php _e('Thanks!','skype-online-status') ?></p>
+			<p><?php _e('Thanks!','skype-online-status') ?><br /><em>RavanH</em></p>
 		</div>
 	</div>
 
 	<div id="supportdiv" class="postbox "><h3 class='hndle'><?php _e('Support','skype-online-status') ?></h3>
 		<div class="inside">
-			<p><?php _e('For all support questions and suggestions, please go to:','skype-online-status') ?> <a href="http://wordpress.org/tags/skype-online-status/"><?php _e('WordPress Support','skype-online-status') ?> - <?php _e('Skype Online Status','skype-online-status') ?></a>.</p>
-			<p>For feature requests, help with WordPress or hosting, please contact <em>RavanH</em> via e-mail <a href="mailto:ravahagen@gmail.com">ravanhagen@gmail.com</a> or Skype chat <?php get_skype_status('skype_id=ravanhagen&user_name=Live Support&button_theme=chat_smallclassic_blue'); ?>.</p>
-			<p>Please <strong>rate this plugin</strong> at <a href="http://wordpress.org/extend/plugins/skype-online-status/">WordPress</a></p>
-			<p><strong>Need a better bloghoster?</strong><br /><a href="http://www.tkqlhce.com/click-3049686-10428906" onmouseover="window.status='http://order.1and1.com/xml/order/Home?ac=OM.US.US856K13554T7073a';return true;" onmouseout="window.status='';return true;">Try my <img src="http://www.tqlkg.com/image-3049686-10428906" width="88" height="31" alt="#1 blog hoster" border="0"/> provider :)</a></p>		</div>
+			<p><?php _e('For all support questions and suggestions, please go to','skype-online-status') ?> <a href="http://wordpress.org/tags/skype-online-status/"><?php _e('WordPress Support','skype-online-status') ?> - <?php _e('Skype Online Status','skype-online-status') ?></a>.</p>
+			<p><?php _e('For <strong>feature requests</strong> or general help with <strong>WordPress</strong> or <strong>hosting</strong>, please contact <em>RavanH</em> via e-mail <a href="mailto:ravahagen@gmail.com">ravanhagen@gmail.com</a> or Skype chat:','skype-online-status') ?><br /> <?php get_skype_status('skype_id=ravanhagen&user_name=Live Support&button_theme=chat_smallclassic_blue'); ?></p>
+			<p><?php _e('Please <strong>rate this plugin</strong> at <a href="http://wordpress.org/extend/plugins/skype-online-status/">WordPress</a>','skype-online-status') ?></p>
+			<p><strong><?php _e('Need a better bloghoster?','skype-online-status') ?></strong><br /><a href="http://www.tkqlhce.com/click-3049686-10428906" onmouseover="window.status='http://order.1and1.com/xml/order/Home?ac=OM.US.US856K13554T7073a';return true;" onmouseout="window.status='';return true;"><?php printf(__('Try my %s provider :)','skype-online-status'), '<img src="http://www.tqlkg.com/image-3049686-10428906" width="88" height="31" alt="#1 blog hoster" border="0"/>') ?></a></p>		</div>
+	</div>
+
+	<div id="discussiondiv" class="postbox "><h3 class='hndle'><?php _e('Discussion') ?></h3>
+		<div class="inside">
+
+			<h4><?php _e('WordPress Support','skype-online-status'); _e(': ','skype-online-status') ?> <?php _e('Skype Online Status','skype-online-status') ?></h4>
+			<div class='rss-widget'>
+			<?php if(function_exists(wp_widget_rss_output))
+				wp_widget_rss_output( "http://wordpress.org/support/rss/tags/skype-online-status/", array('show_date' => 1, 'items' => 8) );
+			else 
+				echo "<p><a href=\"http://wordpress.org/support/rss/tags/skype-online-status/\">http://wordpress.org/support/rss/tags/skype-online-status/</a></p>" ?>
+			</div>
+		</div>
 	</div>
 
 	<div id="resourcesdiv" class="postbox "><h3 class='hndle'><?php _e('Resources','skype-online-status') ?></h3>
@@ -241,18 +258,6 @@ function skype_status_options() {
 			</ul>
 			<p><a href="http://www.jdoqocy.com/rn68biroiq596AFCEC5769EF78A" onmouseover="window.status='http://www.skype.com';return true;" onmouseout="window.status='';return true;">
 <img src="http://www.awltovhc.com/85116bosgmk596AFCEC5769EF78A" alt="" border="0"/></a></p>
-		</div>
-	</div>
-
-	<div id="discussiondiv" class="postbox "><h3 class='hndle'><?php _e('Discussion') ?></h3>
-		<div class="inside">
-
-			<br/><strong><?php _e('WordPress Support','skype-online-status') ?></strong><br/>
-			<?php if(function_exists(wp_widget_rss_output))
-				wp_widget_rss_output( "http://wordpress.org/support/rss/tags/skype-online-status/", array('show_author' => 1, 'show_date' => 1, 'items' => 6) ) ;
-			else 
-				echo "<a href=\"http://wordpress.org/support/rss/tags/skype-online-status/\">http://wordpress.org/support/rss/tags/skype-online-status/</a></br />" ?>
-
 		</div>
 	</div>
 
@@ -295,7 +300,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 	    <div class="inside">
 
 		<fieldset class="options">
-			<br /><h4><?php _e('Skype', 'skype-online-status') ?></h4>
+			<h4><?php _e('Skype', 'skype-online-status') ?></h4>
 			<p><label for="skype_id"><?php _e('Skype ID', 'skype-online-status'); _e(': ', 'skype-online-status') ?></label><input type="text" name="skype_id" id="skype_id" value="<?php echo $option['skype_id'] ?>" /> <a href="#" onclick="javascript:SwitchInfoBlock('skypeid_info');return(false);">?</a></p>
 			<blockquote id="skypeid_info" style="display:none"><em><?php printf(__('Simply enter your Skype ID. Or... If you want the button to invoke a Skype multichat or conference call, enter more then one Skype ID seperated with a semi-colon (<strong>;</strong>). You may also enter a regular phone number (starting with a <strong>+</strong> followed by country code; note that callers need to have %s to call). It just all depends on what you want to achieve!','skype-online-status'),'<a href="http://www.anrdoezrs.net/click-3049686-10420859?url=http%3A%2F%2Fwww.skype.com%2Fallfeatures%2Fcallphones%2F%2F%3Fcm_mmc%3Daffiliate%2D%5F%2Dcommission%5Fjunction%2D%5F%2Dlink%2D%5F%2Dbuilder" title="SkypeOut">'.__('SkypeOut','skype-online-status').'</a>') ?></em></blockquote>
 
@@ -345,7 +350,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 	    <div class="inside">
 
 		<fieldset class="options">
-			<br /><h4><?php _e('Post content', 'skype-online-status') ?></h4>
+			<h4><?php _e('Post content', 'skype-online-status') ?></h4>
 			<p><?php printf(__('When writing posts you can insert a Skype button with a simple quicktag %1$s or %2$s but to make life even easier, a small button on the WYSIWYG editor can do it for you. Check this option to show %3$s or uncheck to hide it. You may still insert the quicktag  in the HTML code of your post or page content manually.', 'skype-online-status'),"<strong>&lt;!--skype status--&gt;</strong>","<strong>[-skype status-]</strong>","<img src=\"".SOSPLUGINURL."skype_button.gif\" alt=\"".__('Skype Online Status', 'skype-online-status')."\" style=\"vertical-align:text-bottom;\" />") ?><br /><br />
 			<input type="checkbox" name="use_buttonsnap" id="use_buttonsnap"<?php if ( $option['use_buttonsnap'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_buttonsnap"><?php _e('Use <strong>Skype Status quicktag button</strong> in the RTE for posts.','skype-online-status') ?></label></p>
 		</fieldset>
