@@ -201,7 +201,7 @@ function skype_status_options() {
 	</div>
 
 	<div id="donationsdiv" class="postbox "><h3 class='hndle'><?php _e('Credits','skype-online-status') ?></h3><div class="inside">
-			<h4><?php _e('Contributions','skype-online-status') ?></h4>
+			<br /><h4><?php _e('Contributions','skype-online-status') ?></h4>
 			<p><em><?php _e('Translations:','skype-online-status') ?></em></p>
 			<ul>
 				<li><a href="http://wordpress.blogos.dk/">Danish - Georg S. Adamsen</a></li>
@@ -213,45 +213,45 @@ function skype_status_options() {
 			</ul>
 			<p>Translation contributions are highly appreciated. Authors of new translations or updates will be mentioned here. Read the <a href="http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt">translation instructions</a> included with this plugin to get started.</p>
 
-			<h4><?php _e('Donations','skype-online-status') ?></h4>
-			<p><?php __('All donations are much appreciated and will (without objection) be mentioned here as a way of expressing my gratitude.','skype-online-status') ?></p>
+			<br /><h4><?php _e('Donations','skype-online-status') ?></h4>
+			<p><?php _e('All donations are much appreciated and will (without objection) be mentioned here as a way of expressing my gratitude.','skype-online-status') ?></p>
 			<iframe border="0" frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%" src="http://4visions.nl/skype-online-status/donors.htm"><?php _e('Donorlist','skype-online-status') ?></iframe>
 			<p><?php _e('Do you want your name and/or link up there too? Or just appreciate my work?','skype-online-status') ?><br />
 			<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=<?php echo SOSVERSION ?>&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8" title="<?php _e('Donate with PayPal - it\'s fast, free and secure!','skype-online-status') ?>"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none; vertical-align:text-bottom;" alt="<?php _e('Donate with PayPal - it\'s fast, free and secure!','skype-online-status') ?>"/></a></p>
 			<p><?php _e('Thanks!','skype-online-status') ?></p>
 		</div>
-
-		<div class="inside"><p>Please <strong>rate this plugin</strong> at <a href="http://wordpress.org/extend/plugins/skype-online-status/">WordPress</a></p>
-			<p><a href="http://www.jdoqocy.com/rn68biroiq596AFCEC5769EF78A" onmouseover="window.status='http://www.skype.com';return true;" onmouseout="window.status='';return true;">
-<img src="http://www.awltovhc.com/85116bosgmk596AFCEC5769EF78A" alt="" border="0"/></a></p>
-		<p><strong>Need a better bloghoster?</strong><br /><a href="http://www.tkqlhce.com/click-3049686-10428906" onmouseover="window.status='http://order.1and1.com/xml/order/Home?ac=OM.US.US856K13554T7073a';return true;" onmouseout="window.status='';return true;">Try my <img src="http://www.tqlkg.com/image-3049686-10428906" width="88" height="31" alt="#1 blog hoster" border="0"/> provider :)</a></p></div>
 	</div>
 
-
+	<div id="supportdiv" class="postbox "><h3 class='hndle'><?php _e('Support','skype-online-status') ?></h3>
+		<div class="inside">
+			<p><?php _e('For all support questions and suggestions, please go to:','skype-online-status') ?> <a href="http://wordpress.org/tags/skype-online-status/"><?php _e('WordPress Support','skype-online-status') ?> - <?php _e('Skype Online Status','skype-online-status') ?></a>.</p>
+			<p>For feature requests, help with WordPress or hosting, please contact <em>RavanH</em> via e-mail <a href="mailto:ravahagen@gmail.com">ravanhagen@gmail.com</a> or Skype chat <?php get_skype_status('skype_id=ravanhagen&user_name=Live Support&button_theme=chat_smallclassic_blue'); ?>.</p>
+			<p>Please <strong>rate this plugin</strong> at <a href="http://wordpress.org/extend/plugins/skype-online-status/">WordPress</a></p>
+			<p><strong>Need a better bloghoster?</strong><br /><a href="http://www.tkqlhce.com/click-3049686-10428906" onmouseover="window.status='http://order.1and1.com/xml/order/Home?ac=OM.US.US856K13554T7073a';return true;" onmouseout="window.status='';return true;">Try my <img src="http://www.tqlkg.com/image-3049686-10428906" width="88" height="31" alt="#1 blog hoster" border="0"/> provider :)</a></p>		</div>
+	</div>
 
 	<div id="resourcesdiv" class="postbox "><h3 class='hndle'><?php _e('Resources','skype-online-status') ?></h3>
 		<div class="inside">
 			<ul>
-				<li><a href="http://wordpress.org/tags/skype-online-status"><?php _e('WordPress Support','skype-online-status') ?> - <?php _e('Skype Online Status','skype-online-status') ?></a></li>
-				<li><a href="http://groups.google.com/group/wp-skype-online-status/"><?php _e('Google Group','skype-online-status') ?> - <?php _e('Skype Online Status','skype-online-status') ?></a></li>
 				<li><a href="http://www.skype.com/go/skypebuttons"><?php _e('Skype Buttons','skype-online-status') ?></a></li>
 				<li><a href="http://www.skype.com/share/buttons/wizard.html" target="_blank"><?php _e('Skype buttons wizard','skype-online-status') ?></a></li>
 				<li><a href="http://mystatus.skype.com/<?php echo $option['skype_id'] ?>"><?php printf(__('View %s\'s online status on the Skype server','skype-online-status'),$option['skype_id']) ?></a></li>
 				<li><a href="http://www.skype.com/share/buttons/status.html"><?php _e('Edit Privacy Options in your Skype client','skype-online-status') ?></a></li>
 				<li><a href="http://www.skype.com/partners/affiliate/"><?php _e('Skype Affiliate Program','skype-online-status') ?></a></li>
 			</ul>
+			<p><a href="http://www.jdoqocy.com/rn68biroiq596AFCEC5769EF78A" onmouseover="window.status='http://www.skype.com';return true;" onmouseout="window.status='';return true;">
+<img src="http://www.awltovhc.com/85116bosgmk596AFCEC5769EF78A" alt="" border="0"/></a></p>
 		</div>
 	</div>
 
 	<div id="discussiondiv" class="postbox "><h3 class='hndle'><?php _e('Discussion') ?></h3>
 		<div class="inside">
-			<strong><?php _e('Google Group','skype-online-status') ?></strong><br/>
-			<?php if(function_exists(wp_widget_rss_output)) 
-				wp_widget_rss_output( "http://groups.google.com/group/wp-skype-online-status/feed/rss_v2_0_msgs.xml", 5 ) ?>
 
 			<br/><strong><?php _e('WordPress Support','skype-online-status') ?></strong><br/>
 			<?php if(function_exists(wp_widget_rss_output))
-				wp_widget_rss_output( "http://wordpress.org/support/rss/tags/skype-online-status", 5 ) ?>
+				wp_widget_rss_output( "http://wordpress.org/support/rss/tags/skype-online-status/", array('show_author' => 1, 'show_date' => 1, 'items' => 6) ) ;
+			else 
+				echo "<a href=\"http://wordpress.org/support/rss/tags/skype-online-status/\">http://wordpress.org/support/rss/tags/skype-online-status/</a></br />" ?>
 
 		</div>
 	</div>
@@ -294,7 +294,8 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 
 	    <div class="inside">
 
-		<fieldset class="options"><h4><?php _e('Skype', 'skype-online-status') ?></h4>
+		<fieldset class="options">
+			<br /><h4><?php _e('Skype', 'skype-online-status') ?></h4>
 			<p><label for="skype_id"><?php _e('Skype ID', 'skype-online-status'); _e(': ', 'skype-online-status') ?></label><input type="text" name="skype_id" id="skype_id" value="<?php echo $option['skype_id'] ?>" /> <a href="#" onclick="javascript:SwitchInfoBlock('skypeid_info');return(false);">?</a></p>
 			<blockquote id="skypeid_info" style="display:none"><em><?php printf(__('Simply enter your Skype ID. Or... If you want the button to invoke a Skype multichat or conference call, enter more then one Skype ID seperated with a semi-colon (<strong>;</strong>). You may also enter a regular phone number (starting with a <strong>+</strong> followed by country code; note that callers need to have %s to call). It just all depends on what you want to achieve!','skype-online-status'),'<a href="http://www.anrdoezrs.net/click-3049686-10420859?url=http%3A%2F%2Fwww.skype.com%2Fallfeatures%2Fcallphones%2F%2F%3Fcm_mmc%3Daffiliate%2D%5F%2Dcommission%5Fjunction%2D%5F%2Dlink%2D%5F%2Dbuilder" title="SkypeOut">'.__('SkypeOut','skype-online-status').'</a>') ?></em></blockquote>
 
@@ -303,7 +304,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 		</fieldset>
 
 		<fieldset class="options">
-			<h4><?php _e('Theme', 'skype-online-status') ?></h4>
+			<br /><h4><?php _e('Theme', 'skype-online-status') ?></h4>
 
 			<p><?php printf(__('Start with <strong>selecting one of the predefined theme templates</strong> to load into the database. Hover over the options to see a preview. You might later select %1$s to edit the template in the text field under %2$s.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Custom Template', 'skype-online-status')."</strong>") ?></p>
 			<p><label for="button_theme"><?php echo __('Theme', 'skype-online-status') . __(': ', 'skype-online-status') ?></label> <select name="button_theme" id="button_theme" onchange="ChangeStyle(this);" onblur="PreviewStyle(this);"><option value="custom_edit"<?php if ($option['button_theme'] == "custom_edit") echo " selected=\"selected\"" ?> onmouseover="PreviewStyle(this);" onmouseout="UnPreviewStyle(this);"><?php _e('Custom...', 'skype-online-status') ?></option><?php foreach ($walk['select'] as $key => $value) { echo "<option value=\"$value\""; if ($value == $option['button_theme']) { echo " selected=\"selected\""; } echo " onmouseover=\"PreviewStyle(this);\" onmouseout=\"UnPreviewStyle(this);\">$key</option>"; } unset($value) ?> </select> <a href="#" onclick="javascript:SwitchInfoBlock('theme_info');return(false);">?</a></p>
@@ -311,7 +312,8 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 			<p><?php printf(__('If you cannot find a suitable theme, check out <a href="http://www.skype.com/share/buttons/wizard.html" target="_blank">http://www.skype.com/share/buttons/wizard.html</a>. Select your options there and copy/paste the output into the textarea under %s.', 'skype-online-status'),"<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Display', 'skype-online-status')."</strong>") ?></p>
 		</fieldset>
 
-		<fieldset class="options"><h4><?php _e('Function', 'skype-online-status') ?></h4>
+		<fieldset class="options">
+			<br /><h4><?php _e('Function', 'skype-online-status') ?></h4>
 			<p><?php _e('Some of the button themes will show your online status in an icon/image, without having a specific function assigned. This means you can select what the button should do when clicked by a visitor.', 'skype-online-status') ?></p>
 			<p><label for="button_function"><?php _e('Function', 'skype-online-status'); _e(': ', 'skype-online-status') ?></label><select name="button_function" id="button_function">
 				<?php foreach ($skype_avail_functions as $key => $value) {
@@ -342,32 +344,19 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 
 	    <div class="inside">
 
-		<fieldset class="options"><h4><?php _e('Post content', 'skype-online-status') ?></h4>
+		<fieldset class="options">
+			<br /><h4><?php _e('Post content', 'skype-online-status') ?></h4>
 			<p><?php printf(__('When writing posts you can insert a Skype button with a simple quicktag %1$s or %2$s but to make life even easier, a small button on the WYSIWYG editor can do it for you. Check this option to show %3$s or uncheck to hide it. You may still insert the quicktag  in the HTML code of your post or page content manually.', 'skype-online-status'),"<strong>&lt;!--skype status--&gt;</strong>","<strong>[-skype status-]</strong>","<img src=\"".SOSPLUGINURL."skype_button.gif\" alt=\"".__('Skype Online Status', 'skype-online-status')."\" style=\"vertical-align:text-bottom;\" />") ?><br /><br />
 			<input type="checkbox" name="use_buttonsnap" id="use_buttonsnap"<?php if ( $option['use_buttonsnap'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_buttonsnap"><?php _e('Use <strong>Skype Status quicktag button</strong> in the RTE for posts.','skype-online-status') ?></label></p>
 		</fieldset>
 
-		<fieldset class="options"><h4><?php _e('Display &amp; Function', 'skype-online-status') ?></h4>
+		<fieldset class="options">
+			<br /><h4><?php _e('Display &amp; Function', 'skype-online-status') ?></h4>
 			<p><?php _e('These settings define which options should be used to replace their respective tag (if present) in the selected template file. If unchecked, the tags will be blanked out.','skype-online-status') ?></p> 
-			<ul style="margin-left:5px">
-				<li><input type="checkbox" name="use_voicemail" id="use_voicemail"<?php if ( $option['use_voicemail'] == "on" ) { print " checked=\"checked\""; } ?> /> <label for="use_voicemail"><?php printf(__('Use %1$s in dropdown button. Leave unchecked if you do not have %2$s or %3$s.', 'skype-online-status'),"<strong>".__('Leave me voicemail', 'skype-online-status')."</strong>", '<a href="http://www.tkqlhce.com/click-3049686-10520919" target="_top">'.__('SkypeIn','skype-online-status').'</a><img src="http://www.ftjcfx.com/image-3049686-10520919" width="1" height="1" border="0"/>', '<a href="http://www.tkqlhce.com/click-3049686-10423078" target="_top">'.__('Skype Voicemail','skype-online-status').'</a>
-<img src="http://www.ftjcfx.com/image-3049686-10423078" width="1" height="1" border="0"/>') ?></label></li>
-				<li><input type="checkbox" name="use_function" id="use_function"<?php if ( $option['use_function'] == "on" ) { print " checked=\"checked\""; } ?> /> <label for="use_function"><?php printf(__('Use %1$s (define below) for %2$s tags.', 'skype-online-status'),"<strong>".__('Action text', 'skype-online-status')."</strong>","{add/call/chat/userinfo/voicemail/sendfile}") ?></label></li>
-				<li><input type="checkbox" name="use_getskype" id="use_getskype"<?php if ( $option['use_getskype'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_getskype"><?php printf(__('Use %s link.', 'skype-online-status'),"<strong>".__('Download Skype now!','skype-online-status')."</strong>") ?></label>
-					<ul style="list-style:square;margin-left:40px">
-						<li><input type="checkbox" name="getskype_newline" id="getskype_newline"<?php if ( $option['getskype_newline'] == "on") { print " checked=\"checked\""; } ?> /> <label for="getskype_newline"><?php _e('Place link on a new line.', 'skype-online-status') ?></label></li>
-						<li><label for="getskype_text"><?php _e('Link text', 'skype-online-status'); _e(': ', 'skype-online-status') ?></label><input name="getskype_text" style="width: 250px;" id="getskype_text" value="<?php echo stripslashes(htmlspecialchars($option['getskype_text'])) ?>" /></li>
-						<li><label for="getskype_link"><?php _e('Link URL', 'skype-online-status'); _e(': ', 'skype-online-status') ?></label>
-						<select name="getskype_link" id="getskype_link">
-							<option value=""<?php if ( $option['getskype_link'] == "" ) print " selected=\"selected\"" ?>><?php _e('Default Skype link', 'skype-online-status') ?></option>
-							<option value="skype_mainpage"<?php if ( $option['getskype_link'] == "skype_mainpage" ) print " selected=\"selected\"" ?>><?php _e('Skype main page', 'skype-online-status') ?></option>
-							<option value="skype_downloadpage"<?php if ( $option['getskype_link'] == "skype_downloadpage" ) print " selected=\"selected\"" ?>><?php _e('Skype download page', 'skype-online-status') ?></option>
-							<option value="custom_link"<?php if ( $option['getskype_link'] == "custom_link" ) print " selected=\"selected\"" ?>><?php _e('Custom...', 'skype-online-status') ?></option>
-						</select> <a href="#" onclick="javascript:SwitchInfoBlock('linkurl_info');return(false);">?</a> 
-						<blockquote id="linkurl_info" style="display:none"><em><?php _e('Leave to Default if you are generous and think downloads should create some small possible revenue for the developer of this plugin -- that\'s me, thanks! :) -- but if you think open source developers are greedy bastards and should go away, select one of the other options -- just kidding, feel free... Really! You can always donate on the Notes & Live Support section ;).', 'skype-online-status'); printf(__('If you want to create your own link (say you have a Commission Junction, TradeDoubler or ValueCommerce account, read more on http://www.skype.com/partners/affiliate/) to get possible revenue from downloads yourself, select %1$s and paste the link code in the textarea under %2$s below.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Custom Download Link', 'skype-online-status')."</strong>") ?></em></blockquote></li>
-					</ul>
-				</li>
-				<li><label for="use_status"><strong><?php _e('Status texts', 'skype-online-status') ?></strong> <?php printf(__('for the %s tag', 'skype-online-status'),"{status}"); _e(': ', 'skype-online-status') ?></label><select name="use_status" id="use_status">
+			<p><input type="checkbox" name="use_voicemail" id="use_voicemail"<?php if ( $option['use_voicemail'] == "on" ) { print " checked=\"checked\""; } ?> /> <label for="use_voicemail"><?php printf(__('Use %1$s in dropdown button. Leave unchecked if you do not have %2$s or %3$s.', 'skype-online-status'),"<strong>".__('Leave me voicemail', 'skype-online-status')."</strong>", '<a href="http://www.tkqlhce.com/click-3049686-10520919" target="_top">'.__('SkypeIn','skype-online-status').'</a><img src="http://www.ftjcfx.com/image-3049686-10520919" width="1" height="1" border="0"/>', '<a href="http://www.tkqlhce.com/click-3049686-10423078" target="_top">'.__('Skype Voicemail','skype-online-status').'</a>
+<img src="http://www.ftjcfx.com/image-3049686-10423078" width="1" height="1" border="0"/>') ?></label>
+			<br /><input type="checkbox" name="use_function" id="use_function"<?php if ( $option['use_function'] == "on" ) { print " checked=\"checked\""; } ?> /> <label for="use_function"><?php printf(__('Use %1$s (define below) for %2$s tags.', 'skype-online-status'),"<strong>".__('Action text', 'skype-online-status')."</strong>","{add/call/chat/userinfo/voicemail/sendfile}") ?></label>
+			<br /><label for="use_status"><strong><?php _e('Status texts', 'skype-online-status') ?></strong> <?php printf(__('for the %s tag', 'skype-online-status'),"{status}"); _e(': ', 'skype-online-status') ?></label><select name="use_status" id="use_status">
 						<option value=""<?php if ( $option['use_status'] == "" ) print " selected=\"selected\"" ?>><?php _e('Disabled', 'skype-online-status') ?></option>
 						<option value="custom"<?php if ( $option['use_status'] == "custom" ) print " selected=\"selected\"" ?>><?php _e('Custom...', 'skype-online-status') ?></option>
 						<?php foreach ($skype_avail_languages as $key => $value) {
@@ -381,13 +370,23 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 						echo "<br />"; 
 						printf(__('When security settings on your server are too tight (<strong>safe_mode</strong> enabled, <strong>open_basedir</strong> restictions or <strong>allow_url_fopen</strong> being disabled), your status does not show or the Skype button doesn\'t load and you find an error like "Warning: file_get_contents() [function.file-get-contents]: URL file-access is disabled in the server configuration..." in the server log files, use either %1$s or %2$s here.','skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Disabled', 'skype-online-status')."</strong>") ?></em></blockquote>
 					<?php if (!SOSALLOWURLFOPEN && !SOSUSECURL) {
-						echo "<br /><span style=\"color:red\">" . __('Note:', 'skype-online-status') . " " . __('The security settings on your server are too tight for the online status to be read from the Skype server.', 'skype-online-status') . " " . sprintf(__('It is advised to set %1$s to %2$s here untill this is fixed.', 'skype-online-status'),"<strong>".__('Status texts', 'skype-online-status')."</strong>","<strong>".__('Disabled', 'skype-online-status')."</strong>") . sprintf(__('You can also select %1$s but only the %2$s status text will be available.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Error', 'skype-online-status')."</strong>") . "</span>"; } ?>
-				</li>
-			</ul>
+						echo "<br /><span style=\"color:red\">" . __('Note:', 'skype-online-status') . " " . __('The security settings on your server are too tight for the online status to be read from the Skype server.', 'skype-online-status') . " " . sprintf(__('It is advised to set %1$s to %2$s here untill this is fixed.', 'skype-online-status'),"<strong>".__('Status texts', 'skype-online-status')."</strong>","<strong>".__('Disabled', 'skype-online-status')."</strong>") . sprintf(__('You can also select %1$s but only the %2$s status text will be available.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Error', 'skype-online-status')."</strong>") . "</span>"; } ?></p>
+				<p><br /><input type="checkbox" name="use_getskype" id="use_getskype"<?php if ( $option['use_getskype'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_getskype"><?php printf(__('Use %s link.', 'skype-online-status'),"<strong>".__('Download Skype now!','skype-online-status')."</strong>") ?></label>
+					<br /><input type="checkbox" name="getskype_newline" id="getskype_newline"<?php if ( $option['getskype_newline'] == "on") { print " checked=\"checked\""; } ?> /> <label for="getskype_newline"><?php _e('Place link on a new line.', 'skype-online-status') ?></label><br />
+					<label for="getskype_text"><?php _e('Link text', 'skype-online-status'); _e(': ', 'skype-online-status') ?></label><input name="getskype_text" style="width: 250px;" id="getskype_text" value="<?php echo stripslashes(htmlspecialchars($option['getskype_text'])) ?>" /><br />
+					<label for="getskype_link"><?php _e('Link URL', 'skype-online-status'); _e(': ', 'skype-online-status') ?></label>
+						<select name="getskype_link" id="getskype_link">
+							<option value=""<?php if ( $option['getskype_link'] == "" ) print " selected=\"selected\"" ?>><?php _e('Default affiliate link', 'skype-online-status') ?></option>
+							<option value="skype_mainpage"<?php if ( $option['getskype_link'] == "skype_mainpage" ) print " selected=\"selected\"" ?>><?php _e('Skype main page', 'skype-online-status') ?></option>
+							<option value="skype_downloadpage"<?php if ( $option['getskype_link'] == "skype_downloadpage" ) print " selected=\"selected\"" ?>><?php _e('Skype download page', 'skype-online-status') ?></option>
+							<option value="custom_link"<?php if ( $option['getskype_link'] == "custom_link" ) print " selected=\"selected\"" ?>><?php _e('Custom...', 'skype-online-status') ?></option>
+						</select> <a href="#" onclick="javascript:SwitchInfoBlock('linkurl_info');return(false);">?</a> 
+						<blockquote id="linkurl_info" style="display:none"><em><?php _e('Leave to Default if you are generous and think downloads should create some small possible revenue for the developer of this plugin -- that\'s me, thanks! :) -- but if you think open source developers are greedy bastards and should go away, select one of the other options -- just kidding, feel free... Really! You can always donate on the Notes & Live Support section ;).', 'skype-online-status'); printf(__('If you want to create your own link (say you have a Commission Junction, TradeDoubler or ValueCommerce account, read more on http://www.skype.com/partners/affiliate/) to get possible revenue from downloads yourself, select %1$s and paste the link code in the textarea under %2$s below.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Custom Download Link', 'skype-online-status')."</strong>") ?></em></blockquote></p>
 		</fieldset>
 
-		<fieldset class="options"><h4><?php _e('Custom Status texts', 'skype-online-status') ?></h4>
-				<p><?php printf(__('Text that will replace the %s tag depending on actual online status.', 'skype-online-status'),"{status}"); 
+		<fieldset class="options">
+			<br /><h4><?php _e('Custom Status texts', 'skype-online-status') ?></h4>
+			<p><?php printf(__('Text that will replace the %s tag depending on actual online status.', 'skype-online-status'),"{status}"); 
 
 	if ($option['use_status'] != "custom") { 
 	echo " " . sprintf(__('Please, change %1$s to %2$s under %3$s (above) for these options to become available first.', 'skype-online-status'),"<strong>".__('Status texts', 'skype-online-status')."</strong>","<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Display', 'skype-online-status')."</strong>");
@@ -421,27 +420,28 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 					</tr>
 				</table>
 		</fieldset>
-		<fieldset class="options"><h4><?php _e('Tag texts', 'skype-online-status') ?></h4>
-				<p><?php _e('Define texts to replace their respective template tags relating to the Skype button action.', 'skype-online-status') ?></p> 
-				<table style="margin-left:5px;margin-top:10px">
-					<tr>
-						<th><?php _e('Action', 'skype-online-status') ?></th>
-						<th><?php _e('Tag', 'skype-online-status') ?></th>
-						<th><?php _e('Text', 'skype-online-status') ?></th>
-					</tr>
-				<?php foreach ($skype_avail_functions as $key => $value) {
-				echo '
-					<tr>
-						<td><label for="'.$key.'_text">';
-				echo $value.'</label></td>
-						<td>{'.$key.'}</td>
-						<td><input type="text" name="'.$key.'_text" id="'.$key.'_text" value="';
-				echo stripslashes(htmlspecialchars($option[$key.'_text']));
-				echo '" /></td>
-					</tr>';
-				} 
-				unset($value) ?> 
-				</table>
+		<fieldset class="options">
+			<br /><h4><?php _e('Tag texts', 'skype-online-status') ?></h4>
+			<p><?php _e('Define texts to replace their respective template tags relating to the Skype button action.', 'skype-online-status') ?></p> 
+			<table style="margin-left:5px;margin-top:10px">
+				<tr>
+					<th><?php _e('Action', 'skype-online-status') ?></th>
+					<th><?php _e('Tag', 'skype-online-status') ?></th>
+					<th><?php _e('Text', 'skype-online-status') ?></th>
+				</tr>
+			<?php foreach ($skype_avail_functions as $key => $value) {
+			echo '
+				<tr>
+					<td><label for="'.$key.'_text">';
+			echo $value.'</label></td>
+					<td>{'.$key.'}</td>
+					<td><input type="text" name="'.$key.'_text" id="'.$key.'_text" value="';
+			echo stripslashes(htmlspecialchars($option[$key.'_text']));
+			echo '" /></td>
+				</tr>';
+			} 
+			unset($value) ?> 
+			</table>
 	<?php 
 	if ($option['use_status'] == "") { 
 		echo "<p>" . sprintf(__('Please, change %1$s under %3$s (above) to any value other than %2$s for the following options to become available first.', 'skype-online-status'),"<strong>".__('Status texts', 'skype-online-status')."</strong>","<strong>".__('Disabled', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Display', 'skype-online-status')."</strong>") . "</p>";
@@ -475,13 +475,15 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 				</table>
 		</fieldset>
 
-		<fieldset class="options"><h4><?php _e('Custom Template', 'skype-online-status') ?></h4>
+		<fieldset class="options">
+			<br /><h4><?php _e('Custom Template', 'skype-online-status') ?></h4>
 			<p><?php printf(__('The currently selected template has been loaded into the database. You can edit it here if you like, but be sure to select %1$s under %2$s or your changes will be lost.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Basic Options', 'skype-online-status')." / ".__('Theme', 'skype-online-status')."</strong>") ?> <br /><br /><label for="button_template"><?php _e('Customize currently loaded template', 'skype-online-status'); _e(': ', 'skype-online-status') ?></label> <a href="#" onclick="javascript:SwitchInfoBlock('customtemplate_info');return(false);">?</a><br />
 			<textarea name="button_template" id="button_template" style="width:98%;height:240px;" onchange="javascript:document.getElementById('button_theme').options[0].selected=true;document.getElementById(visible_preview).style.display='none';document.getElementById('custom_edit').style.display='block';visible_preview='custom_edit';"><?php echo stripslashes(htmlspecialchars($option['button_template'])) ?></textarea></p>
 			<blockquote id="customtemplate_info" style="display:none"><em><?php _e('Available tags:','skype-online-status') ?> {skypeid} {username} {function} {functiontxt} {action} {add} {call} {chat} {userinfo} {voicemail} {sendfile} {status} {statustxt} {tag1} {tag2} <br /><?php _e('Available markers:','skype-online-status') ?> &lt;!-- voicemail_start --&gt; &lt;!-- voicemail_end --&gt; <br /><?php printf(__('See %s for more instructions.','skype-online-status'),"<strong>".__('Quick Guide', 'skype-online-status')."</strong>") ?><br /><span style="color:red"><?php printf(__('Oh, and did I mention this? Changes to the template will only be loaded when the option %1$s under %2$s is selected!', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Basic Options', 'skype-online-status')." / ".__('Theme', 'skype-online-status')."</strong>") ?></span></em></blockquote>
 		</fieldset>
 
-		<fieldset class="options"><h4><?php _e('Custom Download Link', 'skype-online-status') ?></h4>
+		<fieldset class="options">
+			<br /><h4><?php _e('Custom Download Link', 'skype-online-status') ?></h4>
 			<p><?php printf(__('If you are a <a href="http://www.skype.com/partners/affiliate/">Skype Affiliate</a> select %1$s under %2$s (above) and paste your link/banner code (HTML/Javascript) here.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Display &amp; Function', 'skype-online-status')."</strong>") ?><br /><br /><label for="getskype_custom_link"><strong><?php _e('Link/Banner Code', 'skype-online-status'); _e(': ', 'skype-online-status') ?></strong></label><br /><textarea name="getskype_custom_link" id="getskype_custom_link" style="width:98%;height:100px;"><?php echo stripslashes(htmlspecialchars($option['getskype_custom_link'])) ?></textarea></p>
 		</fieldset>
 

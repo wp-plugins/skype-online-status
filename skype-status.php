@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
-Version: 2.7
+Version: 2.7.1
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -130,16 +130,15 @@ $skype_avail_functions = array (
 define('SOSDATADUMP', FALSE);
 
 $soswhatsnew_this = "
-* Translations: Danish, Italian, German, Ukrainian, Russian and Belarusian!<br />
+* skypeCheck script in footer to improve experienced page load times
+";
+$soswhatsnew_recent = "
+	2.7: * Translations: Danish, Italian, German, Ukrainian, Russian and Belarusian!<br />
 * wp_remote_fopen replacing own cURL/remote_fopen routine<br />
 * admin page revision for WP 2.8<br />
 * switch to global WP constants (like WP_CONTENT_DIR)<br />
-* code cleanup and streamlining";
-$soswhatsnew_recent = "
-	2.6.9.0: Removal of good old Buttonsnap Library to avoid showstopper error in WP 2.7 + adaptation of settings page to fit the new WP 2.7 backend. Dropped support for WP versions below 2.1<br />
-	2.6.4.0: Internationalization! If your language is not available, and you would like to contribute to this plugin, your translation (.mo file) will be MUCH appreciated :)<br />
-	2.6.3.0: Multiple Widgets<br />
-	2.6.1.2: Blog language detection for online status messages in English, French, German, Japanese, Chinese, Taiwanese, Portuguese, Brazilian, Italian, Spanish, Polish, Swedish";
+* code cleanup and streamlining<br />
+	2.6.x: Internationalization, multiple widgets, automatic online status messages language detection, Dropped support for WP versions below 2.1";
 
 
 ////////-----------------------------------------.oO//\\Oo.-----------------------------------------\\\\\\\\
@@ -182,7 +181,7 @@ if (isset($_GET['activate']) && $_GET['activate'] == 'true') {
 }
 
 // create WP hooks
-add_action('wp_head', 'skype_status_script');
+add_action('wp_footer', 'skype_status_script');
 add_action('admin_menu', 'skype_status_add_option');
 if ( $wp_db_version >= 11548 ) 
 	add_filter('admin_head','skype_status_admin_head');

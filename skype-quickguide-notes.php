@@ -91,19 +91,20 @@
 
 		<h3><?php _e('Notes &amp; Live Support','skype-online-status'); ?></h3>
 		<ul>
-			<li><a href="#prl">Version, Support, Pricing and Licensing</a></li>
-			<li><a href="#live">Live support</a></li>
-			<li><a href="#credits">Credits</a></li>
-			<li><a href="#revhist">FAQ's, Revision History, Todo and other notes</a></li>
+			<li><a href="#prl">Version, Pricing and Licensing</a></li>
+			<li><a href="#live"><?php _e('Support','skype-online-status') ?></a></li>
+			<li><a href="#credits"><?php _e('Credits','skype-online-status') ?></a></li>
+			<li><a href="#revhist">FAQ's, Changelog, Todo and other notes</a></li>
 		</ul>
 
 		<p id="prl" align="right"><a href="#wphead">back to top</a></p>
-		<h4>Version, Support, Pricing and Licensing</h4>
+		<h4>Version, Pricing and Licensing</h4>
 		<p>This is <strong>version <?php echo SOSVERSION; ?></strong> of the Skype Online Status plugin for WordPress 2+.<br />
 			Release date: <?php echo SOSVERSION_DATE; ?>. <br />
 			The latest available release is: <strong>version <?php if(isset($r->new_version)) { echo $r->new_version . " <span class=\"updated fade\">PLEASE, <a href=\"" . $r->url . "\">UPDATE</a> BEFORE REPORTING BUGS !</span>"; } else { echo SOSVERSION; } ?></strong></p>
-			Report bugs, feature requests and user experiences on <a href="http://groups.google.com/group/wp-skype-online-status">Skype Online Status - Google Discussion Group</a>. <br />
-		<p>This plugin is in beta testing stage and is released under the <a href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License</a>. You can use it free of charge but at your own risk on your personal or commercial blog.</p>
+
+		<p>This plugin is in beta testing stage and is released under the <a href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License</a>. You can use it free of charge but at your own risk on your personal or commercial blog. <br />
+			Report bugs, feature requests and user experiences on <a href="http://wordpress.org/tags/skype-online-status/"><?php _e('WordPress Support','skype-online-status') ?> - <?php _e('Skype Online Status','skype-online-status') ?></a>.</p>
 		<p>If you enjoy this plugin, you can thank me by way of a small donation for my efforts and the time I spend maintaining and developing this plugin and giving <a href="#live">live user support</a> in dutch, english and even a little french and german :).</p>
 		<p>I appreciate every contribution, no matter if it&#8217;s two or twenty euro/dollar or any other amount. Please, use the link in the sidebar.</p>
 		<p>Thanks!<br />
@@ -111,7 +112,8 @@
 	
 		<p id="live" align="right"><a href="#wphead">back to top</a></p>
 
-		<h4>Live Support</h4>
+		<h4><?php _e('Support','skype-online-status') ?></h4>
+		<p>Please read support questions on <a href="http://wordpress.org/tags/skype-online-status/"><?php _e('WordPress Support','skype-online-status') ?> - <?php _e('Skype Online Status','skype-online-status') ?></a> and post new questions there.</p>
 		<p>To get live support on this plugin with Skype, simply click the Skype button below. Hover the button and it will state wether I'm online and available for a chat or not.</p>
 		<p>
 			<?php get_skype_status('skype_id=ravanhagen&user_name=Live Support&button_theme=chat_smallclassic_blue'); ?></p>
