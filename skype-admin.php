@@ -196,8 +196,12 @@ function skype_status_options() {
 
 	<div id="previewdiv" class="postbox "><h3 class='hndle'><?php _e('Preview theme template:', 'skype-online-status') ?></h3><div class="inside">
 			<div class="alternate no_underline" style="margin:5px 0 0 0;padding:5px;height:210px;">
-					<div id="custom_edit" style="display:<?php if ($option['button_theme'] == 'custom_edit') echo 'block'; else echo 'none' ?>;margin:0;padding:0"><div style="height:38px;border-bottom:1px dotted grey;margin:0 0 5px 0"><?php _e('Custom...', 'skype-online-status'); _e(' (edit under advanced options)', 'skype-online-status') ?></div><?php echo skype_parse_theme($option,FALSE) ?></div>
-					<?php echo $previews ?>
+				<p><?php _e('Note:', 'skype-online-status') ?> <?php _e('The preview button uses the Skype Test Call service to allow testing its function.','skype-online-status') ?></p>
+				<div id="custom_edit" style="display:<?php if ($option['button_theme'] == 'custom_edit') echo 'block'; else echo 'none' ?>;margin:0;padding:0">
+					<div style="height:38px;border-bottom:1px dotted grey;margin:0 0 5px 0"><?php _e('Custom...', 'skype-online-status'); _e(' (edit under advanced options)', 'skype-online-status') ?></div>
+					<?php echo skype_parse_theme($option,FALSE) ?>
+				</div>
+				<?php echo $previews ?>
 			</div>
 
 		</div>
@@ -207,19 +211,16 @@ function skype_status_options() {
 	<div id="donationsdiv" class="postbox "><h3 class='hndle'><?php _e('Credits','skype-online-status') ?></h3><div class="inside">
 			<h4><?php _e('Translations:','skype-online-status') ?></h4>
 			<p><?php _e('Translation contributions are highly appreciated. Authors of new translations or updates will be mentioned here.','skype-online-status') ?></p>
-			<ul>
-				<li><a href="http://wordpress.blogos.dk/">Danish - Georg S. Adamsen</a></li>
-				<li><a href="http://gidibao.net/index.php/portfolio/">Italian - Gianni Diurno</a></li>
-				<li><a href="http://www.fabianschulz.net/blog/2009/08/05/skype-online-status/">German - Fabian Schulz</a></li>
-				<li><a href="http://studio-xl.com/">Russian - Leonid Jack</a></li>
-				<li><a href="http://www.comfi.com">Belorussian - M. Comfi</a></li>
-				<li><a href="http://emarketingblog.com.ua/">Ukrainian - Michael Svystun</a></li>
-			</ul>
+
+			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:200px;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/translators.htm"><a href="http://4visions.nl/skype-online-status/translators.htm">http://4visions.nl/skype-online-status/translators.htm</a></iframe>
+
 			<p><?php _e('Want to make your own translation too? Read the <a href="http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt">translation instructions</a> included with this plugin to get started.','skype-online-status') ?></p>
 
 			<h4><?php _e('Donations','skype-online-status') ?></h4>
 			<p><?php _e('All donations are much appreciated and will (without objection) be mentioned here as a way of expressing my gratitude.','skype-online-status') ?></p>
-			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%" src="http://4visions.nl/skype-online-status/donors.htm"><?php _e('Donorlist','skype-online-status') ?></iframe>
+
+			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:140px;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/donors.htm"><a href="http://4visions.nl/skype-online-status/donors.htm">http://4visions.nl/skype-online-status/donors.htm</a></iframe>
+
 			<p><?php _e('Do you want your name and/or link up there too? Or just appreciate my work?','skype-online-status') ?><br /><br />
 			<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=<?php echo SOSVERSION ?>&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8" title="<?php _e('Donate with PayPal - it\'s fast, free and secure!','skype-online-status') ?>"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none; vertical-align:text-bottom;" alt="<?php _e('Donate with PayPal - it\'s fast, free and secure!','skype-online-status') ?>"/></a></p>
 			<p><?php _e('Thanks!','skype-online-status') ?><br /><em>RavanH</em></p>
@@ -378,7 +379,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 						echo "<br /><span style=\"color:red\">" . __('Note:', 'skype-online-status') . " " . __('The security settings on your server are too tight for the online status to be read from the Skype server.', 'skype-online-status') . " " . sprintf(__('It is advised to set %1$s to %2$s here untill this is fixed.', 'skype-online-status'),"<strong>".__('Status texts', 'skype-online-status')."</strong>","<strong>".__('Disabled', 'skype-online-status')."</strong>") . sprintf(__('You can also select %1$s but only the %2$s status text will be available.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Error', 'skype-online-status')."</strong>") . "</span>"; } ?></p>
 				<p><br /><input type="checkbox" name="use_getskype" id="use_getskype"<?php if ( $option['use_getskype'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_getskype"><?php printf(__('Use %s link.', 'skype-online-status'),"<strong>".__('Download Skype now!','skype-online-status')."</strong>") ?></label>
 					<br /><input type="checkbox" name="getskype_newline" id="getskype_newline"<?php if ( $option['getskype_newline'] == "on") { print " checked=\"checked\""; } ?> /> <label for="getskype_newline"><?php _e('Place link on a new line.', 'skype-online-status') ?></label><br />
-					<label for="getskype_text"><?php _e('Link text', 'skype-online-status'); _e(': ', 'skype-online-status') ?></label><input name="getskype_text" style="width: 250px;" id="getskype_text" value="<?php echo stripslashes(htmlspecialchars($option['getskype_text'])) ?>" /><br />
+					<label for="getskype_text"><?php _e('Link text', 'skype-online-status'); _e(': ', 'skype-online-status') ?></label><input type="text" name="getskype_text" style="width: 250px;" id="getskype_text" value="<?php echo stripslashes(htmlspecialchars($option['getskype_text'])) ?>" /><br />
 					<label for="getskype_link"><?php _e('Link URL', 'skype-online-status'); _e(': ', 'skype-online-status') ?></label>
 						<select name="getskype_link" id="getskype_link">
 							<option value=""<?php if ( $option['getskype_link'] == "" ) print " selected=\"selected\"" ?>><?php _e('Default affiliate link', 'skype-online-status') ?></option>
@@ -465,7 +466,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 					<tr>
 						<td><label for="seperator1_text"><?php _e('First seperator', 'skype-online-status') ?></label></td>
 						<td>{sep1}</td>
-						<td><input name="seperator1_text" id="seperator1_text" value="<?php echo stripslashes(htmlspecialchars($option['seperator1_text'])) ?>"<?php echo $other_readonly ?> style="<?php echo $other_style ?>" /></td>
+						<td><input type="text" name="seperator1_text" id="seperator1_text" value="<?php echo stripslashes(htmlspecialchars($option['seperator1_text'])) ?>"<?php echo $other_readonly ?> style="<?php echo $other_style ?>" /></td>
 					</tr>
 					<tr>
 						<td><label for="my_status_text"><?php _e('My status', 'skype-online-status') ?></label></td>
@@ -475,7 +476,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 					<tr>
 						<td><label for="seperator2_text"><?php _e('Second seperator', 'skype-online-status') ?></label></td>
 						<td>{sep2}</td>
-						<td><input name="seperator2_text" id="seperator2_text" value="<?php echo stripslashes(htmlspecialchars($option['seperator2_text'])) ?>"<?php echo $other_readonly ?> style="<?php echo $other_style ?>" /></td>
+						<td><input type="text" name="seperator2_text" id="seperator2_text" value="<?php echo stripslashes(htmlspecialchars($option['seperator2_text'])) ?>"<?php echo $other_readonly ?> style="<?php echo $other_style ?>" /></td>
 					</tr>
 				</table>
 		</fieldset>

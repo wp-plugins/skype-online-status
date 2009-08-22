@@ -1,8 +1,8 @@
 <?php
 function skype_status_options() {
-	global $skype_status_config, $skype_avail_languages, $skype_avail_functions, $skype_avail_statusmsg, $wp_db_version, $soswhatsnew_this, $soswhatsnew_recent;
+	global $skype_status_config, $skype_avail_languages, $skype_avail_functions, $skype_avail_statusmsg, $wp_db_version, $soswhatsnew_this, $soswhatsnew_recent, $sosplugindir, $sospluginfile;
 	$option = $skype_status_config;
-	$plugin_file = "skype-online-status/skype-status.php";
+	$plugin_file = $sosplugindir."/".$sospluginfile;
 
 	// check if database has been cleared for removal or else updated after plugin upgrade 
 	if (!empty($_POST['skype_status_remove'])) { // hit remove button

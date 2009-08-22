@@ -97,7 +97,7 @@ function skype_widget_options ($widget_args = 1) {
 	}
 
 	if ( -1 == $number ) {
-		extract( $skype_widget_default_values[$number], EXTR_SKIP );
+		extract( $skype_widget_default_values, EXTR_SKIP );
 		$walk = skype_walk_templates("", $skype_widget_default_values, "", "", FALSE); // get list of templates
 		$number = '%i%';
 	} else {
@@ -220,7 +220,7 @@ function skype_widget_upgrade() {
 }
 
 function skype_build_args($options) {
-	// build args
+	// build args (except button_theme !) 
 	if ($options['skype_id'])
 		$args = "skype_id=".$options['skype_id']."&";
 	if ($options['user_name'])
@@ -228,7 +228,7 @@ function skype_build_args($options) {
 	if ($options['use_voicemail'])
 		$args .= "use_voicemail=".$options['use_voicemail']."&";
 	if ($options['button_template'])
-		$args .= stripslashes($options['button_template']);
+		$args .= "button_template=".stripslashes($options['button_template']);
 	return $args;
 }
 ?>

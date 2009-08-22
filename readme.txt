@@ -100,9 +100,11 @@ Read more on usage in the **Quick Guide** section of your WordPress Options > Sk
 
 == Screenshots ==
 
-Sorry, no screenshots. 
+1. Set your basic fall-back and advanced options on the Skype options page.
+2. Activate a Skype widget and either set alternative options or leave blank and fall-back options will be used.
+3. Example of Skype button widget in sidebar.
 
-But you can go to the [Skype Online Status plugin page](http://4visions.nl/en/index.php?section=55 "Skype Online Status plugin - 4Visions") to see a Skype button in action (right side) or go and test a button on [Skype's button page](http://www.skype.com/share/buttons/ "Skype buttons"). The button templates used there are also available in this plugin.
+Go to the [Skype Online Status plugin page](http://4visions.nl/en/index.php?section=55 "Skype Online Status plugin - 4Visions") to see a Skype button in action (right side) or go and test a button on [Skype's button page](http://www.skype.com/share/buttons/ "Skype buttons"). The button templates used there -- and more -- are available in this plugin.
 
 == Other Notes ==
 
