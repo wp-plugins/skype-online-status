@@ -182,7 +182,7 @@ if (isset($_GET['activate']) && $_GET['activate'] == 'true') {
 }
 
 // create WP hooks
-add_action('wp_head', 'skype_status_script');
+add_action('wp_footer', 'skype_status_script');
 add_action('admin_menu', 'skype_status_add_option');
 if ( $wp_db_version >= 11548 ) 
 	add_filter('admin_head','skype_status_admin_head');
