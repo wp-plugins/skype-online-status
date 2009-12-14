@@ -7,7 +7,7 @@
 			<li><a href="#templ">Templates</a></li>
 		</ul>
 
-		<p id="basic" align="right"><a href="#wphead">back to top</a></p>
+		<p id="basic" align="right"><a href="#wphead"><?php _e('Top') ?></a></p>
 		<h4>Basic Use</h4>
 		<p>Define basic Skype settings such as Skype ID (more then one possible, seperate with a semi-colon <strong>;</strong>), User name and preferred Theme on the Skype Online Status Settings page as default for each Skype Online Status Button on your blog. Then use one or more of the methodes described below to trigger the default Skype Status button on your blog pages. Under 'Advanced' you can read about ways to override your default settings and create multiple and different Skype buttons across your blog.</p>
 		<p><img src="http://c.skype.com/i/legacy/images/share/buttons/privacy_shot.jpg" alt="" style="float:right" /><strong>Important:</strong> Be sure to enable <strong><em>online status</em></strong> in your personal Skype settings on your PC: open your Skype client, go to Tools > Options > Privacy (or Advanced), tick the 'Allow my status to be shown on the web' (or similar in your language) checkbox and 'Save'.</p>
@@ -15,12 +15,12 @@
 		<h5>Widgets</h5>
 		<p>Since version 2.6.1.0 there is a Skype Status Sidebar Widget available. Go to your Design > Widgets page and activate the Skype Status widget. When activated, it defaults to your settings on the Skype Status Options page but you can customize it if you like.</p>
 		<h5>In posts and page content</h5>
-		<p>It is also possible to trigger a Skype Status button (as predefined on the Skype Online Status Settings page) within posts or page content. Use the quicktag button <img src="<?php echo SOSPLUGINURL; ?>skype_button.gif" alt="Skype Online Status" style="vertical-align:text-bottom;" /> or insert manually <strong>&lt;!--skype status--&gt;</strong> ( or <strong>[-skype status-]</strong> ) in the HTML code of your post or page content to display a Skype Online Status button in your post. </p>
-		<p>Note: the setting 'Use Skype Status quicktag button' should be checked for the quicktag button <img src="<?php echo SOSPLUGINURL; ?>skype_button.gif" alt="Skype Online Status" style="vertical-align:text-bottom;" /> to appear in WordPress's Rich Text Editor (TinyMCE) so you can easily drop the quicktag into the source code.</p>
+		<p>It is also possible to trigger a Skype Status button (as predefined on the Skype Online Status Settings page) within posts or page content. Use the quicktag button <img src="<?php echo SOSPLUGINURL; ?>/skype_button.gif" alt="Skype Online Status" style="vertical-align:text-bottom;" /> or insert manually <strong>&lt;!--skype status--&gt;</strong> ( or <strong>[-skype status-]</strong> ) in the HTML code of your post or page content to display a Skype Online Status button in your post. </p>
+		<p>Note: the setting 'Use Skype Status quicktag button' should be checked for the quicktag button <img src="<?php echo SOSPLUGINURL; ?>/skype_button.gif" alt="Skype Online Status" style="vertical-align:text-bottom;" /> to appear in WordPress's Rich Text Editor (TinyMCE) so you can easily drop the quicktag into the source code.</p>
 		<h5>In theme files</h5>
 		<p>Put <strong>&lt;?php if (function_exists(get_skype_status)) { get_skype_status(''); } else { echo "Skype button disabled"; } ?&gt;</strong> in your sidebar.php or other WordPress template files to display a Skype Button with Online Status information on your blog pages. Your predefined default settings (above) will be used.</p><p>The 'function_exists'-check is there to prevent an error when the plugin is disabled. In this case the echo text is displayed. You can define another alternative action or remove 'else { ... }' to display nothing at all.</p>
 
-		<p id="adv" align="right"><a href="#wphead">back to top</a></p>
+		<p id="adv" align="right"><a href="#wphead"><?php _e('Top') ?></a></p>
 		<h4>Advanced</h4>
 		<p>It is also possible to use multiple Skype buttons for different Skype Users and with different themes across your blog pages.</p>
 		<h5>Syntax</h5>
@@ -36,7 +36,7 @@
 		<p>The php-code <strong>get_skype_status('skype_id=echo123&amp;user_name=Skype voice test&amp;button_theme=callme_mini_blue')</strong> will generate a Skype button with all your predefined settings <em><strong>except</strong></em> for Skype user 'echo123' (the Skype voice test user) with the screen name 'Skype voice test' and using template file 'callme_mini.html':</p>
 		<p><?php get_skype_status('skype_id=echo123&user_name=Skype voice test&button_theme=callme_mini_blue'); ?></p>
 
-		<p id="templ" align="right"><a href="#wphead">back to top</a></p>
+		<p id="templ" align="right"><a href="#wphead"><?php _e('Top') ?></a></p>
 		<h4>Templates</h4>
 		<p>Whenever the options on the Skype Status Options page are saved, the template is read either from the selected template file or the editable textarea (customizable view) and loaded into the database. To change the Skype Online Status button view to your liking you can choose to edit an existing template file, create a new one or edit the preloaded template in the editable textarea on the 'Skype Online Status Settings' page. Remember that after editing a template file, the new content must be reloaded into the database before changes apply.</p>
 		<p>All template files can be found in the /plugins/skype-online-status/templates/ directory. You add new or edit existing ones with any simple text editor (like Notepad) or even a WYSIWYG editor (like Dreamweaver) as long as you follow some rules.</p>
@@ -83,7 +83,7 @@
 		<blockquote>&lt;!-- 'Call me!' classic style - http://www.skype.com/go/skypebuttons --&gt;<br />&lt;a href="skype:{skypeid}?call" onclick="return skypeCheck();" title="{call}{sep1}{username}{sep2}{status}">&lt;img src="http://download.skype.com/share/skypebuttons/buttons/call_blue_white_124x52.png" style="border: none;" width="124" height="52" alt="{call}{sep1}{username}{sep2}{status}" /&gt;&lt;/a&gt;</blockquote>
 		<p>The template for a simple text link displaying username and online status (seperated by the second seperator tag) could look like this:</p>
 		<blockquote>&lt;!-- 'My status' plain text link - http://www.skype.com/go/skypebuttons --&gt;<br />&lt;a href="skype:{skypeid}?call" onclick="return skypeCheck();" title="{username}{sep2}{status}">{username}{sep2}{status}&lt;/a&gt;</blockquote>
-		<p align="right"><a href="#wphead">back to top</a></p>
+		<p align="right"><a href="#wphead"><?php _e('Top') ?></a></p>
 
 	</div> <!-- #guide -->
 
@@ -97,7 +97,7 @@
 			<li><a href="#revhist">FAQ's, Changelog, Todo and other notes</a></li>
 		</ul>
 
-		<p id="prl" align="right"><a href="#wphead">back to top</a></p>
+		<p id="prl" align="right"><a href="#wphead"><?php _e('Top') ?></a></p>
 		<h4>Version, Pricing and Licensing</h4>
 		<p>This is <strong>version <?php echo SOSVERSION; ?></strong> of the Skype Online Status plugin for WordPress 2+.<br />
 			Release date: <?php echo SOSVERSION_DATE; ?>. <br />
@@ -110,7 +110,7 @@
 		<p>Thanks!<br />
 			<em>RavanH</em></p>
 	
-		<p id="live" align="right"><a href="#wphead">back to top</a></p>
+		<p id="live" align="right"><a href="#wphead"><?php _e('Top') ?></a></p>
 
 		<h4><?php _e('Support','skype-online-status') ?></h4>
 		<p>Please read support questions on <a href="http://wordpress.org/tags/skype-online-status/"><?php _e('WordPress Support','skype-online-status') ?> - <?php _e('Skype Online Status','skype-online-status') ?></a> and post new questions there.</p>
@@ -118,16 +118,16 @@
 		<p>
 			<?php get_skype_status('skype_id=ravanhagen&user_name=Live Support&button_theme=chat_smallclassic_blue'); ?></p>
 
-		<p id="credits" align="right"><a href="#wphead">back to top</a></p>
+		<p id="credits" align="right"><a href="#wphead"><?php _e('Top') ?></a></p>
 		
 		<h4>Credits</h4>
 		<p>This plugin was built by <em>RavanH</em>. It was originally based upon the neat little plugin <a href="http://anti.masendav.com/skype-button-for-wordpress/">Skype Button v2.01</a> by <em>Anti Veeranna</em>. My continued development of this plugin is supported by donators, mentioned in the sidebar. Many thanks!</p>
 
-		<p id="revhist" align="right"><a href="#wphead">back to top</a></p>
+		<p id="revhist" align="right"><a href="#wphead"><?php _e('Top') ?></a></p>
 		<h4>FAQ's, Revision History, Todo and other info</h4>
 		<p>See the included <a href="<?php echo SOSPLUGINURL; ?>readme.txt">README</a> file:</p>
-		<iframe src="<?php echo SOSPLUGINURL; ?>readme.txt" border="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:600px"></iframe>
-		<p align="right"><a href="#wphead">back to top</a></p>
+		<iframe src="<?php echo SOSPLUGINURL; ?>/readme.txt" border="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:600px"></iframe>
+		<p align="right"><a href="#wphead"><?php _e('Top') ?></a></p>
 	</div> <!-- #notes -->
 	
 	<?php

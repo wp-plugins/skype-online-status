@@ -17,7 +17,7 @@ function skype_default_values() {
 	unset($value);
 
 	// set language to blogs WPLANG (or leave unchanged)
-	if (SOSALLOWURLFOPEN || SOSUSECURL) {
+	if (SOSREMOTE) {
 		if (WPLANG=='') {
 			$skype_default_values['use_status'] = "en";
 		} else {
@@ -229,7 +229,7 @@ function skype_status_script() {
 <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>';
 	else
 		echo '
-<script type="text/javascript" src="'.SOSPLUGINURL.'js/skypeCheck.js.php"></script>';
+<script type="text/javascript" src="'.SOSPLUGINURL.'/js/skypeCheck.js.php"></script>';
 }
 
 // wrapper function which calls the Skype Status button
@@ -238,6 +238,136 @@ function skype_status_callback($content) {
 		$content = preg_replace('/(<p.*>)?(<!-|\[)?-skype status-(->|\])?(<\/p>)?/', skype_status(), $content);
 	}
 	return $content;
+}
+
+// admin hooks
+function skype_status_add_menu() {
+	global $wp_version;
+	if (function_exists('add_options_page')) {
+		add_options_page(__('Skype Online Status', 'skype-online-status'),__('Skype Status', 'skype-online-status'),'manage_options',SOSPLUGINFILE,'skype_status_options');
+	}
+	wp_enqueue_script('postbox');
+	wp_enqueue_script('dashboard');
+	wp_enqueue_style('dashboard');
+}
+
+/* initialization REMOVE
+function skype_status_install() {
+	global $skype_status_config;
+
+	$skype_status_config = skype_default_values();
+	$skype_status_config['installed'] = TRUE;
+	add_option('skype_status',$skype_status_config);
+} */
+
+function skype_status_add_action_link( $links, $file ) {
+	static $this_plugin;
+
+	if ( empty($this_plugin) ) $this_plugin = SOSPLUGINFILE;
+
+	if ( $file == $this_plugin ) {
+		$settings_link = '<a href="' . admin_url('options-general.php?page='.SOSPLUGINFILE) . '">' . __('Settings') . '</a>';
+		array_unshift( $links, $settings_link );
+	}
+ 
+	return $links;
+}
+
+// WIDGET FUNCTIONS
+
+function skype_status_widget ($args, $widget_args = 1) {
+	extract( $args, EXTR_SKIP );
+	if ( is_numeric($widget_args) )
+		$widget_args = array( 'number' => $widget_args );
+	$widget_args = wp_parse_args( $widget_args, array( 'number' => -1 ) );
+	extract( $widget_args, EXTR_SKIP );
+
+	$options = get_option('skype_widget_options');
+	if (!isset($options[$number]))
+		return;
+
+	$title = apply_filters('widget_title', $options[$number]['title']);
+	$before = apply_filters('widget_text', $options[$number]['before']);
+	$after = apply_filters('widget_text', $options[$number]['after']);
+
+	$args = skype_build_args($options[$number]);
+
+	echo $before_widget;
+	if (!empty( $title ))
+		echo $before_title . $title . $after_title;
+	echo "<div class=\"skype-status-button\">";
+	echo $before;
+	echo skype_status($args);
+	echo $after;
+	echo "</div>";
+	echo $after_widget;
+}
+
+function skype_widget_register() {
+	if ( !$options = get_option('skype_widget_options') )
+		$options = array();
+
+	if ( isset( $options['title'] ) )
+		$options = skype_widget_upgrade();
+
+	$widget_ops = array( 'classname' => 'skype_widget', 'description' => "Skype Online Status button" );
+	$control_ops = array('width' => 600, 'id_base' => 'skype-status');
+
+	$name = "Skype";
+
+	$registered = false;
+	foreach ( array_keys($options) as $o ) {
+		if ( !isset($options[$o]['widget_id']) )
+			continue;
+		$id = "skype-status-$o";
+		$registered = true;
+		wp_register_sidebar_widget( $id, $name, 'skype_status_widget', $widget_ops, array( 'number' => $o ) );
+		wp_register_widget_control( $id, $name, 'skype_widget_options', $control_ops, array( 'number' => $o ) );
+	}
+
+	if ( !$registered ) {
+		wp_register_sidebar_widget( 'skype-status-1', $name, 'skype_status_widget', $widget_ops, array( 'number' => -1 ) );
+		wp_register_widget_control( 'skype-status-1', $name, 'skype_widget_options', $control_ops, array( 'number' => -1 ) );
+	}
+}
+
+function skype_widget_upgrade() {
+	$options = get_option('skype_widget_options');
+	if ( !isset( $options['title'] ) ) 
+		return $options;
+
+	$newoptions = array( 1 => $options );
+
+	update_option( 'skype_widget_options', $newoptions );
+
+	$sidebars_widgets = get_option( 'sidebars_widgets' );
+	if ( is_array( $sidebars_widgets ) ) {
+		foreach ( $sidebars_widgets as $sidebar => $widgets ) {
+			if ( is_array( $widgets ) ) {
+				foreach ( $widgets as $widget )
+					$new_widgets[$sidebar][] = ( $widget == 'Skype Status' ) ? 'skype-status-1' : $widget;
+			} else {
+				$new_widgets[$sidebar] = $widgets;
+			}
+		}
+		if ( $new_widgets != $sidebars_widgets )
+			update_option( 'sidebars_widgets', $new_widgets );
+	}
+
+	return $newoptions;
+}
+
+function skype_build_args($options) {
+	// build args (except button_theme !) 
+	if ($options['skype_id'])
+		$args = "skype_id=".$options['skype_id']."&";
+	if ($options['user_name'])
+		$args .= "user_name=".$options['user_name']."&";
+	if ($options['use_voicemail'])
+		$args .= "use_voicemail=".$options['use_voicemail']."&";
+	if ($options['button_template'])
+		$args .= "button_template=".stripslashes($options['button_template']);
+	return $args;
 }
 
 ?>

@@ -2,13 +2,13 @@
 /*
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/index.php?section=55
-Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
+Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-online-status">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
 Version: 2.7.8
 Author: RavanH
 Author URI: http://4visions.nl/
 */
 
-/*  Copyright 2006  RavanH  (email : skype-status@4visions.nl)
+/*  Copyright 2009  RavanH  (email : skype-status@4visions.nl)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,19 +39,22 @@ if ( ! defined( 'WP_PLUGIN_URL' ) )
 if ( ! defined( 'WP_PLUGIN_DIR' ) )
       define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' );
 
-$sosplugindir = basename(dirname(__FILE__));
-$sospluginfile = basename(__FILE__);
-
 // Plugin version number and date
 define('SOSVERSION', '2.7.8');
 define('SOSVERSION_DATE', '2009-08-20');
-define('SOSPLUGINDIR', WP_PLUGIN_DIR.'/'.$sosplugindir.'/');
-define('SOSPLUGINURL', WP_PLUGIN_URL.'/'.$sosplugindir.'/');
+
+// Plugin globals
+$plugin = plugin_basename(__FILE__);
+$plugindir = basename(dirname($plugin));
+define('SOSPLUGINDIR', WP_PLUGIN_DIR.'/'.$plugindir);
+define('SOSPLUGINURL', WP_PLUGIN_URL.'/'.$plugindir);
+define('SOSPLUGINFILE', $plugin);
 
 // Internationalization
-load_plugin_textdomain('skype-online-status', '', $sosplugindir.'/languages/');
+load_plugin_textdomain('skype-online-status', '', $plugindir.'/languages/');
 
 ////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
+
 // The values below are the default settings
 // Edit these if you like but they can all be customized on the Options > Skype Status page :)
 
@@ -79,6 +82,7 @@ $skype_default_values = array(
 	"status_error_text" => __('Unknown', 'skype-online-status'), 		// Text to replace {status} in template files when status could not be checked
 );
 
+// Widget default values
 $skype_widget_default_values = array ( 
 	"title" => __('Skype Online Status', 'skype-online-status'),	// Widget title
 	"skype_id" => "",			// Skype ID to replace {skypeid} in template files
@@ -90,19 +94,22 @@ $skype_widget_default_values = array (
 	"after" => "",				// text that should go after the button
 );
 
-// Available status messages as provided by Skype
-$skype_avail_statusmsg = array ( 	"0" => __('Unknown', 'skype-online-status'), 			// Text to replace {status} in template files when status is unknown (0)
-	"1" => __('Offline', 'skype-online-status'), 			// Text to replace {status} in template files when status is offline (1)
-	"2" => __('Online', 'skype-online-status'), 			// Text to replace {status} in template files when status is online (2)
-	"3" => __('Away', 'skype-online-status'), 			// Text to replace {status} in template files when status is away (3)
-	"4" => __('Not available', 'skype-online-status'), 		// Text to replace {status} in template files when status is not available (4)
-	"5" => __('Do not disturb', 'skype-online-status'),		// Text to replace {status} in template files when status is do not disturb (5)
-	//"6" => __('Invisible', 'skype-online-status'), 		// Text to replace {status} in template files when status is invisible (6)
-	"7" => __('Skype me!', 'skype-online-status'), 		// Text to replace {status} in template files when status is skype me! (7)
+// Available status messages as provided by Skype to replace {status} in template files
+$skype_avail_statusmsg = array ( 	"0" => __('Unknown', 'skype-online-status'), 		// when status is unknown (0)
+	"1" => __('Offline', 'skype-online-status'), 		// when status is offline (1)
+	"2" => __('Online', 'skype-online-status'), 		// when status is online (2)
+	"3" => __('Away', 'skype-online-status'), 		// when status is away (3)
+	"4" => __('Not available', 'skype-online-status'), 	// when status is not available (4)
+	"5" => __('Do not disturb', 'skype-online-status'),	// when status is do not disturb (5)
+	//"6" => __('Invisible', 'skype-online-status'), 	// when status is invisible (6)
+	"7" => __('Skype me!', 'skype-online-status'), 		// when status is skype me! (7)
 );
 
-// Available status message languages as provided by Skype, e.g. http://mystatus.skype.com/yourusername.txt.pt-br will show your online status message in Brazilian portuguese.
-// If there are new languages available, they can be added to this array to make them optional on the Skype Settings page.
+// Available status message languages as provided by Skype,
+// e.g. http://mystatus.skype.com/yourusername.txt.pt-br will
+// show your online status message in Brazilian Portuguese. If
+// there are new languages available, they can be added to this
+// array to make them optional on the Skype Settings page.
 $skype_avail_languages = array ( 
 	"en" => __('English', 'skype-online-status'),
 	"fr" => __('French', 'skype-online-status'),
@@ -145,53 +152,21 @@ $soswhatsnew_recent = "
 ////////-----------------------------------------.oO//\\Oo.-----------------------------------------\\\\\\\\
 // Stop editing here!
 
-// Checks wether fopen_wrappers are enabled on your server so the remote Skype status file can be read
-if (ini_get('allow_url_fopen')) define('SOSALLOWURLFOPEN', TRUE);
-else define('SOSALLOWURLFOPEN', FALSE);
+// load functions
+require_once(SOSPLUGINDIR . '/skype-functions.php');
 
-// Checks wether cURL functions are available on your server so the remote Skype status file can be read using cURL.
-if (function_exists('curl_exec')) define('SOSUSECURL', TRUE);
-else define('SOSUSECURL', FALSE);
+// Checks whether your server is capable and allowing the remote Skype status file to be read
+if (function_exists('curl_exec') || ini_get('allow_url_fopen')) define('SOSREMOTE', TRUE);
+else define('SOSREMOTE', FALSE);
 
 // load database options
 $skype_status_config = get_option('skype_status');
-if (!is_array($skype_status_config))
-	$skype_status_config = $skype_default_values;
-
-// load other plugin files
-require_once(SOSPLUGINDIR . '/skype-functions.php');
-
-if ( $wp_db_version >= 9872 ) 
-	require_once(SOSPLUGINDIR . '/skype-admin.php');
-else
-	require_once(SOSPLUGINDIR . '/skype-admin-legacy.php');
-
-require_once(SOSPLUGINDIR . '/skype-widget.php');
-
-// activate wisywig button
-if ($skype_status_config['use_buttonsnap']=="on") {
-	require_once(SOSPLUGINDIR . '/editor.php');
-	add_action('init', 'skype_button_init');
-	if ( $wp_db_version < 6846 ) // next action only when before wp2.5
-		add_action('marker_css', 'skype_button_css');
+// if no array present, load defaults (into db OR BETTER NOT?)
+if (!is_array($skype_status_config)) {
+	$skype_status_config = skype_default_values();
+	$skype_status_config['installed'] = TRUE;
+	//update_option('skype_status',$skype_status_config);
 }
-
-// check options or revert to default when activated
-if (isset($_GET['activate']) && $_GET['activate'] == 'true') {
-	skype_status_install();
-}
-
-// create WP hooks
-add_action('wp_footer', 'skype_status_script');
-add_action('admin_menu', 'skype_status_add_option');
-if ( $wp_db_version >= 11548 ) 
-	add_filter('admin_head','skype_status_admin_head');
-
-add_filter('the_content', 'skype_status_callback', 10);
-if ( $wp_db_version < 6846 ) // next action only when before wp2.5
-	add_action('init', 'skype_add_widget');
-else
-	add_action('widgets_init', 'skype_widget_register');
 
 // check for plugin upgrade
 if ($skype_status_config['skype_status_version'] != "" && $skype_status_config['skype_status_version'] !== SOSVERSION) {
@@ -203,24 +178,39 @@ if ($skype_status_config['skype_status_version'] != "" && $skype_status_config['
 	update_option('skype_status',$skype_status_config);
 }
 
-// admin hooks
-function skype_status_add_option() {
-	if (function_exists('add_options_page')) {
-		add_options_page(__('Skype Online Status', 'skype-online-status'),__('Skype', 'skype-online-status'),2,basename(__FILE__),'skype_status_options');
+// do stuff for admin ONLY when on the backend
+if ( is_admin() ) {
+	//load widget admin page function
+	require_once(SOSPLUGINDIR . '/skype-admin-widget.php');
+
+	//load admin page function
+	if ( $wp_db_version >= 9872 ) 
+		require_once(SOSPLUGINDIR . '/skype-admin.php');
+	else
+		require_once(SOSPLUGINDIR . '/skype-admin-legacy.php');
+
+	// activate wysiwyg button ONLY when on the backend
+	if ( $skype_status_config['use_buttonsnap']=="on" ) {
+		require_once(SOSPLUGINDIR . '/editor.php');
+		add_action('init', 'skype_button_init');
+	}
+
+	// create WP hooks
+	if ( is_admin() ) {
+		add_action('admin_menu', 'skype_status_add_menu');
+		add_filter('plugin_action_links', 'skype_status_add_action_link', 10, 2);
 	}
 }
-function skype_status_admin_head() {
-// conditions here
-	wp_print_scripts('post');
-}
 
-// initialization
-function skype_status_install() {
-	global $skype_status_config;
+add_action('wp_footer', 'skype_status_script');
+add_filter('the_content', 'skype_status_callback', 10);
 
-	$skype_status_config = skype_default_values();
-	$skype_status_config['installed'] = TRUE;
-	add_option('skype_status',$skype_status_config);
-}
+// add widget
+add_action('widgets_init', 'skype_widget_register');
+
+/* check options or revert to default when activated REMOVE
+if (isset($_GET['activate']) && $_GET['activate'] == 'true') {
+	skype_status_install();
+} */
 
 ?>

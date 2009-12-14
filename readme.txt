@@ -2,7 +2,7 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e6%2e2%2e9&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
-Requires at least: 2.2
+Requires at least: 2.5
 Tested up to: 2.8.4
 Stable tag: 2.7
 
@@ -20,7 +20,7 @@ Button themes are mostly based on the themes you can find on [Skype's button wiz
 
 Older versions have been developed for WordPress 2.0+, 2.1+ and 2.3+ but with versions 2.6.x the main development focus was on WordPress 2.6. From version 2.6.9, WordPress 2.7+ is supported but support for below WordPress 2.2 has been dropped. 
 
-This plugin also has been tested on WPMU.
+This plugin also has been tested and working fine on WPMU 2.7+.
 
 = Translations =
 
@@ -35,6 +35,10 @@ Since version 2.6.4.0, Skype Online Status is ready for internationalization. An
 - **Ukrainian** * Author: [Michael Svystun](http://emarketingblog.com.ua/)
 
 New translations and their Authors will be mentioned here.
+
+= Example =
+
+Go to the [Skype Online Status plugin page](http://4visions.nl/en/index.php?section=55 "Skype Online Status plugin - 4Visions") to see a Skype button in action (right side) or go and test a button on [Skype's button page](http://www.skype.com/share/buttons/ "Skype buttons"). The button templates used there -- and more -- are available in this plugin.
 
 == Installation ==
 
@@ -104,8 +108,6 @@ Read more on usage in the **Quick Guide** section of your WordPress Options > Sk
 2. Activate a Skype widget and either set alternative options or leave blank and fall-back options will be used.
 3. Example of Skype button widget in sidebar.
 
-Go to the [Skype Online Status plugin page](http://4visions.nl/en/index.php?section=55 "Skype Online Status plugin - 4Visions") to see a Skype button in action (right side) or go and test a button on [Skype's button page](http://www.skype.com/share/buttons/ "Skype buttons"). The button templates used there -- and more -- are available in this plugin.
-
 == Other Notes ==
 
 This plugin has grown a lot since the start but it should be mentioned that it was built upon the neat little plugin Skype Button v2.01 by Anti Veeranna. Many thanks!
@@ -162,7 +164,8 @@ When reporting bugs, please describe as carefully as possible and provide inform
 * bugfix: render no button/widget if skypeid is missing
 * bugfix: widget blank page after setting Full Name value
 * changes to options page
-* dropped support for WP versions below 2.2
+* code cleanup
+* new Ukrainian translation
 
 = 2.7 =
 * German, Ukrainian, Russian and Belarusian translations
@@ -178,7 +181,6 @@ When reporting bugs, please describe as carefully as possible and provide inform
 * bugfix: allow the use of cURL library (if available) while `allow_url_fopen` is off
 * Removal of good old Buttonsnap Library to avoid showstopper error in WP 2.7 
 * adaptation of settings page to fit the new WP 2.7 backend
-* dropped support for WP versions below 2.1
 
 = 2.6.4 =
 * Internationalization: Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") for more info.

@@ -1,8 +1,7 @@
 <?php
 function skype_status_options() {
-	global $skype_status_config, $skype_avail_languages, $skype_avail_functions, $skype_avail_statusmsg, $wp_db_version, $soswhatsnew_this, $soswhatsnew_recent, $sosplugindir, $sospluginfile;
+	global $skype_status_config, $skype_avail_languages, $skype_avail_functions, $skype_avail_statusmsg, $wp_db_version, $soswhatsnew_this, $soswhatsnew_recent;
 	$option = $skype_status_config;
-	$plugin_file = $sosplugindir."/".$sospluginfile;
 
 	// check if database has been cleared for removal or else updated after plugin upgrade 
 	if (!empty($_POST['skype_status_remove'])) { // hit remove button
@@ -11,7 +10,7 @@ function skype_status_options() {
 		delete_option('skype_widget_options');
 		echo "<div class=\"updated fade\"><p><strong>".__('Your Skype Online Status database settings have been cleared from the database for removal of this plugin!', 'skype-online-status')."</strong><br />".__('You can still resave the old settings shown below to (partly) undo this action but custom widget settings will be reverted to default.', 'skype-online-status')."<br /><br />".__('Are you sure?', 'skype-online-status')." ";
 		if (function_exists('wp_nonce_url')) 
-			echo "<a href=\"" . wp_nonce_url('plugins.php?action=deactivate&amp;plugin='.$plugin_file, 'deactivate-plugin_'.$plugin_file) . "\" title=\"" . __('Deactivate this plugin') . "\" class=\"delete\">" . __('Deactivate') . "</a>.";
+			echo "<a href=\"" . wp_nonce_url('plugins.php?action=deactivate&amp;plugin='.SOSPLUGINFILE, 'deactivate-plugin_'.SOSPLUGINFILE) . "\" title=\"" . __('Deactivate this plugin') . "\" class=\"delete\">" . __('Deactivate') . "</a>.";
 		else
 			_e('Go to the <a href="plugins.php">Plugins page</a> and deactivate it.', 'skype-online-status');
 		echo "<br /><br />".__('Please, keep in mind that any WP theme template file changes you have made, can not be undone through this process. Also, any post quicktags that have been inserted in posts will (harmlessly) remain there. If you changed your mind about removing this plugin, just resave the settings NOW (or all your settings will be lost) or revert to default settings at the bottom of this page.', 'skype-online-status')."</p></div>";
@@ -32,15 +31,15 @@ function skype_status_options() {
 	// check for new version
 	do_action('load-plugins.php');
 	$current = get_option('update_plugins');
-	if ( isset( $current->response[$plugin_file] ) ) {
-		$r = $current->response[$plugin_file];
+	if ( isset( $current->response[SOSPLUGINFILE] ) ) {
+		$r = $current->response[SOSPLUGINFILE];
 		echo "<div class=\"updated fade-ff0000\"><p><strong>";
 		if ( !current_user_can('edit_plugins') )
 			printf( __('There is a new version of %1$s available. <a href="%2$s">Download version %3$s here</a>.'), __('Skype Online Status', 'skype-online-status'), $r->url, $r->new_version);
 		else if ( empty($r->package) )
 			printf( __('There is a new version of %1$s available. <a href="%2$s">Download version %3$s here</a> <em>automatic upgrade unavailable for this plugin</em>.'), __('Skype Online Status', 'skype-online-status'), $r->url, $r->new_version);
 		else
-			printf( __('There is a new version of %1$s available. <a href="%2$s">Download version %3$s here</a> or <a href="%4$s">upgrade automatically</a>.'), __('Skype Online Status', 'skype-online-status'), $r->url, $r->new_version, wp_nonce_url("update.php?action=upgrade-plugin&amp;plugin=$plugin_file", 'upgrade-plugin_' . $plugin_file) );
+			printf( __('There is a new version of %1$s available. <a href="%2$s">Download version %3$s here</a> or <a href="%4$s">upgrade automatically</a>.'), __('Skype Online Status', 'skype-online-status'), $r->url, $r->new_version, wp_nonce_url("update.php?action=upgrade-plugin&amp;plugin=".SOSPLUGINFILE, 'upgrade-plugin_'.SOSPLUGINFILE) );
 		echo "</strong></p></div>";
 	}
 
@@ -300,7 +299,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 	<div id="settings" style="min-height: 800px;">
 		<p><?php _e('Define all your <em>default</em> Skype Status settings here.', 'skype-online-status'); ?> 
 		<?php printf(__('Start simply by setting the basics like %1$s, %2$s and the button %3$s you want to show on your blog.', 'skype-online-status'),"<strong>".__('Skype ID', 'skype-online-status')."</strong>","<strong>".__('Full Name', 'skype-online-status')."</strong>","<strong>".__('Theme', 'skype-online-status')."</strong>"); ?> 
-		<?php printf(__('Then activate the Skype Status Widget on your <a href="widgets.php">Widgets</a> page or use the Skype Status quicktag button %s in the WYSIWYG editor (TinyMCE) to place the Skype Online Status button in any post or page.', 'skype-online-status'),'<img src="'.SOSPLUGINURL.'skype_button.gif" alt="'.__('Skype Online Status', 'skype-online-status').'" style="vertical-align:text-bottom;" />'); ?> 
+		<?php printf(__('Then activate the Skype Status Widget on your <a href="widgets.php">Widgets</a> page or use the Skype Status quicktag button %s in the WYSIWYG editor (TinyMCE) to place the Skype Online Status button in any post or page.', 'skype-online-status'),'<img src="'.SOSPLUGINURL.'/skype_button.gif" alt="'.__('Skype Online Status', 'skype-online-status').'" style="vertical-align:text-bottom;" />'); ?> 
 		<?php _e('Later on, you can fine-tune everything until it fits just perfectly on you pages.', 'skype-online-status'); ?> 
 		<?php _e('Note:', 'skype-online-status'); _e('Some basic settings may be overridden per Widget settings or when calling the Skype button with a template function.', 'skype-online-status'); ?></p>
 		<p><?php printf(__('Read more about configuring this plugin and more ways to trigger Skype buttons on your blog in the %1$s section. If you have any remaining questions, see the %2$s page to get help.', 'skype-online-status'),"<strong>".__('Quick Guide', 'skype-online-status')."</strong>","<strong>".__('Notes &amp; Live Support', 'skype-online-status')."</strong>"); ?></p>
@@ -360,7 +359,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 		<h3><?php _e('Advanced Options', 'skype-online-status'); ?></h3>
 
 		<fieldset class="options"><?php if ( $wp_db_version >= 6846 ) echo"<h4>"; else echo "<legend>"; _e('Post content', 'skype-online-status'); if ( $wp_db_version >= 6846 ) echo "</h4>"; else echo "</legend>"; ?>
-			<p><?php printf(__('When writing posts you can insert a Skype button with a simple quicktag %1$s or %2$s but to make life even easier, a small button on the WYSIWYG editor can do it for you. Check this option to show %3$s or uncheck to hide it. You may still insert the quicktag  in the HTML code of your post or page content manually.', 'skype-online-status'),"<strong>&lt;!--skype status--&gt;</strong>","<strong>[-skype status-]</strong>","<img src=\"".SOSPLUGINURL."skype_button.gif\" alt=\"".__('Skype Online Status', 'skype-online-status')."\" style=\"vertical-align:text-bottom;\" />"); ?><br /><br />
+			<p><?php printf(__('When writing posts you can insert a Skype button with a simple quicktag %1$s or %2$s but to make life even easier, a small button on the WYSIWYG editor can do it for you. Check this option to show %3$s or uncheck to hide it. You may still insert the quicktag  in the HTML code of your post or page content manually.', 'skype-online-status'),"<strong>&lt;!--skype status--&gt;</strong>","<strong>[-skype status-]</strong>","<img src=\"".SOSPLUGINURL."/skype_button.gif\" alt=\"".__('Skype Online Status', 'skype-online-status')."\" style=\"vertical-align:text-bottom;\" />"); ?><br /><br />
 			<input type="checkbox" name="use_buttonsnap" id="use_buttonsnap"<?php if ( $option['use_buttonsnap'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_buttonsnap"><?php _e('Use <strong>Skype Status quicktag button</strong> in the RTE for posts.','skype-online-status'); ?></label></p>
 		</fieldset>
 
