@@ -153,7 +153,7 @@ function get_skype_status($args = '') {
 }
 
 // main function
-function skype_status($r, $use_js = TRUE, $status = FALSE) {
+function skype_status($r = '', $use_js = TRUE, $status = FALSE) {
 	global $skype_status_config;
 	$r = wp_parse_args( $r, $skype_status_config );
 

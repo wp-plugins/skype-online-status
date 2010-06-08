@@ -344,9 +344,9 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 			<input type="submit" name="skype_status_update" value="<?php _e('Save Changes') ?> &raquo;" />
 		</p>
 
-		<p><?php printf(__('If you have your basic settings correct and there is a Skype button visible on blog, you can fine-tune it\'s appearance and function with the advanced settings. Each option is annotated but you can read more in the %s section.', 'skype-online-status'),"<strong>".__('Quick Guide', 'skype-online-status')."</strong>") ?></p>
+		<p style="clear:both;padding-top:10px"><?php printf(__('If you have your basic settings correct and there is a Skype button visible on blog, you can fine-tune it\'s appearance and function with the advanced settings. Each option is annotated but you can read more in the %s section.', 'skype-online-status'),"<strong>".__('Quick Guide', 'skype-online-status')."</strong>") ?></p>
 
-		<p align="right"><a href="#wphead"><?php _e('Top') ?></a></p>
+		<p style="text-align:right"><a href="#wphead"><?php _e('Top') ?></a></p>
 
 	    </div> <!-- inside -->
 
@@ -501,11 +501,11 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 			<p><?php printf(__('If you are a <a href="http://www.skype.com/partners/affiliate/">Skype Affiliate</a> select %1$s under %2$s (above) and paste your link/banner code (HTML/Javascript) here.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Display &amp; Function', 'skype-online-status')."</strong>") ?><br /><br /><label for="getskype_custom_link"><strong><?php _e('Link/Banner Code', 'skype-online-status'); _e(': ', 'skype-online-status') ?></strong></label><br /><textarea name="getskype_custom_link" id="getskype_custom_link" style="width:98%;height:100px;"><?php echo stripslashes(htmlspecialchars($option['getskype_custom_link'])) ?></textarea></p>
 		</fieldset>
 
-		<p align="right"><a href="#wphead"><?php _e('Top') ?></a></p>
-
 		<p class="submit">
 			<input type="submit" name="skype_status_update" value="<?php _e('Save Changes') ?> &raquo;" />
 		</p>
+
+		<p style="clear:both;text-align:right;padding-top:10px"><a href="#wphead"><?php _e('Top') ?></a></p>
 
 	    </div> <!-- inside -->
 	  </div> <!-- postbox -->

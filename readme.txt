@@ -26,15 +26,24 @@ This plugin also has been tested and working fine on WPMU 2.7+.
 
 Since version 2.6.4.0, Skype Online Status is ready for internationalization. Anyone who wants to contribute can do so by making a transation. Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") (also included in the latest package) for more info.
 
-- **Italian** * Author: [Gianni Diurno](http://gidibao.net/index.php/portfolio/ "Gianni Diurno - Portfolio"))
-- **Danish** * Author: [Georg S. Adamsen](http://wordpress.blogos.dk/2009/03/18/skype-online-status/))
-- **Dutch** * Author: [R.A. van Hagen](http://4visions.nl) (unfinished)
+- **Italian** * Author: [Gianni Diurno](http://gidibao.net/index.php/portfolio/ "Gianni Diurno - Portfolio")
+- **Danish** * Author: [Georg S. Adamsen](http://wordpress.blogos.dk/2009/03/18/skype-online-status/)
+- **Dutch** (unfinished) * Author: [R.A. van Hagen](http://4visions.nl)
 - **German** * Author: [Fabian Schulz](http://www.fabianschulz.net/blog/2009/08/05/skype-online-status/)
 - **Russian** * Author: [Leonid Jack](http://studio-xl.com/)
 - **Belorussian** * Author: [M. Comfi](http://www.comfi.com)
 - **Ukrainian** * Author: [Michael Svystun](http://emarketingblog.com.ua/)
+- **Spanish** * Authors: [Rodolfo Castro & Rocio Moreno](http://www.ars-legalconsulting.es/blog/)
 
 New translations and their Authors will be mentioned here.
+
+= Donations =
+
+Top donators making my continued work possible:
+
+- **G. Pelzer** Life is a journey. [Life Coaching](http://vivocoaching.com/)
+- **Yamisi Daniel, USA** What could you do with more time? [inTouch Virtual Assistance](http://www.intouchva.com/)
+- **Michelle Vandepas, USA** Live Your life's Purpose. [Divine Purpose unleashed](http://divinepurposeunleashed.com/)
 
 = Example =
 
@@ -62,9 +71,9 @@ Read more on usage in the Quick Guide section of the Options > Skype Status page
 
 == Frequently Asked Questions ==
 
-**Q: Why is my Skype button showing Offline even when I am online?**
+= Why is my Skype button showing Offline even when I am online? =
 
-**A:** First, you have to change an option in your Skype client settings to make your online status publicly visible:
+First, you have to change an option in your Skype client settings to make your online status publicly visible:
 
 1. Open your Skype client on your computer and go to 'Options > Privacy' or 'Advanced' (depending on your client version).
 
@@ -74,29 +83,29 @@ Read more on usage in the Quick Guide section of the Options > Skype Status page
 
 If your online status is still incorrect, type in your webbrowser http://mystatus.skype.com/yourskypeid (replace that last part with your Skype ID) and check what is shown there. The plugin takes your status directly from the Skype server and should correspond with your status shown on the above URL (using your Skype ID obviously). If your status is not correct on that URL, it basically is out of your/my hands. You can wait for the Skype server to get 'up to date' or browse the Skype forums for fixes suggested by others...
 
-**Q: I have found a bug. Where do I report it?**
+= I have found a bug. Where do I report it? =
 
-**A:** For bug reports, go to [WordPress Support &raquo; Skype Online Status](http://wordpress.org/tags/skype-online-status "WordPress Support &raquo; Skype Online Status") and describe what is happening there. Please provide as much related info as you can but at least give me your plugin and Wordpress version number.
+For bug reports, go to [WordPress Support &raquo; Skype Online Status](http://wordpress.org/tags/skype-online-status "WordPress Support &raquo; Skype Online Status") and describe what is happening there. Please provide as much related info as you can but at least give me your plugin and Wordpress version number.
 
-**Q: I have a feature request. Where do I ask?**
+= I have a feature request. Where do I ask? =
 
-**A:** For all 'normal' feature requests and suggestions go to [WordPress Support &raquo; Skype Online Status](http://wordpress.org/tags/skype-online-status "WordPress Support &raquo; Skype Online Status") but if you want custom development, please contact me directly from the *Notes & Live Support* section on the Skype Online Status options page or browse to my website [4Visions](http://4visions.nl/ "4Visions"). I will gladly consider any proposal.
+For all 'normal' feature requests and suggestions go to [WordPress Support &raquo; Skype Online Status](http://wordpress.org/tags/skype-online-status "WordPress Support &raquo; Skype Online Status") but if you want custom development, please contact me directly from the *Notes & Live Support* section on the Skype Online Status options page or browse to my website [4Visions](http://4visions.nl/ "4Visions"). I will gladly consider any proposal.
 
-**Q: I have trouble setting up a Skype button on my blog. Where do I get help?**
+= I have trouble setting up a Skype button on my blog. Where do I get help? =
 
-**A:** Have you read the *Quick Guide* section of your WordPress Options > Skype Status page, available after installation already? For all remaining questions, post them on [WordPress Support &raquo; Skype Online Status](http://wordpress.org/tags/skype-online-status "WordPress Support &raquo; Skype Online Status") or go for Live Support via Skype Chat to the Support section on the Skype Online Status Options page after installation. I will be happy to respond :)
+Have you read the *Quick Guide* section of your WordPress Options > Skype Status page, available after installation already? For all remaining questions, post them on [WordPress Support &raquo; Skype Online Status](http://wordpress.org/tags/skype-online-status "WordPress Support &raquo; Skype Online Status") or go for Live Support via Skype Chat to the Support section on the Skype Online Status Options page after installation. I will be happy to respond :)
 
-**Q: I have installed the plugin, fiddled with the settings, added a widget/quicktag, there is no error message but I see no button!**
+= I have installed the plugin, fiddled with the settings, added a widget/quicktag, there is no error message but I see no button! =
 
-**A:** This usually happens when the plugin cannot find a Skype ID to work with. You can set a different Skype ID for each widget but be sure to set a Skype ID on your Skype options page so the plugin as at least one to fall back on. If you still see no Skype button, reset all options using the Reset button or the Remove button to remove-uninstall-reinstall and start completely fresh.
+This usually happens when the plugin cannot find a Skype ID to work with. You can set a different Skype ID for each widget but be sure to set a Skype ID on your Skype options page so the plugin as at least one to fall back on. If you still see no Skype button, reset all options using the Reset button or the Remove button to remove-uninstall-reinstall and start completely fresh.
 
-**Q: I have installed the plugin and it is working fine, but now there is a ad link below my Skype button. What's with that?**
+= I have installed the plugin and it is working fine, but now there is a ad link below my Skype button. What's with that? =
 
-**A:** By default, the plugin displays a link below each Skype button that allows visitors without Skype to download it. This link goes via the plugin creators Skype Affiliate account so with each new Skype install there will be some small revenue for maintenance and support of this plugin. If you object to that, you can either disable the link, change is to a direct link or replace it with your own affiliate link on the Skype Online Status options page.
+By default, the plugin displays a link below each Skype button that allows visitors without Skype to download it. This link goes via the plugin creators Skype Affiliate account so with each new Skype install there will be some small revenue for maintenance and support of this plugin. If you object to that, you can either disable the link, change is to a direct link or replace it with your own affiliate link on the Skype Online Status options page.
 
-**Q: I would like to contribute. Is that possible?**
+= I would like to contribute. Is that possible? =
 
-**A:** Ofcource! What did you have in mind? Monetary funding is always appreciated but if you can help me out in development, that's cool too :) Right now, translation (.mo) files are MORE then welcome! Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") (also included in the latest package) for more info.
+Ofcource! What did you have in mind? Monetary funding is always appreciated but if you can help me out in development, that's cool too :) Right now, translation (.mo) files are MORE then welcome! Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") (also included in the latest package) for more info.
 
 Any small donation via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e6%2e2%2e9&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8 "PayPal Donate") to keep me developing is _**VERY**_ welcome. Thanks!
 
