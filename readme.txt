@@ -36,6 +36,14 @@ Since version 2.6.4.0, Skype Online Status is ready for internationalization. An
 
 New translations and their Authors will be mentioned here. Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") for more info.
 
+= Donations =
+
+Top donators making my continued work possible:
+
+- **G. Pelzer** Life is a journey. [Life Coaching](http://vivocoaching.com/)
+- **Yamisi Daniel, USA** What could you do with more time? [inTouch Virtual Assistance](http://www.intouchva.com/)
+- **Michelle Vandepas, USA** Live Your life's Purpose. [Divine Purpose unleashed](http://divinepurposeunleashed.com/)
+
 == Installation ==
 
 Note: When upgrading from version 2.5.x or previous: please deactivate plugin and remove the old directories and files before uploading! 
@@ -58,9 +66,9 @@ Read more on usage in the Quick Guide section of the Options > Skype Status page
 
 == Frequently Asked Questions ==
 
-**Q: Why is my Skype button showing Offline even when I am online?**
+= Why is my Skype button showing Offline even when I am online? =
 
-**A:** First, you have to change an option in your Skype client settings to make your online status publicly visible:
+First, you have to change an option in your Skype client settings to make your online status publicly visible:
 
 1. Open your Skype client and go to 'Options > Privacy' or 'Advanced' (depending on your client version).
 
@@ -70,21 +78,21 @@ Read more on usage in the Quick Guide section of the Options > Skype Status page
 
 If your online status is still incorrect, type in your webbrowser http://mystatus.skype.com/yourskypename and check what is shown there. The plugin takes your status directly from the Skype server and should correspond with your status shown on the above URL (using your skype name obviously). If your status is not correct on that URL, it basically is out of your hands. You can wait for the Skype server to get 'up to date' or browse the Skype forums for fixes suggested by others...
 
-**Q: I have found a bug. Where do I report it?**
+= I have found a bug. Where do I report it? =
 
-**A:** For bug reports, go to [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") and describe what is happening there. Please provide as much related info as you can but at least give me your plugin and Wordpress version number.
+For bug reports, go to [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") and describe what is happening there. Please provide as much related info as you can but at least give me your plugin and Wordpress version number.
 
-**Q: I have a feature request. Where do I ask?**
+= I have a feature request. Where do I ask? =
 
-**A:** For all 'normal' feature requests go to [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") but if you want custom development, please contact me directly. I will gladly consider any proposal. You can find my Skype ID on the *Notes & Live Support* section of your WordPress Options > Skype Status page, available after installation. Or browse to my website [4Visions](http://4visions.nl/ "4Visions").
+For all 'normal' feature requests go to [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") but if you want custom development, please contact me directly. I will gladly consider any proposal. You can find my Skype ID on the *Notes & Live Support* section of your WordPress Options > Skype Status page, available after installation. Or browse to my website [4Visions](http://4visions.nl/ "4Visions").
 
-**Q: I have trouble setting up a Skype button on my blog. Where do I get help?**
+= I have trouble setting up a Skype button on my blog. Where do I get help? =
 
-**A:** Have you read the *Quick Guide* section of your WordPress Options > Skype Status page, available after installation already? For all remaining questions, go to [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") and post them there. I will be happy to respond in due time :)
+Have you read the *Quick Guide* section of your WordPress Options > Skype Status page, available after installation already? For all remaining questions, go to [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group") and post them there. I will be happy to respond in due time :)
 
-**Q: I would like to contribute. Is that possible?**
+= I would like to contribute. Is that possible? =
 
-**A:** Ofcource! What did you have in mind? Monetary funding is always appreciated but if you can help me out in development, that's cool too :) Right now, translation (.mo) files are MORE then welcome! Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") (also included in the latest package) for more info.
+Ofcource! What did you have in mind? Monetary funding is always appreciated but if you can help me out in development, that's cool too :) Right now, translation (.mo) files are MORE then welcome! Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") (also included in the latest package) for more info.
 
 Any small donation via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e6%2e2%2e9&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8 "PayPal Donate") to keep me developing is _**VERY**_ welcome. Thanks!
 

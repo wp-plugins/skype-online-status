@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Skype Online Status
-Plugin URI: http://4visions.nl/en/index.php?section=55
+Plugin URI: http://4visions.nl/portfolio/wordpress-plugins/skype-online-status/
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-status.php">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
 Version: 2.7
 Author: RavanH
@@ -90,7 +90,8 @@ $skype_widget_default_values = array (
 );
 
 // Available status messages as provided by Skype
-$skype_avail_statusmsg = array ( 	"0" => __('Unknown', 'skype-online-status'), 			// Text to replace {status} in template files when status is unknown (0)
+$skype_avail_statusmsg = array ( 
+	"0" => __('Unknown', 'skype-online-status'), 			// Text to replace {status} in template files when status is unknown (0)
 	"1" => __('Offline', 'skype-online-status'), 			// Text to replace {status} in template files when status is offline (1)
 	"2" => __('Online', 'skype-online-status'), 			// Text to replace {status} in template files when status is online (2)
 	"3" => __('Away', 'skype-online-status'), 			// Text to replace {status} in template files when status is away (3)
