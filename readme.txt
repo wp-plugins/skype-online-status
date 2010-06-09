@@ -108,7 +108,7 @@ Go to the [Skype Online Status plugin page](http://4visions.nl/en/index.php?sect
 
 == Support ==
 
-Post your questions, bugs and feature requests on [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group")
+Post your questions, bugs and feature requests on [WordPress Support &raquo; Skype Online Status](http://wordpress.org/tags/skype-online-status "WordPress Support &raquo; Skype Online Status")
 
 When reporting bugs, please describe as carefully as possible and provide information like the version number of the plugin, WordPress and - if relevant - server security settings, PHP and MySQL version.
 
@@ -150,7 +150,7 @@ For version 3 and beyond :)
 
 = Bugs =
 
-Please report anything you find on [Skype Online Status Google Group](http://groups.google.com/group/wp-skype-online-status "Skype Online Status Google Group"). Provide as much related info as you can, so we can reproduce the error... And fix it :) 
+Please report anything you find on [WordPress Support &raquo; Skype Online Status](http://wordpress.org/tags/skype-online-status "WordPress Support &raquo; Skype Online Status"). Provide as much related info as you can, so we can reproduce the error... And fix it :) 
 
 = Known issues =
 
