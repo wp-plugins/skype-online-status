@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Skype Online Status
-Plugin URI: http://4visions.nl/portfolio/wordpress-plugins/skype-online-status/
+Plugin URI: http://4visions.nl/wordpress-plugins/skype-online-status/
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-online-status">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
-Version: 2.7.8
+Version: 2.7.9
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -40,15 +40,18 @@ if ( ! defined( 'WP_PLUGIN_DIR' ) )
       define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' );
 
 // Plugin version number and date
-define('SOSVERSION', '2.7.8');
-define('SOSVERSION_DATE', '2009-08-20');
+define('SOSVERSION', '2.7.9');
+define('SOSVERSION_DATE', '2010-08-06');
 
-// Plugin globals
-$plugin = plugin_basename(__FILE__);
-$plugindir = basename(dirname($plugin));
-define('SOSPLUGINDIR', WP_PLUGIN_DIR.'/'.$plugindir);
-define('SOSPLUGINURL', WP_PLUGIN_URL.'/'.$plugindir);
-define('SOSPLUGINFILE', $plugin);
+if (file_exists(dirname(__FILE__).'/skype-online-status'))
+	$skype_mu_dir = "skype-online-status";
+else
+	$skype_mu_dir = "";
+		
+// Plugin constants
+define('SOSPLUGINURL', plugins_url($skype_mu_dir, __FILE__));
+define('SOSPLUGINDIR', WP_PLUGIN_DIR.'/'.basename(dirname(__FILE__)));
+define('SOSPLUGINFILE', plugin_basename(__FILE__));
 
 // Internationalization
 load_plugin_textdomain('skype-online-status', '', $plugindir.'/languages/');
@@ -197,10 +200,8 @@ if ( is_admin() ) {
 	}
 
 	// create WP hooks
-	if ( is_admin() ) {
-		add_action('admin_menu', 'skype_status_add_menu');
-		add_filter('plugin_action_links', 'skype_status_add_action_link', 10, 2);
-	}
+	add_action('admin_menu', 'skype_status_add_menu');
+	add_filter('plugin_action_links', 'skype_status_add_action_link', 10, 2);
 }
 
 add_action('wp_footer', 'skype_status_script');

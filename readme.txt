@@ -1,10 +1,10 @@
 === Skype Online Status ===
 Contributors: RavanH
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e6%2e2%2e9&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e7%2e8&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
 Requires at least: 2.5
-Tested up to: 2.8.4
-Stable tag: 2.7
+Tested up to: 3.0.1
+Stable tag: 2.7.9
 
 Unlimited, highly customizable and accessible (!) Skype buttons through widgets, post quicktags and/or template tags.
 
@@ -168,7 +168,7 @@ When reporting bugs, please describe as carefully as possible and provide inform
 
 == Changelog ==
 
-= 2.7.8 =
+= 2.7.9 =
 * skypeCheck javascript moved to footer to improve experienced/visual page load times
 * bugfix: render no button/widget if skypeid is missing
 * bugfix: widget blank page after setting Full Name value
@@ -286,4 +286,9 @@ When reporting bugs, please describe as carefully as possible and provide inform
 = 0.1 =
 * function and syntax conversion from plugin Skype Button (by Anti Veeranna, discontinued)
 * starting date: 2006-03-03
+
+== Upgrade Notice ==
+
+= 2.7.9 =
+BUGFIX RELEASE. Code cleanup, Ukrainian translation and skypeCheck javascript moved to footer to improve experienced/visual page load times.
 
