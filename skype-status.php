@@ -29,16 +29,6 @@ Author URI: http://4visions.nl/
     For Installation instructions, usage, revision history and other info: see readme.txt included in this package
 */
 
-// Pre-2.6 compatibility
-if ( ! defined( 'WP_CONTENT_URL' ) )
-      define( 'WP_CONTENT_URL', get_option( 'siteurl' ) . '/wp-content' );
-if ( ! defined( 'WP_CONTENT_DIR' ) )
-      define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
-if ( ! defined( 'WP_PLUGIN_URL' ) )
-      define( 'WP_PLUGIN_URL', WP_CONTENT_URL. '/plugins' );
-if ( ! defined( 'WP_PLUGIN_DIR' ) )
-      define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' );
-
 // Plugin version number and date
 define('SOSVERSION', '2.7.9');
 define('SOSVERSION_DATE', '2010-08-06');
@@ -188,10 +178,7 @@ if ( is_admin() ) {
 	require_once(SOSPLUGINDIR . '/skype-admin-widget.php');
 
 	//load admin page function
-	if ( $wp_db_version >= 9872 ) 
-		require_once(SOSPLUGINDIR . '/skype-admin.php');
-	else
-		require_once(SOSPLUGINDIR . '/skype-admin-legacy.php');
+	require_once(SOSPLUGINDIR . '/skype-admin.php');
 
 	// activate wysiwyg button ONLY when on the backend
 	if ( $skype_status_config['use_buttonsnap']=="on" ) {
@@ -210,9 +197,3 @@ add_filter('the_content', 'skype_status_callback', 10);
 // add widget
 add_action('widgets_init', 'skype_widget_register');
 
-/* check options or revert to default when activated REMOVE
-if (isset($_GET['activate']) && $_GET['activate'] == 'true') {
-	skype_status_install();
-} */
-
-?>

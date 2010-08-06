@@ -2,7 +2,7 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e7%2e8&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
-Requires at least: 2.5
+Requires at least: 2.7
 Tested up to: 3.0.1
 Stable tag: 2.7.9
 
@@ -172,6 +172,7 @@ When reporting bugs, please describe as carefully as possible and provide inform
 * skypeCheck javascript moved to footer to improve experienced/visual page load times
 * bugfix: render no button/widget if skypeid is missing
 * bugfix: widget blank page after setting Full Name value
+* bugfix: slow load times on Widgets page
 * changes to options page
 * code cleanup
 * new Ukrainian translation
@@ -290,5 +291,5 @@ When reporting bugs, please describe as carefully as possible and provide inform
 == Upgrade Notice ==
 
 = 2.7.9 =
-BUGFIX RELEASE. Code cleanup, Ukrainian translation and skypeCheck javascript moved to footer to improve experienced/visual page load times.
+BUGFIX RELEASE. Code cleanup, Ukrainian translation and skypeCheck javascript moved to footer to improve experienced/visual page load times. Dropping support for WP pre-2.7 and removed heavy javascript on Widgets page.
 
