@@ -1,6 +1,6 @@
 === Skype Online Status ===
 Contributors: RavanH
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e7%2e8&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=ravanhagen%40gmail%2ecom&amp;item_name=Skype%20Online%20Status&item_number=2%2e7%2e8&amp;no_shipping=0&amp;tax=0&amp;bn=PP%2dDonationsBF&amp;charset=UTF%2d8
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
 Requires at least: 2.7
 Tested up to: 3.0.1
@@ -51,21 +51,23 @@ Go to the [Skype Online Status plugin page](http://4visions.nl/en/index.php?sect
 
 == Installation ==
 
+Quick installation: [Install now](http://coveredwebservices.com/wp-plugin-install/?plugin=xml-sitemap-feed) !
+
+ &hellip; OR &hellip;
+
+Search for "skype online status" and install with that slick **Plugins > Add New** back-end page.
+
+ &hellip; OR &hellip;
+
+Follow these steps:
+
 Note: When upgrading from version 2.5.x or previous: please deactivate plugin and remove the old directories and files before uploading! 
--OR- 
-Just use that slick installation and auto update feature on your Pugins page and forget about the following steps ;)
 
-Steps:
-
-1. Download archive and unpack.
-
-2. Upload (and overwrite) the /skype-online-status/ folder and its content to the /plugins/ folder. 
-
-3. Activate plugin on the Plug-ins page
-
-4. Configure (or update) your SkypeID and settings on the Options > Skype Status page
-
-5. Activate the widget or put `<?php if (function_exists(get_skype_status)) { get_skype_status(''); } ?>` in your sidebar.php or any other template file or use the `<!--skype status-->` quicktag button in your posts to display the Skype button inside your blog posts and pages. 
+ 1. Download archive and unpack.
+ 2. Upload (and overwrite) the /skype-online-status/ folder and its content to the /plugins/ folder. 
+ 3. Activate plugin on the Plug-ins page
+ 4. Configure (or update) your SkypeID and settings on the Options > Skype Status page
+ 5. Activate the widget or put `<?php if (function_exists(get_skype_status)) { get_skype_status(''); } ?>` in your sidebar.php or any other template file or use the `<!--skype status-->` quicktag button in your posts to display the Skype button inside your blog posts and pages. 
 
 Read more on usage in the Quick Guide section of the Options > Skype Status page, available after installation.
 

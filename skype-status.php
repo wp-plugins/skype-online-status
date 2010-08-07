@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Skype Online Status
-Plugin URI: http://4visions.nl/wordpress-plugins/skype-online-status/
+Plugin URI: http://4visions.nl/en/wordpress-plugins/skype-online-status/
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-online-status">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
 Version: 2.7.9
 Author: RavanH
