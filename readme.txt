@@ -51,7 +51,7 @@ Go to the [Skype Online Status plugin page](http://4visions.nl/en/index.php?sect
 
 == Installation ==
 
-Quick installation: [Install now](http://coveredwebservices.com/wp-plugin-install/?plugin=xml-sitemap-feed) !
+Quick installation: [Install now](http://coveredwebservices.com/wp-plugin-install/?plugin=skype-online-status) !
 
  &hellip; OR &hellip;
 
