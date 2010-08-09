@@ -44,7 +44,7 @@ define('SOSPLUGINDIR', WP_PLUGIN_DIR.'/'.basename(dirname(__FILE__)));
 define('SOSPLUGINFILE', plugin_basename(__FILE__));
 
 // Internationalization
-load_plugin_textdomain('skype-online-status', '', $plugindir.'/languages/');
+load_plugin_textdomain('skype-online-status', false, SOSPLUGINDIR.$skype_mu_dir.'/languages/');
 
 ////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
 
