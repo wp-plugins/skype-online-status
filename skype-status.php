@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/wordpress-plugins/skype-online-status/
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-online-status">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
-Version: 2.7.9
+Version: 2.7.9.1
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -30,21 +30,19 @@ Author URI: http://4visions.nl/
 */
 
 // Plugin version number and date
-define('SOSVERSION', '2.7.9');
-define('SOSVERSION_DATE', '2010-08-06');
+define('SOSVERSION', '2.7.9.1');
+define('SOSVERSION_DATE', '2010-08-26');
 
 if (file_exists(dirname(__FILE__).'/skype-online-status'))
-	$skype_mu_dir = "skype-online-status";
-else
-	$skype_mu_dir = "";
+	$skype_mu_dir = "/skype-online-status";
 		
 // Plugin constants
 define('SOSPLUGINURL', plugins_url($skype_mu_dir, __FILE__));
-define('SOSPLUGINDIR', WP_PLUGIN_DIR.'/'.basename(dirname(__FILE__)));
-define('SOSPLUGINFILE', plugin_basename(__FILE__));
+define('SOSPLUGINDIR', (dirname(__FILE__)).$skype_mu_dir);
+define('SOSPLUGINFILE', 'skype-online-status'); // plugin_basename(__FILE__)
 
 // Internationalization
-load_plugin_textdomain('skype-online-status', false, SOSPLUGINDIR.$skype_mu_dir.'/languages/');
+load_plugin_textdomain('skype-online-status', false, SOSPLUGINDIR.'/languages/');
 
 ////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
 
@@ -132,15 +130,12 @@ $skype_avail_functions = array (
 define('SOSDATADUMP', FALSE);
 
 $soswhatsnew_this = "
-* skypeCheck script in footer to improve experienced page load times
+* back-end style/script bugfix
 ";
 $soswhatsnew_recent = "
-	2.7: * Translations: Danish, Italian, German, Ukrainian, Russian and Belarusian!<br />
-* wp_remote_fopen replacing own cURL/remote_fopen routine<br />
-* admin page revision for WP 2.8<br />
-* switch to global WP constants (like WP_CONTENT_DIR)<br />
-* code cleanup and streamlining<br />
-	2.6.x: Internationalization, multiple widgets, automatic online status messages language detection, Dropped support for WP versions below 2.1";
+* skypeCheck script in footer to improve experienced page load times<br />
+* Translations: Danish, Italian, German, Ukrainian, Russian and Belarusian!<br />
+* Internationalization, multiple widgets, automatic online status messages language detection, Dropped support for WP versions below 2.7";
 
 
 ////////-----------------------------------------.oO//\\Oo.-----------------------------------------\\\\\\\\
@@ -188,6 +183,7 @@ if ( is_admin() ) {
 
 	// create WP hooks
 	add_action('admin_menu', 'skype_status_add_menu');
+	add_action('admin_enqueue_scripts', 'skype_status_scripts_admin',10,1);
 	add_filter('plugin_action_links', 'skype_status_add_action_link', 10, 2);
 }
 

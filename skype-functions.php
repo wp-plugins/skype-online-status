@@ -246,9 +246,14 @@ function skype_status_add_menu() {
 	if (function_exists('add_options_page')) {
 		add_options_page(__('Skype Online Status', 'skype-online-status'),__('Skype Status', 'skype-online-status'),'manage_options',SOSPLUGINFILE,'skype_status_options');
 	}
-	wp_enqueue_script('postbox');
-	wp_enqueue_script('dashboard');
-	wp_enqueue_style('dashboard');
+}
+
+function skype_status_scripts_admin($hook) {
+	if ( $hook == 'settings_page_'.SOSPLUGINFILE ) {
+		wp_enqueue_script('postbox');
+		wp_enqueue_script('dashboard');
+		wp_enqueue_style('dashboard');
+	}
 }
 
 /* initialization REMOVE

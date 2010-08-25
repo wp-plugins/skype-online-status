@@ -3,7 +3,7 @@ function skype_status_options() {
 	global $skype_status_config, $skype_avail_languages, $skype_avail_functions, $skype_avail_statusmsg, $soswhatsnew_this, $soswhatsnew_recent;
 	$option = $skype_status_config;
 
-add_thickbox();
+//add_thickbox();
 
 ?>
 <div class="wrap">
