@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/wordpress-plugins/skype-online-status/
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-online-status">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
-Version: 2.7.9.1
+Version: 2.8
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -30,8 +30,8 @@ Author URI: http://4visions.nl/
 */
 
 // Plugin version number and date
-define('SOSVERSION', '2.7.9.1');
-define('SOSVERSION_DATE', '2010-08-26');
+define('SOSVERSION', '2.8');
+define('SOSVERSION_DATE', '2010-08-31');
 
 if (file_exists(dirname(__FILE__).'/skype-online-status'))
 	$skype_mu_dir = "/skype-online-status";
@@ -130,12 +130,10 @@ $skype_avail_functions = array (
 define('SOSDATADUMP', FALSE);
 
 $soswhatsnew_this = "
-* back-end style/script bugfix
-";
+* new skypeCheck script";
 $soswhatsnew_recent = "
-* skypeCheck script in footer to improve experienced page load times<br />
-* Translations: Danish, Italian, German, Ukrainian, Russian and Belarusian!<br />
-* Internationalization, multiple widgets, automatic online status messages language detection, Dropped support for WP versions below 2.7";
+* back-end style/script bugfix<br />
+* skypeCheck script in footer to improve experienced page load times";
 
 
 ////////-----------------------------------------.oO//\\Oo.-----------------------------------------\\\\\\\\

@@ -170,6 +170,9 @@ When reporting bugs, please describe as carefully as possible and provide inform
 
 == Changelog ==
 
+= 2.7.8 =
+* New skypeCheck script for Windows7 / IE8 compatibility
+
 = 2.7.9.1 =
 * bugfix: back-end style and script load
 
@@ -183,7 +186,7 @@ When reporting bugs, please describe as carefully as possible and provide inform
 * new Ukrainian translation
 
 = 2.7 =
-* German, Ukrainian, Russian and Belarusian translations
+* German, Spanish, Ukrainian, Russian and Belarusian translations
 * `wp_remote_fopen` replacing own cURL/`remote_fopen` routine
 * admin page revision for WP 2.8
 * code cleanup and multiple online status check streamlining
@@ -295,6 +298,6 @@ When reporting bugs, please describe as carefully as possible and provide inform
 
 == Upgrade Notice ==
 
-= 2.7.9.1 =
-BUGFIX RELEASE. Admin style and script enqueue fix.
+= 2.8 =
+New skypeCheck script for Windows7 / IE8 compatibility.
 

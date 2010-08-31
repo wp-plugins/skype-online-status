@@ -118,7 +118,7 @@ function skype_parse_theme($config, $use_js = TRUE, $status = FALSE) {
 
 	// make sure there is a template, else revert to basic plain-text fallback template
 	if (!$config['button_template']) 
-		$config['button_template'] = '<a href="skype:{skypeid}?call" onclick="return skypeCheck();" title="{call}{sep1}{username}{sep2}{status}">{username}{sep2}{status}</a>';		
+		$config['button_template'] = '<a href="skype:{skypeid}?call" title="{call}{sep1}{username}{sep2}{status}">{username}{sep2}{status}</a>';		
 
 	// replace all tags with values
 	$theme_output = str_replace(array_keys($tags_replace),array_values($tags_replace),$theme_output);
@@ -130,11 +130,11 @@ function skype_parse_theme($config, $use_js = TRUE, $status = FALSE) {
 		if ($config['getskype_link'] == "skype_mainpage")
 			$theme_output .= " <a href=\"http://www.skype.com\" title= \"".$config['getskype_text']."\">".$config['getskype_text']."</a>";
 		elseif ($config['getskype_link'] == "skype_downloadpage")
-			$theme_output .= " <a href=\"http://www.skype.com/go/downloading\" title= \"".$config['getskype_text']."\">".$config['getskype_text']."</a>";
+			$theme_output .= " <a href=\"http://www.skype.com/go/download\" title= \"".$config['getskype_text']."\">".$config['getskype_text']."</a>";
 		elseif ($config['getskype_link'] == "custom_link" && $config['getskype_custom_link'] != "" )
 			$theme_output .= $config['getskype_custom_link'];
 		else
-			$theme_output .= " <a href=\"http://www.anrdoezrs.net/dc100ft1zt0GKHLQNPNGIHLJJNLI\" title=\"".$config['getskype_text']."\" onmouseover=\"window.status='http://www.skype.com';return true;\" onmouseout=\"window.status=' ';return true;\">".$config['getskype_text']."</a><img src=\"http://www.tqlkg.com/ah81xjnbhf0415A797021533752\" alt=\"\" style=\"width:0;height:0;border:0\" />";
+			$theme_output .= " <a href=\"http://4visions.nl/skype-online-status/go/download\" title=\"".$config['getskype_text']."\" onmouseover=\"window.status='http://www.skype.com/go/download';return true;\" onmouseout=\"window.status=' ';return true;\">".$config['getskype_text']."</a>";
 		}
 	return str_replace(array("\r\n", "\n\r", "\n", "\r", "%0D%0A", "%0A%0D", "%0D", "%0A"), "", $theme_output);
 }
@@ -229,7 +229,7 @@ function skype_status_script() {
 <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>';
 	else
 		echo '
-<script type="text/javascript" src="'.SOSPLUGINURL.'/js/skypeCheck.js.php"></script>';
+<script type="text/javascript" src="'.SOSPLUGINURL.'/js/skypeCheck.js"></script>';
 }
 
 // wrapper function which calls the Skype Status button
