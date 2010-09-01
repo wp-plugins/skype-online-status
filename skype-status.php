@@ -31,7 +31,7 @@ Author URI: http://4visions.nl/
 
 // Plugin version number and date
 define('SOSVERSION', '2.8');
-define('SOSVERSION_DATE', '2010-08-31');
+define('SOSVERSION_DATE', '2010-09-01');
 
 if (file_exists(dirname(__FILE__).'/skype-online-status'))
 	$skype_mu_dir = "/skype-online-status";
@@ -130,8 +130,9 @@ $skype_avail_functions = array (
 define('SOSDATADUMP', FALSE);
 
 $soswhatsnew_this = "
-* Skype button shortcode in posts and pages can now handle options like skype_id to override default settings.<br />
-* new skypeCheck script";
+* new skypeCheck script<br />
+* Skype button shortcode in posts and pages can now handle options like skype_id to override default settings<br />
+* skypeCheck script loads only when needed";
 $soswhatsnew_recent = "
 * back-end style/script bugfix<br />
 * skypeCheck script in footer to improve experienced page load times";

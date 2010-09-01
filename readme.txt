@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=r
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
 Requires at least: 2.7
 Tested up to: 3.0.1
-Stable tag: 2.7.9.1
+Stable tag: 2.8
 
 Unlimited, highly customizable and accessible (!) Skype buttons through widgets, post quicktags and/or template tags.
 
@@ -171,8 +171,9 @@ When reporting bugs, please describe as carefully as possible and provide inform
 == Changelog ==
 
 = 2.8 =
-* New skypeCheck script for Windows7 / IE8 compatibility
-* Skype button shortcode in posts and pages can now handle options like skype_id to override default settings.
+* new skypeCheck script for Windows7 / IE8 compatibility
+* new shortcode in posts and pages can handle options like skype_id to override default settings
+* load skypeCheck script only when needed
 
 = 2.7.9.1 =
 * bugfix: back-end style and script load
@@ -263,6 +264,7 @@ When reporting bugs, please describe as carefully as possible and provide inform
 = 1.7 =
 * added post hook <!--skype status--> and appended instructions to quickguide
 
+
 = 1.6 =
 * templating guide 
 * redesign Options > Skype Status page
@@ -300,5 +302,5 @@ When reporting bugs, please describe as carefully as possible and provide inform
 == Upgrade Notice ==
 
 = 2.8 =
-New skypeCheck script for Windows7 / IE8 compatibility. Skype button shortcode in posts and pages can now handle options like skype_id to override default settings.
+New skypeCheck script for Windows7 / IE8 compatibility. Skype button shortcode in posts and pages can now handle options like skype_id to override default settings. Now skypeCheck script only loads when needed.
 
