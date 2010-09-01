@@ -130,6 +130,7 @@ $skype_avail_functions = array (
 define('SOSDATADUMP', FALSE);
 
 $soswhatsnew_this = "
+* Skype button shortcode in posts and pages can now handle options like skype_id to override default settings.<br />
 * new skypeCheck script";
 $soswhatsnew_recent = "
 * back-end style/script bugfix<br />
@@ -181,12 +182,13 @@ if ( is_admin() ) {
 
 	// create WP hooks
 	add_action('admin_menu', 'skype_status_add_menu');
-	add_action('admin_enqueue_scripts', 'skype_status_scripts_admin',10,1);
 	add_filter('plugin_action_links', 'skype_status_add_action_link', 10, 2);
 }
 
+// http://scribu.net/wordpress/optimal-script-loading.html (the Jedi Knight way)
 add_action('wp_footer', 'skype_status_script');
-add_filter('the_content', 'skype_status_callback', 10);
+add_filter('the_content', 'skype_status_callback');
+add_shortcode('skype-status', 'skype_status_shortcode_callback');
 
 // add widget
 add_action('widgets_init', 'skype_widget_register');

@@ -170,8 +170,9 @@ When reporting bugs, please describe as carefully as possible and provide inform
 
 == Changelog ==
 
-= 2.7.8 =
+= 2.8 =
 * New skypeCheck script for Windows7 / IE8 compatibility
+* Skype button shortcode in posts and pages can now handle options like skype_id to override default settings.
 
 = 2.7.9.1 =
 * bugfix: back-end style and script load
@@ -299,5 +300,5 @@ When reporting bugs, please describe as carefully as possible and provide inform
 == Upgrade Notice ==
 
 = 2.8 =
-New skypeCheck script for Windows7 / IE8 compatibility.
+New skypeCheck script for Windows7 / IE8 compatibility. Skype button shortcode in posts and pages can now handle options like skype_id to override default settings.
 

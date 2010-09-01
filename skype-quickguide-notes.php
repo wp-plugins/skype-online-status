@@ -4,7 +4,7 @@
 		<ul>
 			<li><a href="#basic">Basic Use</a></li>
 			<li><a href="#adv">Advanced</a></li>
-			<li><a href="#templ">Templates</a></li>
+			<li><a href="#templ">Skype Button Templates</a></li>
 		</ul>
 
 		<p id="basic" align="right"><a href="#wphead"><?php _e('Top') ?></a></p>
@@ -12,10 +12,12 @@
 		<p>Define basic Skype settings such as Skype ID (more then one possible, seperate with a semi-colon <strong>;</strong>), User name and preferred Theme on the Skype Online Status Settings page as default for each Skype Online Status Button on your blog. Then use one or more of the methodes described below to trigger the default Skype Status button on your blog pages. Under 'Advanced' you can read about ways to override your default settings and create multiple and different Skype buttons across your blog.</p>
 		<p><img src="http://c.skype.com/i/legacy/images/share/buttons/privacy_shot.jpg" alt="" style="float:right" /><strong>Important:</strong> Be sure to enable <strong><em>online status</em></strong> in your personal Skype settings on your PC: open your Skype client, go to Tools > Options > Privacy (or Advanced), tick the 'Allow my status to be shown on the web' (or similar in your language) checkbox and 'Save'.</p>
 		<p>To make your Skype button initiate conference calls or multi-chat sessions, put multiple Skype ID's seperated with a semi-colon (;) in the Skype ID box.</p>
+
 		<h5>Widgets</h5>
 		<p>Since version 2.6.1.0 there is a Skype Status Sidebar Widget available. Go to your Design > Widgets page and activate the Skype Status widget. When activated, it defaults to your settings on the Skype Status Options page but you can customize it if you like.</p>
+
 		<h5>In posts and page content</h5>
-		<p>It is also possible to trigger a Skype Status button (as predefined on the Skype Online Status Settings page) within posts or page content. Use the quicktag button <img src="<?php echo SOSPLUGINURL; ?>/skype_button.gif" alt="Skype Online Status" style="vertical-align:text-bottom;" /> or insert manually <strong>&lt;!--skype status--&gt;</strong> ( or <strong>[-skype status-]</strong> ) in the HTML code of your post or page content to display a Skype Online Status button in your post. </p>
+		<p>It is also possible to trigger a Skype Status button (as predefined on the Skype Online Status Settings page) within posts or page content. Use the quicktag button <img src="<?php echo SOSPLUGINURL; ?>/skype_button.gif" alt="Skype Online Status" style="vertical-align:text-bottom;" /> or insert manually the shortcode <strong>[skype-status]</strong> in your post or page content to display a Skype Online Status button in your post. </p>
 		<p>Note: the setting 'Use Skype Status quicktag button' should be checked for the quicktag button <img src="<?php echo SOSPLUGINURL; ?>/skype_button.gif" alt="Skype Online Status" style="vertical-align:text-bottom;" /> to appear in WordPress's Rich Text Editor (TinyMCE) so you can easily drop the quicktag into the source code.</p>
 		<h5>In theme files</h5>
 		<p>Put <strong>&lt;?php if (function_exists(get_skype_status)) { get_skype_status(''); } else { echo "Skype button disabled"; } ?&gt;</strong> in your sidebar.php or other WordPress template files to display a Skype Button with Online Status information on your blog pages. Your predefined default settings (above) will be used.</p><p>The 'function_exists'-check is there to prevent an error when the plugin is disabled. In this case the echo text is displayed. You can define another alternative action or remove 'else { ... }' to display nothing at all.</p>
@@ -24,20 +26,23 @@
 		<h4>Advanced</h4>
 		<p>It is also possible to use multiple Skype buttons for different Skype Users and with different themes across your blog pages.</p>
 		<h5>Syntax</h5>
-		<p>Use the syntax <strong>get_skype_status('parameter1=something&parameter2=something_else');</strong> to get a button that looks different from the predefined settings on the Skype Online Status Settings page, or even using another Skype ID.</p>
-		<h5>Parameters</h5>
+		<p><strong>In posts and page content</strong>, use the shortcode syntax <strong>[skype-status parameter1="something" parameter2="something_else"]</strong></p>
+		<p><strong>In theme files</strong>, use the function syntax <strong>get_skype_status('parameter1=something&parameter2=something_else');</strong></p>
+		<h5>Available Parameters</h5>
 			<dl><dt><strong>skype_id</strong></dt><dd>Alternative Skype ID.</dd>
 				<dt><strong>user_name</strong></dt><dd>Define the full Skype user or screen name.</dd>
 				<dt><strong>button_theme</strong></dt><dd>Define the theme template file to use for the button. Value must match a filename (without extention) from the /plugins/skype-online-status/templates/ directory or the predefined theme template will be used.</dd>
 				<dt><strong>use_voicemail</strong></dt><dd>Set to 'on' if you want to display the 'Leave a voicemail' link in the Dropdown themes. Use this only if you have a <a href="http://www.tkqlhce.com/click-3049686-10520919" target="_top">SkypeIn number</a> or <a href="http://www.tkqlhce.com/click-3049686-10423078" target="_top">Skype Voicemail</a>
 <img src="http://www.ftjcfx.com/image-3049686-10423078" width="1" height="1" border="0"/>. Set of 'off' if you have a predefined setting 'on' and you want to override it.</dd>
+				<dt><strong>button_function</strong></dt><dd>Define the button's function. Value must match a valid Skype function like 'call', 'add', 'chat', 'userinfo', 'voicemail' or 'sendfile'.</dd>
+				<dt><strong>use_getskype</strong></dt><dd>Set to 'on' if you want to display the <em>Get Skype</em> link. Set to 'off' to remove the link.</dd>
 			</dl>
 		<h5>Example</h5>
 		<p>The php-code <strong>get_skype_status('skype_id=echo123&amp;user_name=Skype voice test&amp;button_theme=callme_mini_blue')</strong> will generate a Skype button with all your predefined settings <em><strong>except</strong></em> for Skype user 'echo123' (the Skype voice test user) with the screen name 'Skype voice test' and using template file 'callme_mini.html':</p>
 		<p><?php get_skype_status('skype_id=echo123&user_name=Skype voice test&button_theme=callme_mini_blue'); ?></p>
 
 		<p id="templ" align="right"><a href="#wphead"><?php _e('Top') ?></a></p>
-		<h4>Templates</h4>
+		<h4>Skype Button Templates</h4>
 		<p>Whenever the options on the Skype Status Options page are saved, the template is read either from the selected template file or the editable textarea (customizable view) and loaded into the database. To change the Skype Online Status button view to your liking you can choose to edit an existing template file, create a new one or edit the preloaded template in the editable textarea on the 'Skype Online Status Settings' page. Remember that after editing a template file, the new content must be reloaded into the database before changes apply.</p>
 		<p>All template files can be found in the /plugins/skype-online-status/templates/ directory. You add new or edit existing ones with any simple text editor (like Notepad) or even a WYSIWYG editor (like Dreamweaver) as long as you follow some rules.</p>
 		<h5>Template file rules</h5>

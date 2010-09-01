@@ -214,14 +214,14 @@ function skype_status_options() {
 			<h4><?php _e('Translations:','skype-online-status') ?></h4>
 			<p><?php _e('Translation contributions are highly appreciated. Authors of new translations or updates will be mentioned here.','skype-online-status') ?></p>
 
-			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:200px;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/translators.htm"><a href="http://4visions.nl/skype-online-status/translators.htm">http://4visions.nl/skype-online-status/translators.htm</a></iframe>
+			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:200px;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/translators/"><a href="http://4visions.nl/skype-online-status/translators/">http://4visions.nl/skype-online-status/translators/</a></iframe>
 
 			<p><?php _e('Want to make your own translation too? Read the <a href="http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt">translation instructions</a> included with this plugin to get started.','skype-online-status') ?></p>
 
 			<h4><?php _e('Donations','skype-online-status') ?></h4>
 			<p><?php _e('All donations are much appreciated and will (without objection) be mentioned here as a way of expressing my gratitude.','skype-online-status') ?></p>
 
-			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:140px;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/donors.htm"><a href="http://4visions.nl/skype-online-status/donors.htm">http://4visions.nl/skype-online-status/donors.htm</a></iframe>
+			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:180px;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/donors/"><a href="http://4visions.nl/skype-online-status/donors/">http://4visions.nl/skype-online-status/donors/</a></iframe>
 
 			<p><?php _e('Do you want your name and/or link up there too? Or just appreciate my work?','skype-online-status') ?><br /><br />
 			<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=<?php echo SOSVERSION ?>&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8" title="<?php _e('Donate with PayPal - it\'s fast, free and secure!','skype-online-status') ?>"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none; vertical-align:text-bottom;" alt="<?php _e('Donate with PayPal - it\'s fast, free and secure!','skype-online-status') ?>"/></a></p>
@@ -236,7 +236,7 @@ function skype_status_options() {
 			<p><?php _e('Please <strong>rate this plugin</strong> at <a href="http://wordpress.org/extend/plugins/skype-online-status/">WordPress</a>','skype-online-status') ?></p>
 
 			<br />
-			<iframe border="0" frameborder="0" scrolling="no" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:325px" src="http://4visions.nl/skype-online-status/ads.htm"></iframe>
+			<iframe border="0" frameborder="0" scrolling="no" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:325px" src="http://4visions.nl/skype-online-status/ads/"></iframe>
 
 		</div>
 	</div>
@@ -282,7 +282,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 			</ul>
 
 			<br />
-			<iframe border="0" frameborder="0" scrolling="no" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:270px" src="http://4visions.nl/skype-online-status/ad.htm"></iframe>
+			<iframe border="0" frameborder="0" scrolling="no" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:270px" src="http://4visions.nl/skype-online-status/ad/"></iframe>
 
 		</div>
 	</div>
