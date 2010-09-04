@@ -210,34 +210,34 @@ function skype_status_options() {
 
 	</div>
 
+	<div id="supportdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Support','skype-online-status') ?></span></h3>
+		<div class="inside">
+			<p><?php _e('For all support questions and suggestions, please go to','skype-online-status') ?> <a href="http://wordpress.org/tags/skype-online-status/"><?php _e('WordPress Support','skype-online-status') ?> - <?php _e('Skype Online Status','skype-online-status') ?></a>.</p>
+			<p><?php _e('For <strong>feature requests</strong> or general help with <strong>WordPress</strong> or <strong>hosting</strong>, please contact <em>RavanH</em> via e-mail <a href="mailto:ravahagen@gmail.com">ravanhagen@gmail.com</a> or Skype chat:','skype-online-status') ?></p>
+
+			<br />
+			<iframe border="0" frameborder="0" scrolling="no" allowtransparency="yes"  onload="resizeFrame(this);" style="margin:0;padding:0;border:none;width:100%" src="http://4visions.nl/skype-online-status/ads/?ad=325"></iframe>
+
+		</div>
+	</div>
+
 	<div id="donationsdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Credits','skype-online-status') ?></span></h3><div class="inside">
 			<h4><?php _e('Translations:','skype-online-status') ?></h4>
 			<p><?php _e('Translation contributions are highly appreciated. Authors of new translations or updates will be mentioned here.','skype-online-status') ?></p>
 
-			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:200px;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/translators/"><a href="http://4visions.nl/skype-online-status/translators/">http://4visions.nl/skype-online-status/translators/</a></iframe>
+			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes"  onload="resizeFrame(this);" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/translators/"><a href="http://4visions.nl/skype-online-status/translators/">http://4visions.nl/skype-online-status/translators/</a></iframe>
 
 			<p><?php _e('Want to make your own translation too? Read the <a href="http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt">translation instructions</a> included with this plugin to get started.','skype-online-status') ?></p>
 
 			<h4><?php _e('Donations','skype-online-status') ?></h4>
 			<p><?php _e('All donations are much appreciated and will (without objection) be mentioned here as a way of expressing my gratitude.','skype-online-status') ?></p>
 
-			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:180px;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/donors/"><a href="http://4visions.nl/skype-online-status/donors/">http://4visions.nl/skype-online-status/donors/</a></iframe>
+			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes"  onload="resizeFrame(this);" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/donors/"><a href="http://4visions.nl/skype-online-status/donors/">http://4visions.nl/skype-online-status/donors/</a></iframe>
 
+			<p><?php _e('Please <strong>rate this plugin</strong> at <a href="http://wordpress.org/extend/plugins/skype-online-status/">WordPress</a>','skype-online-status') ?></p>
 			<p><?php _e('Do you want your name and/or link up there too? Or just appreciate my work?','skype-online-status') ?><br /><br />
 			<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=<?php echo SOSVERSION ?>&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8" title="<?php _e('Donate with PayPal - it\'s fast, free and secure!','skype-online-status') ?>"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none; vertical-align:text-bottom;" alt="<?php _e('Donate with PayPal - it\'s fast, free and secure!','skype-online-status') ?>"/></a></p>
 			<p><?php _e('Thanks!','skype-online-status') ?><br /><em>RavanH</em></p>
-		</div>
-	</div>
-
-	<div id="supportdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Support','skype-online-status') ?></span></h3>
-		<div class="inside">
-			<p><?php _e('For all support questions and suggestions, please go to','skype-online-status') ?> <a href="http://wordpress.org/tags/skype-online-status/"><?php _e('WordPress Support','skype-online-status') ?> - <?php _e('Skype Online Status','skype-online-status') ?></a>.</p>
-			<p><?php _e('For <strong>feature requests</strong> or general help with <strong>WordPress</strong> or <strong>hosting</strong>, please contact <em>RavanH</em> via e-mail <a href="mailto:ravahagen@gmail.com">ravanhagen@gmail.com</a> or Skype chat:','skype-online-status') ?><br /> <?php get_skype_status('skype_id=ravanhagen&user_name=Live Support&button_theme=chat_smallclassic_blue'); ?></p>
-			<p><?php _e('Please <strong>rate this plugin</strong> at <a href="http://wordpress.org/extend/plugins/skype-online-status/">WordPress</a>','skype-online-status') ?></p>
-
-			<br />
-			<iframe border="0" frameborder="0" scrolling="no" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:325px" src="http://4visions.nl/skype-online-status/ads/"></iframe>
-
 		</div>
 	</div>
 
@@ -258,14 +258,12 @@ function skype_status_options() {
 	<div id="resourcesdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Resources','skype-online-status') ?></span></h3>
 		<div class="inside">
 			<ul>
-				<li><a href="http://www.skype.com/go/skypebuttons"><?php _e('Skype Buttons','skype-online-status') ?></a></li>
-				<li><a href="http://www.skype.com/share/buttons/wizard.html" target="_blank"><?php _e('Skype buttons wizard','skype-online-status') ?></a></li>
+				<li><a href="http://www.skype.com/intl/en/tell-a-friend/get-a-skype-button/"><?php _e('Skype Buttons','skype-online-status') ?></a></li>
+				<li><a href="http://www.skype.com/intl/en/tell-a-friend/wizard/" target="_blank"><?php _e('Skype buttons wizard','skype-online-status') ?></a></li>
 				<li><a href="http://mystatus.skype.com/<?php echo $option['skype_id'] ?>"><?php printf(__('View %s\'s online status on the Skype server','skype-online-status'),$option['skype_id']) ?></a></li>
-				<li><a href="http://www.skype.com/share/buttons/status.html"><?php _e('Edit Privacy Options in your Skype client','skype-online-status') ?></a></li>
-				<li><a href="http://www.skype.com/partners/affiliate/"><?php _e('Skype Affiliate Program','skype-online-status') ?></a></li>
+				<li><a href="http://c.skype.com/i/legacy/images/share/buttons/privacy_shot.jpg"><?php _e('Edit Privacy Options in your Skype client','skype-online-status') ?></a></li>
 			</ul>
-			<p><a href="http://www.jdoqocy.com/rn68biroiq596AFCEC5769EF78A" onmouseover="window.status='http://www.skype.com';return true;" onmouseout="window.status='';return true;">
-<img src="http://www.awltovhc.com/85116bosgmk596AFCEC5769EF78A" alt="" border="0"/></a></p>
+			<iframe border="0" frameborder="0" scrolling="no" allowtransparency="yes"  onload="resizeFrame(this);" style="margin:0;padding:0;border:none;width:100%;height:18px" src="http://4visions.nl/skype-online-status/ads/?ad=110"></iframe>
 		</div>
 	</div>
 
@@ -282,7 +280,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 			</ul>
 
 			<br />
-			<iframe border="0" frameborder="0" scrolling="no" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:270px" src="http://4visions.nl/skype-online-status/ad/"></iframe>
+			<iframe border="0" frameborder="0" scrolling="no" allowtransparency="yes"  onload="resizeFrame(this);" style="margin:0;padding:0;border:none;width:100%;height:18px" src="http://4visions.nl/skype-online-status/ads/?ad=270"></iframe>
 
 		</div>
 	</div>
@@ -360,7 +358,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 
 		<fieldset class="options">
 			<h4><?php _e('Post content', 'skype-online-status') ?></h4>
-			<p><?php printf(__('When writing posts you can insert a Skype button with a simple quicktag %1$s or %2$s but to make life even easier, a small button on the WYSIWYG editor can do it for you. Check this option to show %3$s or uncheck to hide it. You may still insert the quicktag  in the HTML code of your post or page content manually.', 'skype-online-status'),"<strong>&lt;!--skype status--&gt;</strong>","<strong>[-skype status-]</strong>","<img src=\"".SOSPLUGINURL."/skype_button.gif\" alt=\"".__('Skype Online Status', 'skype-online-status')."\" style=\"vertical-align:text-bottom;\" />") ?><br /><br />
+			<p><?php printf(__('When writing posts you can insert a Skype button with a simple quicktag %1$s or %2$s but to make life even easier, a small button on the WYSIWYG editor can do it for you. Check this option to show %3$s or uncheck to hide it. You may still insert the quicktag  in the HTML code of your post or page content manually.', 'skype-online-status'),"<strong>[skype-status]</strong>","<strong>&lt;!--skype status--&gt;</strong>","<img src=\"".SOSPLUGINURL."/skype_button.gif\" alt=\"".__('Skype Online Status', 'skype-online-status')."\" style=\"vertical-align:text-bottom;\" />") ?><br /><br />
 			<input type="checkbox" name="use_buttonsnap" id="use_buttonsnap"<?php if ( $option['use_buttonsnap'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_buttonsnap"><?php _e('Use <strong>Skype Status quicktag button</strong> in the RTE for posts.','skype-online-status') ?></label></p>
 		</fieldset>
 
@@ -560,6 +558,11 @@ function SwitchInfoBlock(id){
 	document.getElementById('guide').style.display='none'; 
 </script>
 
+<script type="text/javascript">
+function resizeFrame(f) {
+	f.style.height = f.contentWindow.document.body.scrollHeight + "px";
+}
+</script>
 <?php
 }
 ?>

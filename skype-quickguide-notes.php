@@ -119,9 +119,10 @@
 
 		<h4><?php _e('Support','skype-online-status') ?></h4>
 		<p>Please read support questions on <a href="http://wordpress.org/tags/skype-online-status/"><?php _e('WordPress Support','skype-online-status') ?> - <?php _e('Skype Online Status','skype-online-status') ?></a> and post new questions there.</p>
-		<p>To get live support on this plugin with Skype, simply click the Skype button below. Hover the button and it will state wether I'm online and available for a chat or not.</p>
-		<p>
-			<?php get_skype_status('skype_id=ravanhagen&user_name=Live Support&button_theme=chat_smallclassic_blue'); ?></p>
+		<p>Live support on this plugin via Skype is reserved for contributors. Those that decide to donate or send in their translation will 'magically' get to see a Skype Chat button in the right sidebar.</p>
+		<p>I appreciate every contribution, no matter if it&#8217;s two or twenty euro/dollar or any other amount. Please, use the link in the sidebar.</p>
+		<p>Thanks!<br />
+			<em>RavanH</em></p>
 
 		<p id="credits" align="right"><a href="#wphead"><?php _e('Top') ?></a></p>
 		

@@ -1,4 +1,4 @@
-/
+/*
  * $Id: mce3_editor_plugin.js 201 2008-02-12 15:56:56Z RavanH $
  *
  * @author Moxiecode

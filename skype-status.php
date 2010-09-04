@@ -3,7 +3,7 @@
 Plugin Name: Skype Online Status
 Plugin URI: http://4visions.nl/en/wordpress-plugins/skype-online-status/
 Description: Add multiple, highly customizable and accessible Skype buttons to post/page content (quick-tags), sidebar (unlimited number of widgets) or anywhere else (template code). Find documentation and advanced configuration options on the <a href="./options-general.php?page=skype-online-status">Skype Online Status Settings</a> page or just go straight to your <a href="widgets.php">Widgets</a> page and Skype away...  
-Version: 2.8
+Version: 2.8.2
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -30,19 +30,16 @@ Author URI: http://4visions.nl/
 */
 
 // Plugin version number and date
-define('SOSVERSION', '2.8');
-define('SOSVERSION_DATE', '2010-09-01');
+define('SOSVERSION', '2.8.2');
+define('SOSVERSION_DATE', '2010-09-04');
 
 if (file_exists(dirname(__FILE__).'/skype-online-status'))
 	$skype_mu_dir = "/skype-online-status";
 		
 // Plugin constants
 define('SOSPLUGINURL', plugins_url($skype_mu_dir, __FILE__));
-define('SOSPLUGINDIR', (dirname(__FILE__)).$skype_mu_dir);
+define('SOSPLUGINDIR', dirname(__FILE__).$skype_mu_dir);
 define('SOSPLUGINFILE', 'skype-online-status'); // plugin_basename(__FILE__)
-
-// Internationalization
-load_plugin_textdomain('skype-online-status', false, SOSPLUGINDIR.'/languages/');
 
 ////////-----------------------------------------.oO\\//Oo.-----------------------------------------\\\\\\\\
 
@@ -130,11 +127,12 @@ $skype_avail_functions = array (
 define('SOSDATADUMP', FALSE);
 
 $soswhatsnew_this = "
-* new skypeCheck script<br />
-* Skype button shortcode in posts and pages can now handle options like skype_id to override default settings<br />
-* skypeCheck script loads only when needed";
+* Live Support for contributors<br />
+* Translation bugfix<br />
+";
 $soswhatsnew_recent = "
-* back-end style/script bugfix<br />
+* Skype button shortcode in posts and pages can now handle options like skype_id to override default settings<br />
+* new skypeCheck script loads only when needed<br />
 * skypeCheck script in footer to improve experienced page load times";
 
 
@@ -167,6 +165,23 @@ if ($skype_status_config['skype_status_version'] != "" && $skype_status_config['
 	update_option('skype_status',$skype_status_config);
 }
 
+function skype_status_init() {
+	// Internationalization
+	load_plugin_textdomain('skype-online-status', false, dirname(plugin_basename( __FILE__ )).'/languages');
+
+	// Quicktag button
+	global $skype_status_config;
+
+	if ($skype_status_config['use_buttonsnap']=="on" && current_user_can('edit_posts') && current_user_can('edit_pages')) {
+		add_filter('mce_external_plugins', 'sos_mce3_plugin');
+		add_filter('mce_buttons', 'sos_mce3_button', 99);
+	}
+	
+	// Register widget
+	skype_widget_register();
+}
+
+
 // do stuff for admin ONLY when on the backend
 if ( is_admin() ) {
 	//load widget admin page function
@@ -175,22 +190,17 @@ if ( is_admin() ) {
 	//load admin page function
 	require_once(SOSPLUGINDIR . '/skype-admin.php');
 
-	// activate wysiwyg button ONLY when on the backend
-	if ( $skype_status_config['use_buttonsnap']=="on" ) {
-		require_once(SOSPLUGINDIR . '/editor.php');
-		add_action('init', 'skype_button_init');
-	}
-
 	// create WP hooks
 	add_action('admin_menu', 'skype_status_add_menu');
 	add_filter('plugin_action_links', 'skype_status_add_action_link', 10, 2);
+	add_action('init', 'skype_status_init');
 }
 
-// http://scribu.net/wordpress/optimal-script-loading.html (the Jedi Knight way)
-add_action('wp_footer', 'skype_status_script');
 add_filter('the_content', 'skype_status_callback');
 add_shortcode('skype-status', 'skype_status_shortcode_callback');
 
 // add widget
 add_action('widgets_init', 'skype_widget_register');
+// http://scribu.net/wordpress/optimal-script-loading.html (the Jedi Knight way)
+add_action('wp_footer', 'skype_status_script');
 

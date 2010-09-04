@@ -231,7 +231,7 @@ function skype_status_script() {
 	if ($skype_status_config['getskype_link'] == "skype_mainpage" || $skype_status_config['getskype_link'] == "skype_downloadpage") {
 		wp_register_script('skypecheck', 'http://download.skype.com/share/skypebuttons/js/skypeCheck.js', '', '2.0', true);
 	} else {
-		wp_register_script('skypecheck', SOSPLUGINURL.'/js/skypeCheck.js', '', SOSVERSION, true);
+		wp_register_script('skypecheck', SOSPLUGINURL.'/js/skypeCheck.js', 'jquery', SOSVERSION, true);
 	}
 	wp_print_scripts('skypecheck');
 }
@@ -280,15 +280,6 @@ function skype_status_scripts_admin($hook) {
 	//}
 }
 
-/* initialization REMOVE
-function skype_status_install() {
-	global $skype_status_config;
-
-	$skype_status_config = skype_default_values();
-	$skype_status_config['installed'] = TRUE;
-	add_option('skype_status',$skype_status_config);
-} */
-
 function skype_status_add_action_link( $links, $file ) {
 	static $this_plugin;
 
@@ -301,6 +292,7 @@ function skype_status_add_action_link( $links, $file ) {
  
 	return $links;
 }
+
 
 // WIDGET FUNCTIONS
 
@@ -399,4 +391,17 @@ function skype_build_args($options) {
 	return $args;
 }
 
-?>
+
+// SHORTCODE QUICKTAG FUNCTIONS
+
+// Add button for WordPress 2.5+ using built in hooks, thanks to Subscribe2
+function sos_mce3_plugin($arr) {
+	$arr['sosquicktag'] = SOSPLUGINURL . '/js/mce3_editor_plugin.js';
+	return $arr;
+}
+
+function sos_mce3_button($buttons) {
+	array_push($buttons, "|", "sosquicktag");
+	return $buttons;
+}
+
