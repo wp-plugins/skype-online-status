@@ -1,5 +1,5 @@
 /* added jquery to hide the little white square with SWFObject from view */
-$(document).ready(function(){$('#skypedetectionswf').css({'position':'fixed','top':'0','left':'-10px'});});
+jQuery(document).ready(function($){$('#skypedetectionswf').css({'position':'fixed','top':'0','left':'-10px'});});
 /*	SWFObject v2.2 <http://code.google.com/p/swfobject/> 
 	is released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
 */
