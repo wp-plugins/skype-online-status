@@ -169,12 +169,23 @@ When reporting bugs, please describe as carefully as possible and provide inform
 
 - The javascript provided by Skype that detects whether Skype is installed (client side), does not work properly on Linux. It defaults to displaying a download popup even if Skype is installed on the visitors computer after the Skype button is clicked. Hopefully, Skype will fix this some day :/
 
+
+== Upgrade Notice ==
+
+= 2.8.3 =
+Updated POT file for translators and Japanese translation.
+
+
 == Changelog ==
+
+= 2.8.3 =
+* update: POT-file for translators
+* update: Danish translation
+* NEW: Japanese translation
 
 = 2.8.2 =
 * Live Support for contributors
 * hiding of 5x5 white square created by Skype detection SWF Object
-* Japanese translation
 * bugfix: RTE button missing
 
 = 2.8 =
@@ -305,9 +316,4 @@ When reporting bugs, please describe as carefully as possible and provide inform
 = 0.1 =
 * function and syntax conversion from plugin Skype Button (by Anti Veeranna, discontinued)
 * starting date: 2006-03-03
-
-== Upgrade Notice ==
-
-= 2.8.2 =
-BUGFIX release. RTE button script fix, Live Support for contributors and hiding of 5x5 white Skype detection SWF Object square.
 

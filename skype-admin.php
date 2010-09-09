@@ -186,7 +186,7 @@ function skype_status_options() {
 				<input type="submit" name="skype_status_update" class="button-primary" value="<?php _e('Save Changes') ?> &raquo;" />
 			</div>
 			<div id="delete-action">
-				<input type="submit" class="submitdelete deletion" onclick='return confirm("<?php _e('WARNING !', 'skype-online-status') ?> \r\n \r\n<?php _e('All your personal settings will be overwritten with the plugin default settings, including Skype ID, User name and Theme.', 'skype-online-status') ?> \r\n \r\n<?php _e('Are you sure?', 'skype-online-status') ?>");' name="skype_status_reset" value="<?php _e('Reset') ?> &raquo;" /> <br />
+				<input type="submit" class="submitdelete deletion" onclick='return confirm("<?php _e('WARNING !', 'skype-online-status') ?> \r\n \r\n<?php _e('All your personal settings will be overwritten with the plugin default settings, including Skype ID, User name and Theme.', 'skype-online-status') ?> \r\n \r\n<?php _e('Are you sure?', 'skype-online-status') ?>");' name="skype_status_reset" value="<?php _e('Reset','skype-online-status') ?> &raquo;" /> <br />
 				<input type="submit" class="submitdelete deletion" onclick='return confirm("<?php _e('WARNING !', 'skype-online-status') ?>  \r\n \r\n<?php _e('All your Skype Online Status AND widget settings will be cleared from the database so the plugin can be COMPLETELY removed. All Skype buttons on your blog will be deactivated.', 'skype-online-status') ?> \r\n \r\n<?php _e('Are you sure?', 'skype-online-status') ?>");' name="skype_status_remove" value="<?php _e('Remove') ?> &raquo;" />
 			</div>
 			<div class="clear"></div>
@@ -213,10 +213,10 @@ function skype_status_options() {
 	<div id="supportdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Support','skype-online-status') ?></span></h3>
 		<div class="inside">
 			<p><?php _e('For all support questions and suggestions, please go to','skype-online-status') ?> <a href="http://wordpress.org/tags/skype-online-status/"><?php _e('WordPress Support','skype-online-status') ?> - <?php _e('Skype Online Status','skype-online-status') ?></a>.</p>
-			<p><?php _e('For <strong>feature requests</strong> or general help with <strong>WordPress</strong> or <strong>hosting</strong>, please contact <em>RavanH</em> via e-mail <a href="mailto:ravahagen@gmail.com">ravanhagen@gmail.com</a> or Skype chat:','skype-online-status') ?></p>
+			<p><?php printf(__('For <strong>feature requests</strong> or general help with <strong>WordPress</strong> or <strong>hosting</strong>, please contact <em>RavanH</em> via e-mail %s or Skype chat:','skype-online-status'),'<a href="mailto:ravanhagen@gmail.com">ravanhagen@gmail.com</a>') ?></p>
 
 			<br />
-			<iframe border="0" frameborder="0" scrolling="no" allowtransparency="yes"  onload="resizeFrame(this);" style="margin:0;padding:0;border:none;width:100%" src="http://4visions.nl/skype-online-status/ads/?ad=325"></iframe>
+			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes"  onload="resizeFrame(this);" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/ads/?ad=325"></iframe>
 
 		</div>
 	</div>
