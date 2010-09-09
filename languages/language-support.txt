@@ -13,19 +13,10 @@
 = Note =
 
 If you have suggestions or corrections, please get in touch with the actual author
-of the translation file (see list below).
+of the translation file (see the list in readme.txt).
 
 If you would like to contribute a new language file, send me an email: 
 ravanhagen@gmail.com
-
-
-= Authors =
-
-Skype Online Status currently supports the following languages:
-
-*) English (default)   Author: R.A. van Hagen           ravanhagen@gmail.com
-*) Italian             Author: Gianni Diurno            infocafe@gidibao.net
-*) Dutch               Author: R.A. van Hagen           ravanhagen@gmail.com      (incomplete)
 
 
 == Rough Translation Guide ==
@@ -43,7 +34,7 @@ Please adapt for your language the language and country code.
 
 (5) Fill in the following details to the settings:
 
-        * Project name and version: Skype Online Status 2.6.4.x
+        * Project name and version: Skype Online Status x.x.x
         * Team: Fill in your own name
         * Team's email address: Fill in your own email address
         * Language: French

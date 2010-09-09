@@ -6,7 +6,7 @@ Requires at least: 2.7
 Tested up to: 3.0.1
 Stable tag: 2.8.2
 
-Unlimited, highly customizable and accessible (!) Skype buttons through widgets, post quicktags and/or template tags.
+Unlimited, highly customizable and accessible (!) Skype buttons through widgets, post shortcode/quicktag and template tags.
 
 == Description ==
 
@@ -48,7 +48,7 @@ Top donators making my continued work possible:
 
 = Example =
 
-Go to the [Skype Online Status plugin page](http://4visions.nl/en/index.php?section=55 "Skype Online Status plugin - 4Visions") to see a Skype button in action (right side) or go and test a button on [Skype's button page](http://www.skype.com/share/buttons/ "Skype buttons"). The button templates used there -- and more -- are available in this plugin.
+Go to the [Skype Online Status plugin page](http://4visions.nl/en/wordpress-plugins/skype-online-status/ "Skype Online Status plugin - 4Visions") to see a Skype button in action (right side) or go and test a button on [Skype's button page](http://www.skype.com/share/buttons/ "Skype buttons"). The button templates used there -- and more -- are available in this plugin.
 
 == Installation ==
 
@@ -68,7 +68,7 @@ Note: When upgrading from version 2.5.x or previous: please deactivate plugin an
  2. Upload (and overwrite) the /skype-online-status/ folder and its content to the /plugins/ folder. 
  3. Activate plugin on the Plug-ins page
  4. Configure (or update) your SkypeID and settings on the Options > Skype Status page
- 5. Activate the widget or put `<?php if (function_exists(get_skype_status)) { get_skype_status(''); } ?>` in your sidebar.php or any other template file or use the `<!--skype status-->` quicktag button in your posts to display the Skype button inside your blog posts and pages. 
+ 5. Activate the widget or put `<?php if (function_exists(get_skype_status)) { get_skype_status(''); } ?>` in your sidebar.php or any other template file or use the Skype quicktag button to insert the `[skype-status]` shortcode in your posts/pages to display the Skype button anywhere on your website. 
 
 Read more on usage in the Quick Guide section of the Options > Skype Status page, available after installation.
 
@@ -130,32 +130,13 @@ This program is free software; you can redistribute it and/or modify it under th
 
 Post your questions on [WordPress Support &raquo; Skype Online Status](http://wordpress.org/tags/skype-online-status "WordPress Support &raquo; Skype Online Status") or go for Live Support via Skype Chat to the Support section on the Skype Online Status Options page after installation.
 
-= What's New =
-
-Since version 1.1 there have been some major changes to the layout of the 'Options > Skype Status' page. Documentation has been much extended. 
-
-And some new features:
-
-- internationalization
-- widgetized!
-- extra button templates
-- a 'Reset options' button to revert to original settings and a 'Remove' button to completely clear the plugin settings from your database
-- a quicktag and rte button to display a Skype Status button in posts and page content!
-- editable template
-- language switch for Skype default status texts
-- Download Skype Now! link (replaceable with your own referral link since version 2.6)
-
-Since version 2.6.3 there are unlimited customizable Skype Status Widgets available :)
-Since version 2.6.4 there is internationalization... Anyone who wants to contribute, please consider doing a translation :)
-
-= Wish List =
+= Road Map =
 
 For version 3 and beyond :)
 
 - More translations! Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") (also included in the latest package) for more info.
 - Skypecasts widgets !
 - Skype-like button theme wizard...
-- Upload your own button/template files
 - integration with WP user system (skype field on the Profile page, ++)
 - Get XML online status (and local time, possible?)
 
@@ -167,7 +148,7 @@ When reporting bugs, please describe as carefully as possible and provide inform
 
 = Known issues =
 
-- The javascript provided by Skype that detects whether Skype is installed (client side), does not work properly on Linux. It defaults to displaying a download popup even if Skype is installed on the visitors computer after the Skype button is clicked. Hopefully, Skype will fix this some day :/
+- The javascript provided by Skype that detects whether Skype is installed (client side), does not work properly on Linux. It defaults to displaying a download popup even if Skype is installed on the visitors computer after the Skype button is clicked. Hopefully - but I doubt it - Skype will fix this some day :$ 
 
 
 == Upgrade Notice ==
@@ -179,7 +160,7 @@ Updated POT file for translators and Japanese translation.
 == Changelog ==
 
 = 2.8.3 =
-* update: POT-file for translators
+* update: POT-file for translaindetors
 * update: Danish translation
 * NEW: Japanese translation
 
