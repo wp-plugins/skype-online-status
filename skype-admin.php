@@ -241,32 +241,6 @@ function skype_status_options() {
 		</div>
 	</div>
 
-	<div id="discussiondiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Discussion') ?></span></h3>
-		<div class="inside">
-
-			<h4><?php _e('WordPress Support','skype-online-status'); _e(': ','skype-online-status') ?> <?php _e('Skype Online Status','skype-online-status') ?></h4>
-			<div class='rss-widget'>
-			<?php if(function_exists(wp_widget_rss_output)) {
-				wp_widget_rss_output( "http://wordpress.org/support/rss/tags/skype-online-status/", array('show_date' => 1, 'items' => 5) );
-				echo "<p align=\"right\"><a href=\"http://wordpress.org/tags/skype-online-status/#latest\">".__("More...")."</a></p>"; }
-			else {
-				echo "<p><a href=\"http://wordpress.org/support/rss/tags/skype-online-status/\">http://wordpress.org/support/rss/tags/skype-online-status/</a></p>"; } ?>
-			</div>
-		</div>
-	</div>
-
-	<div id="resourcesdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Resources','skype-online-status') ?></span></h3>
-		<div class="inside">
-			<ul>
-				<li><a href="http://www.skype.com/intl/en/tell-a-friend/get-a-skype-button/"><?php _e('Skype Buttons','skype-online-status') ?></a></li>
-				<li><a href="http://www.skype.com/intl/en/tell-a-friend/wizard/" target="_blank"><?php _e('Skype buttons wizard','skype-online-status') ?></a></li>
-				<li><a href="http://mystatus.skype.com/<?php echo $option['skype_id'] ?>"><?php printf(__('View %s\'s online status on the Skype server','skype-online-status'),$option['skype_id']) ?></a></li>
-				<li><a href="http://c.skype.com/i/legacy/images/share/buttons/privacy_shot.jpg"><?php _e('Edit Privacy Options in your Skype client','skype-online-status') ?></a></li>
-			</ul>
-			<iframe border="0" frameborder="0" scrolling="no" allowtransparency="yes"  onload="resizeFrame(this);" style="margin:0;padding:0;border:none;width:100%;height:18px" src="http://4visions.nl/skype-online-status/ads/?ad=110"></iframe>
-		</div>
-	</div>
-
 	<div id="morediv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Get more from Skype','skype-online-status') ?></span></h3>
 		<div class="inside">
 			<ul>
@@ -284,6 +258,19 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 
 		</div>
 	</div>
+
+	<div id="resourcesdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Resources','skype-online-status') ?></span></h3>
+		<div class="inside">
+			<ul>
+				<li><a href="http://www.skype.com/intl/en/tell-a-friend/get-a-skype-button/"><?php _e('Skype Buttons','skype-online-status') ?></a></li>
+				<li><a href="http://www.skype.com/intl/en/tell-a-friend/wizard/" target="_blank"><?php _e('Skype buttons wizard','skype-online-status') ?></a></li>
+				<li><a href="http://mystatus.skype.com/<?php echo $option['skype_id'] ?>"><?php printf(__('View %s\'s online status on the Skype server','skype-online-status'),$option['skype_id']) ?></a></li>
+				<li><a href="http://c.skype.com/i/legacy/images/share/buttons/privacy_shot.jpg"><?php _e('Edit Privacy Options in your Skype client','skype-online-status') ?></a></li>
+			</ul>
+			<iframe border="0" frameborder="0" scrolling="no" allowtransparency="yes"  onload="resizeFrame(this);" style="margin:0;padding:0;border:none;width:100%;height:18px" src="http://4visions.nl/skype-online-status/ads/?ad=110"></iframe>
+		</div>
+	</div>
+
     </div>
   </div> <!-- side-info-column inner-sidebar -->
 
@@ -349,6 +336,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 	    </div> <!-- inside -->
 
 	  </div> <!-- postbox -->
+
 
 	  <div id="advanceddiv" class="postbox ">
 
@@ -506,6 +494,24 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 		<p style="clear:both;text-align:right;padding-top:10px"><a href="#wphead"><?php _e('Top') ?></a></p>
 
 	    </div> <!-- inside -->
+	  </div> <!-- postbox -->
+
+	  <div id="discussiondiv" class="postbox ">
+	  
+	    <div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Discussion') ?></span></h3>
+	    
+		<div class="inside">
+
+			<h4><?php _e('WordPress Support','skype-online-status'); _e(': ','skype-online-status') ?> <?php _e('Skype Online Status','skype-online-status') ?></h4>
+			<div class='rss-widget'>
+			<?php if(function_exists(wp_widget_rss_output)) {
+				wp_widget_rss_output( "http://wordpress.org/support/rss/tags/skype-online-status/", array('show_date' => 1, 'items' => 5) );
+				echo "<p align=\"right\"><a href=\"http://wordpress.org/tags/skype-online-status/#latest\">".__("More...")."</a></p>"; }
+			else {
+				echo "<p><a href=\"http://wordpress.org/support/rss/tags/skype-online-status/\">http://wordpress.org/support/rss/tags/skype-online-status/</a></p>"; } ?>
+			</div>
+	    </div> <!-- inside -->
+
 	  </div> <!-- postbox -->
 
 	</div> <!-- settings -->
