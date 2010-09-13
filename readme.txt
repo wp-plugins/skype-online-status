@@ -68,7 +68,7 @@ Note: When upgrading from version 2.5.x or previous: please deactivate plugin an
  2. Upload (and overwrite) the /skype-online-status/ folder and its content to the /plugins/ folder. 
  3. Activate plugin on the Plug-ins page
  4. Configure (or update) your SkypeID and settings on the Options > Skype Status page
- 5. Activate the widget or put `<?php if (function_exists(get_skype_status)) { get_skype_status(''); } ?>` in your sidebar.php or any other template file or use the Skype quicktag button to insert the `[skype-status]` shortcode in your posts/pages to display the Skype button anywhere on your website. 
+ 5. Activate the widget or put `<?php if (function_exists(get_skype_status)) { get_skype_status(''); } ?>` in your sidebar.php or any other template file or use the Skype quicktag button to insert the **[**skype-status**]** shortcode in your posts/pages to display the Skype button anywhere on your website. 
 
 Read more on usage in the Quick Guide section of the Options > Skype Status page, available after installation.
 
@@ -160,7 +160,7 @@ Updated POT file for translators and Japanese translation.
 == Changelog ==
 
 = 2.8.3 =
-* update: POT-file for translaindetors
+* update: POT-file for translators
 * update: Danish translation
 * NEW: Japanese translation
 
