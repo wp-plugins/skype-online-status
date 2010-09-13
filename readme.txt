@@ -68,7 +68,7 @@ Note: When upgrading from version 2.5.x or previous: please deactivate plugin an
  2. Upload (and overwrite) the /skype-online-status/ folder and its content to the /plugins/ folder. 
  3. Activate plugin on the Plug-ins page
  4. Configure (or update) your SkypeID and settings on the Options > Skype Status page
- 5. Activate the widget or put `<?php if (function_exists(get_skype_status)) { get_skype_status(''); } ?>` in your sidebar.php or any other template file or use the `<!--skype status-->` quicktag button in your posts to display the Skype button inside your blog posts and pages. 
+ 5. Activate the widget or put `<?php if (function_exists(get_skype_status)) { get_skype_status(''); } ?>` in your sidebar.php or any other template file or use the Skype quicktag button to insert the **[**skype-status**]** shortcode in your posts to display the Skype button inside your blog posts and pages. 
 
 Read more on usage in the Quick Guide section of the Options > Skype Status page, available after installation.
 
