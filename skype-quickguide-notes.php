@@ -1,5 +1,5 @@
 <?php ?>
-	<div id="guide" style="min-height: 800px;">
+	<div id="guide" style="min-height:800px;display:none">
 		<h3><?php _e('Quick Guide','skype-online-status'); ?></h3>
 		<ul>
 			<li><a href="#basic">Basic Use</a></li>
@@ -76,7 +76,7 @@
 		</dl>
 		<h6>Action text tags</h6>
 		<dl>
-			<dt>{add}</dt><dd><dd>Put this where you want the 'Add me to Skype' text to appear, such as in title="", alt="" or as link text.</dd></dd>
+			<dt>{add}</dt><dd>Put this where you want the 'Add me to Skype' text to appear, such as in title="", alt="" or as link text.</dd>
 			<dt>{call}</dt><dd>Put this where you want the 'Call me!' text to appear, such as in title="", alt="" or as link text.</dd>
 			<dt>{chat}</dt><dd>Put this where you want the 'Chat with me' text to appear, such as in title="", alt="" or as link text.</dd>
 			<dt>{sendfile}</dt><dd>Put this where you want the 'Send me a file' text to appear, such as in title="", alt="" or as link text.</dd>
@@ -92,7 +92,7 @@
 
 	</div> <!-- #guide -->
 
-	<div id="notes" style="min-height: 800px;">
+	<div id="notes" style="min-height:800px;display:none">
 
 		<h3><?php _e('Notes &amp; Live Support','skype-online-status'); ?></h3>
 		<ul>

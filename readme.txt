@@ -26,15 +26,16 @@ This plugin also has been tested and working fine on WPMU 2.7+.
 
 Since version 2.6.4.0, Skype Online Status is ready for internationalization. Anyone who wants to contribute can do so by making a transation. Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") (also included in the latest package) for more info.
 
-- **Italian** * Author: [Gianni Diurno](http://gidibao.net/index.php/portfolio/ "Gianni Diurno - Portfolio")
-- **Danish** * Author: [Georg S. Adamsen](http://wordpress.blogos.dk/2009/03/18/skype-online-status/)
-- **Dutch** (unfinished) * Author: [R.A. van Hagen](http://4visions.nl)
-- **German** * Author: [Fabian Schulz](http://www.fabianschulz.net/blog/2009/08/05/skype-online-status/)
-- **Russian** * Author: [Leonid Jack](http://studio-xl.com/)
 - **Belorussian** * Author: [M. Comfi](http://www.comfi.com)
-- **Ukrainian** * Author: [Michael Svystun](http://emarketingblog.com.ua/)
-- **Spanish** * Authors: [Rodolfo Castro & Rocio Moreno](http://www.ars-legalconsulting.es/blog/)
+- **Danish** * Author: [Georg S. Adamsen](http://wordpress.blogos.dk/2009/03/18/skype-online-status/)
+- **Dutch** * Author: [R.A. van Hagen](http://4visions.nl)
+- **French** * Author: [Emmanuelle Traduction](http://www.translatonline.com/)
+- **German** * Author: [Fabian Schulz](http://www.fabianschulz.net/blog/2009/08/05/skype-online-status/)
+- **Italian** * Author: [Gianni Diurno](http://gidibao.net/index.php/portfolio/ "Gianni Diurno - Portfolio")
 - **Japanese** * Author: [Ryuei Sasaki](http://riuiski.com)
+- **Russian** * Author: [Leonid Jack](http://studio-xl.com/)
+- **Spanish** * Authors: [Rodolfo Castro & Rocio Moreno](http://www.ars-legalconsulting.es/blog/)
+- **Ukrainian** * Author: [Michael Svystun](http://emarketingblog.com.ua/)
 
 New translations and their Authors will be mentioned here.
 
@@ -163,6 +164,7 @@ Updated POT file for translators and Japanese translation.
 * update: POT-file for translators
 * update: Danish translation
 * NEW: Japanese translation
+* NEW: French translation
 
 = 2.8.2 =
 * Live Support for contributors

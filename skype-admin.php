@@ -2,6 +2,7 @@
 function skype_status_options() {
 	global $skype_status_config, $skype_avail_languages, $skype_avail_functions, $skype_avail_statusmsg, $soswhatsnew_this, $soswhatsnew_recent;
 	$option = $skype_status_config;
+	$url_enc = rawurlencode( 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
 
 //add_thickbox();
 
@@ -143,31 +144,13 @@ function skype_status_options() {
 		    <div id="minor-publishing">
 		      <div class="misc-pub-section">
 			<ul><li>
-			<a style="color:#d54e21" id="settingslink" href="#settings" onclick="javascript:
-				document.getElementById('notes').style.display='none'; 
-				document.getElementById('guide').style.display='none'; 
-				document.getElementById('settings').style.display='block';
-				document.getElementById('settingslink').style.color='#d54e21';
-				document.getElementById('noteslink').style.color='#264761'; 
-				document.getElementById('guidelink').style.color='#264761';"><?php _e('Options') ?></a>
+			<a style="color:#d54e21" id="settingslink" href="#settings"><?php _e('Options') ?></a>
 			</li>
 			<li>
-			<a id="guidelink" href="#guide" onclick="javascript:
-				document.getElementById('notes').style.display='none'; 
-				document.getElementById('guide').style.display='block'; 
-				document.getElementById('settings').style.display='none';  
-				document.getElementById('settingslink').style.color='#264761'; 
-				document.getElementById('noteslink').style.color='#264761'; 
-				document.getElementById('guidelink').style.color='#d54e21';"><?php _e('Quick Guide', 'skype-online-status') ?></a>
+			<a id="guidelink" href="#guide"><?php _e('Quick Guide', 'skype-online-status') ?></a>
 			</li>
 			<li>
-			<a id="noteslink" href="#notes" onclick="javascript:
-				document.getElementById('notes').style.display='block'; 
-				document.getElementById('guide').style.display='none'; 
-				document.getElementById('settings').style.display='none'; 
-				document.getElementById('settingslink').style.color='#264761'; 
-				document.getElementById('noteslink').style.color='#d54e21'; 
-				document.getElementById('guidelink').style.color='#264761';"><?php _e('Notes &amp; Live Support','skype-online-status') ?></a>
+			<a id="noteslink" href="#notes""><?php _e('Notes &amp; Live Support','skype-online-status') ?></a>
 			</li></ul>
 		      </div>
 
@@ -216,23 +199,35 @@ function skype_status_options() {
 			<p><?php printf(__('For <strong>feature requests</strong> or general help with <strong>WordPress</strong> or <strong>hosting</strong>, please contact <em>RavanH</em> via e-mail %s or Skype chat:','skype-online-status'),'<a href="mailto:ravanhagen@gmail.com">ravanhagen@gmail.com</a>') ?></p>
 
 			<br />
-			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes"  onload="resizeFrame(this);" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/ads/?ad=325"></iframe>
+			<object data="http://4visions.nl/skype-online-status/ads/?ad=big#<?php echo $url_enc ?>" type="text/html" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:570px;background-color:#f9f9f9" id="ad_big"></object>
+			<!-- Yes, IE is stupid. Give stupid IE, version 7 and under, a stupid iFrame since it can't parse object like every other browser -->
+			<!--[if lte IE 7]>
+				<iframe frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:570px;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/ads/?ad=big#<?php echo $url_enc ?>" id="ad_big"></iframe>
+			<![endif]-->
 
 		</div>
 	</div>
 
 	<div id="donationsdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Credits','skype-online-status') ?></span></h3><div class="inside">
-			<h4><?php _e('Translations:','skype-online-status') ?></h4>
+			<h4><?php _e('Translations','skype-online-status') ?></h4>
 			<p><?php _e('Translation contributions are highly appreciated. Authors of new translations or updates will be mentioned here.','skype-online-status') ?></p>
 
-			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes"  onload="resizeFrame(this);" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/translators/"><a href="http://4visions.nl/skype-online-status/translators/">http://4visions.nl/skype-online-status/translators/</a></iframe>
+			<object data="http://4visions.nl/skype-online-status/translators/#<?php echo $url_enc ?>" type="text/html" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9"></object>
+			<!-- Yes, IE is stupid. Give stupid IE, version 7 and under, a stupid iFrame since it can't parse object like every other browser -->
+			<!--[if lte IE 7]>
+				<iframe frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/translators/#<?php echo $url_enc ?>"></iframe>
+			<![endif]-->
 
 			<p><?php _e('Want to make your own translation too? Read the <a href="http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt">translation instructions</a> included with this plugin to get started.','skype-online-status') ?></p>
 
 			<h4><?php _e('Donations','skype-online-status') ?></h4>
 			<p><?php _e('All donations are much appreciated and will (without objection) be mentioned here as a way of expressing my gratitude.','skype-online-status') ?></p>
 
-			<iframe border="0" frameborder="0" scrolling="vertical" allowtransparency="yes"  onload="resizeFrame(this);" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/donors/"><a href="http://4visions.nl/skype-online-status/donors/">http://4visions.nl/skype-online-status/donors/</a></iframe>
+			<object data="http://4visions.nl/skype-online-status/donors/#<?php echo $url_enc ?>" type="text/html" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9"></object>
+			<!-- Yes, IE is stupid. Give stupid IE, version 7 and under, a stupid iFrame since it can't parse object like every other browser -->
+			<!--[if lte IE 7]>
+				<iframe frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/donors/#<?php echo $url_enc ?>"></iframe>
+			<![endif]-->
 
 			<p><?php _e('Please <strong>rate this plugin</strong> at <a href="http://wordpress.org/extend/plugins/skype-online-status/">WordPress</a>','skype-online-status') ?></p>
 			<p><?php _e('Do you want your name and/or link up there too? Or just appreciate my work?','skype-online-status') ?><br /><br />
@@ -250,11 +245,15 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 onmouseover="window.status='http://www.skype.com';return true;" onmouseout="window.status=' ';return true;"><?php _e('SkypeIn','skype-online-status'); _e(': ','skype-online-status'); _e('Your personal online number.','skype-online-status') ?></a></li>
 				<li><a href="http://www.anrdoezrs.net/click-3049686-10420859?url=http%3A%2F%2Fwww.skype.com%2Fallfeatures%2Fvoicemail%2F%2F%3Fcm_mmc%3Daffiliate%2D%5F%2Dcommission%5Fjunction%2D%5F%2Dlink%2D%5F%2Dbuilder" title="<?php _e('Skype Voicemail','skype-online-status') ?>" onmouseover="window.status='http://www.skype.com';return true;" onmouseout="window.status=' ';return true;"><?php _e('Skype Voicemail','skype-online-status'); _e(': ','skype-online-status'); _e('Never miss a call!','skype-online-status');?></a></li>
 				<li><a href="http://www.anrdoezrs.net/click-3049686-10420859?url=http%3A%2F%2Fwww.skype.com%2Fallfeatures%2Faccessories%2F%2F%3Fcm_mmc%3Daffiliate%2D%5F%2Dcommission%5Fjunction%2D%5F%2Dlink%2D%5F%2Dbuilder" title="Skype Accessories" 
-onmouseover="window.status='http://www.skype.com';return true;" onmouseout="window.status=' ';return true;"><?php _e('Accessories: Get the most out of Skype!','skype-online-status') ?></a></a></li>
+onmouseover="window.status='http://www.skype.com';return true;" onmouseout="window.status=' ';return true;"><?php _e('Accessories: Get the most out of Skype!','skype-online-status') ?></a></li>
 			</ul>
 
 			<br />
-			<iframe border="0" frameborder="0" scrolling="no" allowtransparency="yes"  onload="resizeFrame(this);" style="margin:0;padding:0;border:none;width:100%;height:18px" src="http://4visions.nl/skype-online-status/ads/?ad=270"></iframe>
+			<object data="http://4visions.nl/skype-online-status/ads/?ad=small#<?php echo $url_enc ?>" type="text/html" style="margin:0;padding:0;border:none;width:100%;height:110px"></object>
+			<!-- Yes, IE is stupid. Give stupid IE, version 7 and under, a stupid iFrame since it can't parse object like every other browser -->
+			<!--[if lte IE 7]>
+				<iframe frameborder="0" scrolling="no" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:110px" src="http://4visions.nl/skype-online-status/ads/?ad=110#<?php echo $url_enc ?>"></iframe>
+			<![endif]-->
 
 		</div>
 	</div>
@@ -267,7 +266,6 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 				<li><a href="http://mystatus.skype.com/<?php echo $option['skype_id'] ?>"><?php printf(__('View %s\'s online status on the Skype server','skype-online-status'),$option['skype_id']) ?></a></li>
 				<li><a href="http://c.skype.com/i/legacy/images/share/buttons/privacy_shot.jpg"><?php _e('Edit Privacy Options in your Skype client','skype-online-status') ?></a></li>
 			</ul>
-			<iframe border="0" frameborder="0" scrolling="no" allowtransparency="yes"  onload="resizeFrame(this);" style="margin:0;padding:0;border:none;width:100%;height:18px" src="http://4visions.nl/skype-online-status/ads/?ad=110"></iframe>
 		</div>
 	</div>
 
@@ -365,12 +363,12 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 						echo '>Skype default text in '.$value.'</option>
 						'; } 
 						unset($value) ?> 
-					</select> <a href="#" onclick="javascript:SwitchInfoBlock('statustext_info');return(false);">?</a> 
+					</select> <a href="#" onclick="javascript:SwitchInfoBlock('statustext_info');return(false);">?</a><p>
 			<blockquote id="statustext_info" style="display:none"><em><?php printf(__('If you select %1$s, the tags %2$s, %3$s and %4$s in the button template will be ignored.', 'skype-online-status'),"<strong>".__('Disabled', 'skype-online-status')."</strong>","{status}","{statustxt}","{sep2}"); 
 						echo "<br />"; 
 						printf(__('When security settings on your server are too tight (<strong>safe_mode</strong> enabled, <strong>open_basedir</strong> restictions or <strong>allow_url_fopen</strong> being disabled), your status does not show or the Skype button doesn\'t load and you find an error like "Warning: file_get_contents() [function.file-get-contents]: URL file-access is disabled in the server configuration..." in the server log files, use either %1$s or %2$s here.','skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Disabled', 'skype-online-status')."</strong>") ?></em></blockquote>
 					<?php if (!SOSREMOTE) {
-						echo "<br /><span style=\"color:red\">" . __('Note:', 'skype-online-status') . " " . __('The security settings on your server are too tight for the online status to be read from the Skype server.', 'skype-online-status') . " " . sprintf(__('It is advised to set %1$s to %2$s here untill this is fixed.', 'skype-online-status'),"<strong>".__('Status texts', 'skype-online-status')."</strong>","<strong>".__('Disabled', 'skype-online-status')."</strong>") . sprintf(__('You can also select %1$s but only the %2$s status text will be available.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Error', 'skype-online-status')."</strong>") . "</span>"; } ?></p>
+						echo "<p><span style=\"color:red\">" . __('Note:', 'skype-online-status') . " " . __('The security settings on your server are too tight for the online status to be read from the Skype server.', 'skype-online-status') . " " . sprintf(__('It is advised to set %1$s to %2$s here untill this is fixed.', 'skype-online-status'),"<strong>".__('Status texts', 'skype-online-status')."</strong>","<strong>".__('Disabled', 'skype-online-status')."</strong>") . sprintf(__('You can also select %1$s but only the %2$s status text will be available.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Error', 'skype-online-status')."</strong>") . "</span></p>"; } ?>
 				<p><br /><input type="checkbox" name="use_getskype" id="use_getskype"<?php if ( $option['use_getskype'] == "on") { print " checked=\"checked\""; } ?> /> <label for="use_getskype"><?php printf(__('Use %s link.', 'skype-online-status'),"<strong>".__('Download Skype now!','skype-online-status')."</strong>") ?></label>
 					<br /><input type="checkbox" name="getskype_newline" id="getskype_newline"<?php if ( $option['getskype_newline'] == "on") { print " checked=\"checked\""; } ?> /> <label for="getskype_newline"><?php _e('Place link on a new line.', 'skype-online-status') ?></label><br />
 					<label for="getskype_text"><?php _e('Link text', 'skype-online-status'); _e(': ', 'skype-online-status') ?></label><input type="text" name="getskype_text" style="width: 250px;" id="getskype_text" value="<?php echo stripslashes(htmlspecialchars($option['getskype_text'])) ?>" /><br />
@@ -380,8 +378,8 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 							<option value="skype_mainpage"<?php if ( $option['getskype_link'] == "skype_mainpage" ) print " selected=\"selected\"" ?>><?php _e('Skype main page', 'skype-online-status') ?></option>
 							<option value="skype_downloadpage"<?php if ( $option['getskype_link'] == "skype_downloadpage" ) print " selected=\"selected\"" ?>><?php _e('Skype download page', 'skype-online-status') ?></option>
 							<option value="custom_link"<?php if ( $option['getskype_link'] == "custom_link" ) print " selected=\"selected\"" ?>><?php _e('Custom...', 'skype-online-status') ?></option>
-						</select> <a href="#" onclick="javascript:SwitchInfoBlock('linkurl_info');return(false);">?</a> 
-						<blockquote id="linkurl_info" style="display:none"><em><?php _e('Leave to Default if you are generous and think downloads should create some small possible revenue for the developer of this plugin -- that\'s me, thanks! :) -- but if you think open source developers are greedy bastards and should go away, select one of the other options -- just kidding, feel free... Really! You can always donate on the Notes & Live Support section ;).', 'skype-online-status'); printf(__('If you want to create your own link (say you have a Commission Junction, TradeDoubler or ValueCommerce account, read more on http://www.skype.com/partners/affiliate/) to get possible revenue from downloads yourself, select %1$s and paste the link code in the textarea under %2$s below.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Custom Download Link', 'skype-online-status')."</strong>") ?></em></blockquote></p>
+						</select> <a href="#" onclick="javascript:SwitchInfoBlock('linkurl_info');return(false);">?</a> </p>
+						<blockquote id="linkurl_info" style="display:none"><em><?php _e('Leave to Default if you are generous and think downloads should create some small possible revenue for the developer of this plugin -- that\'s me, thanks! :) -- but if you think open source developers are greedy bastards and should go away, select one of the other options -- just kidding, feel free... Really! You can always donate on the Notes & Live Support section ;).', 'skype-online-status'); printf(__('If you want to create your own link (say you have a Commission Junction, TradeDoubler or ValueCommerce account, read more on http://www.skype.com/partners/affiliate/) to get possible revenue from downloads yourself, select %1$s and paste the link code in the textarea under %2$s below.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Custom Download Link', 'skype-online-status')."</strong>") ?></em></blockquote>
 		</fieldset>
 
 		<fieldset class="options">
@@ -559,15 +557,37 @@ function SwitchInfoBlock(id){
 </script>
 
 <script type="text/javascript">
-	document.getElementById('loading').style.display='none';
-	document.getElementById('notes').style.display='none'; 
-	document.getElementById('guide').style.display='none'; 
-</script>
+(function($){
+	// menu
+	$('#settingslink').click(function() {
+		$('#settings').show();
+		$('#notes').hide(); 
+		$('#guide').hide(); 
+		$('#settingslink').css('color','#d54e21');
+		$('#noteslink').css('color','#264761'); 
+		$('#guidelink').css('color','#264761');
+	});
 
-<script type="text/javascript">
-function resizeFrame(f) {
-	f.style.height = f.contentWindow.document.body.scrollHeight + "px";
-}
+	$('#guidelink').click(function() {	
+		$('#guide').show(); 
+		$('#notes').hide(); 
+		$('#settings').hide();  
+		$('#settingslink').css('color','#264761'); 
+		$('#noteslink').css('color','#264761'); 
+		$('#guidelink').css('color','#d54e21');
+	});
+	$('#noteslink').click(function() {	
+		$('#notes').show(); 
+		$('#guide').hide();  
+		$('#settings').hide(); 
+		$('#settingslink').css('color','#264761'); 
+		$('#noteslink').css('color','#d54e21'); 
+		$('#guidelink').css('color','#264761');
+	});
+
+	// hide stuff
+	$("#loading").hide();
+})(jQuery);
 </script>
 <?php
 }
