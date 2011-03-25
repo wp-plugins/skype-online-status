@@ -2,7 +2,7 @@
 function skype_status_options() {
 	global $skype_status_config, $skype_avail_languages, $skype_avail_functions, $skype_avail_statusmsg, $soswhatsnew_this, $soswhatsnew_recent;
 	$option = $skype_status_config;
-	$url_enc = rawurlencode( 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
+	$url_enc = rawurlencode( 'http://' . $_SERVER['HTTP_HOST'] );
 
 //add_thickbox();
 
@@ -199,10 +199,10 @@ function skype_status_options() {
 			<p><?php printf(__('For <strong>feature requests</strong> or general help with <strong>WordPress</strong> or <strong>hosting</strong>, please contact <em>RavanH</em> via e-mail %s or Skype chat:','skype-online-status'),'<a href="mailto:ravanhagen@gmail.com">ravanhagen@gmail.com</a>') ?></p>
 
 			<br />
-			<object data="http://4visions.nl/skype-online-status/ads/?ad=big#<?php echo $url_enc ?>" type="text/html" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:570px;background-color:#f9f9f9" id="ad_big"></object>
+			<object data="http://4visions.nl/skype-online-status/ads/?ad=big&amp;ref=<?php echo $url_enc ?>" type="text/html" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:570px;background-color:#f9f9f9" id="ad_big"></object>
 			<!-- Yes, IE is stupid. Give stupid IE, version 7 and under, a stupid iFrame since it can't parse object like every other browser -->
 			<!--[if lte IE 7]>
-				<iframe frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:570px;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/ads/?ad=big#<?php echo $url_enc ?>" id="ad_big"></iframe>
+				<iframe frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:570px;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/ads/?ad=big&amp;ref=<?php echo $url_enc ?>" id="ad_big"></iframe>
 			<![endif]-->
 
 		</div>
@@ -212,10 +212,10 @@ function skype_status_options() {
 			<h4><?php _e('Translations','skype-online-status') ?></h4>
 			<p><?php _e('Translation contributions are highly appreciated. Authors of new translations or updates will be mentioned here.','skype-online-status') ?></p>
 
-			<object data="http://4visions.nl/skype-online-status/translators/#<?php echo $url_enc ?>" type="text/html" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9"></object>
+			<object data="http://4visions.nl/skype-online-status/translators/?ref=<?php echo $url_enc ?>" type="text/html" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9"></object>
 			<!-- Yes, IE is stupid. Give stupid IE, version 7 and under, a stupid iFrame since it can't parse object like every other browser -->
 			<!--[if lte IE 7]>
-				<iframe frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/translators/#<?php echo $url_enc ?>"></iframe>
+				<iframe frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/translators/?ref=<?php echo $url_enc ?>"></iframe>
 			<![endif]-->
 
 			<p><?php _e('Want to make your own translation too? Read the <a href="http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt">translation instructions</a> included with this plugin to get started.','skype-online-status') ?></p>
@@ -223,10 +223,10 @@ function skype_status_options() {
 			<h4><?php _e('Donations','skype-online-status') ?></h4>
 			<p><?php _e('All donations are much appreciated and will (without objection) be mentioned here as a way of expressing my gratitude.','skype-online-status') ?></p>
 
-			<object data="http://4visions.nl/skype-online-status/donors/#<?php echo $url_enc ?>" type="text/html" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9"></object>
+			<object data="http://4visions.nl/skype-online-status/donors/?ref=<?php echo $url_enc ?>" type="text/html" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9"></object>
 			<!-- Yes, IE is stupid. Give stupid IE, version 7 and under, a stupid iFrame since it can't parse object like every other browser -->
 			<!--[if lte IE 7]>
-				<iframe frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/donors/#<?php echo $url_enc ?>"></iframe>
+				<iframe frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/donors/?ref=<?php echo $url_enc ?>"></iframe>
 			<![endif]-->
 
 			<p><?php _e('Please <strong>rate this plugin</strong> at <a href="http://wordpress.org/extend/plugins/skype-online-status/">WordPress</a>','skype-online-status') ?></p>
@@ -249,10 +249,10 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 			</ul>
 
 			<br />
-			<object data="http://4visions.nl/skype-online-status/ads/?ad=small#<?php echo $url_enc ?>" type="text/html" style="margin:0;padding:0;border:none;width:100%;height:110px"></object>
+			<object data="http://4visions.nl/skype-online-status/ads/?ad=small&amp;ref=<?php echo $url_enc ?>" type="text/html" style="margin:0;padding:0;border:none;width:100%;height:110px"></object>
 			<!-- Yes, IE is stupid. Give stupid IE, version 7 and under, a stupid iFrame since it can't parse object like every other browser -->
 			<!--[if lte IE 7]>
-				<iframe frameborder="0" scrolling="no" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:110px" src="http://4visions.nl/skype-online-status/ads/?ad=110#<?php echo $url_enc ?>"></iframe>
+				<iframe frameborder="0" scrolling="no" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:110px" src="http://4visions.nl/skype-online-status/ads/?ad=110&amp;ref=<?php echo $url_enc ?>"></iframe>
 			<![endif]-->
 
 		</div>
@@ -304,7 +304,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 			<br /><h4><?php _e('Theme', 'skype-online-status') ?></h4>
 
 			<p><?php printf(__('Start with <strong>selecting one of the predefined theme templates</strong> to load into the database. Hover over the options to see a preview. You might later select %1$s to edit the template in the text field under %2$s.', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Custom Template', 'skype-online-status')."</strong>") ?></p>
-			<p><label for="button_theme"><?php echo __('Theme', 'skype-online-status') . __(': ', 'skype-online-status') ?></label> <select name="button_theme" id="button_theme" onchange="ChangeStyle(this);" onblur="PreviewStyle(this);"><option value="custom_edit"<?php if ($option['button_theme'] == "custom_edit") echo " selected=\"selected\"" ?> onmouseover="PreviewStyle(this);" onmouseout="UnPreviewStyle(this);"><?php _e('Custom...', 'skype-online-status') ?></option><?php foreach ($walk['select'] as $key => $value) { echo "<option value=\"$value\""; if ($value == $option['button_theme']) { echo " selected=\"selected\""; } echo " onmouseover=\"PreviewStyle(this);\" onmouseout=\"UnPreviewStyle(this);\">$key</option>"; } unset($value) ?> </select> <a href="#" onclick="javascript:SwitchInfoBlock('theme_info');return(false);">?</a></p>
+			<p><label for="button_theme"><?php echo __('Theme', 'skype-online-status') . __(': ', 'skype-online-status') ?></label> <select name="button_theme" id="button_theme" onchange="ChangeStyle(this);" onblur="PreviewStyle(this);"><option value="custom_edit"<?php if ($option['button_theme'] == "custom_edit") echo " selected=\"selected\"" ?> onmouseover="PreviewStyle(this);" onmouseout="UnPreviewStyle(this);"><?php _e('Custom...', 'skype-online-status') ?>&nbsp;</option><?php foreach ($walk['select'] as $key => $value) { echo "<option value=\"$value\""; if ($value == $option['button_theme']) { echo " selected=\"selected\""; } echo " onmouseover=\"PreviewStyle(this);\" onmouseout=\"UnPreviewStyle(this);\">$key&nbsp;</option>"; } unset($value) ?> </select> <a href="#" onclick="javascript:SwitchInfoBlock('theme_info');return(false);">?</a></p>
 			<blockquote id="theme_info" style="display:none"><em><?php printf(__('When %1$s is selected, you can edit the template to your liking below at %2$s under %3$s. When you make changes to that field but select another theme template here, those changes will be overwriten by the new template!', 'skype-online-status'),"<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Customize currently loaded template', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Custom Template', 'skype-online-status')."</strong>") ?></em></blockquote>
 			<p><?php printf(__('If you cannot find a suitable theme, check out <a href="http://www.skype.com/share/buttons/wizard.html" target="_blank">http://www.skype.com/share/buttons/wizard.html</a>. Select your options there and copy/paste the output into the textarea under %s.', 'skype-online-status'),"<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Display', 'skype-online-status')."</strong>") ?></p>
 		</fieldset>

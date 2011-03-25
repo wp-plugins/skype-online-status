@@ -169,7 +169,7 @@ function skype_status($r = '', $use_js = TRUE, $status = FALSE) {
 }
 
 // routine to render all template files based on one config
-function skype_walk_templates($buttondir, $option_preview, $select, $previews, $use_js = TRUE) {
+function skype_walk_templates( $buttondir, $option_preview, $select, $previews, $use_js = TRUE, $select_only = FALSE ) {
 	global $skype_status_config;
 	$option_preview = wp_parse_args( $option_preview, $skype_status_config );
 
@@ -206,16 +206,19 @@ function skype_walk_templates($buttondir, $option_preview, $select, $previews, $
 					// collect the options
 					$select[$matches[1]] = $template_name;
 					
-					// and collect their previews 
-					$previews[$matches[1]] = array( $template_name , 
-						skype_parse_theme($option_preview,$use_js,$status) ) ; 
+					// and collect their previews if...
+					if (!$select_only)
+						$previews[$matches[1]] = array( $template_name , 
+							skype_parse_theme($option_preview,$use_js,$status) ) ; 
 				}
 			}
 			closedir($dh);
 		}
 	}
-	if ( ksort($select) && ksort($previews))
+	if ( !$select_only && ksort($select) && ksort($previews))
 		return array ( "select" => $select , "previews" => $previews );
+	elseif ( ksort($select) )
+		return array ( "select" => $select );
 	else
 		return FALSE;
 }
@@ -297,90 +300,6 @@ function skype_status_add_action_link( $links, $file ) {
 }
 
 
-// WIDGET FUNCTIONS
-
-function skype_status_widget ($args, $widget_args = 1) {
-	extract( $args, EXTR_SKIP );
-	if ( is_numeric($widget_args) )
-		$widget_args = array( 'number' => $widget_args );
-	$widget_args = wp_parse_args( $widget_args, array( 'number' => -1 ) );
-	extract( $widget_args, EXTR_SKIP );
-
-	$options = get_option('skype_widget_options');
-	if (!isset($options[$number]))
-		return;
-
-	$title = apply_filters('widget_title', $options[$number]['title']);
-	$before = apply_filters('widget_text', $options[$number]['before']);
-	$after = apply_filters('widget_text', $options[$number]['after']);
-
-	$args = skype_build_args($options[$number]);
-
-	echo $before_widget;
-	if (!empty( $title ))
-		echo $before_title . $title . $after_title;
-	echo "<div class=\"skype-status-button\">";
-	echo $before;
-	echo skype_status($args);
-	echo $after;
-	echo "</div>";
-	echo $after_widget;
-}
-
-function skype_widget_register() {
-	if ( !$options = get_option('skype_widget_options') )
-		$options = array();
-
-	if ( isset( $options['title'] ) )
-		$options = skype_widget_upgrade();
-
-	$widget_ops = array( 'classname' => 'skype_widget', 'description' => "Skype Online Status button" );
-	$control_ops = array('width' => 600, 'id_base' => 'skype-status');
-
-	$name = "Skype";
-
-	$registered = false;
-	foreach ( array_keys($options) as $o ) {
-		if ( !isset($options[$o]['widget_id']) )
-			continue;
-		$id = "skype-status-$o";
-		$registered = true;
-		wp_register_sidebar_widget( $id, $name, 'skype_status_widget', $widget_ops, array( 'number' => $o ) );
-		wp_register_widget_control( $id, $name, 'skype_widget_options', $control_ops, array( 'number' => $o ) );
-	}
-
-	if ( !$registered ) {
-		wp_register_sidebar_widget( 'skype-status-1', $name, 'skype_status_widget', $widget_ops, array( 'number' => -1 ) );
-		wp_register_widget_control( 'skype-status-1', $name, 'skype_widget_options', $control_ops, array( 'number' => -1 ) );
-	}
-}
-
-function skype_widget_upgrade() {
-	$options = get_option('skype_widget_options');
-	if ( !isset( $options['title'] ) ) 
-		return $options;
-
-	$newoptions = array( 1 => $options );
-
-	update_option( 'skype_widget_options', $newoptions );
-
-	$sidebars_widgets = get_option( 'sidebars_widgets' );
-	if ( is_array( $sidebars_widgets ) ) {
-		foreach ( $sidebars_widgets as $sidebar => $widgets ) {
-			if ( is_array( $widgets ) ) {
-				foreach ( $widgets as $widget )
-					$new_widgets[$sidebar][] = ( $widget == 'Skype Status' ) ? 'skype-status-1' : $widget;
-			} else {
-				$new_widgets[$sidebar] = $widgets;
-			}
-		}
-		if ( $new_widgets != $sidebars_widgets )
-			update_option( 'sidebars_widgets', $new_widgets );
-	}
-
-	return $newoptions;
-}
-
 function skype_build_args($options) {
 	// build args (except button_theme !) 
 	if ($options['skype_id'])
@@ -406,5 +325,132 @@ function sos_mce3_plugin($arr) {
 function sos_mce3_button($buttons) {
 	array_push($buttons, "|", "sosquicktag");
 	return $buttons;
+}
+
+
+
+/**
+ * Skype widget class
+ *
+ * @since 2.8.4
+ */
+class Skype_Status_Widget extends WP_Widget {
+
+	function Skype_Status_Widget() {
+		$this->WP_Widget(
+			'skype-status', 
+			__('Skype Status', 'skype-online-status'),
+			array(
+				'classname' => 'skype_widget', 
+				'description' => __('Add a Skype Online Status button', 'skype-online-status')
+			), 
+			array(
+				'width' => 370, 
+				'id_base' => 'skype-status'
+			)
+		);
+		
+		// attempt upgrade from pre 2.8.4 widgets
+		if ( $options = get_option('skype_widget_options') ) {
+			$options['_multiwidget'] = 1;
+			update_option('widget_skype-status', $options);
+			delete_option('skype_widget_options');
+		}
+	}
+
+	function widget( $args, $instance ) {
+		extract($args);
+		$title = apply_filters( 'widget_title', empty($instance['title']) ? '' : $instance['title'], $instance, $this->id_base);
+
+		$before = apply_filters('widget_text', $instance['before'], $instance);
+		$after = apply_filters('widget_text', $instance['after'], $instance);
+
+		$skype_args = skype_build_args($instance);
+
+		echo $before_widget;
+		if (!empty( $title ))
+			echo $before_title . $title . $after_title;
+		echo '<div class="skype-status-button">' . $before;
+		echo skype_status($skype_args);
+		echo $after . '</div>' . $after_widget;
+	}
+
+	function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['skype_id'] =  trim(strip_tags(stripslashes($new_instance['skype_id']))); 
+		$instance['user_name'] =  trim(strip_tags(stripslashes($new_instance['user_name']))); 
+
+		if ( current_user_can('unfiltered_html') ) {
+			$instance['before'] =  $new_instance['before'];
+			$instance['after'] =  $new_instance['after'];
+		} else {
+			$instance['before'] = stripslashes( wp_filter_post_kses( addslashes($new_instance['before']) ) ); // wp_filter_post_kses() expects slashed
+			$instance['after'] = stripslashes( wp_filter_post_kses( addslashes($new_instance['after']) ) ); // wp_filter_post_kses() expects slashed
+		}
+
+		if ( $new_instance['button_theme'] != '' ) // then get template file content to load into db
+			$instance['button_template'] = stripslashes(skype_get_template_file($instance['button_theme'])); 
+		else 
+			$instance['button_template'] = '';
+		
+		$instance['button_theme'] =  stripslashes($new_instance['button_theme']); 
+
+		$instance['use_voicemail'] =  $new_instance['use_voicemail']; 
+
+		return $instance;
+	}
+
+	function form( $instance ) {
+		$defaults = array ( 
+			'title' => __('Skype Status', 'skype-online-status'),	// Widget title
+			'skype_id' => '',			// Skype ID to replace {skypeid} in template files
+			'user_name' => '',			// User name to replace {username} in template files
+			'button_theme' => '',			// Theme to be used, value must match a filename (without extention) from the /plugins/skype_status/templates/ directory or leave blank
+			'button_template' => '',		// Template of the theme loaded
+			'use_voicemail' => '',			// Wether to use the voicemail invitation ("on") or not ("off") or leave to default ("")
+			'before' => '',				// text that should go before the button
+			'after' => '',				// text that should go after the button
+		);
+		$instance = wp_parse_args( (array) $instance, $defaults );
+
+		$title = strip_tags($instance['title']);
+		$user_name = strip_tags($instance['user_name']);
+		$before = format_to_edit($instance['before']);
+		$after = format_to_edit($instance['after']);
+
+		$walk = skype_walk_templates("", $instance, "", "", FALSE, TRUE); // get list of templates
+?>
+		
+		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></p>
+
+		<p><label for="<?php echo $this->get_field_id('skype_id'); ?>"><?php _e('Skype ID', 'skype-online-status'); ?>*<?php _e(': ', 'skype-online-status'); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id('skype_id'); ?>" name="<?php echo $this->get_field_name('skype_id'); ?>" type="text" value="<?php echo $instance['skype_id']; ?>" /></p>
+
+		<p><label for="<?php echo $this->get_field_id('user_name'); ?>"><?php _e('Full Name', 'skype-online-status'); ?>*<?php _e(': ', 'skype-online-status'); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id('user_name'); ?>" name="<?php echo $this->get_field_name('user_name'); ?>" type="text" value="<?php echo esc_attr($user_name); ?>" /></p>
+
+		<p><label for="<?php echo $this->get_field_id('before'); ?>"><?php _e('Text before button', 'skype-online-status'); ?>**<?php _e(': ', 'skype-online-status'); ?></label>
+		<textarea class="widefat" rows="2" cols="20" id="<?php echo $this->get_field_id('before'); ?>" name="<?php echo $this->get_field_name('before'); ?>"><?php echo $before; ?></textarea></p>
+
+		<p><label for="<?php echo $this->get_field_id('button_theme'); ?>"><?php _e('Theme', 'skype-online-status'); ?><?php _e(': ', 'skype-online-status'); ?></label>
+		<select class="select" id="<?php echo $this->get_field_id('button_theme'); ?>" name="<?php echo $this->get_field_name('button_theme'); ?>"><option value=""<?php if ($instance['button_theme'] == '') echo " selected=\"selected\"" ?>><?php _e('Default', 'skype-online-status') ?>&nbsp;</option><?php foreach ($walk['select'] as $key => $value) { echo "<option value=\"$value\""; if ($value == $instance['button_theme']) { echo " selected=\"selected\""; } echo ">$key&nbsp;</option>"; } unset($value) ?></select></p>
+
+		<p><label for="<?php echo $this->get_field_id('after'); ?>"><?php _e('Text after button', 'skype-online-status'); ?>**<?php _e(': ', 'skype-online-status'); ?></label>
+		<textarea class="widefat" rows="2" cols="20" id="<?php echo $this->get_field_id('after'); ?>" name="<?php echo $this->get_field_name('after'); ?>"><?php echo $after; ?></textarea></p>
+
+		<p><label for="<?php echo $this->get_field_id('use_voicemail'); ?>"><?php _e('Use Voicemail?', 'skype-online-status'); ?></label>*** 
+		<select class="select" id="<?php echo $this->get_field_id('use_voicemail'); ?>" name="<?php echo $this->get_field_name('use_voicemail'); ?>"><option value=""<?php if ($instance['use_voicemail'] == '') echo " selected=\"selected\"" ?>><?php _e('Default', 'skype-online-status'); ?></option><option value="on"<?php if ($instance['use_voicemail'] == 'on') echo " selected=\"selected\"" ?>><?php _e('Yes'); ?></option><option value="off"<?php if ($instance['use_voicemail'] == 'off') echo " selected=\"selected\"" ?>><?php _e('No'); ?></option></select></p>
+
+
+
+<p style="clear:both;font-size:78%;font-weight:lighter;">* <?php _e('Leave blank to use the default options as you defined on the <a href="options-general.php?page=skype-status.php">Skype Online Status Settings</a> page.', 'skype-online-status'); ?><br />
+** <?php _e('You can use some basic HTML here like &lt;br /&gt; for new line.', 'skype-online-status'); ?><br />
+*** <?php printf(__('Set to %1$s if you do not have %2$s or %3$s.', 'skype-online-status'), __('No'), '<a href="http://www.tkqlhce.com/click-3049686-10520919" target="_top">'.__('SkypeIn','skype-online-status').'</a><img src="http://www.ftjcfx.com/image-3049686-10520919" width="1" height="1" border="0"/>', '<a href="http://www.tkqlhce.com/click-3049686-10423078" target="_top">'.__('Skype Voicemail','skype-online-status').'</a><img src="http://www.ftjcfx.com/image-3049686-10423078" width="1" height="1" border="0"/>'); ?></p>
+
+
+<?php
+	}
 }
 
