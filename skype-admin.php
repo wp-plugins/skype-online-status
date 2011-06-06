@@ -7,7 +7,7 @@ function skype_status_options() {
 //add_thickbox();
 
 ?>
-<div class="wrap">
+<div id="skype_status_options-metaboxes-general" class="wrap">
 	<div id="icon-edit-comments" class="icon32"><br /></div>
 <h2><?php echo __('Skype Online Status', 'skype-online-status')." ".SOSVERSION ?></h2>
 
@@ -129,15 +129,21 @@ function skype_status_options() {
 	unset($value);
 	?>
 
-<form enctype="multipart/form-data" method="post" action="#">
+<form enctype="multipart/form-data" method="post" action="#" id="skype-online-status">
 <?php wp_nonce_field('update-options') ?>
+
+<?php wp_nonce_field('skype_status_options-metaboxes-general'); ?>
+<?php wp_nonce_field('closedpostboxes','closedpostboxesnonce',false) ?>
+<?php wp_nonce_field('meta-box-order','meta-box-order-nonce',false) ?>
+
+<input type="hidden" name="action" value="save_eshop_metaboxes_general" />
 
 <div id="poststuff" class="metabox-holder has-right-sidebar">
 
   <div id="side-info-column" class="inner-sidebar">
 
     <div id="side-sortables" class="meta-box-sortables">
-	<div id="submitdiv" class="postbox ">
+	<div id="skype-submitdiv" class="postbox ">
 		<div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Sections','skype-online-status') ?></span></h3>
 		<div class="inside">
 		  <div class="submitbox" id="submitpost">
@@ -179,7 +185,7 @@ function skype_status_options() {
 		</div>
 	</div>
 
-	<div id="previewdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Preview theme template:', 'skype-online-status') ?></span></h3><div class="inside">
+	<div id="skype-previewdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Preview theme template:', 'skype-online-status') ?></span></h3><div class="inside">
 			<p><?php _e('Note:', 'skype-online-status') ?> <?php _e('The preview button uses the Skype Test Call service to allow testing its function.','skype-online-status') ?></p>
 			<div class="alternate no_underline" style="margin:5px 0 0 0;padding:5px;height:210px;">
 				<div id="custom_edit" style="display:<?php if ($option['button_theme'] == 'custom_edit') echo 'block'; else echo 'none' ?>;margin:0;padding:0">
@@ -193,7 +199,7 @@ function skype_status_options() {
 
 	</div>
 
-	<div id="supportdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Support','skype-online-status') ?></span></h3>
+	<div id="skype-supportdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Support','skype-online-status') ?></span></h3>
 		<div class="inside">
 			<p><?php _e('For all support questions and suggestions, please go to','skype-online-status') ?> <a href="http://wordpress.org/tags/skype-online-status/"><?php _e('WordPress Support','skype-online-status') ?> - <?php _e('Skype Online Status','skype-online-status') ?></a>.</p>
 			<p><?php printf(__('For <strong>feature requests</strong> or general help with <strong>WordPress</strong> or <strong>hosting</strong>, please contact <em>RavanH</em> via e-mail %s or Skype chat:','skype-online-status'),'<a href="mailto:ravanhagen@gmail.com">ravanhagen@gmail.com</a>') ?></p>
@@ -208,7 +214,7 @@ function skype_status_options() {
 		</div>
 	</div>
 
-	<div id="donationsdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Credits','skype-online-status') ?></span></h3><div class="inside">
+	<div id="skype-donationsdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Credits','skype-online-status') ?></span></h3><div class="inside">
 			<h4><?php _e('Translations','skype-online-status') ?></h4>
 			<p><?php _e('Translation contributions are highly appreciated. Authors of new translations or updates will be mentioned here.','skype-online-status') ?></p>
 
@@ -236,7 +242,7 @@ function skype_status_options() {
 		</div>
 	</div>
 
-	<div id="morediv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Get more from Skype','skype-online-status') ?></span></h3>
+	<div id="skype-morediv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Get more from Skype','skype-online-status') ?></span></h3>
 		<div class="inside">
 			<ul>
 				<li><a href="http://www.anrdoezrs.net/click-3049686-10420859?url=http%3A%2F%2Fwww.skype.com%2Fallfeatures%2Fcallphones%2F%2F%3Fcm_mmc%3Daffiliate%2D%5F%2Dcommission%5Fjunction%2D%5F%2Dlink%2D%5F%2Dbuilder" title="<?php _e('SkypeOut','skype-online-status') ?>" 
@@ -258,7 +264,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 		</div>
 	</div>
 
-	<div id="resourcesdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Resources','skype-online-status') ?></span></h3>
+	<div id="skype-resourcesdiv" class="postbox "><div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Resources','skype-online-status') ?></span></h3>
 		<div class="inside">
 			<ul>
 				<li><a href="http://www.skype.com/intl/en/tell-a-friend/get-a-skype-button/"><?php _e('Skype Buttons','skype-online-status') ?></a></li>
@@ -285,7 +291,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 		<?php _e('Note:', 'skype-online-status') ?> <?php _e('Some basic settings may be overridden per Widget settings or when calling the Skype button with a template function.', 'skype-online-status') ?></p>
 	  <p><?php printf(__('Read more about configuring this plugin and more ways to trigger Skype buttons on your blog in the %1$s section. If you have any remaining questions, see the %2$s page to get help.', 'skype-online-status'),"<strong>".__('Quick Guide', 'skype-online-status')."</strong>","<strong>".__('Notes &amp; Live Support', 'skype-online-status')."</strong>") ?></p>
 
-	  <div id="basicdiv" class="postbox ">
+	  <div id="skype-basicdiv" class="postbox ">
 
 	    <div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Basic Options', 'skype-online-status') ?></span></h3>
 
@@ -336,7 +342,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 	  </div> <!-- postbox -->
 
 
-	  <div id="advanceddiv" class="postbox ">
+	  <div id="skype-advanceddiv" class="postbox ">
 
 	    <div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Advanced Options', 'skype-online-status') ?></span></h3>
 
@@ -494,7 +500,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 	    </div> <!-- inside -->
 	  </div> <!-- postbox -->
 
-	  <div id="discussiondiv" class="postbox ">
+	  <div id="skype-discussiondiv" class="postbox ">
 	  
 	    <div class="handlediv" title="<?php _e('Click to toggle') ?>"><br /></div><h3 class='hndle'><span><?php _e('Discussion') ?></span></h3>
 	    
@@ -521,12 +527,11 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
   </div> <!--post-body has-sidebar -->
 
 </div> <!-- poststuff metabox-holder has-right-sidebar -->
-<?php wp_nonce_field('closedpostboxes','closedpostboxesnonce',false) ?>
-<?php wp_nonce_field('meta-box-order','meta-box-order-nonce',false) ?>
 </form>
 </div> <!-- wrap -->
 
 <script type="text/javascript">
+//<![CDATA[
 var visible_preview = "<?php echo $option['button_theme'] ?>";
 
 function ChangeStyle(el) {
@@ -554,9 +559,7 @@ function SwitchInfoBlock(id){
 	   blockElementStyle.display="none";
 	 }
 }
-</script>
 
-<script type="text/javascript">
 (function($){
 	// menu
 	$('#settingslink').click(function() {
@@ -588,7 +591,16 @@ function SwitchInfoBlock(id){
 	// hide stuff
 	$("#loading").hide();
 })(jQuery);
+
+jQuery(document).ready( function($) {
+	// close postboxes that should be closed
+	$('.if-js-closed').removeClass('if-js-closed').addClass('closed');
+	// postboxes setup
+	postboxes.add_postbox_toggles('skype_status_options');
+});
+//]]>
 </script>
+
 <?php
 }
 ?>

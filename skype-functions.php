@@ -277,13 +277,14 @@ function skype_status_scripts_admin($hook) {
 	}
 	
 	//wp_register_script('jquery.postmessage', SOSPLUGINURL.'/js/jquery.ba-postmessage.min.js', 'jquery', '0.5', true);
-
-	wp_enqueue_script('skypecheck');
 	//wp_enqueue_script('jquery.postmessage');
+
+	// needed javascripts to allow drag/drop, expand/collapse and hide/show of boxes
+	wp_enqueue_script('common');
+	wp_enqueue_script('wp-lists');
 	wp_enqueue_script('postbox');
-	wp_enqueue_script('dashboard');
-	wp_enqueue_style('dashboard');
-	//}
+	
+	wp_enqueue_script('skypecheck');
 }
 
 function skype_status_add_action_link( $links, $file ) {
