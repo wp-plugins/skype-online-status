@@ -44,7 +44,11 @@ function skype_default_values() {
 // online status checker function
 function skype_status_check($skypeid=false, $format=".txt") {
 	if (!$skypeid) return 'error';
- 
+
+	// use http_request_timeout filter if we need to adjust timeout
+	// in seconds, default: 5
+	add_filter( 'http_request_timeout', 3 );
+
 	$tmp = wp_remote_fopen('http://mystatus.skype.com/'.$skypeid.$format);
 	if (!$tmp) return 'error';
 	else $contents = str_replace("\n", "", $tmp);
@@ -72,10 +76,11 @@ function skype_parse_theme($config, $use_js = TRUE, $status = FALSE) {
 		$config['seperator2_text'] = "";
 	} elseif (!$status) {
 		if ($config['use_status']=="custom") {
-			$num = skype_status_check($config['skype_id'], ".num");
-			$status = $config['status_'.$num.'_text'];
+			$check = skype_status_check($config['skype_id'], ".num");
+			$status = $config['status_'.$check.'_text'];
 		} else {
-			$status = skype_status_check($config['skype_id'], ".txt.".$config['use_status']);
+			$check = skype_status_check($config['skype_id'], ".txt.".$config['use_status']);
+			$status = ($check == 'error') ? $config['status_error_text'] : $check;
 		}
 	}
 
