@@ -33,7 +33,7 @@ Since version 2.6.4.0, Skype Online Status is ready for internationalization. An
 - **French** * Author: [Emmanuelle Traduction](http://www.translatonline.com/)
 - **German** * Author: [Fabian Schulz](http://www.fabianschulz.net/blog/2009/08/05/skype-online-status/)
 - **Italian** * Author: [Gianni Diurno](http://gidibao.net/index.php/portfolio/ "Gianni Diurno - Portfolio")
-- **Japanese** * Author: [Ryuei Sasaki](http://riuiski.com)
+- **Japanese** * Author: [Ryuei Sasaki](http://ryueisasaki.com)
 - **Russian** * Author: [Leonid Jack](http://studio-xl.com/)
 - **Spanish** * Authors: [Rodolfo Castro & Rocio Moreno](http://www.ars-legalconsulting.es/blog/)
 - **Ukrainian** * Author: [Michael Svystun](http://emarketingblog.com.ua/)
