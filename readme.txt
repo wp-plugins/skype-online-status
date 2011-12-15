@@ -50,7 +50,7 @@ Top donators making my continued work possible:
 
 = Example =
 
-Go to the [Skype Online Status plugin page](http://4visions.nl/en/index.php?section=55 "Skype Online Status plugin - 4Visions") to see a Skype button in action (right side) or go and test a button on [Skype's button page](http://www.skype.com/share/buttons/ "Skype buttons"). The button templates used there -- and more -- are available in this plugin.
+Go to the [Skype Online Status plugin page](http://4visions.nl/en/wordpress-plugins/skype-online-status/ "Skype Online Status plugin - 4Visions") to see a Skype button in action (right side) or go and test a button on [Skype's button page](http://www.skype.com/share/buttons/ "Skype buttons"). The button templates used there -- and more -- are available in this plugin.
 
 == Installation ==
 
