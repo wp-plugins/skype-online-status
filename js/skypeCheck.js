@@ -17,9 +17,3 @@ var swfobject=function(){var D="undefined",r="object",S="Shockwave Flash",W="Sho
             @end
             @*/
 _notice.style.top=Math.max(0,Math.floor(clientHeight/2-152))+"px";_notice.style.left=Math.max(0,Math.floor(clientWidth/2-270))+"px";_notice.innerHTML=_template;document.body.appendChild(_notice);var f=_notice.getElementsByTagName("input");(f.length==2)&&addListener(f[1],"click",hasSkype);f.length&&addListener(f[0].parentElement,"submit",onDownloading)&&f[0].focus();}log("Showing notice element");_notice.style.visibility="visible";};var hasSkype=function(){log("User indicated having Skype, hiding notice, opening Skype URI "+_currentURI);_hasSkype=true;_notice.style.visibility="hidden";_currentURI&&location.replace(_currentURI);_currentURI=null;};var onDownloading=function(){var i=_notice.getElementsByTagName("input");if(i.length>1){i[1].style["float"]="";i[1].value="I have Skype installed now";i[0].style.display="none";}};var skypeCheck=function(){return SkypeDetection.ready&&SkypeDetection.installed;};swfobject.addDomLoadEvent(addLinkChecks);swfobject.addDomLoadEvent(SkypeDetection.detect);window.skypeCheck=skypeCheck;})();
-
-/* added to hide the little white square with SWFObject from view */
-var skypeDIV = document.getElementById("skypedetectionswf");
-skypeDIV.postition='fixed';
-skypeDIV.style.top='0px';
-skypeDIV.style.left='-10px';

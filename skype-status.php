@@ -186,6 +186,8 @@ function skype_status_init() {
 	add_filter('the_content', 'skype_status_callback');
 	add_shortcode('skype-status', 'skype_status_shortcode_callback');
 
+	add_action('wp_head','skype_status_css');
+
 	// http://scribu.net/wordpress/optimal-script-loading.html (the Jedi Knight way)
 	add_action('wp_footer', 'skype_status_script');
 

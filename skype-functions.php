@@ -228,6 +228,10 @@ function skype_walk_templates( $buttondir, $option_preview, $select, $previews, 
 		return FALSE;
 }
 
+function skype_status_css() {
+echo '<style type="text/css">#skypedetectionswf{position:fixed;top:0px;left:-10px}</style>';
+}
+
 // skypeCheck script in footer
 // http://scribu.net/wordpress/optimal-script-loading.html (the Jedi Knight way)
 function skype_status_script() {
