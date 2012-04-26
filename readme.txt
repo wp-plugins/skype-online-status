@@ -3,7 +3,7 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e8&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
 Requires at least: 2.8.4
-Tested up to: 3.1
+Tested up to: 3.3.2
 Stable tag: 2.8.2
 
 Unlimited, highly customizable and accessible (!) Skype buttons through widgets, post shortcode/quicktag and template tags.
@@ -158,11 +158,13 @@ When reporting bugs, please describe as carefully as possible and provide inform
 == Upgrade Notice ==
 
 = 2.8.4 =
-New translations and new Widget API.
+Admin page improvements, shortcode parameters, new translations and new Widget API.
 
 == Changelog ==
 
 = 2.8.4 =
+* Admin page improvements
+* Switch to classes
 * Switch to Widget class API
 * New parameters for shortcode
 * Interactive RTE shortcode button
