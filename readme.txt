@@ -27,6 +27,7 @@ This plugin also has been tested and working fine on WPMU 2.7+.
 Since version 2.6.4.0, Skype Online Status is ready for internationalization. Anyone who wants to contribute can do so by making a transation. Read [translation instructions](http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt "Skype Online Status translation instructions") (also included in the latest package) for more info.
 
 - **Belorussian** * Author: [M. Comfi](http://www.comfi.com/) (version 2.7)
+- **Bulgarian** * Author: [Nikolay Nikolov](http://en.chat4o.com/) (version 2.8.2)
 - **Danish** * Author: [Georg S. Adamsen](http://wordpress.blogos.dk/2009/03/18/skype-online-status/) (version 2.8.2)
 - **Dutch** * Author: [R.A. van Hagen](http://4visions.nl/) (version 2.8.2)
 - **Estonian** * Author: [Iflexion Design](http://iflexion.com/) (version 2.7)
@@ -170,6 +171,7 @@ Admin page improvements, shortcode parameters, new translations and new Widget A
 * Switch to Widget class API
 * New parameters for shortcode
 * Interactive RTE shortcode button
+* More translations! :)
 
 = 2.8.3 =
 * update: POT-file for translators
