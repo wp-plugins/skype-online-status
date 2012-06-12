@@ -486,12 +486,14 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 
       <div id="settings" style="min-height: 800px;">
 
-	  <p><?php _e('Define all your <em>default</em> Skype Status settings here.', 'skype-online-status') ?> 
+<iframe frameborder="0" scrolling="no" allowtransparency="yes" style="float:right;margin:0 0 0 5px;padding:0;border:0;width:450px;height:220px;background-color:transparent" src="http://4visions.nl/skype-online-status/ads/?ad=top&amp;ref=<?php echo rawurlencode( 'http://' . $_SERVER['HTTP_HOST'] ); ?>" id="ad_big"></iframe>
+
+	  <p style="text-align:justify"><?php _e('Define all your <em>default</em> Skype Status settings here.', 'skype-online-status') ?> 
 		<?php printf(__('Start simply by setting the basics like %1$s, %2$s and the button %3$s you want to show on your blog.', 'skype-online-status'),"<strong>".__('Skype ID', 'skype-online-status')."</strong>","<strong>".__('Full Name', 'skype-online-status')."</strong>","<strong>".__('Theme', 'skype-online-status')."</strong>") ?> 
 		<?php printf(__('Then activate the Skype Status Widget on your <a href="widgets.php">Widgets</a> page or use the Skype Status quicktag button %s in the WYSIWYG editor (TinyMCE) to place the Skype Online Status button in any post or page.', 'skype-online-status'),'<img src="'.SOSPLUGINURL.'/skype_button.gif" alt="'.__('Skype Online Status', 'skype-online-status').'" style="vertical-align:text-bottom;" />') ?> 
 		<?php _e('Later on, you can fine-tune everything until it fits just perfectly on you pages.', 'skype-online-status') ?><br />
 		<?php _e('Note:', 'skype-online-status') ?> <?php _e('Some basic settings may be overridden per Widget settings or when calling the Skype button with a template function.', 'skype-online-status') ?></p>
-	  <p><?php printf(__('Read more about configuring this plugin and more ways to trigger Skype buttons on your blog in the %1$s section. If you have any remaining questions, see the %2$s page to get help.', 'skype-online-status'),"<strong>".__('Quick Guide', 'skype-online-status')."</strong>","<strong>".__('Notes &amp; Live Support', 'skype-online-status')."</strong>") ?></p>
+	  <p style="text-align:justify"><?php printf(__('Read more about configuring this plugin and more ways to trigger Skype buttons on your blog in the %1$s section. If you have any remaining questions, see the %2$s page to get help.', 'skype-online-status'),"<strong>".__('Quick Guide', 'skype-online-status')."</strong>","<strong>".__('Notes &amp; Live Support', 'skype-online-status')."</strong>") ?></p>
 
 	<?php do_meta_boxes(Skype_Online_Status::$pagehook, 'normal', $object); ?>
 
