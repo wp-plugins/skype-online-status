@@ -93,7 +93,7 @@ class Skype_Status_Widget extends WP_Widget {
 		$before = format_to_edit($instance['before']);
 		$after = format_to_edit($instance['after']);
 
-		$walk = Skype_Online_Status::walk_templates("", $instance, "", "", FALSE, TRUE); // get list of templates
+		$walk = Skype_Online_Status::walk_templates('', $instance, '', '', FALSE, TRUE); // get list of templates
 ?>
 		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></p>
@@ -171,7 +171,7 @@ class Skype_Online_Status {
 	}
 	
 	public static function register_widget() {
-		register_widget("Skype_Status_Widget");
+		register_widget('Skype_Status_Widget');
 	}
 	
 	public static function skype_status_init() {

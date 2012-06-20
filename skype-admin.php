@@ -207,7 +207,7 @@ class Skype_Online_Status_Admin extends Skype_Online_Status {
 			<div class='rss-widget'>
 			<?php if(function_exists(wp_widget_rss_output)) {
 				wp_widget_rss_output( "http://wordpress.org/support/rss/tags/skype-online-status/", array('show_date' => 1, 'items' => 5) );
-				echo "<p style=\"text-align:right\"><a href=\"http://wordpress.org/tags/skype-online-status/#latest\">".__("More...")."</a></p>"; }
+				echo "<p style=\"text-align:right\"><a href=\"http://wordpress.org/tags/skype-online-status/#latest\">".__('More...')."</a></p>"; }
 			else {
 				echo "<p><a href=\"http://wordpress.org/support/rss/tags/skype-online-status/\">http://wordpress.org/support/rss/tags/skype-online-status/</a></p>"; } ?>
 			</div>
@@ -382,7 +382,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 		else if ( empty($r->package) )
 			printf( __('There is a new version of %1$s available. <a href="%2$s">Download version %3$s here</a> <em>automatic upgrade unavailable for this plugin</em>.'), __('Skype Online Status', 'skype-online-status'), $r->url, $r->new_version);
 		else
-			printf( __('There is a new version of %1$s available. <a href="%2$s">Download version %3$s here</a> or <a href="%4$s">upgrade automatically</a>.'), __('Skype Online Status', 'skype-online-status'), $r->url, $r->new_version, wp_nonce_url("update.php?action=upgrade-plugin&amp;plugin=".SOSPLUGINBASENAME, 'upgrade-plugin_'.SOSPLUGINBASENAME) );
+			printf( __('There is a new version of %1$s available. <a href="%2$s">Download version %3$s here</a> or <a href="%4$s">upgrade automatically</a>.'), __('Skype Online Status', 'skype-online-status'), $r->url, $r->new_version, wp_nonce_url('update.php?action=upgrade-plugin&amp;plugin='.SOSPLUGINBASENAME, 'upgrade-plugin_'.SOSPLUGINBASENAME) );
 		echo "</strong></p></div>";
 	}
 
@@ -435,13 +435,13 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 			);
 
 			$option = array_merge (Skype_Online_Status::$config, $option);
-			update_option("skype_status",$option);
+			update_option('skype_status',$option);
 			echo "<div id=\"notice\" class=\"updated fade\"><p><strong>".__('Options updated!', 'skype-online-status')."</strong></p></div>";
 			Skype_Online_Status::$config = $option;
 
 	} else if (!empty($_POST['skype_status_reset'])) { // pressed reset button
 			$option = Skype_Online_Status::get_default_values();
-			update_option("skype_status",$option);
+			update_option('skype_status',$option);
 			echo "<div id=\"notice\" class=\"updated fade\"><p><strong>".__('Options reset!', 'skype-online-status')."</strong></p></div>";
 			Skype_Online_Status::$config = Skype_Online_Status::get_default_values();
 	} else {
@@ -449,8 +449,8 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 	}
 
 	// get all the selected options (except test call id) and their previews into an array
-	Skype_Online_Status::$preview_options = wp_parse_args( array("skype_id" => "echo123","user_name" => __('Skype Test Call', 'skype-online-status')), $option );
-	Skype_Online_Status::$walk = Skype_Online_Status::walk_templates("", Skype_Online_Status::$preview_options, "", "", FALSE);
+	Skype_Online_Status::$preview_options = wp_parse_args( array('skype_id' => 'echo123','user_name' => __('Skype Test Call', 'skype-online-status')), $option );
+	Skype_Online_Status::$walk = Skype_Online_Status::walk_templates('', Skype_Online_Status::$preview_options, "", "", FALSE);
 
 	// build output
 	foreach (Skype_Online_Status::$walk['previews'] as $key => $value) { 
