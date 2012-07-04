@@ -10,7 +10,7 @@ Unlimited, highly customizable and accessible (!) Skype buttons through widgets,
 
 == Description ==
 
-The plugin Skype Online Status allows you to add one or multiple, highly customizable and accessible (!) Skype buttons to your blog. You can pick any of the available Skype button themes that will show your online status and place them in your *pages and posts content* (with a neat little Skype quicktag button in the WYSIWYG editor), in your sidebar via *widgets* (unlimited number) or anywhere in your theme template files.
+This WordPress plugin allows you to add one or multiple, highly customizable and accessible (!) Skype buttons to your site. You can pick any of the available Skype button themes that will show your online status and place them in your *pages and posts content* (with a neat little Skype quicktag button in the WYSIWYG editor), in your sidebar via *widgets* (unlimited number) or anywhere in your theme template files.
 
 The Skype Status admin page and Skype Widget options are adequately annotated but there is also a **Quick Guide** section with lots of information on all the possible ways to get you blog Skyped. If you still cannot get it working the way you want to, find a Skype link to the developer on the Notes & Live Support section.
 
