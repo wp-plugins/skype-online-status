@@ -274,7 +274,7 @@ class Skype_Online_Status_Admin extends Skype_Online_Status {
 			<p><?php printf(__('For <strong>feature requests</strong> or general help with <strong>WordPress</strong> or <strong>hosting</strong>, please contact <em>RavanH</em> via e-mail %s or Skype chat:','skype-online-status'),'<a href="mailto:ravanhagen@gmail.com">ravanhagen@gmail.com</a>') ?></p>
 
 			<br />
-			<iframe frameborder="0" scrolling="no" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:440px;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/ads/?ad=big&amp;ref=<?php echo rawurlencode( 'http://' . $_SERVER['HTTP_HOST'] ); ?>" id="ad_big"></iframe>
+			<iframe frameborder="0" scrolling="no" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:440px;background-color:#f9f9f9" src="http://status301.net/skype-online-status/ads/?ad=big&amp;ref=<?php echo rawurlencode( 'http://' . $_SERVER['HTTP_HOST'] ); ?>" id="ad_big"></iframe>
 		<?php
 	}
 
@@ -283,14 +283,14 @@ class Skype_Online_Status_Admin extends Skype_Online_Status {
 			<h4><?php _e('Translations','skype-online-status') ?></h4>
 			<p><?php _e('Translation contributions are highly appreciated. Authors of new translations or updates will be mentioned here.','skype-online-status') ?></p>
 
-			<iframe frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:330px;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/translators/?ref=<?php echo rawurlencode( 'http://' . $_SERVER['HTTP_HOST'] ); ?>"></iframe>
+			<iframe frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:330px;background-color:#f9f9f9" src="http://status301.net/skype-online-status/translators/?ref=<?php echo rawurlencode( 'http://' . $_SERVER['HTTP_HOST'] ); ?>"></iframe>
 
 			<p><?php _e('Want to make your own translation too? Read the <a href="http://svn.wp-plugins.org/skype-online-status/trunk/languages/language-support.txt">translation instructions</a> included with this plugin to get started.','skype-online-status') ?></p>
 
 			<h4><?php _e('Donations','skype-online-status') ?></h4>
 			<p><?php _e('All donations are much appreciated and will (without objection) be mentioned here as a way of expressing my gratitude.','skype-online-status') ?></p>
 
-			<iframe frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:220px;background-color:#f9f9f9" src="http://4visions.nl/skype-online-status/donors/?ref=<?php echo rawurlencode( 'http://' . $_SERVER['HTTP_HOST'] ); ?>"></iframe>
+			<iframe frameborder="0" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:1px solid #ddd;width:100%;height:220px;background-color:#f9f9f9" src="http://status301.net/skype-online-status/donors/?ref=<?php echo rawurlencode( 'http://' . $_SERVER['HTTP_HOST'] ); ?>"></iframe>
 
 			<p><?php _e('Please <strong>rate this plugin</strong> at <a href="http://wordpress.org/extend/plugins/skype-online-status/">WordPress</a>','skype-online-status') ?></p>
 			<p><?php _e('Do you want your name and/or link up there too? Or just appreciate my work?','skype-online-status') ?><br /><br />
@@ -313,7 +313,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 			</ul>
 
 			<br />
-			<iframe frameborder="0" scrolling="no" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:110px" src="http://4visions.nl/skype-online-status/ads/?ad=110&amp;ref=<?php echo rawurlencode( 'http://' . $_SERVER['HTTP_HOST'] ); ?>"></iframe>
+			<iframe frameborder="0" scrolling="no" allowtransparency="yes" style="margin:0;padding:0;border:none;width:100%;height:110px" src="http://status301.net/skype-online-status/ads/?ad=110&amp;ref=<?php echo rawurlencode( 'http://' . $_SERVER['HTTP_HOST'] ); ?>"></iframe>
 		<?php
 	}
 
