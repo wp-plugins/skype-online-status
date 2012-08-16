@@ -3,7 +3,7 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e8&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
 Requires at least: 2.8.4
-Tested up to: 3.4
+Tested up to: 3.4.1
 Stable tag: 2.8.5
 
 Unlimited, highly customizable and accessible (!) Skype buttons through widgets, post shortcode/quicktag and template tags.
@@ -29,7 +29,7 @@ Since version 2.6.4.0, Skype Online Status is ready for internationalization. An
 - **Belorussian** * Author: [M. Comfi](http://www.comfi.com/) (version 2.7)
 - **Bulgarian** * Author: [Nikolay Nikolov](http://en.chat4o.com/) (version 2.8.2)
 - **Danish** * Author: [Georg S. Adamsen](http://wordpress.blogos.dk/2009/03/18/skype-online-status/) (version 2.8.2)
-- **Dutch** * Author: [R.A. van Hagen](http://4visions.nl/) (version 2.8.2)
+- **Dutch** * Author: [R.A. van Hagen](http://status301.net/) (version 2.8.2)
 - **Estonian** * Author: [Iflexion Design](http://iflexion.com/) (version 2.7)
 - **Finnish** * Author: [Jani Alha](http://www.wysiwyg.fi/) (version 2.8.2)
 - **French** * Author: [Emmanuelle Traduction](http://www.translatonline.com/) (version 2.8.2)
