@@ -10,7 +10,7 @@ Author: RavanH
 Author URI: http://status301.net/
 */
 
-/*  Copyright 2009  RavanH  (email : skype-status@4visions.nl)
+/*  Copyright 2009  RavanH  (email : ravanhagen@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
