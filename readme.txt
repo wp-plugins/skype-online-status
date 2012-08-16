@@ -29,7 +29,7 @@ Since version 2.6.4.0, Skype Online Status is ready for internationalization. An
 - **Belorussian** * Author: [M. Comfi](http://www.comfi.com/) (version 2.7)
 - **Bulgarian** * Author: [Nikolay Nikolov](http://en.chat4o.com/) (version 2.8.2)
 - **Danish** * Author: [Georg S. Adamsen](http://wordpress.blogos.dk/2009/03/18/skype-online-status/) (version 2.8.2)
-- **Dutch** * Author: [R.A. van Hagen](http://4visions.nl/) (version 2.8.2)
+- **Dutch** * Author: [R.A. van Hagen](http://status301.net/) (version 2.8.2)
 - **Estonian** * Author: [Iflexion Design](http://iflexion.com/) (version 2.7)
 - **Finnish** * Author: [Jani Alha](http://www.wysiwyg.fi/) (version 2.8.2)
 - **French** * Author: [Emmanuelle Traduction](http://www.translatonline.com/) (version 2.8.2)
