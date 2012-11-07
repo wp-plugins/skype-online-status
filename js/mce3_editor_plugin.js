@@ -68,9 +68,9 @@
 			return {
 				longname : "Skype Online Status Quicktag",
 				author : 'RavanH',
-				authorurl : 'http://4visions.nl/',
-				infourl : 'http://www.4visions.nl/en/wordpress-plugins/skype-online-status/',
-				version : '2.8'
+				authorurl : 'http://status301.net/',
+				infourl : 'http://status301.net/wordpress-plugins/skype-online-status/',
+				version : '2.8.6'
 			};
 		}
 	});

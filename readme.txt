@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
 Requires at least: 2.8.4
 Tested up to: 3.4.1
-Stable tag: 2.8.5
+Stable tag: 2.8.6
 
 Unlimited, highly customizable and accessible (!) Skype buttons through widgets, post shortcode/quicktag and template tags.
 
@@ -57,7 +57,7 @@ Top donators making my continued work possible:
 
 = Example =
 
-Go to the [Skype Online Status plugin page](http://4visions.nl/en/wordpress-plugins/skype-online-status/ "Skype Online Status plugin - 4Visions") to see a Skype button in action (right side) or go and test a button on [Skype's button page](http://www.skype.com/share/buttons/ "Skype buttons"). The button templates used there -- and more -- are available in this plugin.
+Go to the [Skype Online Status plugin page](http://status301.net/en/wordpress-plugins/skype-online-status/ "Skype Online Status plugin - Status301") to see a Skype button in action (right side) or go and test a button on [Skype's button page](http://www.skype.com/share/buttons/ "Skype buttons"). The button templates used there -- and more -- are available in this plugin.
 
 == Installation ==
 
@@ -101,7 +101,7 @@ For bug reports, go to [WordPress Support &raquo; Skype Online Status](http://wo
 
 = I have a feature request. Where do I ask? =
 
-For all 'normal' feature requests and suggestions go to [WordPress Support &raquo; Skype Online Status](http://wordpress.org/tags/skype-online-status "WordPress Support &raquo; Skype Online Status") but if you want custom development, please contact me directly from the *Notes & Live Support* section on the Skype Online Status options page or browse to my website [4Visions](http://4visions.nl/ "4Visions"). I will gladly consider any proposal.
+For all 'normal' feature requests and suggestions go to [WordPress Support &raquo; Skype Online Status](http://wordpress.org/tags/skype-online-status "WordPress Support &raquo; Skype Online Status") but if you want custom development, please contact me directly from the *Notes & Live Support* section on the Skype Online Status options page or browse to my website [Status301](http://status301.net/ "Status301.net"). I will gladly consider any proposal.
 
 = I have trouble setting up a Skype button on my blog. Where do I get help? =
 
@@ -162,8 +162,8 @@ When reporting bugs, please describe as carefully as possible and provide inform
 
 == Upgrade Notice ==
 
-= 2.8.5 =
-Custom links bugfix.
+= 2.8.6 =
+URL changes.
 
 == Changelog ==
 
