@@ -248,7 +248,7 @@ class Skype_Online_Status {
 			'installed' => TRUE,
 			'my_status_text' => __('My status is', 'skype-online-status') . ' ',
 					 		// Text to replace {statustxt} in template files
-			'status_error_text' => __('Unknown', 'skype-online-status'),
+			'status_error_text' => __('Offline', 'skype-online-status'),
 					 		// Text to replace {status} in template files when status could not be checked
 		);
 
@@ -274,7 +274,7 @@ class Skype_Online_Status {
 
 		// Available status messages as provided by Skype to replace {status} in template files
 		self::$avail_statusmsg = array ( 
-			'0' => __('Unknown', 'skype-online-status'), 		// when status is unknown (0)
+			'0' => __('Offline', 'skype-online-status'), 		// when status is unknown (0)
 			'1' => __('Offline', 'skype-online-status'), 		// when status is offline (1)
 			'2' => __('Online', 'skype-online-status'), 		// when status is online (2)
 			'3' => __('Away', 'skype-online-status'), 		// when status is away (3)
@@ -432,7 +432,7 @@ class Skype_Online_Status {
 	}
 
 	// online status checker function
-	private static function skype_status_check($skypeid=false, $format=".txt") {
+	private static function skype_status_check($skypeid=false, $format=".num") {
 		if (!$skypeid) return 'error';
 
 		// use http_request_timeout filter if we need to adjust timeout
@@ -440,7 +440,7 @@ class Skype_Online_Status {
 		add_filter( 'http_request_timeout', create_function('', 'return 3;') );
 
 		$tmp = wp_remote_fopen('http://mystatus.skype.com/'.$skypeid.$format);
-		if (!$tmp) return 'error';
+		if ( !$tmp || strpos($tmp, 'Error') || strpos($tmp, 'PNG') ) return 'error';
 		else $contents = str_replace("\n", "", $tmp);
 
 		if ($contents!="") return $contents;
