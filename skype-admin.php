@@ -169,14 +169,14 @@ class Skype_Online_Status_Admin extends Skype_Online_Status {
 						<td><input type="text" name="seperator1_text" id="seperator1_text" value="<?php echo stripslashes(htmlspecialchars(Skype_Online_Status::$config['seperator1_text'])) ?>"<?php echo $other_readonly ?> style="<?php echo $other_style ?>" /></td>
 					</tr>
 					<tr>
-						<td><label for="my_status_text"><?php _e('My status', 'skype-online-status') ?></label></td>
-						<td>{statustxt}</td>
-						<td><input type="text" name="my_status_text" id="my_status_text" value="<?php echo stripslashes(htmlspecialchars(Skype_Online_Status::$config['my_status_text'])) ?>"<?php echo $other_readonly ?> style="<?php echo $other_style ?>" /></td>
-					</tr>
-					<tr>
 						<td><label for="seperator2_text"><?php _e('Second seperator', 'skype-online-status') ?></label></td>
 						<td>{sep2}</td>
 						<td><input type="text" name="seperator2_text" id="seperator2_text" value="<?php echo stripslashes(htmlspecialchars(Skype_Online_Status::$config['seperator2_text'])) ?>"<?php echo $other_readonly ?> style="<?php echo $other_style ?>" /></td>
+					</tr>
+					<tr>
+						<td><label for="my_status_text"><?php _e('My status', 'skype-online-status') ?></label></td>
+						<td>{statustxt}</td>
+						<td><input type="text" name="my_status_text" id="my_status_text" value="<?php echo stripslashes(htmlspecialchars(Skype_Online_Status::$config['my_status_text'])) ?>"<?php echo $other_readonly ?> style="<?php echo $other_style ?>" /></td>
 					</tr>
 				</table>
 		</fieldset>
