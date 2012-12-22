@@ -248,7 +248,7 @@ class Skype_Online_Status {
 			'installed' => TRUE,
 			'my_status_text' => __('My status is', 'skype-online-status') . ' ',
 					 		// Text to replace {statustxt} in template files
-			'status_error_text' => __('Offline', 'skype-online-status'),
+			'status_error_text' => '',
 					 		// Text to replace {status} in template files when status could not be checked
 		);
 
