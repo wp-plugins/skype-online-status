@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
 Requires at least: 2.9
 Tested up to: 3.5
-Stable tag: 2.8.7
+Stable tag: 2.8.8
 
 Unlimited, highly customizable and accessible (!) Skype buttons through widgets, post shortcode/quicktag and template tags.
 
@@ -162,13 +162,13 @@ When reporting bugs, please describe as carefully as possible and provide inform
 
 == Upgrade Notice ==
 
-= 2.8.7 =
-URL changes.
+= 2.8.8 =
+
 
 == Changelog ==
 
-
-= 2.8.7 =
+= 2.8.8 =
+* Undefinded value notice removed
 * BUGFIX: Skype status server error response parced as status
 
 = 2.8.6 =

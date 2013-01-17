@@ -163,13 +163,17 @@ class Skype_Online_Status {
 
 	public static function init() {
 		// Internationalization
-		load_plugin_textdomain('skype-online-status', false, dirname(plugin_basename( __FILE__ )).'/languages');
+		add_action('plugins_loaded', array(__CLASS__, 'textdomain_init'));
 
 		// Initialisation
 		add_action('init', array(__CLASS__, 'skype_status_init'));
 		add_action('widgets_init', array(__CLASS__, 'register_widget'));
 	}
 	
+	public static function textdomain_init() {
+		load_plugin_textdomain('skype-online-status', false, dirname(plugin_basename( __FILE__ )).'/languages');
+	}
+
 	public static function register_widget() {
 		register_widget('Skype_Status_Widget');
 	}
