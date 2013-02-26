@@ -42,6 +42,7 @@ Since version 2.6.4.0, Skype Online Status is ready for internationalization. An
 - **Portuguese** * Author: [Miguel Angelo Patricio](http://www.miguelpatricio.com/) (version 2.8.2)
 - **Russian** * Author: [Leonid Jack](http://studio-xl.com/) (version 2.7)
 - **Spanish** * Authors: [Rodolfo Castro & Rocio Moreno](http://www.ars-legalconsulting.es/blog/) (version 2.7)
+- **Turkish** * Author: [Hakan Er](http://hakanertr.wordpress.com/) (version: 2.8.8)
 - **Ukrainian** * Author: [Michael Svystun](http://emarketingblog.com.ua/) (version 2.7)
 
 New translations and their Authors will be mentioned here.
