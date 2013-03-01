@@ -441,14 +441,16 @@ class Skype_Online_Status {
 
 		// use http_request_timeout filter if we need to adjust timeout
 		// in seconds, default: 5
-		add_filter( 'http_request_timeout', create_function('', 'return 3;') );
+//		add_filter( 'http_request_timeout', create_function('', 'return 3;') );
 
-		$tmp = wp_remote_fopen('http://mystatus.skype.com/'.$skypeid.$format);
-		if ( !$tmp || strpos($tmp, 'Error') || strpos($tmp, 'PNG') ) return 'error';
-		else $contents = str_replace("\n", "", $tmp);
+//		$tmp = wp_remote_fopen('http://mystatus.skype.com/'.$skypeid.$format);
+//		if ( !$tmp || strpos($tmp, 'Error') || strpos($tmp, 'PNG') ) return 'error';
+//		else $contents = str_replace("\n", "", $tmp);
 
-		if ($contents!="") return $contents;
-		else return 'error';
+//		if ($contents!="") return $contents;
+//		else 
+return 'error';
+// TODO fix / adapt to new skype buttons :::
 	}
 
 	// routine to render all template files based on one config
