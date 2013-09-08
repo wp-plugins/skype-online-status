@@ -312,8 +312,8 @@ class Skype_Online_Status {
 		unset($value);
 
 		// set language to blogs WPLANG (or leave unchanged)
-		if (SOSREMOTE) {
-			if (WPLANG=='') {
+		if (constant("SOSREMOTE")) {
+			if (!defined("WPLANG") || WPLANG=='') {
 				$default_values['use_status'] = "en";
 			} else {
 				$conv = strtolower(str_replace("_","-",WPLANG));
@@ -374,17 +374,17 @@ class Skype_Online_Status {
 			$config['seperator2_text'] = "";
 		} elseif (!$status) {
 			if ($config['use_status']=="custom") {
-				$check = self::skype_status_check($config['skype_id'], ".num");
+				$check = self::skype_status_check(rawurlencode($config['skype_id']), ".num");
 				$status = $config['status_'.$check.'_text'];
 			} else {
-				$check = self::skype_status_check($config['skype_id'], ".txt.".$config['use_status']);
+				$check = self::skype_status_check(rawurlencode($config['skype_id']), ".txt.".$config['use_status']);
 				$status = ($check == 'error') ? $config['status_error_text'] : $check;
 			}
 		}
 
 		// build array with tags and replacement values
 		$tags_replace = array(
-			"{skypeid}" => $config['skype_id'],
+			"{skypeid}" => ($config['use_status']=="custom") ? $config['skype_id'].".png" : $config['skype_id'].".png.".$config['use_status'],
 			"{function}" => $config['button_function'],
 			"{functiontxt}" => $config[$config['button_function'].'_text'],
 			"{status}" => $status,
@@ -441,15 +441,16 @@ class Skype_Online_Status {
 
 		// use http_request_timeout filter if we need to adjust timeout
 		// in seconds, default: 5
-//		add_filter( 'http_request_timeout', create_function('', 'return 3;') );
+		add_filter( 'http_request_timeout', create_function('', 'return 3;') );
 
-//		$tmp = wp_remote_fopen('http://mystatus.skype.com/'.$skypeid.$format);
-//		if ( !$tmp || strpos($tmp, 'Error') || strpos($tmp, 'PNG') ) return 'error';
-//		else $contents = str_replace("\n", "", $tmp);
+		$tmp = wp_remote_fopen('http://mystatus.skype.com/'.$skypeid.$format);
+		if ( !$tmp || strpos($tmp, 'Error') || strpos($tmp, 'PNG') ) return 'error';
+		else $contents = str_replace("\n", "", $tmp);
 
-//		if ($contents!="") return $contents;
-//		else 
-return 'error';
+		if ($contents!="") 
+			return $contents;
+		else 
+			return 'error';
 // TODO fix / adapt to new skype buttons :::
 	}
 

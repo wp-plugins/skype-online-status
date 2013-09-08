@@ -95,12 +95,15 @@ class Skype_Online_Status_Admin extends Skype_Online_Status {
 			<p><?php printf(__('Text that will replace the %s tag depending on actual online status.', 'skype-online-status'),"{status}"); 
 
 	if (Skype_Online_Status::$config['use_status'] != "custom") { 
-	echo " " . sprintf(__('Please, change %1$s to %2$s under %3$s (above) for these options to become available first.', 'skype-online-status'),"<strong>".__('Status texts', 'skype-online-status')."</strong>","<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Display', 'skype-online-status')."</strong>");
-	$status_readonly = " readonly=\"readonly\""; 
-	$status_style = "color:grey;"; 
-	} 
+		echo " " . sprintf(__('Please, change %1$s to %2$s under %3$s (above) for these options to become available first.', 'skype-online-status'),"<strong>".__('Status texts', 'skype-online-status')."</strong>","<strong>".__('Custom...', 'skype-online-status')."</strong>","<strong>".__('Advanced Options', 'skype-online-status')." / ".__('Display', 'skype-online-status')."</strong>");
+		$status_readonly = " readonly=\"readonly\""; 
+		$status_style = "color:grey;"; 
+	} else {
+		$status_readonly = ""; 
+		$status_style = ""; 
+	}
 	?>
-				</p>
+				<br /><?php _e('Note:', 'skype-online-status') ?> <?php _e('These custom texts will not repace the texts in the status images, just the alt-texts or text links. When using custom texts, the status images will default to the English versions.', 'skype-online-status'); ?></p>
 				<table style="margin-left:5px;margin-top:10px">
 					<tr>
 						<th><?php _e('Status', 'skype-online-status') ?></th>
@@ -155,6 +158,8 @@ class Skype_Online_Status_Admin extends Skype_Online_Status {
 		$other_style = "color:grey;"; 
 	} else {
 		echo "				<br />"; 
+		$other_readonly = "";
+		$other_style = ""; 
 	}
 	?>
 				<table style="margin-left:5px;margin-top:10px">
@@ -205,7 +210,7 @@ class Skype_Online_Status_Admin extends Skype_Online_Status {
 		?>
 			<h4><?php _e('WordPress Support','skype-online-status'); _e(': ','skype-online-status') ?> <?php _e('Skype Online Status','skype-online-status') ?></h4>
 			<div class='rss-widget'>
-			<?php if(function_exists(wp_widget_rss_output)) {
+			<?php if(function_exists('wp_widget_rss_output')) {
 				wp_widget_rss_output( "http://wordpress.org/support/rss/tags/skype-online-status/", array('show_date' => 1, 'items' => 5) );
 				echo "<p style=\"text-align:right\"><a href=\"http://wordpress.org/tags/skype-online-status/#latest\">".__('More...')."</a></p>"; }
 			else {
@@ -400,38 +405,38 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 			if ($_POST['button_theme']!="custom_edit") // get template file content to load into db
 				$_POST['button_template'] = Skype_Online_Status::get_template_file($_POST['button_theme']);
 			$option = array(
-				"skype_id" => $_POST['skype_id'],
-				"user_name" => $_POST['user_name'],
-				"button_theme" => $_POST['button_theme'],
-				"button_template" => stripslashes($_POST['button_template']),
-				"button_function" => $_POST['button_function'],
-				"use_function" => $_POST['use_function'],
-				"use_status" => $_POST['use_status'],
-				"use_voicemail" => $_POST['use_voicemail'],
-				"use_buttonsnap" => $_POST['use_buttonsnap'],
-				"seperator1_text" => $_POST['seperator1_text'],
-				"seperator2_text" => $_POST['seperator2_text'],
-				"add_text" => $_POST['add_text'],
-				"call_text" => $_POST['call_text'],
-				"chat_text" => $_POST['chat_text'],
-				"sendfile_text" => $_POST['sendfile_text'],
-				"my_status_text" => $_POST['my_status_text'],
-				"userinfo_text" => $_POST['userinfo_text'],
-				"voicemail_text" => $_POST['voicemail_text'],
-				"status_error_text" => $_POST['status_error_text'],
-				"status_0_text" => $_POST['status_0_text'],
-				"status_1_text" => $_POST['status_1_text'],
-				"status_2_text" => $_POST['status_2_text'],
-				"status_3_text" => $_POST['status_3_text'],
-				"status_4_text" => $_POST['status_4_text'],
-				"status_5_text" => $_POST['status_5_text'],
-				"status_6_text" => $_POST['status_6_text'],
-				"status_7_text" => $_POST['status_7_text'],
-				"use_getskype" => $_POST['use_getskype'],
-				"getskype_newline" => $_POST['getskype_newline'],
-				"getskype_text" => $_POST['getskype_text'],
-				"getskype_link" => $_POST['getskype_link'],
-				"getskype_custom_link" => $_POST['getskype_custom_link'],
+				"skype_id" => isset($_POST['skype_id']) ? $_POST['skype_id'] : '',
+				"user_name" => isset($_POST['user_name']) ? $_POST['user_name'] : '',
+				"button_theme" => isset($_POST['button_theme']) ? $_POST['button_theme'] : '',
+				"button_template" => isset($_POST['button_template']) ? stripslashes($_POST['button_template']) : '',
+				"button_function" => isset($_POST['button_function']) ? $_POST['button_function'] : '',
+				"use_function" => isset($_POST['use_function']) ? $_POST['use_function'] : '',
+				"use_status" => isset($_POST['use_status']) ? $_POST['use_status'] : '',
+				"use_voicemail" => isset($_POST['use_voicemail']) ? $_POST['use_voicemail'] : '',
+				"use_buttonsnap" => isset($_POST['use_buttonsnap']) ? $_POST['use_buttonsnap'] : '',
+				"seperator1_text" => isset($_POST['seperator1_text']) ? $_POST['seperator1_text'] : '',
+				"seperator2_text" => isset($_POST['seperator2_text']) ? $_POST['seperator2_text'] : '',
+				"add_text" => isset($_POST['add_text']) ? $_POST['add_text'] : '',
+				"call_text" => isset($_POST['call_text']) ? $_POST['call_text'] : '',
+				"chat_text" => isset($_POST['chat_text']) ? $_POST['chat_text'] : '',
+				"sendfile_text" => isset($_POST['sendfile_text']) ? $_POST['sendfile_text'] : '',
+				"my_status_text" => isset($_POST['my_status_text']) ? $_POST['my_status_text'] : '',
+				"userinfo_text" => isset($_POST['userinfo_text']) ? $_POST['userinfo_text'] : '',
+				"voicemail_text" => isset($_POST['voicemail_text']) ? $_POST['voicemail_text'] : '',
+				"status_error_text" => isset($_POST['status_error_text']) ? $_POST['status_error_text'] : '',
+				"status_0_text" => isset($_POST['status_0_text']) ? $_POST['status_0_text'] : '',
+				"status_1_text" => isset($_POST['status_1_text']) ? $_POST['status_1_text'] : '',
+				"status_2_text" => isset($_POST['status_2_text']) ? $_POST['status_2_text'] : '',
+				"status_3_text" => isset($_POST['status_3_text']) ? $_POST['status_3_text'] : '',
+				"status_4_text" => isset($_POST['status_4_text']) ? $_POST['status_4_text'] : '',
+				"status_5_text" => isset($_POST['status_5_text']) ? $_POST['status_5_text'] : '',
+				"status_6_text" => isset($_POST['status_6_text']) ? $_POST['status_6_text'] : '',
+				"status_7_text" => isset($_POST['status_7_text']) ? $_POST['status_7_text'] : '',
+				"use_getskype" => isset($_POST['use_getskype']) ? $_POST['use_getskype'] : '',
+				"getskype_newline" => isset($_POST['getskype_newline']) ? $_POST['getskype_newline'] : '',
+				"getskype_text" => isset($_POST['getskype_text']) ? $_POST['getskype_text'] : '',
+				"getskype_link" => isset($_POST['getskype_link']) ? $_POST['getskype_link'] : '',
+				"getskype_custom_link" => isset($_POST['getskype_custom_link']) ? $_POST['getskype_custom_link'] : ''
 			);
 
 			$option = array_merge (Skype_Online_Status::$config, $option);
@@ -477,7 +482,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 
   <div id="side-info-column" class="inner-sidebar">
 
-	<?php do_meta_boxes(Skype_Online_Status::$pagehook, 'side', $object); ?>
+	<?php do_meta_boxes(Skype_Online_Status::$pagehook, 'side', null); ?>
 
   </div> <!-- side-info-column inner-sidebar -->
 
@@ -495,7 +500,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 		<?php _e('Note:', 'skype-online-status') ?> <?php _e('Some basic settings may be overridden per Widget settings or when calling the Skype button with a template function.', 'skype-online-status') ?></p>
 	  <p style="text-align:justify"><?php printf(__('Read more about configuring this plugin and more ways to trigger Skype buttons on your blog in the %1$s section. If you have any remaining questions, see the %2$s page to get help.', 'skype-online-status'),"<strong>".__('Quick Guide', 'skype-online-status')."</strong>","<strong>".__('Notes &amp; Live Support', 'skype-online-status')."</strong>") ?></p>
 
-	<?php do_meta_boxes(Skype_Online_Status::$pagehook, 'normal', $object); ?>
+	<?php do_meta_boxes(Skype_Online_Status::$pagehook, 'normal', null); ?>
 
       </div> <!-- settings -->
 
