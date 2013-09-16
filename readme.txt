@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
 Requires at least: 2.9
 Tested up to: 3.6
-Stable tag: 2.9
+Stable tag: 2.9.1
 
 Unlimited, highly customizable and accessible (!) Skype buttons through widgets, post shortcode/quicktag and template tags.
 
@@ -163,10 +163,13 @@ When reporting bugs, please describe as carefully as possible and provide inform
 
 == Upgrade Notice ==
 
-= 2.9 =
-Multilingual status images. Reintroduction of the online status in ALT text. BUG Username with dot always showing offline FIXED! Some PHP notice fixes.
+= 2.9.1 =
+Bugfix: .png appearing in Skype ID.
 
 == Changelog ==
+
+= 2.9.1 =
+* BUGFIX: .png appearing in Skype ID
 
 = 2.9 =
 * Multilingual status images
