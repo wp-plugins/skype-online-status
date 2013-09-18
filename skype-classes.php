@@ -384,7 +384,8 @@ class Skype_Online_Status {
 
 		// build array with tags and replacement values
 		$tags_replace = array(
-			"{skypeid}" => ($config['use_status']=="custom") ? $config['skype_id'] : $config['skype_id'].$config['use_status'],
+			"{skypeid}" => $config['skype_id'],
+			"{lang}" => ($config['use_status']=="custom") ? '' : '.'.$config['use_status'],
 			"{function}" => $config['button_function'],
 			"{functiontxt}" => $config[$config['button_function'].'_text'],
 			"{status}" => $status,
