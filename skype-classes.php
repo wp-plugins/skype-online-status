@@ -147,7 +147,7 @@ class Skype_Online_Status {
 	private static $add_script;
 
 	protected static $whats_new = "<p>
-	* Custom link bugfix.
+	* Multilingual status images.
 	</p>";
 
 	protected static $avail_languages;
