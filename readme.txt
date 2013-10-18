@@ -56,9 +56,6 @@ Top donators making my continued work possible:
 - **Yamisi Daniel, USA** What could you do with more time? [inTouch Virtual Assistance](http://www.intouchva.com/)
 - **Michelle Vandepas, USA** Live Your life's Purpose. [Divine Purpose unleashed](http://divinepurposeunleashed.com/)
 
-= Example =
-
-Go to the [Skype Online Status plugin page](http://status301.net/en/wordpress-plugins/skype-online-status/ "Skype Online Status plugin - Status301") to see a Skype button in action (right side) or go and test a button on [Skype's button page](http://www.skype.com/share/buttons/ "Skype buttons"). The button templates used there -- and more -- are available in this plugin.
 
 == Installation ==
 
