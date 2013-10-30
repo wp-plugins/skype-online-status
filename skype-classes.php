@@ -118,7 +118,7 @@ class Skype_Status_Widget extends WP_Widget {
 
 		<p style="clear:both;font-size:78%;font-weight:lighter;">* <?php _e('Leave blank to use the default options as you defined on the <a href="options-general.php?page=skype-status.php">Skype Online Status Settings</a> page.', 'skype-online-status'); //printf(__('Leave blank to use the default options as you defined on the %1$s page.', 'skype-online-status'), '<a href="'.admin_url('options-general.php?page='.SOSPLUGINBASENAME).'">'.__('Settings').'</a>'); ?><br />
 		** <?php _e('You can use some basic HTML here like &lt;br /&gt; for new line.', 'skype-online-status'); ?><br />
-		*** <?php printf(__('Set to %1$s if you do not have %2$s or %3$s.', 'skype-online-status'), __('No'), '<a href="http://www.tkqlhce.com/click-3049686-10520919" target="_top">'.__('SkypeIn','skype-online-status').'</a><img src="http://www.ftjcfx.com/image-3049686-10520919" width="1" height="1" border="0"/>', '<a href="http://www.tkqlhce.com/click-3049686-10423078" target="_top">'.__('Skype Voicemail','skype-online-status').'</a><img src="http://www.ftjcfx.com/image-3049686-10423078" width="1" height="1" border="0"/>'); ?></p>
+		*** <?php printf(__('Set to %1$s if you do not have %2$s or %3$s.', 'skype-online-status'), __('No'), '<a href="https://support.skype.com/en/category/ONLINE_NUMBER_SKYPEIN/" target="_blank">'.__('SkypeIn','skype-online-status').'</a><img src="http://www.ftjcfx.com/image-3049686-10520919" width="1" height="1" border="0"/>', '<a href="https://support.skype.com/en/category/VOICEMAIL/" target="_blank">'.__('Skype Voicemail','skype-online-status').'</a><img src="http://www.ftjcfx.com/image-3049686-10423078" width="1" height="1" border="0"/>'); ?></p>
 <?php
 	}
 }
