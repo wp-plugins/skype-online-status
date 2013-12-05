@@ -326,8 +326,7 @@ onmouseover="window.status='http://www.skype.com';return true;" onmouseout="wind
 	public static function meta_box_resources($object, $data) {
 		?>
 			<ul>
-				<li><a target="blank" href="http://www.skype.com/intl/en/tell-a-friend/get-a-skype-button/"><?php _e('Skype Buttons','skype-online-status') ?></a></li>
-				<li><a target="blank" href="http://www.skype.com/intl/en/tell-a-friend/wizard/" target="_blank"><?php _e('Skype buttons wizard','skype-online-status') ?></a></li>
+				<li><a target="blank" href="http://www.skype.com/en/features/skype-buttons/create-skype-buttons/"><?php _e('Skype Buttons','skype-online-status') ?></a></li>
 				<li><a target="blank" href="http://mystatus.skype.com/<?php echo Skype_Online_Status::$config['skype_id'] ?>"><?php printf(__('View %s\'s online status on the Skype server','skype-online-status'),Skype_Online_Status::$config['skype_id']) ?></a></li>
 				<li><a class="thickbox thickbox-preview" target="blank" href="http://c.skype.com/i/legacy/images/share/buttons/privacy_shot.jpg"><?php _e('Edit Privacy Options in your Skype client','skype-online-status') ?></a></li>
 			</ul>

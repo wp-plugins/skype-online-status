@@ -565,7 +565,7 @@ class Skype_Online_Status {
 		include(SOSPLUGINDIR . '/skype-admin.php');
 	}
 
-	function closed_meta_boxes( $closed ) {
+	public static function closed_meta_boxes( $closed ) {
 		// set default closed metaboxes
 		if ( false === $closed )
 			$closed = array( 'advanceddiv', 'supportdiv', 'donationsdiv', 'resourcesdiv' );
