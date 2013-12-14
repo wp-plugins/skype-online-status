@@ -431,7 +431,7 @@ class Skype_Online_Status {
 			elseif ($config['getskype_link'] == "custom_link" && $config['getskype_custom_link'] != "" )
 				$theme_output .= stripslashes($config['getskype_custom_link']);
 			else
-				$theme_output .= " <a rel=\"nofollow\" href=\"http://status301.net/skype-online-status/go/download\" title=\"".$config['getskype_text']."\" onmouseover=\"window.status='http://www.skype.com/go/download';return true;\" onmouseout=\"window.status=' ';return true;\">".$config['getskype_text']."</a>";
+				$theme_output .= " <a rel=\"nofollow\" target=\"_blank\" href=\"http://status301.net/skype-online-status/go/download\" title=\"".$config['getskype_text']."\" onmouseover=\"window.status='http://www.skype.com/go/download';return true;\" onmouseout=\"window.status=' ';return true;\">".$config['getskype_text']."</a>";
 			}
 		return str_replace(array("\r\n", "\n\r", "\n", "\r", "%0D%0A", "%0A%0D", "%0D", "%0A"), "", $theme_output);
 	}
