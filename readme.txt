@@ -169,6 +169,7 @@ Admin changes and Basque translation
 = 2.9.4 =
 * Some admin changes
 * Basque translation
+* Skype popup position fix
 
 = 2.9.3 =
 * BUGFIX: PHP Strict notices

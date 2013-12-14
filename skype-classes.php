@@ -147,7 +147,7 @@ class Skype_Online_Status {
 	private static $add_script;
 
 	protected static $whats_new = "<p>
-	* Admin changes and Basque translation.
+	* Admin changes, popup positioning fix and Basque translation.
 	</p>";
 
 	protected static $avail_languages;
