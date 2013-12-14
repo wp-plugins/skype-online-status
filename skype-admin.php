@@ -316,7 +316,7 @@ class Skype_Online_Status_Admin extends Skype_Online_Status {
 		?>
 			<ul>
 				<li><a target="_blank" href="http://www.skype.com/en/features/skype-buttons/create-skype-buttons/"><?php _e('Skype Buttons','skype-online-status') ?></a></li>
-				<li><a target="_blank" class="thickbox thickbox-preview" href="http://mystatus.skype.com/<?php echo Skype_Online_Status::$config['skype_id'] ?>?TB_iframe=true"><?php printf(__('View %s\'s online status on the Skype server','skype-online-status'),Skype_Online_Status::$config['skype_id']) ?></a></li>
+				<li><a target="_blank" class="thickbox thickbox-preview" href="http://mystatus.skype.com/<?php echo Skype_Online_Status::$config['skype_id'] ?>?TB_iframe=true&amp;width=130&amp;=60"><?php printf(__('View %s\'s online status on the Skype server','skype-online-status'),Skype_Online_Status::$config['skype_id']) ?></a></li>
 				<li><a target="_blank" class="thickbox thickbox-preview" href="http://c.skype.com/i/legacy/images/share/buttons/privacy_shot.jpg"><?php _e('Edit Privacy Options in your Skype client','skype-online-status') ?></a></li>
 				<li><a target="_blank" href="https://support.skype.com/category/CALLING_PHONES_SKYPEOUT/" title="<?php _e('SkypeOut','skype-online-status') ?>"><?php _e('SkypeOut','skype-online-status'); _e(': ','skype-online-status'); _e('Call any phone directly from Skype.','skype-online-status') ?></a></li>
 				<li><a target="_blank" href="https://support.skype.com/category/ONLINE_NUMBER_SKYPEIN/" title="<?php _e('SkypeIn','skype-online-status') ?>"><?php _e('SkypeIn','skype-online-status'); _e(': ','skype-online-status'); _e('Your personal online number.','skype-online-status') ?></a></li>
