@@ -315,16 +315,13 @@ class Skype_Online_Status_Admin extends Skype_Online_Status {
 	public static function meta_box_resources($object, $data) {
 		?>
 			<ul>
-				<li><a target="blank" href="http://www.skype.com/en/features/skype-buttons/create-skype-buttons/"><?php _e('Skype Buttons','skype-online-status') ?></a></li>
-				<li><a target="blank" href="http://mystatus.skype.com/<?php echo Skype_Online_Status::$config['skype_id'] ?>"><?php printf(__('View %s\'s online status on the Skype server','skype-online-status'),Skype_Online_Status::$config['skype_id']) ?></a></li>
-				<li><a class="thickbox thickbox-preview" target="blank" href="http://c.skype.com/i/legacy/images/share/buttons/privacy_shot.jpg"><?php _e('Edit Privacy Options in your Skype client','skype-online-status') ?></a></li>
-				<li><a href="https://support.skype.com/en/category/CALLING_PHONES_SKYPEOUT/" title="<?php _e('SkypeOut','skype-online-status') ?>" 
-onmouseover="window.status='http://www.skype.com';return true;" onmouseout="window.status=' ';return true;"><?php _e('SkypeOut','skype-online-status'); _e(': ','skype-online-status'); _e('Call any phone directly from Skype.','skype-online-status') ?></a></li>
-				<li><a href="https://support.skype.com/en/category/ONLINE_NUMBER_SKYPEIN/" title="<?php _e('SkypeIn','skype-online-status') ?>" 
-onmouseover="window.status='http://www.skype.com';return true;" onmouseout="window.status=' ';return true;"><?php _e('SkypeIn','skype-online-status'); _e(': ','skype-online-status'); _e('Your personal online number.','skype-online-status') ?></a></li>
-				<li><a href="https://support.skype.com/en/category/VOICEMAIL/" title="<?php _e('Skype Voicemail','skype-online-status') ?>" onmouseover="window.status='http://www.skype.com';return true;" onmouseout="window.status=' ';return true;"><?php _e('Skype Voicemail','skype-online-status'); _e(': ','skype-online-status'); _e('Never miss a call!','skype-online-status');?></a></li>
-				<li><a href="http://shop.skype.com/" title="Skype Accessories" 
-onmouseover="window.status='http://www.skype.com';return true;" onmouseout="window.status=' ';return true;"><?php _e('Accessories: Get the most out of Skype!','skype-online-status') ?></a></li>
+				<li><a target="_blank" href="http://www.skype.com/en/features/skype-buttons/create-skype-buttons/"><?php _e('Skype Buttons','skype-online-status') ?></a></li>
+				<li><a target="_blank" class="thickbox thickbox-preview" href="http://mystatus.skype.com/<?php echo Skype_Online_Status::$config['skype_id'] ?>"><?php printf(__('View %s\'s online status on the Skype server','skype-online-status'),Skype_Online_Status::$config['skype_id']) ?></a></li>
+				<li><a target="_blank" class="thickbox thickbox-preview" href="http://c.skype.com/i/legacy/images/share/buttons/privacy_shot.jpg"><?php _e('Edit Privacy Options in your Skype client','skype-online-status') ?></a></li>
+				<li><a target="_blank" href="https://support.skype.com/category/CALLING_PHONES_SKYPEOUT/" title="<?php _e('SkypeOut','skype-online-status') ?>"><?php _e('SkypeOut','skype-online-status'); _e(': ','skype-online-status'); _e('Call any phone directly from Skype.','skype-online-status') ?></a></li>
+				<li><a target="_blank" href="https://support.skype.com/category/ONLINE_NUMBER_SKYPEIN/" title="<?php _e('SkypeIn','skype-online-status') ?>"><?php _e('SkypeIn','skype-online-status'); _e(': ','skype-online-status'); _e('Your personal online number.','skype-online-status') ?></a></li>
+				<li><a target="_blank" href="https://support.skype.com/category/VOICEMAIL/" title="<?php _e('Skype Voicemail','skype-online-status') ?>"><?php _e('Skype Voicemail','skype-online-status'); _e(': ','skype-online-status'); _e('Never miss a call!','skype-online-status');?></a></li>
+				<li><a target="_blank" href="https://support.skype.com/category/GROUP_VIDEO_CALLING/" title="<?php _e('Group Video calling','skype-online-status') ?>"><?php _e('Group Video calling','skype-online-status'); ?></a></li>
 			</ul>
 		<?php
 	}
