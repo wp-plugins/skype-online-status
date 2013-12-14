@@ -147,7 +147,7 @@ class Skype_Online_Status {
 	private static $add_script;
 
 	protected static $whats_new = "<p>
-	* Multilingual status images.
+	* Admin changes and Basque translation.
 	</p>";
 
 	protected static $avail_languages;
@@ -558,7 +558,7 @@ class Skype_Online_Status {
 		add_meta_box('submitdiv', __('Sections','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_submit'), self::$pagehook, 'side', 'high');
 		add_meta_box('previewdiv', __('Preview theme template:','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_preview'), self::$pagehook, 'side', 'core');
 		add_meta_box('supportdiv', __('Support','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_support'), self::$pagehook, 'side', 'core');
-		add_meta_box('morediv', __('Get more from Skype','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_more'), self::$pagehook, 'side', 'low');
+		add_meta_box('morediv', __('Get more from Skype','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_more'), self::$pagehook, 'normal', 'low');
 		add_meta_box('resourcesdiv', __('Resources','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_resources'), self::$pagehook, 'side', 'low');
 
 		//load admin page

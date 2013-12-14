@@ -32,8 +32,8 @@ Author URI: http://status301.net/
 */
 
 // Plugin version number and date
-define('SOSVERSION', '2.9.3');
-define('SOSVERSION_DATE', '2013-09-20');
+define('SOSVERSION', '2.9.4');
+define('SOSVERSION_DATE', '2013-12-14');
 
 if (file_exists(dirname(__FILE__).'/skype-online-status'))
 	$skype_mu_dir = "/skype-online-status";
