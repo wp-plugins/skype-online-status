@@ -29,6 +29,7 @@ Since version 2.6.4.0, Skype Online Status is ready for internationalization. An
 - **Basque** * Silvia Ribés http://silviaribes.net/ (version 2.9.3)
 - **Belorussian** * M. Comfi http://www.comfi.com/ (version 2.7)
 - **Bulgarian** * Nikolay Nikolov http://en.chat4o.com/ (version 2.8.2)
+- **Croatian** * Saša http://lasersko-graviranje.bisa.hr (version 2.9.4)
 - **Danish** * Georg S. Adamsen http://wordpress.blogos.dk/2009/03/18/skype-online-status/ (version 2.8.2)
 - **Dutch** * R.A. van Hagen http://status301.net/ (version 2.8.7)
 - **Estonian** * Iflexion Design http://iflexion.com/ (version 2.7)
@@ -168,7 +169,7 @@ Admin changes and Basque translation
 
 = 2.9.4 =
 * Some admin changes
-* Basque translation
+* Basque and Croation translations
 * Skype popup position fix
 
 = 2.9.3 =
