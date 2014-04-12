@@ -43,8 +43,9 @@ Since version 2.6.4.0, Skype Online Status is ready for internationalization. An
 - **Lithuanian** * Vincent G http://www.host1free.com (version 2.8.2)
 - **Portuguese** * Miguel Angelo Patricio http://www.miguelpatricio.com/ (version 2.8.2)
 - **Russian** * Leonid Jack http://studio-xl.com/ (version 2.7)
+- **Serbian** * Ognjen Djuraskovic http://firstsiteguide.com (version 2.9.3)
 - **Spanish** * Rodolfo Castro & Rocio Moreno http://www.ars-legalconsulting.es/blog/ (version 2.7)
-- **Turkish** * Hakan Er http://hakanertr.wordpress.com/ (version: 2.8.8)
+- **Turkish** * Hakan Er http://hakanertr.wordpress.com/ (version 2.8.8)
 - **Ukrainian** * Michael Svystun http://emarketingblog.com.ua/ (version 2.7)
 
 New translations and their Authors will be mentioned here.
