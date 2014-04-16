@@ -3,12 +3,14 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Online%20Status&item_number=2%2e8&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
 Tags: skype, skype button, online, status, online status, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
 Requires at least: 2.9
-Tested up to: 3.8
-Stable tag: 2.9.4
+Tested up to: 3.9
+Stable tag: 2.9.5
 
 Unlimited, highly customizable and accessible (!) Skype buttons through widgets, post shortcode/quicktag and template tags.
 
 == Description ==
+
+NOTICE: the new Microsoft Live accounts (using "live:", "@hotmail.com" or "@live.com" in the Skype ID) are not supported due to lack of willingness by Microsoft to fix a parse error bug on the Skype online status server.
 
 This WordPress plugin allows you to add one or multiple, highly customizable and accessible (!) Skype buttons to your site. You can pick any of the available Skype button themes that will show your online status and place them in your *pages and posts content* (with a neat little Skype quicktag button in the WYSIWYG editor), in your sidebar via *widgets* (unlimited number) or anywhere in your theme template files.
 
@@ -167,6 +169,9 @@ When reporting bugs, please describe as carefully as possible and provide inform
 Admin changes and Basque translation
 
 == Changelog ==
+
+= 2.9.5 =
+* Strip "live:" and "@live.com" from Skype ID to prevent parse error from Skype server. Still waiting for real fix by Microsoft.
 
 = 2.9.4 =
 * Some admin changes
