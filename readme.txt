@@ -54,10 +54,10 @@ New translations and their Authors will be mentioned here.
 
 Top donators making my continued work possible:
 
-- **Claudio Cosmaro** [SocialHosting.net http://socialhosting.net)
-- **G. Pelzer** Life is a journey. [Life Coaching http://vivocoaching.com/)
-- **Yamisi Daniel, USA** What could you do with more time? [inTouch Virtual Assistance http://www.intouchva.com/)
-- **Michelle Vandepas, USA** Live Your life's Purpose. [Divine Purpose unleashed http://divinepurposeunleashed.com/)
+- **Claudio Cosmaro** Social Hosting http://socialhosting.net/
+- **G. Pelzer** Life is a journey. Life Coaching http://vivocoaching.com/
+- **Yamisi Daniel, USA** What could you do with more time? inTouch Virtual Assistance http://www.intouchva.com/
+- **Michelle Vandepas, USA** Live Your life's Purpose. Divine Purpose Unleashed http://divinepurposeunleashed.com/
 
 
 == Installation ==
