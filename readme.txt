@@ -16,7 +16,7 @@ This WordPress plugin allows you to add one or multiple, highly customizable and
 
 The Skype Status admin page and Skype Widget options are adequately annotated but there is also a **Quick Guide** section with lots of information on all the possible ways to get you blog Skyped. If you still cannot get it working the way you want to, find a Skype link to the developer on the Notes & Live Support section.
 
-Button themes are mostly based on the themes you can find on [Skype's button wizard page http://www.skype.com/share/buttons/wizard.html "Skype buttons") but more feature rich, like showing your online status in the alt text of the image, more accessible (!) and much more customizable, like setting your own Status texts in your blogs language. Even a button to invoke normal phone calls or multichats or conference calls is possible!
+Button themes are mostly based on the themes you can find on Skype's button wizard page http://www.skype.com/en/features/skype-buttons/ but more feature rich, like showing your online status in the alt text of the image, more accessible (!) and much more customizable, like setting your own Status texts in your blogs language. Even a button to invoke normal phone calls or multichats or conference calls is possible!
 
 = Which version? =
 
