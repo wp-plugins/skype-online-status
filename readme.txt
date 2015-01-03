@@ -165,10 +165,13 @@ When reporting bugs, please describe as carefully as possible and provide inform
 
 == Upgrade Notice ==
 
-= 2.9.4 =
+= 2.9.6 =
 Admin changes and Basque translation
 
 == Changelog ==
+
+= 2.9.6 =
+* Modifications for SSL compat (as far as possible)
 
 = 2.9.5 =
 * Strip "live:" and "@live.com" from Skype ID to prevent parse error from Skype server. Still waiting for real fix by Microsoft.
