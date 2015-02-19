@@ -147,7 +147,8 @@ class Skype_Online_Status {
 	private static $add_script;
 
 	protected static $whats_new = "<p>
-	* Admin changes, popup positioning fix and Basque translation.
+	* SSL compat (as far as possible)<br/>
+	* Prevent skype.com redirect or error message from showing
 	</p>";
 
 	protected static $avail_languages;
@@ -445,7 +446,7 @@ class Skype_Online_Status {
 		add_filter( 'http_request_timeout', create_function('', 'return 3;') );
 
 		$tmp = wp_remote_fopen('http://mystatus.skype.com/'.$skypeid.$format);
-		if ( !$tmp || strpos($tmp, 'Error') || strpos($tmp, 'PNG') ) return 'error';
+		if ( !$tmp || strpos($tmp, 'html') || strpos($tmp, 'Error') || strpos($tmp, 'PNG') ) return 'error';
 		else $contents = str_replace("\n", "", $tmp);
 
 		if ($contents!="") 

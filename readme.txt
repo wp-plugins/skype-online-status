@@ -165,10 +165,13 @@ When reporting bugs, please describe as carefully as possible and provide inform
 
 == Upgrade Notice ==
 
-= 2.9.6 =
-Admin changes and Basque translation
+= 2.9.7 =
+SSL compat (as far as possible) + prevent skype.com redirect/error from showing
 
 == Changelog ==
+
+= 2.9.7 =
+* FIX: Prevent skype.com redirect/error from showing
 
 = 2.9.6 =
 * Modifications for SSL compat (as far as possible)
