@@ -20,8 +20,8 @@ if(!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename($_SERVE
 		<p>Since version 2.6.1.0 there is a Skype Status Sidebar Widget available. Go to your Design > Widgets page and activate the Skype Status widget. When activated, it defaults to your settings on the Skype Status Options page but you can customize it if you like.</p>
 
 		<h4>In posts and page content</h4>
-		<p>It is also possible to trigger a Skype Status button (as predefined on the Skype Online Status Settings page) within posts or page content. Use the quicktag button <img src="<?php plugins_url( '/skype_button.gif', SOSPLUGINBASENAME ); ?>" alt="Skype Online Status" style="vertical-align:text-bottom;" /> or insert manually the shortcode <strong><code>[skype-status]</code></strong> in your post or page content to display a Skype Online Status button in your post. </p>
-		<p>Note: the setting 'Use Skype Status quicktag button' should be checked for the quicktag button <img src="<?php echo plugins_url( '/skype_button.gif', SOSPLUGINBASENAME ); ?>" alt="Skype Online Status" style="vertical-align:text-bottom;" /> to appear in WordPress's Rich Text Editor (TinyMCE) so you can easily drop the quicktag into the source code.</p>
+		<p>It is also possible to trigger a Skype Status button (as predefined on the Skype Online Status Settings page) within posts or page content. Use the quicktag button <img src="<?php echo SOSPLUGINURL; ?>/skype_button.gif" alt="Skype Online Status" style="vertical-align:text-bottom;" /> or insert manually the shortcode <strong><code>[skype-status]</code></strong> in your post or page content to display a Skype Online Status button in your post. </p>
+		<p>Note: the setting 'Use Skype Status quicktag button' should be checked for the quicktag button <img src="<?php echo SOSPLUGINURL; ?>/skype_button.gif" alt="Skype Online Status" style="vertical-align:text-bottom;" /> to appear in WordPress's Rich Text Editor (TinyMCE) so you can easily drop the quicktag into the source code.</p>
 		<h4>In theme files</h4>
 		<p>Put <strong><code>&lt;?php if (function_exists(get_skype_status)) { get_skype_status(''); } else { echo "Skype button disabled"; } ?&gt;</code></strong> in your sidebar.php or other WordPress template files to display a Skype Button with Online Status information on your blog pages. Your predefined default settings (above) will be used.</p><p>The 'function_exists'-check is there to prevent an error when the plugin is disabled. In this case the echo text is displayed. You can define another alternative action or remove 'else { ... }' to display nothing at all.</p>
 
@@ -133,8 +133,37 @@ if(!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename($_SERVE
 
 		<p id="revhist" style="text-align:right"><a href="#wphead"><?php _e('Top') ?></a></p>
 		<h4>FAQ's, Revision History, Todo and other info</h4>
-		<p>See the included <a target="_blank" href="<?php echo plugins_url( '/readme.txt', SOSPLUGINBASENAME ); ?>">README</a> file:</p>
-		<iframe src="<?php echo plugins_url( '/readme.txt', SOSPLUGINBASENAME ); ?>" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:0;width:100%;height:600px"></iframe>
+		<p>See the included <a target="_blank" href="<?php echo SOSPLUGINURL; ?>/readme.txt">README</a> file:</p>
+		<iframe src="<?php echo SOSPLUGINURL; ?>/readme.txt" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:0;width:100%;height:600px"></iframe>
 		<p style="text-align:right"><a href="#wphead"><?php _e('Top') ?></a></p>
 	</div> <!-- #notes -->
-
+	
+	<?php
+	if (SOSDATADUMP) { 
+		echo "<div id=\"dump\"><h3>All Skype Online Status settings</h3>
+		<div style=\"width:32%;float:left\"><h4>Old database values</h4><textarea readonly=\"readonly\" style=\"width:100%;height:600px\">";
+		foreach ($this->config as $key => $value) {
+			echo $key . " => " . stripslashes(htmlspecialchars($value)) . "\r\n";
+		}
+		unset($value);
+		echo "</textarea></div>
+		<div style=\"width:32%;margin:0 2%;float:left\"><h4>Updated to</h4><textarea readonly=\"readonly\" style=\"width:100%;height:600px\">";
+		if (!empty($_POST['skype_status_update']) || !empty($_POST['skype_status_reset'])) { 
+			foreach ($option as $key => $value) {
+				echo $key . " => " . stripslashes(htmlspecialchars($value)) . "\r\n";
+			}
+			unset($value);
+		}
+		echo "</textarea></div>
+		<div style=\"width:32%;float:left\"><h4>Default values</h4><textarea readonly=\"readonly\" style=\"width:100%;height:600px\">";
+		foreach ($this->get_default_values() as $key => $value) {
+			echo $key . " => " . stripslashes(htmlspecialchars($value)) . "\r\n";
+		}
+		unset($value);
+		echo "</textarea></div><div style=\"clear:both\"></div>
+		<div id=\"globals\"><h4>Pluging global values and flags</h4> 
+		<p>SOSDATADUMP=".SOSDATADUMP." (obviously ;-) )<br />SOSPLUGINURL=".SOSPLUGINURL."<br />SOSVERSION=".SOSVERSION."<br />SOSVERSION_DATE=".SOSVERSION_DATE."<br />SOSREMOVEFLAG=".constant('SOSREMOVEFLAG')."
+</p>
+		</div></div>";	
+	}
+	?>
