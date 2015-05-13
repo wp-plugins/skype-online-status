@@ -165,10 +165,13 @@ When reporting bugs, please describe as carefully as possible and provide inform
 
 == Upgrade Notice ==
 
-= 2.9.7 =
-SSL compat (as far as possible) + prevent skype.com redirect/error from showing
+= 3.0 =
+Removed status button templates and functionality because Skype dropped support
 
 == Changelog ==
+
+= 3.0 =
+* Removed status button templates and functionality because Skype dropped support
 
 = 2.9.7 =
 * FIX: Prevent skype.com redirect/error from showing

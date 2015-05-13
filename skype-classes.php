@@ -13,7 +13,7 @@ class Skype_Status_Widget extends WP_Widget {
 			__('Skype Status', 'skype-online-status'),
 			array(
 				'classname' => 'skype_widget', 
-				'description' => __('Add a Skype Online Status button', 'skype-online-status')
+				'description' => __('Add a Skype legacy button', 'skype-online-status')
 			), 
 			array(
 				'width' => 370, 
@@ -147,15 +147,14 @@ class Skype_Online_Status {
 	private static $add_script;
 
 	protected static $whats_new = "<p>
-	* SSL compat (as far as possible)<br/>
-	* Prevent skype.com redirect or error message from showing
+	* Removed status button templates and functionality because Skype dropped support
 	</p>";
 
-	protected static $avail_languages;
+	protected static $avail_languages = array();
 	
-	protected static $avail_statusmsg;
+	protected static $avail_statusmsg = array();
 	
-	protected static $avail_functions;
+	protected static $avail_functions = array();
 	
 	
 	/**
@@ -213,6 +212,8 @@ class Skype_Online_Status {
 		add_action('wp_head', create_function('', 'echo \'<style type="text/css">#skypedetectionswf{position:fixed;top:0px;left:-10px}#skypeCheckNotice{position:fixed!important}</style>\';'));
 
 		// http://scribu.net/wordpress/optimal-script-loading.html
+		wp_register_script('skypecheck', plugins_url('/js/skypeCheck.js', __FILE__), '', SOSVERSION, true);
+
 		add_action('wp_footer',  array(__CLASS__, 'print_script'));
 	}
 
@@ -231,7 +232,6 @@ class Skype_Online_Status {
 							// set to "on" if you have a SkypeIn account
 			'use_function' => 'on', 	// Wether to replace the tags:
 							// {add/call/chat/userinfo/voicemail/sendfile} ("on") or not ("")
-			'use_status' => 'custom',	// Wether to replace the tag {status} with your custom texts ("custom") or 
 							//Skype default according to language (e.g. "en" for english) or nothing
 							// ("" - use this when remote file access is disabled on your server!)
 			'use_buttonsnap' => 'on', 	// Wether to display a Skype Status quicktag button in RTE for posts
@@ -240,7 +240,12 @@ class Skype_Online_Status {
 				 			// Text to replace {sep1} in template files
 			'seperator2_text' => __(': ', 'skype-online-status'), 
 							// Text to replace {sep2} in template files
-			'use_getskype' => 'on', 	// Wether to show the Download Skype now! link
+/*			'my_status_text' => __('My status is', 'skype-online-status') . ' ',
+					 		// Text to replace {statustxt} in template files
+			'status_error_text' => '',
+					 		// Text to replace {status} in template files when status could not be checked
+			'use_status' => 'custom',	// Wether to replace the tag {status} with your custom texts ("custom") or 
+*/			'use_getskype' => 'on', 	// Wether to show the Download Skype now! link
 			'getskype_newline' => 'on',	// Put the Download Skype now! link on a new line ("on") or not ("")
 			'getskype_text' => __('&raquo; Get Skype, call free!', 'skype-online-status'),
 						 	// Text to use for the Download Skype now! link
@@ -249,15 +254,11 @@ class Skype_Online_Status {
 							// "skype_downloadpage" for skype.com download page
 			'getskype_custom_link' => '',	// put your own customized link here
 			'skype_status_version' => SOSVERSION,
-			'upgraded' => FALSE,
-			'installed' => TRUE,
-			'my_status_text' => __('My status is', 'skype-online-status') . ' ',
-					 		// Text to replace {statustxt} in template files
-			'status_error_text' => '',
-					 		// Text to replace {status} in template files when status could not be checked
+			'upgraded' => false,
+			'installed' => true,
 		);
 
-		// Available status message languages as provided by Skype,
+/*		// Available status message languages as provided by Skype,
 		// e.g. http://mystatus.skype.com/yourusername.txt.pt-br will
 		// show your online status message in Brazilian Portuguese. If
 		// there are new languages available, they can be added to this
@@ -288,7 +289,7 @@ class Skype_Online_Status {
 			//"6" => __('Invisible', 'skype-online-status'), 	// when status is invisible (6)
 			'7' => __('Skype me!', 'skype-online-status'), 		// when status is skype me! (7)
 		);
-
+*/
 		self::$avail_functions = array (
 			'call' => __('Call me!', 'skype-online-status'),
 			'add' => __('Add me to Skype', 'skype-online-status'),
@@ -312,7 +313,7 @@ class Skype_Online_Status {
 		}
 		unset($value);
 
-		// set language to blogs WPLANG (or leave unchanged)
+/*		// set language to blogs WPLANG (or leave unchanged)
 		if (constant("SOSREMOTE")) {
 			if (!defined("WPLANG") || WPLANG=='') {
 				$default_values['use_status'] = "en";
@@ -330,7 +331,7 @@ class Skype_Online_Status {
 				}
 			}
 		} else { $default_values['use_status'] = ""; }
-
+*/
 		if ($default_values['button_theme']!="custom_edit") // get template file content to load into db
 			$default_values['button_template'] = self::get_template_file($default_values['button_theme']);
 
@@ -339,7 +340,7 @@ class Skype_Online_Status {
 
 	// CORE
 	
-	public static function skype_status($r = '', $use_js = TRUE, $status = FALSE) {
+	public static function skype_status($r = '', $use_js = true) {
 		$r = wp_parse_args( $r, self::$config );
 
 		if (!$r['skype_id'])
@@ -352,8 +353,8 @@ class Skype_Online_Status {
 		if ($r['button_theme'] != self::$config['button_theme'] || ($r['button_theme'] && !$r['button_template']) ) 
 			$r['button_template'] = self::get_template_file($r['button_theme']);
 
-		return '<!-- Skype button generated by Skype Online Status plugin version '.SOSVERSION.' ( RavanH - http://status301.net/ ) -->
-	' . self::parse_theme( $r , $use_js , $status ) . '
+		return '<!-- Skype button generated by Skype Legacy Buttons plugin version '.SOSVERSION.' ( RavanH - http://status301.net/ ) -->
+	' . self::parse_theme( $r , $use_js ) . '
 	<!-- end Skype button -->'; 
 
 	}
@@ -366,9 +367,9 @@ class Skype_Online_Status {
 			return '<a href="skype:{skypeid}?call" title="{call}{sep1}{username}{sep2}{status}">{username}{sep2}{status}</a>';
 	}
 
-	protected static function parse_theme($config, $use_js = TRUE, $status = FALSE) {
+	protected static function parse_theme($config, $use_js = true) {
 
-		// get online status to replace {status} tag
+/*		// get online status to replace {status} tag
 		if ($config['use_status']=="") {
 			$status = "";
 			$config['my_status_text'] = "";
@@ -382,18 +383,18 @@ class Skype_Online_Status {
 				$status = ($check == 'error') ? $config['status_error_text'] : $check;
 			}
 		}
-
+*/
 		// build array with tags and replacement values
 		$tags_replace = array(
 			"{skypeid}" => $config['skype_id'],
 			"{lang}" => ($config['use_status']=="custom") ? '' : '.'.$config['use_status'],
 			"{function}" => $config['button_function'],
 			"{functiontxt}" => $config[$config['button_function'].'_text'],
-			"{status}" => $status,
-			"{statustxt}" => $config['my_status_text'],
+			"{status}" => '', //$status,
+			"{statustxt}" => '', //$config['my_status_text'],
 			"{username}" => $config['user_name'],
-			"{sep1}" => $config['seperator1_text'],
-			"{sep2}" => $config['seperator2_text'],
+			"{sep1}" => '', //$config['seperator1_text'],
+			"{sep2}" => '', //$config['seperator2_text'],
 			);
 		//and append with function texts
 		foreach (self::$avail_functions as $key => $value) {
@@ -417,6 +418,10 @@ class Skype_Online_Status {
 
 		// after that, delete from first line <!-- (.*) -->
 		$theme_output = preg_replace("|<!-- (.*) http://www.skype.com/go/skypebuttons -->|","",$config['button_template']);
+		
+		// replace http://download.skype.com/share/skypebuttons/ URI with local
+		$plugins_url = plugins_url( '/', __FILE__ );
+		$theme_output = str_replace('http://download.skype.com/share/skypebuttons/',$plugins_url,$theme_output);
 
 		// replace all tags with values
 		$theme_output = str_replace(array_keys($tags_replace),array_values($tags_replace),$theme_output);
@@ -437,7 +442,7 @@ class Skype_Online_Status {
 		return str_replace(array("\r\n", "\n\r", "\n", "\r", "%0D%0A", "%0A%0D", "%0D", "%0A"), "", $theme_output);
 	}
 
-	// online status checker function
+/*	// online status checker function
 	private static function skype_status_check($skypeid=false, $format=".num") {
 		if (!$skypeid) return 'error';
 
@@ -455,6 +460,7 @@ class Skype_Online_Status {
 			return 'error';
 // TODO fix / adapt to new skype buttons :::
 	}
+*/
 
 	// routine to render all template files based on one config
 	public static function walk_templates( $buttondir, $option_preview, $select, $previews, $use_js = TRUE, $select_only = FALSE ) {
@@ -464,7 +470,7 @@ class Skype_Online_Status {
 		if (!$buttondir) $buttondir = SOSPLUGINDIR.'/templates/';
 
 		if (is_dir($buttondir)) {
-			// do online status check once
+/*			// do online status check once
 			if ($option_preview['use_status']=="") {
 				$status = "";
 			} else {
@@ -475,7 +481,7 @@ class Skype_Online_Status {
 					$status = self::skype_status_check($option_preview['skype_id'], ".txt.".$option_preview['use_status']);
 				}
 			}
-
+*/
 			// go through the template files in the given directory
 			if ($dh = opendir($buttondir)) {
 				while (($file = readdir($dh)) !== false) {
@@ -496,7 +502,7 @@ class Skype_Online_Status {
 						// and collect their previews if...
 						if (!$select_only)
 							$previews[$matches[1]] = array( $template_name , 
-								self::parse_theme($option_preview,$use_js,$status) ) ; 
+								self::parse_theme($option_preview,$use_js) ) ; 
 					}
 				}
 				closedir($dh);
@@ -507,7 +513,7 @@ class Skype_Online_Status {
 		elseif ( ksort($select) )
 			return array ( "select" => $select );
 		else
-			return FALSE;
+			return false;
 	}
 
 	// skypeCheck script in footer
@@ -517,11 +523,6 @@ class Skype_Online_Status {
 		if ( ! self::$add_script )
 			return;
 
-		if ( self::$config['getskype_link'] == "skype_mainpage" || self::$config['getskype_link'] == "skype_downloadpage" ) {
-			wp_register_script('skypecheck', 'http://download.skype.com/share/skypebuttons/js/skypeCheck.js', '', '2.2', true);
-		} else {
-			wp_register_script('skypecheck', SOSPLUGINURL.'/js/skypeCheck.js', '', SOSVERSION, true);
-		}
 		wp_print_scripts('skypecheck');
 	}
 
@@ -543,7 +544,7 @@ class Skype_Online_Status {
 	
 	public static function add_menu() {
 		/* Register our plugin page */
-		self::$pagehook = add_submenu_page('options-general.php',__('Skype Online Status', 'skype-online-status'),__('Skype Status', 'skype-online-status'),'manage_options',SOSPLUGINFILE,array(__CLASS__, 'skype_options'));
+		self::$pagehook = add_submenu_page('options-general.php',__('Skype Legacy Buttons', 'skype-online-status'),__('Skype Buttons', 'skype-online-status'),'manage_options',SOSPLUGINFILE,array(__CLASS__, 'skype_options'));
 		/* Using registered $page handle to hook script load */
 		add_action('load-' . self::$pagehook, array(__CLASS__, 'scripts_admin'));
 	}
@@ -586,20 +587,15 @@ class Skype_Online_Status {
 
 	public static function scripts_admin($hook) {
 
-		//if ( $hook == 'settings_page_'.SOSPLUGINFILE ) {
-		if (self::$config['getskype_link'] == "skype_mainpage" || self::$config['getskype_link'] == "skype_downloadpage") {
-			wp_register_script('skypecheck', 'http://download.skype.com/share/skypebuttons/js/skypeCheck.js', '', '2.0', true);
-		} else {
-			wp_register_script('skypecheck', SOSPLUGINURL.'/js/skypeCheck.js', '', SOSVERSION, true);
-		}
-	
+		//wp_register_script('skypecheck', plugins_url('/js/skypeCheck.js', __FILE__), '', SOSVERSION, true);
+
 		// needed javascripts to allow drag/drop, expand/collapse and hide/show of boxes
 		wp_enqueue_script('common');
 		wp_enqueue_script('wp-list');
 		wp_enqueue_script('postbox');
 	
 		wp_enqueue_script('skypecheck');
-		wp_enqueue_script('sos-admin', SOSPLUGINURL . '/js/skype_admin.js', array( 'jquery' ), SOSVERSION, true);
+		wp_enqueue_script('sos-admin', plugins_url('/js/skype_admin.js',__FILE__), array( 'jquery' ), SOSVERSION, true);
 
 		//add several metaboxes now, all metaboxes registered during load page can be switched off/on at "Screen Options" automatically, nothing special to do therefore
 		add_meta_box('advanceddiv', __('Advanced Options', 'skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_advanced'), self::$pagehook, 'normal', 'core');
@@ -610,7 +606,7 @@ class Skype_Online_Status {
 
 	// Add button for WordPress 2.5+ using built in hooks, thanks to Subscribe2
 	public static function mce3_plugin($arr) {
-		$arr['sosquicktag'] = SOSPLUGINURL . '/js/mce3_editor_plugin.js';
+		$arr['sosquicktag'] = plugins_url('/js/mce3_editor_plugin.js',__FILE__);
 		return $arr;
 	}
 
