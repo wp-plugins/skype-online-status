@@ -12,18 +12,18 @@ if(!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename($_SERVE
 
 		<p id="basic" style="text-align:right"><a href="#wphead"><?php _e('Top') ?></a></p>
 		<h3>Basic Use</h3>
-		<p>Define basic Skype settings such as Skype ID (more then one possible, seperate with a semi-colon <strong>;</strong>), User name and preferred Theme on the Skype Legacy Buttons Settings page as default for each Skype legacy button on your blog. Then use one or more of the methodes described below to trigger the default Skype Status button on your blog pages. Under 'Advanced' you can read about ways to override your default settings and create multiple and different Skype buttons across your blog.</p>
-		<p><img src="http://c.skype.com/i/legacy/images/share/buttons/privacy_shot.jpg" alt="" style="float:right" /><strong>Important:</strong> Be sure to enable <strong><em>online status</em></strong> in your personal Skype settings on your PC: open your Skype client, go to Tools > Options > Privacy (or Advanced), tick the 'Allow my status to be shown on the web' (or similar in your language) checkbox and 'Save'.</p>
+		<p>Define basic Skype settings such as Skype ID (more then one possible, seperate with a semi-colon <strong>;</strong>), User name and preferred Theme on the Skype Legacy Buttons Settings page as default for each Skype legacy button on your blog. Then use one or more of the methodes described below to trigger the default Skype button on your blog pages. Under 'Advanced' you can read about ways to override your default settings and create multiple and different Skype buttons across your blog.</p>
+<!--		<p><img src="http://c.skype.com/i/legacy/images/share/buttons/privacy_shot.jpg" alt="" style="float:right" /><strong>Important:</strong> Be sure to enable <strong><em>online status</em></strong> in your personal Skype settings on your PC: open your Skype client, go to Tools > Options > Privacy (or Advanced), tick the 'Allow my status to be shown on the web' (or similar in your language) checkbox and 'Save'.</p> -->
 		<p>To make your Skype button initiate conference calls or multi-chat sessions, put multiple Skype ID's seperated with a semi-colon (;) in the Skype ID box.</p>
 
 		<h4>Widgets</h4>
-		<p>Since version 2.6.1.0 there is a Skype Status Sidebar Widget available. Go to your Design > Widgets page and activate the Skype Status widget. When activated, it defaults to your settings on the Skype Status Options page but you can customize it if you like.</p>
+		<p>Since version 2.6.1.0 there is a Skype Button Sidebar Widget available. Go to your Design > Widgets page and activate the Skype Button widget. When activated, it defaults to your settings on the Skype Buttons Options page but you can customize it if you like.</p>
 
 		<h4>In posts and page content</h4>
-		<p>It is also possible to trigger a Skype Status button (as predefined on the Skype Legacy Buttons Settings page) within posts or page content. Use the quicktag button <img src="<?php echo plugins_url('/skype_button.gif', __FILE__); ?>" alt="Skype Legacy Buttons" style="vertical-align:text-bottom;" /> or insert manually the shortcode <strong><code>[skype-status]</code></strong> in your post or page content to display a Skype legacy button in your post. </p>
-		<p>Note: the setting 'Use Skype Status quicktag button' should be checked for the quicktag button <img src="<?php echo plugins_url('/skype_button.gif', __FILE__); ?>" alt="Skype Legacy Buttons" style="vertical-align:text-bottom;" /> to appear in WordPress's Rich Text Editor (TinyMCE) so you can easily drop the quicktag into the source code.</p>
+		<p>It is also possible to trigger a Skype button (as predefined on the Skype Legacy Buttons Settings page) within posts or page content. Use the shortcode button <img src="<?php echo plugins_url('/skype_button.gif', __FILE__); ?>" alt="Skype Legacy Buttons" style="vertical-align:text-bottom;" /> or insert manually the shortcode <strong><code>[skype-status]</code></strong> in your post or page content to display a Skype legacy button in your post. </p>
+		<p>Note: the setting 'Use Skype shortcode button' should be checked for the shortcode button <img src="<?php echo plugins_url('/skype_button.gif', __FILE__); ?>" alt="Skype Legacy Buttons" style="vertical-align:text-bottom;" /> to appear in WordPress's Rich Text Editor (TinyMCE) so you can easily drop the shortcode into the page.</p>
 		<h4>In theme files</h4>
-		<p>Put <strong><code>&lt;?php if (function_exists(get_skype_status)) { get_skype_status(''); } else { echo "Skype button disabled"; } ?&gt;</code></strong> in your sidebar.php or other WordPress template files to display a Skype Button with Online Status information on your blog pages. Your predefined default settings (above) will be used.</p><p>The 'function_exists'-check is there to prevent an error when the plugin is disabled. In this case the echo text is displayed. You can define another alternative action or remove 'else { ... }' to display nothing at all.</p>
+		<p>Put <strong><code>&lt;?php if (function_exists(get_skype_status)) { get_skype_status(''); } else { echo "Skype button disabled"; } ?&gt;</code></strong> in your sidebar.php or other WordPress template files to display a Skype Legacy Button information on your blog pages. Your predefined default settings (above) will be used.</p><p>The 'function_exists'-check is there to prevent an error when the plugin is disabled. In this case the echo text is displayed. You can define another alternative action or remove 'else { ... }' to display nothing at all.</p>
 
 		<p id="adv" style="text-align:right"><a href="#wphead"><?php _e('Top') ?></a></p>
 		<h3>Advanced</h3>
@@ -45,7 +45,7 @@ if(!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename($_SERVE
 
 		<p id="templ" style="text-align:right"><a href="#wphead"><?php _e('Top') ?></a></p>
 		<h4>Skype Button Templates</h4>
-		<p>Whenever the options on the Skype Status Options page are saved, the template is read either from the selected template file or the editable textarea (customizable view) and loaded into the database. To change the Skype legacy button view to your liking you can choose to edit an existing template file, create a new one or edit the preloaded template in the editable textarea on the 'Skype Legacy Buttons Settings' page. Remember that after editing a template file, the new content must be reloaded into the database before changes apply.</p>
+		<p>Whenever the options on the Skype Buttons Options page are saved, the template is read either from the selected template file or the editable textarea (customizable view) and loaded into the database. To change the Skype legacy button view to your liking you can choose to edit an existing template file, create a new one or edit the preloaded template in the editable textarea on the 'Skype Legacy Buttons Settings' page. Remember that after editing a template file, the new content must be reloaded into the database before changes apply.</p>
 		<p>All template files can be found in the /plugins/skype-online-status/templates/ directory. You add new or edit existing ones with any simple text editor (like Notepad) or even a WYSIWYG editor (like Dreamweaver) as long as you follow some rules.</p>
 		<h4>Template file rules</h4>
 		<ol>
@@ -58,7 +58,7 @@ if(!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename($_SERVE
 		</ol>
 		<h4>Template rules</h4>
 		<ol>
-			<li>Within each template (file or customizable view) certain tags like <strong>{skypeid}</strong> are used that will be replaced according to their respective configuration on the Skype Status Settings page. See 'Template tags' below for all available tags.</li>
+			<li>Within each template (file or customizable view) certain tags like <strong>{skypeid}</strong> are used that will be replaced according to their respective configuration on the Skype Buttons Settings page. See 'Template tags' below for all available tags.</li>
 			<li>Everything within the template between <strong>&lt;!-- voicemail_start --&gt;</strong> and <strong>&lt;!-- voicemail_end --&gt;</strong> will be erased when the option 'Use <strong>Leave a voicemail</strong>' on the Skype Legacy Buttons Settings page is NOT checked.</li>
 		</ol>
 		<p>For the rest you are free to put anything you like in the template files.<br />
@@ -69,12 +69,12 @@ if(!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename($_SERVE
 		<dl>
 			<dt>{skypeid}</dt><dd>Put this where the 'Skype ID' should go. Usually href="skype:{skypeid}?call" but it can also be used elsewhere.</dd>
 			<dt>{username}</dt><dd>Put this where you want the 'User name' to appear, such as in title="", alt="" or as link text.</dd>
-			<dt>{function}</dt><dd>Put this where you want the <em>preselected</em> Function to appear, such as after href="skype:{skypeid}?... in the link URL. The function can be set on the Skype Status Settings page under 'Function' to options like 'Call me', 'Chat with me' or 'Leave a voicemail'.</dd>
 			<dt>{functiontxt}</dt><dd>Put this where you want the <em>corresponding</em> Function text to appear, such as in title="", alt="" or as link text.</dd>
+<!--			<dt>{function}</dt><dd>Put this where you want the <em>preselected</em> Function to appear, such as after href="skype:{skypeid}?... in the link URL. The function can be set on the Skype Buttons Settings page under 'Function' to options like 'Call me', 'Chat with me' or 'Leave a voicemail'.</dd>
 			<dt>{status}</dt><dd>Put this where you want the <em>dynamic</em> 'Status' texts to appear, such as in title="", alt="" or as link text. The status text (defined on the Skype Status Settings page under 'Status text') depends on the actual online status of the defined Skype user and ranges from 'Unknown' to 'Online'.</dd>
 			<dt>{statustxt}</dt><dd>Put this where you want the <em>static</em> 'My status' text to appear, such as in title="", alt="" or as link text.</dd>
-			<dt>{sep1}</dt><dd>Put this where you want the 'First seperator' text to appear, usually between the tags like {call} and {username}.</dd>
 			<dt>{sep2}</dt><dd>Put this where you want the 'Second seperator' text to appear, usually between the tags like {username} and {status}.</dd>
+-->			<dt>{sep1}</dt><dd>Put this where you want the 'First seperator' text to appear, usually between the tags like {call} and {username}.</dd>
 		</dl>
 		<strong>Action text tags</strong>
 		<dl>
@@ -87,9 +87,9 @@ if(!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename($_SERVE
 		</dl>
 		<h4>Examples</h4>
 		<p>The classic 'Call me!' button template looks like this:</p>
-		<blockquote>&lt;!-- 'Call me!' classic style - http://www.skype.com/go/skypebuttons --&gt;<br />&lt;a href="skype:{skypeid}?call" onclick="return skypeCheck();" title="{call}{sep1}{username}{sep2}{status}">&lt;img src="http://download.skype.com/share/skypebuttons/buttons/call_blue_white_124x52.png" style="border: none;" width="124" height="52" alt="{call}{sep1}{username}{sep2}{status}" /&gt;&lt;/a&gt;</blockquote>
-		<p>The template for a simple text link displaying username and online status (seperated by the second seperator tag) could look like this:</p>
-		<blockquote>&lt;!-- 'My status' plain text link - http://www.skype.com/go/skypebuttons --&gt;<br />&lt;a href="skype:{skypeid}?call" onclick="return skypeCheck();" title="{username}{sep2}{status}">{username}{sep2}{status}&lt;/a&gt;</blockquote>
+		<blockquote>&lt;!-- 'Call me!' classic style - http://www.skype.com/go/skypebuttons --&gt;<br />&lt;a href="skype:{skypeid}?call" onclick="return skypeCheck();" title="{call}{sep1}{username}">&lt;img src="http://download.skype.com/share/skypebuttons/buttons/call_blue_white_124x52.png" style="border: none;" width="124" height="52" alt="{call}{sep1}{username}" /&gt;&lt;/a&gt;</blockquote>
+<!--		<p>The template for a simple text link displaying username and online status (seperated by the second seperator tag) could look like this:</p>
+		<blockquote>&lt;!-- 'My status' plain text link - http://www.skype.com/go/skypebuttons --&gt;<br />&lt;a href="skype:{skypeid}?call" onclick="return skypeCheck();" title="{username}{sep2}{status}">{username}{sep2}{status}&lt;/a&gt;</blockquote> -->
 		<p style="text-align:right"><a href="#wphead"><?php _e('Top') ?></a></p>
 
 	</div> <!-- #guide -->
