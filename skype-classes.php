@@ -214,7 +214,7 @@ class Skype_Online_Status {
 			// create WP hooks
 			add_filter('plugin_action_links_' . SOSPLUGINBASENAME, array(__CLASS__, 'add_action_link'));
 			add_action('admin_menu', array(__CLASS__, 'add_menu'));
-			add_filter('screen_layout_columns', array(__CLASS__, 'admin_layout_columns'), 10, 2);
+			add_filter('screen_layout_columns', array(__CLASS__, 'admin_layout_columns'), 10, 2); // creates column option in Screen Options; not needed as the option does nothing?
 
 		}
 	
@@ -252,6 +252,8 @@ class Skype_Online_Status {
 										// ("" - use this when remote file access is disabled on your server!)
 			'use_buttonsnap' => 'on', 	// Wether to display a Skype Status quicktag button in RTE for posts
 										// ("on") or not ("")
+			'local_images' => '',		// use the local plugin-included images instead of remote Skype hosted ones
+			//'no_scheme' => 'on',
 			'seperator1_text' => __(' - ', 'skype-online-status'),
 										// Text to replace {sep1} in template files
 /*			'seperator2_text' => __(': ', 'skype-online-status'), 
@@ -398,7 +400,7 @@ class Skype_Online_Status {
 		}
 */
 		// build array with tags and replacement values
-		$tags_replace = array(
+		$replace = array(
 			"{skypeid}" => $config['skype_id'],
 			"{lang}" => '',//($config['use_status']=="custom") ? '' : '.'.$config['use_status'],
 			"{function}" => '', //$config['button_function'],
@@ -410,10 +412,10 @@ class Skype_Online_Status {
 			"{sep2}" => '', //$config['seperator2_text'],
 			);
 		//and append with function texts
-		foreach (self::$avail_functions as $key => $value) {
-			if ($config['use_function']!="on")
+		foreach ( self::$avail_functions as $key => $value ) {
+			if ( $config['use_function'] != "on" )
 				$config[$key.'_text'] = "";
-			$tags_replace["{".$key."}"] = $config[$key.'_text'];
+			$replace["{".$key."}"] = $config[$key.'_text'];
 		}
 
 		// delete javascript from template if disabled
@@ -425,19 +427,25 @@ class Skype_Online_Status {
 		if ($config['use_voicemail']!="on") {
 			$config['button_template'] = preg_replace("|<!-- voicemail_start (.*) voicemail_end -->|","",$config['button_template']);
 		} else {
-			$tags_replace["<!-- voicemail_start -->"] = "";
-			$tags_replace["<!-- voicemail_end -->"] = "";
+			$replace['<!-- voicemail_start -->'] = '';
+			$replace['<!-- voicemail_end -->'] = '';
 		}
 
 		// after that, delete from first line <!-- (.*) -->
 		$theme_output = preg_replace("|<!-- (.*) http://www.skype.com/go/skypebuttons -->|","",$config['button_template']);
 		
 		// replace http://download.skype.com/share/skypebuttons/ URI with local URI ... to activate as soon as skype hosted images are dropped or moved
-//		$plugins_url = plugins_url( '/', __FILE__ );
-//		$theme_output = str_replace('http://download.skype.com/share/skypebuttons/',$plugins_url,$theme_output);
+		if ( $config['local_images'] == "on" ) {
+			$replace['http://download.skype.com/share/skypebuttons/'] = trailingslashit( plugins_url( '/', __FILE__ ) );
+			// strip url scheme for https
+			/*if ( !empty($config['no_scheme']) ) {
+				$replace['http:'] = '';
+				$replace['https:'] = '';
+			} */
+		}
 
 		// replace all tags with values
-		$theme_output = str_replace(array_keys($tags_replace),array_values($tags_replace),$theme_output);
+		$theme_output = str_replace(array_keys($replace),array_values($replace),$theme_output);
 
 		if ($config['use_getskype'] == "on") { 
 			if ($config['getskype_newline'] == "on") 
@@ -452,7 +460,7 @@ class Skype_Online_Status {
 			else
 				$theme_output .= " <a rel=\"nofollow\" target=\"_blank\" href=\"http://status301.net/skype-online-status/go/download\" title=\"".$config['getskype_text']."\" onmouseover=\"window.status='http://www.skype.com/go/download';return true;\" onmouseout=\"window.status=' ';return true;\">".$config['getskype_text']."</a>";
 			}
-		return str_replace(array("\r\n", "\n\r", "\n", "\r", "%0D%0A", "%0A%0D", "%0D", "%0A"), "", $theme_output);
+		return $theme_output;
 	}
 
 /*	// online status checker function
@@ -569,9 +577,8 @@ class Skype_Online_Status {
 		add_thickbox();
 		
 		//may be needed to ensure that a special box is always available
-		add_meta_box('basicdiv', __('Basic Options', 'skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_basic'), self::$pagehook, 'normal', 'high');
 		add_meta_box('submitdiv', __('Sections','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_submit'), self::$pagehook, 'side', 'high');
-		add_meta_box('previewdiv', __('Preview theme template:','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_preview'), self::$pagehook, 'side', 'core');
+		add_meta_box('previewdiv', __('Preview','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_preview'), self::$pagehook, 'side', 'core');
 		add_meta_box('supportdiv', __('Support','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_support'), self::$pagehook, 'side', 'core');
 		add_meta_box('morediv', __('Get more from Skype','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_more'), self::$pagehook, 'normal', 'low');
 		add_meta_box('resourcesdiv', __('Resources','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_resources'), self::$pagehook, 'side', 'low');

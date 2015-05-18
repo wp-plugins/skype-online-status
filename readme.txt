@@ -2,7 +2,7 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Skype%20Legacy%20Buttons&item_number=2%2e8&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
 Tags: skype, skype button, call, support, widget, widgets, post, posts, quicktag, tinymce, tinymce3, im, skype-button
-Requires at least: 2.9
+Requires at least: 3.1
 Tested up to: 4.2
 Stable tag: 2.9.7
 
@@ -156,6 +156,8 @@ Removed status button templates and functionality because Skype dropped support!
 
 = 3.0 =
 * Removed status button templates and functionality because Skype dropped support
+* Admin improvements
+* Local resources as option for sites on HTTPS
 
 = 2.9.7 =
 * FIX: Prevent skype.com redirect/error from showing

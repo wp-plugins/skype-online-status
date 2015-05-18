@@ -136,11 +136,10 @@ if(!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename($_SERVE
 		<p>See the included <a target="_blank" href="<?php echo plugins_url('/readme.txt', __FILE__); ?>">README</a> file:</p>
 		<iframe src="<?php echo plugins_url('/readme.txt', __FILE__); ?>" scrolling="auto" allowtransparency="yes" style="margin:0;padding:0;border:0;width:100%;height:600px"></iframe>
 		<p style="text-align:right"><a href="#wphead"><?php _e('Top') ?></a></p>
-	</div> <!-- #notes -->
-	
+
 	<?php
 	if (defined('WP_DEBUG') && WP_DEBUG) { 
-		echo "<div id=\"dump\"><h3>All Skype Legacy Buttons settings</h3>
+		echo "<h3>DEBUG INFO</h3>
 		<div style=\"width:32%;float:left\"><h4>Old database values</h4><textarea readonly=\"readonly\" style=\"width:100%;height:600px\">";
 		foreach (Skype_Online_Status::$config as $key => $value) {
 			echo $key . " => " . stripslashes(htmlspecialchars($value)) . "\r\n";
@@ -163,6 +162,7 @@ if(!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename($_SERVE
 		echo "</textarea></div><div style=\"clear:both\"></div>
 		<div id=\"globals\"><h4>Pluging global values and flags</h4> 
 		<p>SOSVERSION=".SOSVERSION."<br />SOSVERSION_DATE=".SOSVERSION_DATE."</p>
-		</div></div>";	
+		</div>";	
 	}
 	?>
+	</div> <!-- #notes -->
