@@ -19,7 +19,7 @@ SkpWhite_preload8.src = SkpWhite_url + "buttons/white_dropdown/5_over.png";
 SkpWhite_preload9 = new Image();
 SkpWhite_preload9.src = SkpWhite_url + "buttons/white_dropdown/6_over.png";
 
-var timer = false;
+var timerWhite = false;
 
 function skpBtnOvrWhite(where) {
     skypeWhiteDrpDown()
@@ -36,7 +36,7 @@ function skpBtnOutWhite(where) {
 	myImage.src = SkpWhite_url + "buttons/white_dropdown/"+idArray[1]+".png"
 }
 function skypeWhiteDrpDown() {
-    if(timer) { clearTimeout(timer); timer = false; }
+    if(timerWhite) { clearTimeout(timerWhite); timerWhite = false; }
     var skypeWhiteDrpCall = document.getElementById('skypeWhiteDrpCall');
     var skypeWhiteDrpArrow = document.getElementById('skypeWhiteDrpArrow');
     var skypeDropdownwhite = document.getElementById('skypeDropdown-white');
@@ -47,7 +47,7 @@ function skypeWhiteDrpDown() {
     skypeWhiteDrpArrow.height = "44";
 }
 function skypeWhiteDrpUp() {
-    timer = setTimeout("skypeWhiteDrpClose()", 600);
+    timerWhite = setTimeout("skypeWhiteDrpClose()", 600);
 }
 function skypeWhiteDrpClose() {
     var skypeDropdownwhite = document.getElementById('skypeDropdown-white');

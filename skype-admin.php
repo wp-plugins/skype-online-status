@@ -104,9 +104,9 @@ class Skype_Online_Status_Admin extends Skype_Online_Status {
 				} 
 				unset($value) ?> 
 					<tr>
-						<td><label for="status_error_text"><?php _e('Error', 'skype-online-status') ?></label></td>
-						<td><?php _e('(none)', 'skype-online-status') ?></td>
-						<td><input type="text" name="status_error_text" id="status_error_text" value="<?php echo stripslashes(htmlspecialchars(Skype_Online_Status::$config['status_error_text'])) ?>" /></td>
+						<td><label for="status_error_text"><?php //_e('Error', 'skype-online-status') ?></label></td>
+						<td><?php //_e('(none)', 'skype-online-status') ?></td>
+						<td><input type="text" name="status_error_text" id="status_error_text" value="<?php //echo stripslashes(htmlspecialchars(Skype_Online_Status::$config['status_error_text'])) ?>" /></td>
 					</tr>
 				</table>
 		</fieldset>

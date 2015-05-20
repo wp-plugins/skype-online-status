@@ -10,7 +10,7 @@ Unlimited, highly customizable and accessible (!) Skype buttons through widgets,
 
 == Description ==
 
-NOTICE: as of Mai 15th, 2015, Microsoft has officially dropped Skype's Online Status service https://support.skype.com/en/faq/FA605/how-do-i-set-up-the-skype-button-to-show-my-status-on-the-web-in-skype-for-windows-desktop. Consequently, this plugin will no longer be able to provide buttons that indicate online status. Only legacy Skype buttons that do not reflect the users online status are still available.
+NOTICE: as of Mai 2015, Microsoft has officially dropped Skype's Online Status service [read more](https://support.skype.com/en/faq/FA605/how-do-i-set-up-the-skype-button-to-show-my-status-on-the-web-in-skype-for-windows-desktop) and consequently, this plugin will no longer be able to provide buttons that indicate online status. Only legacy Skype buttons that do _not_ reflect the users online status remain available.
 
 This WordPress plugin allows you to add one or multiple, customizable and accessible (!) Skype buttons to your site. You can pick any of the (still) available legacy Skype button themes and place them in your *pages and posts content* (with a neat little Skype button in the WYSIWYG editor), in your sidebar via *widgets* (unlimited number) or anywhere in your theme template files.
 
