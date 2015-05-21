@@ -252,7 +252,7 @@ class Skype_Online_Status {
 										// ("" - use this when remote file access is disabled on your server!)
 			'use_buttonsnap' => 'on', 	// Wether to display a Skype Status quicktag button in RTE for posts
 										// ("on") or not ("")
-			'local_images' => '',		// use the local plugin-included images instead of remote Skype hosted ones
+			'local_images' => is_ssl() ? 'on' : '',		// use the local plugin-included images instead of remote Skype hosted ones
 			//'no_scheme' => 'on',
 			'seperator1_text' => __(' - ', 'skype-online-status'),
 										// Text to replace {sep1} in template files
