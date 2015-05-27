@@ -225,7 +225,7 @@ class Skype_Online_Status {
 
 		add_shortcode('skype-status', array(__CLASS__, 'shortcode_callback'));
 
-		add_action('wp_head', create_function('', 'echo \'<style type="text/css">#skypedetectionswf{position:fixed;top:0px;left:-10px}#skypeCheckNotice{position:fixed!important}</style>\';'));
+		add_action('wp_head', array(__CLASS__, 'print_style'));
 
 		// http://scribu.net/wordpress/optimal-script-loading.html
 		wp_register_script('skypecheck', plugins_url('/js/skypeCheck.js', __FILE__), '', SOSVERSION, true);
@@ -535,6 +535,13 @@ class Skype_Online_Status {
 			return array ( "select" => $select );
 		else
 			return false;
+	}
+
+	// echo styles in header
+	public static function print_style() {
+		
+		echo '<style type="text/css">#skypedetectionswf{position:fixed;top:0px;left:-10px}#skypeCheckNotice{position:fixed !important}</style>';
+
 	}
 
 	// skypeCheck script in footer
