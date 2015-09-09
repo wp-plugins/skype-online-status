@@ -40,7 +40,7 @@ Since version 2.6.4.0, Skype Online Status is ready for internationalization. An
 - **Serbian** * Ognjen Djuraskovic http://firstsiteguide.com (version 2.9.3)
 - **Spanish** * Rodolfo Castro & Rocio Moreno http://www.ars-legalconsulting.es/blog/ (version 2.7)
 - **Turkish** * Hakan Er http://hakanertr.wordpress.com/ (version 2.8.8)
-- **Ukrainian** * Michael Svystun http://emarketingblog.com.ua/ (version 2.7)
+- **Ukrainian** * Ivanka from Everycloudtech http://everycloudtech.com/ (version 3.0.2)
 
 New translations and their Authors will be mentioned here.
 
